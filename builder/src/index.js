@@ -4,9 +4,10 @@ import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from "react-redux";
 import Builder from './builder';
 import SppbTools from './sppbTools';
-import createStore from "./reducers";
+import store from "./store";
+import {AddonRegister} from './baseLayer';
 
-const store = createStore()
+AddonRegister();
 
 ReactDOM.render(
     <ReduxProvider store={store}>
@@ -24,3 +25,4 @@ document.getElementById('sppb-editor-view').addEventListener('load', (e) => {
         container);
     }
 })
+

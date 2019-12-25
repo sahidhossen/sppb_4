@@ -36,6 +36,11 @@ const builder = ( state = initialState, action ) => {
                 ...state,
                 sections: action.payload
             }
+        case 'ADD_ADDON_TYPES':
+            console.log("regist block:", action, state )
+            return {
+                ...state
+            }
         default:
             return state;
     }
