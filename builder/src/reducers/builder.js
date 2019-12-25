@@ -28,15 +28,15 @@ const builder = (state = initialState, action) => {
       }
       newBuilder[parentId].childrens.splice(index, 0, newBlock.id);
 
-      return {
-        ...state,
-        builder: { ...builder, ...newBuilder }
-      };
-
     case "ADD_SECTION":
       return {
         ...state,
         sections: action.payload
+      };
+    case "ADD_ADDON_TYPES":
+      console.log("regist block:", action, state);
+      return {
+        ...state
       };
     default:
       return state;
