@@ -1,0 +1,1 @@
+export { RegisterAddon } from './registerHook';

@@ -4,11 +4,17 @@ import reducer from "../reducers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = initialState =>
-  createStore(
+const reduxStore = initialState => { 
+
+  const middleware = applyMiddleware(thunkMiddleware)
+
+  const store = createStore(
     reducer,
     initialState,
-    composeEnhancers(applyMiddleware(thunkMiddleware))
+    composeEnhancers(middleware)
   );
+  
+  return store;
+}
 
-export default store();
+export default reduxStore();
