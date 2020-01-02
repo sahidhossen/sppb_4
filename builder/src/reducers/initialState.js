@@ -1,25 +1,30 @@
-import { revisedRandId } from '../lib/utils';
+import { serialBlockList } from '../lib/utils';
 import {addonList} from './addonList'
-import Section from '../components/Section';
+import Heading from '../components/Heading/Heading';
 
-const serialBlockList = (addonLists) => {
-    let _addonLists = {};
-    for( const key in addonLists ){
-        const list = addonLists[key].list
-        for(let i = 0; i<list.length; i++){
-            _addonLists[list[i].name] = list[i]
-        }
+const heading = {
+    "079543af-25f4-ab9c-156a-8b66570bccfb": {
+        id: "079543af-25f4-ab9c-156a-8b66570bccfb",
+        name: 'Heading',
+        title: 'Heading',
+        icon: 'fa fa-heading',
+        category: 'common',
+        childrens: [],
+        attributes: {
+            class:'sppb-heading',
+            color: 'red',
+        },
+        content: '',
+        Component: Heading
     }
-    return _addonLists
 }
-
-
 const initialState = {
     builder: {
         root: {
             parent: null,
-            childrens: []
-        }
+            childrens: ['079543af-25f4-ab9c-156a-8b66570bccfb']
+        },
+        ...heading
     },
     blocklist: serialBlockList(addonList)
 }

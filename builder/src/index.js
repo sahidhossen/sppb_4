@@ -6,8 +6,9 @@ import Builder from './builder';
 import SppbTools from './sppbTools';
 import store from "./store";
 import {AddonRegister} from './baseLayer';
+import Heading from './components/Heading';
+import Paragraph from './components/Paragraph';
 
-AddonRegister();
 
 ReactDOM.render(
     <ReduxProvider store={store}>
@@ -26,3 +27,6 @@ document.getElementById('sppb-editor-view').addEventListener('load', (e) => {
     }
 })
 
+
+AddonRegister(Heading);
+AddonRegister(Paragraph);

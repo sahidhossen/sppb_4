@@ -15,12 +15,13 @@ class Builder extends React.Component {
      } = this.props
     const { builderData } = state
     const { builder } = builderData.present
-    console.log("builder: ", isOver)
+    // console.log("block: ", builder)
     return (connectDropTarget(
       <div className="sppb-builder-wrapper">
           { builder.root.childrens.length > 0 ?
             builder.root.childrens.map( (blockId, index) => {
               const block = getBlockById(builder, blockId)
+              
               const { Component } = block
               return (
                 <Fragment key={index}>

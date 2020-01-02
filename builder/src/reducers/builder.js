@@ -4,7 +4,7 @@ import deepcopy from 'deepcopy';
 
 const builder = ( state = initialState, action ) => {
     switch( action.type ){
-        case 'ADD_BLOCK': 
+        case 'ADD_BLOCK':
         
             const { builder, blocklist } = state
             const { payload: {index, parentId, blockName } } = action
@@ -35,12 +35,19 @@ const builder = ( state = initialState, action ) => {
             return {
                 ...state,
                 sections: action.payload
+            };
+        case 'ADD_ADDON_TYPES': {
+            const { settings } = action;
+            const {blocklist:_blocklist} = state
+            const blockName = `sppb_${settings.name.toLowerCase()}`
+            if ( typeof _blocklist[blockName] === 'undefined') {
+                _blocklist[blockName] = settings;
             }
-        case 'ADD_ADDON_TYPES':
-            console.log("regist block:", action, state )
             return {
-                ...state
-            }
+                ...state,
+                blocklist: {..._blocklist}
+            };
+        }
         default:
             return state;
     }

@@ -9,5 +9,29 @@ export const isObject = ( obj ) => typeof obj === 'function' || typeof obj === '
 export const isArray = (arg) => Object.prototype.toString.call(arg) === '[object Array]';
 
 export const getBlockById = (blocks, blockId ) => {
+    console.log("blockID: ", blockId)
     return blocks[blockId]
+}
+
+export const serialBlockList = (addonLists) => {
+    let _addonLists = {};
+    for( const key in addonLists ){
+        const list = addonLists[key].list
+        for(let i = 0; i<list.length; i++){
+            _addonLists[list[i].name] = list[i]
+        }
+    }
+    return _addonLists
+}
+
+export const blockListForTools = (blockList) => {
+    const _blocklist = {};
+    Object.keys(blockList).map((name, index) => {
+        const __b = blockList[name];
+        const __c = __b.category.toLowerCase();
+        if (typeof _blocklist[__c] === 'undefined')
+            _blocklist[__c] = {title: __c, list:[] }; 
+        _blocklist[__c].list.push(__b);
+    })
+    return _blocklist;
 }
