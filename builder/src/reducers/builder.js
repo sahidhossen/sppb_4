@@ -7,7 +7,7 @@ const builder = ( state = initialState, action ) => {
         case 'ADD_BLOCK':
         
             const { builder, blocklist } = state
-            const { payload: {index, parentId, blockName } } = action
+            let { payload: {index, parentId, blockName } } = action
 
             /**
              * Get static block by block name
@@ -15,23 +15,23 @@ const builder = ( state = initialState, action ) => {
              * Add block to the state
              * */
 
-            const newBuilder = deepcopy(builder);
+            // N:B- Add prefix from global variable
+            blockName = `sppb_${blockName.toLowerCase()}`;
             let newBlock = generateBlock(blocklist, blockName);
-            newBuilder[newBlock.id] = newBlock;
-            if (blockName === "row") {
-                for (let i = 0; i < 2; i++) {
-                const column = generateBlock(blocklist, "column");
-                newBlock.childrens.push(column.id);
-                newBuilder[column.id] = column;
-                }
+            builder[newBlock.id] = newBlock;
+            builder[parentId].childrens.splice(index, 0, newBlock.id);
+
+            return {
+                ...state,
+                builder: {...builder}
             }
-            newBuilder[parentId].childrens.splice(index, 0, newBlock.id);
 
         case 'ADD_SECTION':
             return {
                 ...state,
                 sections: action.payload
             };
+            
         case 'REGISTER_ADDON_TYPES': {
             const { settings } = action;
             const {blocklist:_blocklist} = state

@@ -1,4 +1,4 @@
-import Heading from './heading';
+import Heading from './Heading';
 import {revisedRandId} from '../../lib/utils';
 
 export default {

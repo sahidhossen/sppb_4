@@ -1,6 +1,4 @@
-// import { serialBlockList } from '../lib/utils';
-// import {addonList} from './addonList'
-import Heading from '../addonLibrary/heading/heading';
+import Heading from '../addonLibrary/heading/Heading';
 
 const heading = {
     "079543af-25f4-ab9c-156a-8b66570bccfb": {

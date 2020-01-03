@@ -18,17 +18,6 @@ export const addonList = {
                 attributes: {},
                 content: ''
             },
-            // {
-            //     id: revisedRandId(),
-            //     category: 'common',
-            //     icon: 'fa fa-head',
-            //     title: 'Heading',
-            //     name: 'sppb_title',
-            //     type: 'heading',
-            //     className: 'sppb-title',
-            //     attributes: {},
-            //     content: 'This title will be also <span class="color-name">colorable</span and <strong>boldable</strong>'
-            // },
             {
                 id: revisedRandId(),
                 title: 'List',
