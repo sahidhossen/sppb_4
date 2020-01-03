@@ -27,11 +27,22 @@ const builder = ( state = initialState, action ) => {
       }
       newBuilder[parentId].childrens.splice(index, 0, newBlock.id);
 
+        case 'SET_ATTRIBUTE': {
+          const { builder } = state;
+          const { payload: { id }, payload:{ attr }} = action;
+          builder[id].attributes = {...attr, ...{...builder[id].attributes}}
+          return {
+            ...state,
+            builder: {...builder}
+          };
+        }
+
         case 'ADD_SECTION':
             return {
                 ...state,
                 sections: action.payload
             };
+
         case 'ADD_ADDON_TYPES': {
             const { settings } = action;
             const {blocklist:_blocklist} = state

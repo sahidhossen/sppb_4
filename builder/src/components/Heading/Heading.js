@@ -8,13 +8,17 @@ class Heading extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        // this.props.setAttribute('title', 'custom title')
+    }
+
     render(){
-        const { block } = this.props
-        // console.log("ehading props",block)
+        const { block, getAttribute, setAttribute } = this.props
+       
         const clsNames = classNames('sppb-4' ,'sppb-heading', block.id)
         return(
             <div className={clsNames}>
-               <h1>Heading</h1>
+               <h1 onClick={()=> setAttribute('src', 'http://google.com')}>Heading</h1>
             </div>
         )
     }
