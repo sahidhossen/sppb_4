@@ -7,25 +7,24 @@ const builder = ( state = initialState, action ) => {
         case 'ADD_BLOCK':
         
             const { builder, blocklist } = state
-            const { payload: {index, parentId, blockName } } = action
+            let { payload: {index, parentId, blockName } } = action
 
-      /**
-       * Get static block by block name
-       * Update parent children attribute
-       * Add block to the state
-       * */
+            /**
+             * Get static block by block name
+             * Update parent children attribute
+             * Add block to the state
+             * */
 
-      const newBuilder = deepcopy(builder);
-      let newBlock = generateBlock(blocklist, blockName);
-      newBuilder[newBlock.id] = newBlock;
-      if (blockName === "row") {
-        for (let i = 0; i < 2; i++) {
-          const column = generateBlock(blocklist, "column");
-          newBlock.childrens.push(column.id);
-          newBuilder[column.id] = column;
-        }
-      }
-      newBuilder[parentId].childrens.splice(index, 0, newBlock.id);
+            // N:B- Add prefix from global variable
+            blockName = `sppb_${blockName.toLowerCase()}`;
+            let newBlock = generateBlock(blocklist, blockName);
+            builder[newBlock.id] = newBlock;
+            builder[parentId].childrens.splice(index, 0, newBlock.id);
+
+            return {
+                ...state,
+                builder: {...builder}
+            }
 
         case 'SET_ATTRIBUTE': {
           const { builder } = state;
@@ -42,8 +41,8 @@ const builder = ( state = initialState, action ) => {
                 ...state,
                 sections: action.payload
             };
-
-        case 'ADD_ADDON_TYPES': {
+            
+        case 'REGISTER_ADDON_TYPES': {
             const { settings } = action;
             const {blocklist:_blocklist} = state
             const blockName = `sppb_${settings.name.toLowerCase()}`
@@ -59,16 +58,6 @@ const builder = ( state = initialState, action ) => {
             return state;
     }
 }
-
-const getStaticBlock = (blockList, blockName) => blockList[blockName];
-
-const addRow = (builder, blockList, row, grid = 2) => {
-  for (let i = 0; i < 2; i++) {
-    const column = generateBlock(blockList, "column");
-    row.childrens.push(column.id);
-    builder[column.id] = column;
-  }
-};
 
 /**
  * Generate New block by requested block name from stored blocklist with new Revised Id

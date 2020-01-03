@@ -51,7 +51,6 @@ const mapStateToProps = ( state ) => {
 const mapDispatchToProps = ( dispatch ) => {
   return {
     addBlock: (payload) => {
-      console.log("payload: ", payload)
       /**
        * payload: { parentIndex, block }
        */
@@ -70,12 +69,12 @@ const BuilderDragTarget = {
     return;
   },
   drop(props, monitor, component) {
-    console.log("section drop: ", props)
     /**
      * @params parentIndex
      * @params blockName: block
      */
     const dropData = monitor.getItem()
+    console.log("section drop: ", dropData)
     // console.log(dropData)
     props.addBlock({
       parentIndex: 0, //props.index,

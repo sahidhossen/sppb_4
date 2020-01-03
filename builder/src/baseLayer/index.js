@@ -1,1 +1,0 @@
-export { AddonRegister } from './registerHook';

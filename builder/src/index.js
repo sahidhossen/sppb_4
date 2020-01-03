@@ -5,12 +5,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import Builder from "./builder";
 import SppbTools from "./sppbTools";
 import store from "./store";
-import {AddonRegister} from './baseLayer';
-import Heading from './components/Heading';
-import Paragraph from './components/Paragraph';
-
-AddonRegister(Heading);
-AddonRegister(Paragraph);
+import {registerCoreAddons} from './addonLibrary';
 
 ReactDOM.render(
   <ReduxProvider store={store}>
@@ -24,6 +19,9 @@ document.getElementById("sppb-editor-view").addEventListener("load", e => {
     let container = window.frames[
       "sppb-editor-view"
     ].window.document.getElementById("sppb_root_view");
+
+    registerCoreAddons();
+
     ReactDOM.render(
       <ReduxProvider store={store}>
         <Builder />

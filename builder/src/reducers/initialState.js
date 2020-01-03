@@ -1,6 +1,4 @@
-import { serialBlockList } from '../lib/utils';
-import {addonList} from './addonList'
-import Heading from '../components/Heading/Heading';
+import Heading from '../addonLibrary/heading/Heading';
 
 const heading = {
     "079543af-25f4-ab9c-156a-8b66570bccfb": {
@@ -26,7 +24,7 @@ const initialState = {
         },
         ...heading
     },
-    blocklist: serialBlockList(addonList)
+    blocklist: {}
 }
 
 

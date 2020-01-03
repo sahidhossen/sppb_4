@@ -9,7 +9,6 @@ export const isObject = ( obj ) => typeof obj === 'function' || typeof obj === '
 export const isArray = (arg) => Object.prototype.toString.call(arg) === '[object Array]';
 
 export const getBlockById = (blocks, blockId ) => {
-    console.log("blockID: ", blockId)
     return blocks[blockId]
 }
 
