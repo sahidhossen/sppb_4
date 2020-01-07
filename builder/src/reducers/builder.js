@@ -1,71 +1,50 @@
 import initialState from "./initialState";
 import { revisedRandId } from "../lib/utils";
-// import {select} from '../store';
 import deepcopy from "deepcopy";
 
-const builder = ( state = initialState, action ) => {
-    switch( action.type ){
-        case 'ADD_BLOCK':
-            const { builder } = state
-            let { payload: {index, parentId, blockName } } = action
+const builder = (state = initialState, action) => {
+  switch (action.type) {
+    case "ADD_BLOCK":
+      const { builder } = state;
+      let {
+        defaultAddon,
+        payload: { index, parentId }
+      } = action;
 
-            /**
-             * Get static block by block name
-             * Update parent children attribute
-             * Add block to the state
-             * */
+      /**
+       * Get static block by block name
+       * Update parent children attribute
+       * Add block to the state
+       * */
+      builder[defaultAddon.id] = defaultAddon;
+      builder[parentId].childrens.splice(index, 0, defaultAddon.id);
 
-            // N:B- Add prefix from global variable
-            blockName = `sppb_${blockName.toLowerCase()}`;
-            let newBlock = generateBlock(addonList, blockName);
-            builder[newBlock.id] = newBlock;
-            builder[parentId].childrens.splice(index, 0, newBlock.id);
+      return {
+        ...state,
+        builder: { ...builder }
+      };
 
-            return {
-                ...state,
-                builder: {...builder}
-            }
-
-        case 'SET_ATTRIBUTE': {
-          const { builder } = state;
-          const { payload: { id }, payload:{ attr }} = action;
-          builder[id].attributes = {...attr, ...{...builder[id].attributes}}
-          return {
-            ...state,
-            builder: {...builder}
-          };
-        }
-
-        case 'ADD_SECTION':
-            return {
-                ...state,
-                sections: action.payload
-            };
-        default:
-            return state;
+    case "SET_ATTRIBUTE": {
+      const { builder } = state;
+      const {
+        payload: { id },
+        payload: { attr }
+      } = action;
+      builder[id].attributes = { ...attr, ...{ ...builder[id].attributes } };
+      return {
+        ...state,
+        builder: { ...builder }
+      };
     }
-}
 
-/**
- * Generate New block by requested block name from stored blocklist with new Revised Id
- * @param {Object} state Current state
- * @param {string} blockName
- * @param {Object} properties // Block properties
- * @param {object} attributes // Block attributes
- */
-const generateBlock = (
-  blocklist,
-  blockName,
-  properties = {},
-  attributes = {}
-) => {
-  const block = deepcopy(blocklist[blockName]);
-  return {
-    ...block,
-    id: revisedRandId(),
-    ...properties,
-    attributes: { ...block.attributes, ...attributes }
-  };
+    case "ADD_SECTION":
+      return {
+        ...state,
+        sections: action.payload
+      };
+    default:
+      return state;
+  }
 };
 
 export default builder;

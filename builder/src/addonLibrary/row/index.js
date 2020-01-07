@@ -11,5 +11,7 @@ export default {
     attributes: {},
     childrens: [],
     content: [],
+    droppable: true,
+    accept: '*',
     Component: Row
 }
