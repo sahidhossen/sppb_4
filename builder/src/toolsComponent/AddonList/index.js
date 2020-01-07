@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {blockListForTools} from '../../lib/utils';
-import {testIframe} from '../../actions';
-import { addonList } from '../../reducers/addonList';
 import AddonItem from '../AddonItem';
 
 class AddonList extends Component {
@@ -10,15 +8,13 @@ class AddonList extends Component {
     super()
   }
   render() {
-    const { enable_tools, state: {builderData} } = this.props
+    const { enable_tools, state:{addonList} } = this.props
     const translateValue = !enable_tools ? '-100%' : '0'
     const style = {
       transition:'transform 150ms linear 0s',
       transform: `translate3d(${translateValue}, 0px, 0px)`
     }
-    const { present:{blocklist}} = builderData;
-    
-    const _blocklist = blockListForTools(blocklist);
+    const _blocklist = blockListForTools(addonList);
     return (
         <div className="sppb-tools-container" style={style}>
           <div className="sppb-tool-title row m-0"> 

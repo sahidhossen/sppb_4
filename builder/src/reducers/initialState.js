@@ -23,8 +23,7 @@ const initialState = {
             childrens: ['079543af-25f4-ab9c-156a-8b66570bccfb']
         },
         ...heading
-    },
-    blocklist: {}
+    }
 }
 
 

@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from "react-redux";
 
 import Builder from "./builder";
 import SppbTools from "./sppbTools";
-import store from "./store";
+import {store} from "./store";
 import {registerCoreAddons} from './addonLibrary';
 
 ReactDOM.render(

@@ -1,24 +1,16 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import thunkMiddleware from "redux-thunk";
-import reducer from "../reducers";
-import {subscribe} from './subscriber';
+import {createSPPBStore} from './createStore';
+const sppbStore = createSPPBStore();
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = sppbStore.store;
+export const dispatch = store.dispatch;
+export const subscribe = sppbStore.subscribe;
+/**
+* This select function will return individual redux storage
+* select('data')
+* @param {String} storeKey Store key 
+*/
 
-const reduxStore = initialState => { 
-
-  const middleware = applyMiddleware(thunkMiddleware)
-
-  const store = createStore(
-    reducer,
-    initialState,
-    composeEnhancers(middleware)
-  );
-  
-
-  subscribe(store);
-
-  return store;
+export const select = (storeKey) => {
+ const currentState = store._genericStore();
+ return typeof currentState[storeKey] === 'undefined' ? {} : {...currentState[storeKey]};
 }
-
-export default reduxStore();

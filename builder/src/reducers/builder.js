@@ -1,12 +1,12 @@
 import initialState from "./initialState";
 import { revisedRandId } from "../lib/utils";
+// import {select} from '../store';
 import deepcopy from "deepcopy";
 
 const builder = ( state = initialState, action ) => {
     switch( action.type ){
         case 'ADD_BLOCK':
-        
-            const { builder, blocklist } = state
+            const { builder } = state
             let { payload: {index, parentId, blockName } } = action
 
             /**
@@ -17,7 +17,7 @@ const builder = ( state = initialState, action ) => {
 
             // N:B- Add prefix from global variable
             blockName = `sppb_${blockName.toLowerCase()}`;
-            let newBlock = generateBlock(blocklist, blockName);
+            let newBlock = generateBlock(addonList, blockName);
             builder[newBlock.id] = newBlock;
             builder[parentId].childrens.splice(index, 0, newBlock.id);
 
@@ -41,19 +41,6 @@ const builder = ( state = initialState, action ) => {
                 ...state,
                 sections: action.payload
             };
-            
-        case 'REGISTER_ADDON_TYPES': {
-            const { settings } = action;
-            const {blocklist:_blocklist} = state
-            const blockName = `sppb_${settings.name.toLowerCase()}`
-            if ( typeof _blocklist[blockName] === 'undefined') {
-                _blocklist[blockName] = settings;
-            }
-            return {
-                ...state,
-                blocklist: {..._blocklist}
-            };
-        }
         default:
             return state;
     }

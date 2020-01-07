@@ -13,8 +13,8 @@ class Builder extends React.Component {
         isOver, 
         isDragging, 
      } = this.props
-    const { builderData } = state
-    const { builder } = builderData.present
+    const { data } = state
+    const { builder } = data.present
     // console.log("block: ", builder)
     return (connectDropTarget(
       <div className="sppb-builder-wrapper">

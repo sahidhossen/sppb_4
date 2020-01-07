@@ -9,8 +9,8 @@ const StoreHoc = (PureComponent) => {
         }
     }
     const mapStateToProps = ( state ) => {
-        const {builderData} = state
-        const { present:{builder}} = builderData;
+        const {data} = state
+        const { present:{builder}} = data;
         return {
             builder
         };
