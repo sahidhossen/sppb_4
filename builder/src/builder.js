@@ -21,7 +21,6 @@ class Builder extends React.Component {
           { builder.root.childrens.length > 0 ?
             builder.root.childrens.map( (blockId, index) => {
               const block = getBlockById(builder, blockId)
-              
               const { Component } = block
               return (
                 <Fragment key={index}>

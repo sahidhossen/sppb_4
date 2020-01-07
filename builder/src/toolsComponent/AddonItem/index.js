@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { testIframe } from "../../actions";
 import { DragSource } from "react-dnd";
 import { Types } from "../../actions/dragType";
 
@@ -63,11 +62,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    testIframe: () => {
-      dispatch(testIframe());
-    }
-  };
+  return {};
 };
 
 export default connect(
