@@ -11,6 +11,7 @@ export const getDefaultAddon = addonName => {
   const _addonName = `sppb_${addonName.toLowerCase()}`;
   const addon = addonList[_addonName] ? addonList[_addonName] : null;
   if (addon) {
+    console.log("from helper generated", generateBlock(addon));
     return generateBlock(addon);
   }
   return false;
@@ -24,7 +25,17 @@ export const getDefaultAddon = addonName => {
  * @param {object} attributes // Block attributes
  */
 const generateBlock = (defaultAddon, properties = {}, attributes = {}) => {
-  const block = { ...defaultAddon };
+  const acceptedFields = [
+    "Component",
+    "attributes",
+    "childrens",
+    "content",
+    "id"
+  ];
+  const block = Object.keys(defaultAddon).reduce((editedAddon, key) => {
+    if (acceptedFields.includes(key)) editedAddon[key] = defaultAddon[key];
+    return editedAddon;
+  }, {});
   return {
     ...block,
     id: revisedRandId(),
