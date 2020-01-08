@@ -11,7 +11,6 @@ export const getDefaultAddon = addonName => {
   const _addonName = `sppb_${addonName.toLowerCase()}`;
   const addon = addonList[_addonName] ? addonList[_addonName] : null;
   if (addon) {
-    console.log("from helper generated", generateBlock(addon));
     return generateBlock(addon);
   }
   return false;
@@ -31,9 +30,12 @@ export const generateBlock = (
 ) => {
   const acceptedFields = [
     "Component",
+    "name",
     "attributes",
     "childrens",
     "content",
+    'droppable',
+    'accept',
     "id"
   ];
   const block = Object.keys(defaultAddon).reduce((editedAddon, key) => {

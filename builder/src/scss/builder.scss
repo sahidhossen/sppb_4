@@ -485,10 +485,14 @@ DRAGGABLE PADDING
 }
 .drag-pointer {
   position: relative;
-  height: 1px;
+  height: 10px;
   width: 100%;
-  background: #22b0da;
+  // background: #22b0da;
+  border:1px dashed #22b0da;
   &:hover {
     background: red;
+  }
+  &.active {
+    border-color: red;
   }
 }

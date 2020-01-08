@@ -11,8 +11,8 @@ class Builder extends React.Component {
     const { state, connectDropTarget, isOver, isDragging } = this.props;
     const { data } = state;
     const { builder } = data.present;
-    // console.log("block: ", builder)
-    return connectDropTarget(
+    const activeClass = isOver ? 'active' : ''
+    return (
       <div className="sppb-builder-wrapper">
         {builder.root.childrens.length > 0 ? (
           builder.root.childrens.map((blockId, index) => {
@@ -21,16 +21,18 @@ class Builder extends React.Component {
             const { Component } = block;
             return (
               <Fragment key={index}>
+                {index===0 && connectDropTarget(<div className={`drag-pointer ${activeClass}`}>&nbsp;</div>)}
                 <Component index={index} block={block} addonId={blockId} builder={builder} />
-                <div className="drag-pointer">&nbsp;</div>
+                {connectDropTarget(<div className={`drag-pointer ${activeClass}`}>&nbsp;</div>)}
               </Fragment>
             );
           })
+
         ) : (
-          <div className="empty-block">
+          connectDropTarget(<div className="empty-block">
             {" "}
             <p> Please add addon here </p>{" "}
-          </div>
+          </div> )
         )}
       </div>
     );
@@ -51,7 +53,8 @@ const mapDispatchToProps = dispatch => {
 
 const BuilderDragTarget = {
   canDrop(props, monitor) {
-    // console.log("allowd", props, monitor.getItem())
+    // console.log("allowd", props)
+    // if (props.addonId)
     return true;
   },
   hover(props, monitor, component) {
@@ -64,7 +67,7 @@ const BuilderDragTarget = {
      * @params blockName: block
      */
     const dropData = monitor.getItem();
-    // console.log(dropData)
+    console.log("builder", props)
     props.addBlock({
       parentIndex: 0, //props.index,
       parentId: "root",

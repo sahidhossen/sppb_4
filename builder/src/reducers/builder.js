@@ -15,6 +15,7 @@ const builder = (state = initialState, action) => {
        * Add block to the state
        * */
       builder[defaultAddon.id] = defaultAddon;
+      builder[defaultAddon.id].parentId = parentId; // Add parent Id
       builder[parentId].childrens.splice(index, 0, defaultAddon.id);
 
       return {

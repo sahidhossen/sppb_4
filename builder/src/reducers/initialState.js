@@ -13,6 +13,7 @@ const heading = {
             color: 'red',
         },
         content: '',
+        parentId: 'root',
         Component: Heading
     }
 }
