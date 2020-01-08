@@ -1,6 +1,4 @@
 import initialState from "./initialState";
-import { revisedRandId } from "../lib/utils";
-import deepcopy from "deepcopy";
 
 const builder = (state = initialState, action) => {
   switch (action.type) {
