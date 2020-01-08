@@ -461,7 +461,6 @@ DRAGGABLE PADDING
     opacity: 0.6;
   }
 }
-
 .empty-block {
   position: absolute;
   height: 100%;
@@ -476,6 +475,7 @@ DRAGGABLE PADDING
   border: 1px dashed #dddddd;
   margin-bottom: 1px;
   margin-top: 1px;
+  min-height: 100px;
   .sppb-column {
     border-right: 1px dashed #dddddd;
     &:last-child {

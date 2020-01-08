@@ -21,7 +21,7 @@ class Builder extends React.Component {
             const { Component } = block;
             return (
               <Fragment key={index}>
-                <Component index={index} block={block} builder={builder} />
+                <Component index={index} block={block} addonId={blockId} builder={builder} />
                 <div className="drag-pointer">&nbsp;</div>
               </Fragment>
             );
@@ -64,7 +64,6 @@ const BuilderDragTarget = {
      * @params blockName: block
      */
     const dropData = monitor.getItem();
-    console.log("section drop: ", dropData);
     // console.log(dropData)
     props.addBlock({
       parentIndex: 0, //props.index,
