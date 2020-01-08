@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import { DragSource, DropTarget } from "react-dnd";
 import { findDOMNode } from 'react-dom';
 import { Types } from "../actions/dragType";
-import flow from 'lodash/flow'
-import {setAttribute} from '../actions';
+import {setAttribute, addAddon} from '../actions';
+import {dispatch} from 'store';
+
 
 const StoreHoc = (PureComponent) => {
     class HOC extends React.Component {
@@ -16,9 +17,10 @@ const StoreHoc = (PureComponent) => {
             const {connectDragSource, connectDropTarget, block} = this.props;
             const node = findDOMNode(instance);
             connectDragSource(node);
-            if (typeof block.droppable !== 'undefined' && block.droppable === true) {
-                connectDropTarget(node);
-            }
+            connectDropTarget(node);
+            // if (typeof block.droppable !== 'undefined' && block.droppable === true) {
+            //     connectDropTarget(node);
+            // }
         }
 
         render() {
@@ -67,12 +69,19 @@ const StoreHoc = (PureComponent) => {
     const ElementDragTarget = {
         canDrop(props, monitor) {
             if (props.name === 'row') { 
-                // console.log("canDrop into element", props, monitor.getItem())
+                console.log("canDrop into element", props, monitor.getItem())
             }
           return true;
         },
         hover(props, monitor, component) {
-          console.log("section hover: ")
+          const item = monitor.getItem();
+          
+          const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+          const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+          const clientOffset = monitor.getClientOffset();
+          const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+          console.log("onHover: ", props.block.name, ' dragItem: ', item.name)
+
           return;
         },
         /**
@@ -88,8 +97,19 @@ const StoreHoc = (PureComponent) => {
            */
           const dropData = monitor.getItem(); // Droppable data from source
           const {block} = dropData
+          const {builder} = props
+
         //   const {}
           console.log("drop into element: ",dropData, props)
+          const baseAddon = builder[props.addonId];
+          console.log("base: ", baseAddon)
+
+          const actionData = {
+            parentId: props.addonId,
+            index: props.index,
+            blockName: dropData.name
+          }
+          dispatch(addAddon(actionData))
         //   props.addBlock({
         //     parentIndex: 0, //props.index,
         //     parentId: "root",
