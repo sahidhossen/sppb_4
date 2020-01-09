@@ -1,4 +1,5 @@
 import deepcopy from "lodash";
+import {Fragment} from 'react';
 import { select } from "store";
 import { revisedRandId } from "./utils";
 
@@ -45,3 +46,16 @@ const generateBlock = (defaultAddon, properties = {}, attributes = {}) => {
     attributes: { ...block.attributes, ...attributes }
   };
 };
+/**
+ * Collect all addon component from children addon ids
+ * @param {Array} childrenIds Collection of children addon Ids
+ */
+export const getChildAddons = (childrenIds) => {
+  const _childrenIds = typeof childrenIds === 'string' ? [childrenIds] : childrenIds;
+  const builder = select('data');
+  return _childrenIds.map( Id => builder[Id].Component );
+}
+
+export const renderAddons = (Component) => {
+  // Render component
+}

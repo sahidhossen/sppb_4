@@ -1,3 +1,5 @@
+import {select} from 'store';
+
 export const revisedRandId = () => {
   const S4 = function() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -23,8 +25,9 @@ export const isObject = obj =>
 export const isArray = arg =>
   Object.prototype.toString.call(arg) === "[object Array]";
 
-export const getBlockById = (blocks, blockId) => {
-  return blocks[blockId];
+export const getBlockById = (blockId) => {
+  const builder = select('data');
+  return builder[blockId];
 };
 
 export const serialBlockList = addonLists => {

@@ -9,9 +9,10 @@ class Row extends React.Component {
 
     render(){
         const clsNames = classNames('sppb-4' ,'sppb-row')
+        console.log("row: ", this.props.getChildAddons())
         return(
             <div className={clsNames}>
-                <h1 style={{textAlign:"center"}}> Row </h1>
+                {[this.props.getChildAddons()]}
             </div>
         )
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { DragSource, DropTarget } from "react-dnd";
 import { findDOMNode } from 'react-dom';
+import {getChildAddons} from '../lib/addonHelper';
 import { Types } from "../actions/dragType";
 import {setAttribute, addAddon} from '../actions';
 import {dispatch} from 'store';
@@ -37,9 +38,8 @@ const StoreHoc = (PureComponent) => {
     
     const mapDispatchToProps = ( dispatch, ownProps ) => {
         return {
-            hasChildrens: () => {
-                return ownProps.block.childrens.length
-            },
+            getChildAddons: () => getChildAddons(ownProps.block.childrens),
+            hasChildrens: () => ownProps.block.childrens.length,
             getAttribute: (name) => {
                 name = name.toLowerCase();
                 const {block: {attributes}} = ownProps;

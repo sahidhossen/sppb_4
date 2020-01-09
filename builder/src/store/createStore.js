@@ -20,6 +20,7 @@ export const createSPPBStore = () => {
   // Customize subscribe behavior to call listeners only on effective change,
   // not on every dispatch.
   store._genericStore = store.getState;
+
   const subscribe =
     store &&
     function(listener) {
@@ -33,7 +34,7 @@ export const createSPPBStore = () => {
         }
       });
     };
-
+    
   const registryStore = {
     store,
     subscribe
