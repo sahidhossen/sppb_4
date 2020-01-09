@@ -24,7 +24,11 @@ export const getDefaultAddon = addonName => {
  * @param {Object} properties // Block properties
  * @param {object} attributes // Block attributes
  */
-const generateBlock = (defaultAddon, properties = {}, attributes = {}) => {
+export const generateBlock = (
+  defaultAddon,
+  properties = {},
+  attributes = {}
+) => {
   const acceptedFields = [
     "Component",
     "name",
