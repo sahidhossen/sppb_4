@@ -5,7 +5,7 @@ import { Types } from "../../actions/dragType";
 
 const BlockSource = {
   beginDrag(props) {
-    console.log("begin: ", props);
+    console.log("begin drop");
     return {
       type: Types.BLOCK,
       name: props.block.name,
@@ -13,7 +13,7 @@ const BlockSource = {
     };
   },
   endDrag(props, monitor, component) {
-    console.log("end: ", props);
+    console.log("end drop");
   }
 };
 

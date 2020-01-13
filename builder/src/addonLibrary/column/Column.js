@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { SPPBStore } from "../../SPPBStore";
 import classNames from 'classnames/bind';
 
 /**
@@ -18,33 +18,10 @@ class Column extends React.Component {
         const { block, index } = this.props
         const {attributes} = block
         const clsNames = classNames('sppb-4', attributes.class, block.id)
-        const activeClass = classNames({'sppb-4-border-active': this.state.onMouseOver })
-        const style = { maxWidth: attributes.width }
-        return(
-            <div 
-                className={clsNames} 
-                style={style}
-                onMouseEnter={()=>this.setState({ onMouseOver: true })}
-                onMouseLeave={()=>this.setState({ onMouseOver: false })}
-            >
-                <h3> Column Goes to here </h3>
-            </div>
-        )
+        // const activeClass = classNames({'sppb-4-border-active': this.state.onMouseOver })
+        const style = { flex:1, borderWidth:1, borderStyle:'solid', borderColor:'red' }
+        return(<div className={clsNames} style={style}>{this.props.renderChildren()}</div>)
     }
 }
 
-
-const mapStateToProps = ( state ) => {
-    return {
-      state
-    };
-  }
-  
-  const mapDispatchToProps = ( dispatch ) => {
-    return {}
-  }
-  
-  export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Column);
+export default SPPBStore(Column);

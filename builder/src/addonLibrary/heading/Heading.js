@@ -13,13 +13,9 @@ class Heading extends React.Component {
 
     render(){
         const { block, getAttribute, setAttribute } = this.props
-       
         const clsNames = classNames('sppb-4' ,'sppb-heading', block.id)
-        return(
-            <div className={clsNames}>
-               <h1 onClick={()=> setAttribute('src', 'http://google.com')}>Heading</h1>
-            </div>
-        )
+        
+        return( <h1 className={clsNames} onClick={()=> setAttribute('src', 'http://google.com')}>Heading</h1>)
     }
 }
 

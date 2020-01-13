@@ -54,8 +54,8 @@ const StoreHoc = PureComponent => {
 
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      getChildAddons: () => getChildAddons(ownProps.block.childrens),
-      renderChildAddons: () => renderChildAddons(ownProps.block.childrens),
+      getChildAddons: () => getChildAddons(ownProps.addonId),
+      renderChildren: () => renderChildAddons(ownProps),
       hasChildrens: () => ownProps.block.childrens.length,
       getAttribute: name => {
         name = name.toLowerCase();
@@ -130,6 +130,10 @@ const StoreHoc = PureComponent => {
        * @params parentIndex
        * @params blockName: block
        */
+      const hasDroppedOnChild = monitor.didDrop();
+      if (hasDroppedOnChild)
+        return;
+
       const dropData = monitor.getItem(); // Droppable data from source
       const { block } = dropData;
       const {
@@ -137,10 +141,9 @@ const StoreHoc = PureComponent => {
         block: { droppable }
       } = props;
 
-      //   const {}
       // console.log("drop into element: ", dropData, props);
       const baseAddon = builder[props.addonId];
-      // console.log("base: ", monitor);
+      // console.log("base: ", props, dropData);
 
       const actionData = {
         parentId: props.addonId,
@@ -149,11 +152,6 @@ const StoreHoc = PureComponent => {
       };
 
       dispatch(addAddon(actionData));
-      //   props.addBlock({
-      //     parentIndex: 0, //props.index,
-      //     parentId: "root",
-      //     blockName: dropData.name
-      //   });
       return;
     }
   };

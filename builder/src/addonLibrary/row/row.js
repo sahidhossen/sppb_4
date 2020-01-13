@@ -9,16 +9,8 @@ class Row extends React.Component {
 
   render() {
     const clsNames = classNames("sppb-4", "sppb-row");
-    // console.log("row: ", this.props.getChildAddons());
-    const childAddons = this.props.getChildAddons();
-    this.props.block.content = childAddons;
-    console.log("inside row", this.props);
     return (
-      <div className={clsNames}>
-        {this.props.block.content.map((ChildAddon, index) => (
-          <ChildAddon key={index} {...this.props} />
-        ))}
-      </div>
+      <div className={clsNames}> {this.props.renderChildren()}</div>
     );
   }
 }
