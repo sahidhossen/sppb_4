@@ -8,7 +8,8 @@ const builder = (state = initialState, action) => {
         defaultAddon,
         payload: { index, parentId }
       } = action;
-
+      console.log("inside reducer state", state);
+      console.log("inside reducer action", action);
       /**
        * Get static block by block name
        * Update parent children attribute

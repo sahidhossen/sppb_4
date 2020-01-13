@@ -1,7 +1,8 @@
 import deepcopy from "lodash";
-import {Fragment} from 'react';
+import { Fragment } from "react";
 import { select } from "store";
 import { revisedRandId } from "./utils";
+import { SPPBStore } from "../SPPBStore";
 
 /**
  * Prefix {sppb-addonName}
@@ -35,8 +36,8 @@ export const generateBlock = (
     "attributes",
     "childrens",
     "content",
-    'droppable',
-    'accept',
+    "droppable",
+    "accept",
     "id"
   ];
   const block = Object.keys(defaultAddon).reduce((editedAddon, key) => {
@@ -54,12 +55,17 @@ export const generateBlock = (
  * Collect all addon component from children addon ids
  * @param {Array} childrenIds Collection of children addon Ids
  */
-export const getChildAddons = (childrenIds) => {
-  const _childrenIds = typeof childrenIds === 'string' ? [childrenIds] : childrenIds;
-  const builder = select('data');
-  return _childrenIds.map( Id => builder[Id].Component );
-}
+export const getChildAddons = childrenIds => {
+  const _childrenIds =
+    typeof childrenIds === "string" ? [childrenIds] : childrenIds;
+  const builder = select("data");
+  console.log("builder", builder);
+  return _childrenIds.map(Id => builder[Id].Component);
+};
 
-export const renderAddons = (Component) => {
-  // Render component
-}
+// export const renderChildAddons = childrenIds => {
+//   const childAddons = getChildAddons(childrenIds);
+//   return childAddons.map((ChildAddon, index) => {
+//     SPPBStore(<ChildAddon key={index} />);
+//   });
+// };

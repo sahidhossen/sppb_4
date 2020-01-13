@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { DragSource, DropTarget } from "react-dnd";
-import { findDOMNode } from 'react-dom';
-import {getChildAddons} from '../lib/addonHelper';
+import { findDOMNode } from "react-dom";
+import { getChildAddons, renderChildAddons } from "../lib/addonHelper";
 import { Types } from "../actions/dragType";
 import { setAttribute, addAddon } from "../actions";
 import { dispatch } from "store";
@@ -45,27 +45,30 @@ const StoreHoc = PureComponent => {
         demo: "wow"
       };
     }
-  }
-    
-    const mapDispatchToProps = ( dispatch, ownProps ) => {
-        return {
-            getChildAddons: () => getChildAddons(ownProps.block.childrens),
-            hasChildrens: () => ownProps.block.childrens.length,
-            getAttribute: (name) => {
-                name = name.toLowerCase();
-                const {block: {attributes}} = ownProps;
-                return attributes[name] ? attributes[name] : null;
-            }, 
-            setAttribute: (name, value) => {
-                name = name.toLowerCase();
-                const payload = {
-                    id: ownProps.block.id,
-                    attr: { [name]: value }
-                }
-                dispatch(setAttribute(payload))
-            }
-        }
-    }
+  };
+
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      getChildAddons: () => getChildAddons(ownProps.block.childrens),
+      renderChildAddons: () => renderChildAddons(ownProps.block.childrens),
+      hasChildrens: () => ownProps.block.childrens.length,
+      getAttribute: name => {
+        name = name.toLowerCase();
+        const {
+          block: { attributes }
+        } = ownProps;
+        return attributes[name] ? attributes[name] : null;
+      },
+      setAttribute: (name, value) => {
+        name = name.toLowerCase();
+        const payload = {
+          id: ownProps.block.id,
+          attr: { [name]: value }
+        };
+        dispatch(setAttribute(payload));
+      }
+    };
+  };
 
   const ElementDragTarget = {
     canDrop(props, monitor) {
@@ -107,7 +110,10 @@ const StoreHoc = PureComponent => {
        */
       const dropData = monitor.getItem(); // Droppable data from source
       const { block } = dropData;
-      const { builder } = props;
+      const {
+        builder,
+        block: { droppable }
+      } = props;
 
       //   const {}
       console.log("drop into element: ", dropData, props);
@@ -119,6 +125,7 @@ const StoreHoc = PureComponent => {
         index: props.index,
         blockName: dropData.name
       };
+
       dispatch(addAddon(actionData));
       //   props.addBlock({
       //     parentIndex: 0, //props.index,
