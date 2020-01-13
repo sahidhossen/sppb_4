@@ -23,7 +23,12 @@ const StoreHoc = PureComponent => {
       // }
     }
 
+    componentDidUpdate(prevProps) {
+
+    }
+
     render() {
+      
       return <PureComponent ref={this.renderDnD.bind(this)} {...this.props} />;
     }
   }
@@ -72,9 +77,6 @@ const StoreHoc = PureComponent => {
 
   const ElementDragTarget = {
     canDrop(props, monitor) {
-      if (props.name === "row") {
-        console.log("canDrop into element", props, monitor.getItem());
-      }
       return true;
     },
     hover(props, monitor, component) {
@@ -85,16 +87,36 @@ const StoreHoc = PureComponent => {
 
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      console.log("onHover: ", props.block.name, " dragItem: ", item.name);
+      const canDrop = monitor.canDrop()
+      // console.log("onHover: ", props.block.name, " dragItem: ", item.name, ' candrop: ', canDrop);
+      const hoverOpt = {center: false, top: false, bottom: false, index: props.index}
+
+      /**
+       * Check if the position (itemHeight-)
+       */
 
       if (
         clientOffset.y > hoverBoundingRect.top &&
         clientOffset.y < hoverMiddleY
       ) {
-        console.log(`${props.block.name} top`);
+        // console.log(`${props.block.name} top`);
+        /**
+         * Need to find target parent addon
+         * Get the childrens and find the index number targeted addon Id
+         * Decrement 1 for add the source addon before the target addon
+         */
+        hoverOpt.top = true;
+        hoverOpt.bottom = false;
       } else {
-        console.log(`${props.block.name} bottom`);
+        /**
+         * Need to find target parent addon
+         * Get the childrens and find the index number targeted addon Id
+         */
+        hoverOpt.top = false;
+        hoverOpt.bottom = true;
+        // console.log(`${props.block.name} bottom`);
       }
+      monitor.hoverOpt = hoverOpt;
       return;
     },
     /**
@@ -116,9 +138,9 @@ const StoreHoc = PureComponent => {
       } = props;
 
       //   const {}
-      console.log("drop into element: ", dropData, props);
+      // console.log("drop into element: ", dropData, props);
       const baseAddon = builder[props.addonId];
-      console.log("base: ", baseAddon);
+      // console.log("base: ", monitor);
 
       const actionData = {
         parentId: props.addonId,
