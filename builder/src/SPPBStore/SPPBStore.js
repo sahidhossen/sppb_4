@@ -23,12 +23,9 @@ const StoreHoc = PureComponent => {
       // }
     }
 
-    componentDidUpdate(prevProps) {
-
-    }
+    componentDidUpdate(prevProps) {}
 
     render() {
-      
       return <PureComponent ref={this.renderDnD.bind(this)} {...this.props} />;
     }
   }
@@ -80,6 +77,9 @@ const StoreHoc = PureComponent => {
       return true;
     },
     hover(props, monitor, component) {
+      const {
+        block: { droppable }
+      } = props;
       const item = monitor.getItem();
 
       const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
@@ -87,34 +87,45 @@ const StoreHoc = PureComponent => {
 
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      const canDrop = monitor.canDrop()
+      const canDrop = monitor.canDrop();
       // console.log("onHover: ", props.block.name, " dragItem: ", item.name, ' candrop: ', canDrop);
-      const hoverOpt = {center: false, top: false, bottom: false, index: props.index}
+      const hoverOpt = {
+        inside: false,
+        top: false,
+        bottom: false
+      };
 
       /**
        * Check if the position (itemHeight-)
        */
+      if (droppable) {
+        console.log(
+          "clientOffset.y  hoverBoundingRect.top, hoverBoundingRect.bottom",
+          clientOffset.y,
+          hoverBoundingRect.top,
+          hoverBoundingRect.bottom
+        );
+        if (clientOffset.y <= hoverBoundingRect.top + 5) {
+          console.log(`${props.block.name} top`);
 
-      if (
-        clientOffset.y > hoverBoundingRect.top &&
-        clientOffset.y < hoverMiddleY
-      ) {
-        // console.log(`${props.block.name} top`);
-        /**
-         * Need to find target parent addon
-         * Get the childrens and find the index number targeted addon Id
-         * Decrement 1 for add the source addon before the target addon
-         */
-        hoverOpt.top = true;
-        hoverOpt.bottom = false;
-      } else {
-        /**
-         * Need to find target parent addon
-         * Get the childrens and find the index number targeted addon Id
-         */
-        hoverOpt.top = false;
-        hoverOpt.bottom = true;
-        // console.log(`${props.block.name} bottom`);
+          /**
+           * Need to find target parent addon
+           * Get the childrens and find the index number targeted addon Id
+           * Decrement 1 for add the source addon before the target addon
+           */
+          hoverOpt.top = true;
+        } else if (clientOffset.y >= hoverBoundingRect.bottom - 5) {
+          /**
+           * Need to find target parent addon
+           * Get the childrens and find the index number targeted addon Id
+           */
+
+          hoverOpt.bottom = true;
+          console.log(`${props.block.name} bottom`);
+        } else {
+          hoverOpt.inside = true;
+          console.log(`${props.block.name} inside`);
+        }
       }
       monitor.hoverOpt = hoverOpt;
       return;
@@ -131,6 +142,7 @@ const StoreHoc = PureComponent => {
        * @params blockName: block
        */
       const dropData = monitor.getItem(); // Droppable data from source
+      const { hoverOpt } = monitor;
       const { block } = dropData;
       const {
         builder,
@@ -140,11 +152,16 @@ const StoreHoc = PureComponent => {
       //   const {}
       // console.log("drop into element: ", dropData, props);
       const baseAddon = builder[props.addonId];
-      // console.log("base: ", monitor);
-
+      console.log("base: ", monitor);
+      let index = dropData.index;
+      if (hoverOpt.inside) {
+        index = 0;
+      } else if (hoverOpt.top) {
+        index = index - 1;
+      }
       const actionData = {
         parentId: props.addonId,
-        index: props.index,
+        index: index,
         blockName: dropData.name
       };
 
