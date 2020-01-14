@@ -6,6 +6,11 @@ import { Types } from "../../actions/dragType";
 const BlockSource = {
   beginDrag(props) {
     console.log("begin drop");
+    /**
+     * Create an portal to move with mouse position
+     * Attach portal element with props
+     */
+
     return {
       type: Types.BLOCK,
       name: props.block.name,
@@ -13,7 +18,17 @@ const BlockSource = {
     };
   },
   endDrag(props, monitor, component) {
-    console.log("end drop");
+    const dropResult = monitor.getDropResult()
+    /**
+     * Get portal element from getResult
+     * Remove portal element from document
+     */
+    if (typeof dropResult.element !== 'undefined') {
+      dropResult.element.classList.remove('center-placeholder');
+      dropResult.element.classList.remove('top-placeholder');
+      dropResult.element.classList.remove('bottom-placeholder');
+    }
+    // console.log("end drop", dropResult);
   }
 };
 

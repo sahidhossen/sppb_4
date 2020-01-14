@@ -11,6 +11,7 @@ const StoreHoc = PureComponent => {
   class HOC extends React.Component {
     constructor(props) {
       super(props);
+     
     }
 
     renderDnD(instance) {
@@ -23,12 +24,13 @@ const StoreHoc = PureComponent => {
       // }
     }
 
-    componentDidUpdate(prevProps) {
-
+    state = {
+      errorMsg: ''
     }
 
     render() {
-      
+      const {isOverCurrent} = this.props
+      console.log("isCurrent: ", isOverCurrent)
       return <PureComponent ref={this.renderDnD.bind(this)} {...this.props} />;
     }
   }
@@ -47,7 +49,6 @@ const StoreHoc = PureComponent => {
       return {
         id: props.id,
         index: props.index,
-        demo: "wow"
       };
     }
   };
@@ -80,41 +81,42 @@ const StoreHoc = PureComponent => {
       return true;
     },
     hover(props, monitor, component) {
-      const item = monitor.getItem();
+      const { block: { droppable } } = props;
 
-      const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+      const element = findDOMNode(component);
+      
+      const hoverBoundingRect = element.getBoundingClientRect();
       const hoverMiddleY = hoverBoundingRect.top + hoverBoundingRect.height / 2;
 
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      const canDrop = monitor.canDrop()
-      // console.log("onHover: ", props.block.name, " dragItem: ", item.name, ' candrop: ', canDrop);
-      const hoverOpt = {center: false, top: false, bottom: false, index: props.index}
+
+      const hoverOpt = {
+        inside: false,
+        top: false,
+        bottom: false
+      };
 
       /**
        * Check if the position (itemHeight-)
        */
-
-      if (
-        clientOffset.y > hoverBoundingRect.top &&
-        clientOffset.y < hoverMiddleY
-      ) {
-        // console.log(`${props.block.name} top`);
-        /**
-         * Need to find target parent addon
-         * Get the childrens and find the index number targeted addon Id
-         * Decrement 1 for add the source addon before the target addon
-         */
-        hoverOpt.top = true;
-        hoverOpt.bottom = false;
-      } else {
-        /**
-         * Need to find target parent addon
-         * Get the childrens and find the index number targeted addon Id
-         */
-        hoverOpt.top = false;
-        hoverOpt.bottom = true;
-        // console.log(`${props.block.name} bottom`);
+      if (droppable) {
+        if (clientOffset.y <= hoverBoundingRect.top + 5) {
+          hoverOpt.top = true;
+          element.classList.remove('bottom-placeholder');
+          element.classList.remove('center-placeholder');
+          element.classList.add('top-placeholder');
+        } else if (clientOffset.y >= hoverBoundingRect.bottom - 5) {
+          hoverOpt.bottom = true;
+          element.classList.add('bottom-placeholder');
+          element.classList.remove('top-placeholder');
+          element.classList.remove('center-placeholder');
+        } else {
+          hoverOpt.inside = true;
+          element.classList.add('center-placeholder');
+          element.classList.remove('top-placeholder');
+          element.classList.remove('bottom-placeholder');
+        }
       }
       monitor.hoverOpt = hoverOpt;
       return;
@@ -126,33 +128,44 @@ const StoreHoc = PureComponent => {
      * @param {*} component Droppable component from drag-source
      */
     drop(props, monitor, component) {
-      /**
-       * @params parentIndex
-       * @params blockName: block
-       */
+      
+      const element = findDOMNode(component);
       const hasDroppedOnChild = monitor.didDrop();
-      if (hasDroppedOnChild)
-        return;
+      element.classList.remove('center-placeholder');
+      element.classList.remove('top-placeholder');
+      element.classList.remove('bottom-placeholder');
 
       const dropData = monitor.getItem(); // Droppable data from source
-      const { block } = dropData;
-      const {
-        builder,
-        block: { droppable }
-      } = props;
 
-      // console.log("drop into element: ", dropData, props);
+      if (hasDroppedOnChild) {
+        // Recive return option on endDrag hook
+        return {move: false, element};
+      }
+
+      
+      const { hoverOpt } = monitor;
+      const {builder} = props;
+
       const baseAddon = builder[props.addonId];
-      // console.log("base: ", props, dropData);
+      let addonId = baseAddon.parentId;
+      let index = dropData.index;
 
+      if (hoverOpt.inside) {
+        index = 0;
+        addonId = props.addonId;
+      } else if (hoverOpt.top) {
+        index = index - 1;
+      }
       const actionData = {
-        parentId: props.addonId,
-        index: props.index,
+        parentId: addonId,
+        index: index,
         blockName: dropData.name
       };
 
       dispatch(addAddon(actionData));
-      return;
+
+      // Recive return option on endDrag hook
+      return {move: true, element};
     }
   };
   var DragSourceDecorator = DragSource(Types.BLOCK, ElementDragSource, function(
