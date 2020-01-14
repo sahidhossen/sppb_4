@@ -11,7 +11,6 @@ const StoreHoc = PureComponent => {
   class HOC extends React.Component {
     constructor(props) {
       super(props);
-     
     }
 
     renderDnD(instance) {
@@ -24,13 +23,7 @@ const StoreHoc = PureComponent => {
       // }
     }
 
-    state = {
-      errorMsg: ''
-    }
-
     render() {
-      const {isOverCurrent} = this.props
-      console.log("isCurrent: ", isOverCurrent)
       return <PureComponent ref={this.renderDnD.bind(this)} {...this.props} />;
     }
   }
@@ -46,10 +39,15 @@ const StoreHoc = PureComponent => {
 
   const ElementDragSource = {
     beginDrag(props) {
+      console.log("begin: ", props)
       return {
         id: props.id,
         index: props.index,
+        onPage: true
       };
+    },
+    endDrag(props, monitor, component) {
+      console.log("End drop from element")
     }
   };
 
@@ -81,7 +79,8 @@ const StoreHoc = PureComponent => {
       return true;
     },
     hover(props, monitor, component) {
-      const { block: { droppable } } = props;
+      const { block: { droppable,name } } = props;
+      const item = monitor.getItem();
 
       const element = findDOMNode(component);
       
@@ -96,6 +95,10 @@ const StoreHoc = PureComponent => {
         top: false,
         bottom: false
       };
+
+      if (item.name === name) {
+        return;
+      }
 
       /**
        * Check if the position (itemHeight-)
@@ -131,20 +134,22 @@ const StoreHoc = PureComponent => {
       
       const element = findDOMNode(component);
       const hasDroppedOnChild = monitor.didDrop();
+      const {builder, block:{name}} = props;
+      const dropData = monitor.getItem(); // Droppable data from source
+
       element.classList.remove('center-placeholder');
       element.classList.remove('top-placeholder');
       element.classList.remove('bottom-placeholder');
 
-      const dropData = monitor.getItem(); // Droppable data from source
-
-      if (hasDroppedOnChild) {
+      
+      if (hasDroppedOnChild || dropData.name === name) {
         // Recive return option on endDrag hook
+        console.log("not allowed")
         return {move: false, element};
       }
-
       
       const { hoverOpt } = monitor;
-      const {builder} = props;
+      
 
       const baseAddon = builder[props.addonId];
       let addonId = baseAddon.parentId;

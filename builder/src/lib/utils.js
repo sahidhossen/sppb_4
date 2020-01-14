@@ -1,3 +1,5 @@
+import {isValidElement, Component} from 'react';
+import {isString, isFunction} from 'lodash';
 import {select} from 'store';
 
 export const revisedRandId = () => {
@@ -22,6 +24,7 @@ export const revisedRandId = () => {
 
 export const isObject = obj =>
   typeof obj === "function" || (typeof obj === "object" && !!obj);
+
 export const isArray = arg =>
   Object.prototype.toString.call(arg) === "[object Array]";
 
@@ -52,3 +55,12 @@ export const blockListForTools = blockList => {
   });
   return _blocklist;
 };
+
+export const isValidIcon = (icon) => {
+  return !! icon && (
+      isString(icon) ||
+      isFunction(icon) ||
+      isValidElement(icon) ||
+      icon instanceof Component
+    )
+}

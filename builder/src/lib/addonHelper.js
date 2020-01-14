@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import { select } from "store";
 import { revisedRandId } from "./utils";
 import { SPPBStore } from "../SPPBStore";
+import {clone} from 'lodash';
 
 /**
  * Prefix {sppb-addonName}
@@ -41,9 +42,10 @@ export const generateBlock = (
     "id"
   ];
   const block = Object.keys(defaultAddon).reduce((editedAddon, key) => {
-    if (acceptedFields.includes(key)) editedAddon[key] = defaultAddon[key];
+    if (acceptedFields.includes(key)) editedAddon[key] = clone(defaultAddon[key], true);
     return editedAddon;
   }, {});
+
   return {
     ...block,
     id: revisedRandId(),
@@ -60,15 +62,13 @@ export const getChildAddons = addonId => {
   const addon = builder[addonId];
   // const _childrenIds =
   //   typeof childrenIds === "string" ? [childrenIds] : childrenIds;
-  return addon.childrens.map(Id => {
-    return {Component: builder[Id].Component, Id}
-  });
+  return addon.childrens.map(Id => builder[Id] );
 };
 
 export const renderChildAddons = (props) => {
   const childAddons = getChildAddons(props.addonId);
   return childAddons.map((addon, index) => {
-    let {Component, Id}  = addon;
-    return <Component key={index} {...props} addonId={Id} />;
+    let {Component, id}  = addon;
+    return <Component key={index} {...props} block={addon} addonId={id} />;
   });
 };

@@ -1,14 +1,16 @@
 import { getDefaultAddon } from "../lib/addonHelper";
-/**
- * Add Section
- */
-export const addSection = sectionData => {
-  return {
-    type: "ADD_SECTION",
-    payload: sectionData
-  };
-};
 
+/**
+ * Register addon on initialize
+ * @param {Object} payload Addon Settings
+ */
+export const registerAddon = payload => dispatch => {
+  dispatch({ type: 'REGISTER_ADDON_TYPES', settings: {...payload} })
+}
+/**
+ * Add addon on page for render
+ * @param {Object} payload 
+ */
 export const addAddon = payload => dispatch => {
   const defaultAddon = getDefaultAddon(payload.blockName);
   dispatch({ type: "ADD_BLOCK", payload, defaultAddon });
