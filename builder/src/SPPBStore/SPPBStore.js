@@ -99,12 +99,6 @@ const StoreHoc = PureComponent => {
        * Check if the position (itemHeight-)
        */
       if (droppable) {
-        console.log(
-          "clientOffset.y  hoverBoundingRect.top, hoverBoundingRect.bottom",
-          clientOffset.y,
-          hoverBoundingRect.top,
-          hoverBoundingRect.bottom
-        );
         if (clientOffset.y <= hoverBoundingRect.top + 5) {
           console.log(`${props.block.name} top`);
 
