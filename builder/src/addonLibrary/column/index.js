@@ -14,5 +14,7 @@ export default {
         grid: 12
     },
     content: [],
+    droppable: true,
+    accept: '*',
     Component: Column
 }
