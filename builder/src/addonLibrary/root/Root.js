@@ -66,6 +66,10 @@ const mapStateToProps = state => {
        * @params parentIndex
        * @params blockName: block
        */
+      const hasDroppedOnChild = monitor.didDrop();
+      if (hasDroppedOnChild){
+        return;
+      }
       const dropData = monitor.getItem();
       props.addBlock({
         parentIndex: 0, //,

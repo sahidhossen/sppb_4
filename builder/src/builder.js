@@ -1,13 +1,12 @@
 import React from "react";
-import {select} from 'store';
-import {cloneDeep} from 'lodash';
+import {connect} from 'react-redux';
 import DragDropContext from "./lib/DragDropContext";
 
 class Builder extends React.Component {
   render() {
-    const {root} = select('data');
+    const {root} = this.props;
     const {Component, id } = root;
-    console.log("update: ", root)
+    console.log("initial")
     return (
       <div className="sppb-builder-wrapper">
         <Component addonId={id} block={root}/> 
@@ -15,5 +14,13 @@ class Builder extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { data: {present} } = state;
+  const {builder: {root} } = present;
+  return { root };
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {}
+}
 
-export default DragDropContext(Builder);
+export default connect(mapStateToProps, mapDispatchToProps)(DragDropContext(Builder));
