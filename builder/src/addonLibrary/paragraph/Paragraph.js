@@ -1,5 +1,4 @@
 import React from 'react';
-import {SPPBStore} from '../../SPPBStore';
 import classNames from 'classnames/bind';
 
 class Paragraph extends React.Component {
@@ -18,4 +17,4 @@ class Paragraph extends React.Component {
     }
 }
 
-export default SPPBStore(Paragraph);
+export default Paragraph;

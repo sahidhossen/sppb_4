@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {createSPPBStore} from './createStore';
 const sppbStore = createSPPBStore();
 

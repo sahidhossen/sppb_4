@@ -1,9 +1,10 @@
 import initialState from "./initialState";
+import _ from 'lodash';
 
 const builder = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_BLOCK":
-      const { builder } = state;
+      const builder = _.clone(state.builder);
       let {
         defaultAddon,
         payload: { index, parentId }
@@ -13,6 +14,7 @@ const builder = (state = initialState, action) => {
        * Update parent children attribute
        * Add block to the state
        * */
+
       builder[defaultAddon.id] = defaultAddon;
       builder[defaultAddon.id].parentId = parentId; // Add parent Id
       builder[parentId].childrens.splice(index, 0, defaultAddon.id);

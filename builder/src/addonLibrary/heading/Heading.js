@@ -1,5 +1,4 @@
 import React from 'react';
-import {SPPBStore} from '../../SPPBStore';
 import classNames from 'classnames/bind';
 
 class Heading extends React.Component {
@@ -7,16 +6,12 @@ class Heading extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
-        // this.props.setAttribute('title', 'custom title')
-    }
-
     render(){
         const { block, getAttribute, setAttribute } = this.props
         const clsNames = classNames('sppb-4' ,'sppb-heading', block.id)
-        
+        console.log("header props: ", this.props)
         return( <h1 className={clsNames} onClick={()=> setAttribute('src', 'http://google.com')}>Heading</h1>)
     }
 }
 
-export default SPPBStore(Heading);
+export default Heading;

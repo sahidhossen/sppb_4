@@ -1,34 +1,43 @@
 import React, {Fragment} from 'react';
 import { connect } from "react-redux";
+import {isEqual} from 'lodash';
 import { DragSource, DropTarget } from "react-dnd";
 import { getBlockById } from "../../lib/utils";
 import { addAddon } from "../../actions";
 import { Types } from "../../actions/dragType";
 
 class Root extends React.Component {
-    render(){
-        const {block, connectDropTarget, isOver} = this.props
-        return (
-            block.childrens.length > 0 ? (
-            block.childrens.map((blockId, index) => {
-              const childBlock = getBlockById(blockId);
-              const { Component } = childBlock;
-              const activeClass = isOver ? 'active' : ''
-                return (
-                    <Fragment key={index}>
-                        <Component index={index} block={childBlock} addonId={blockId} />
-                    </Fragment>
-                )
-            })
-  
-          ) : (
-            connectDropTarget(<div className="empty-block">
-              {" "}
-              <p> Please add addon here </p>{" "}
-            </div> )
-          )
-        )
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("change: ", nextProps.block.childrens, this.props.block.childrens)
+    if (isEqual(nextProps.block.childrens, this.props.block.childrens)) {
+      // return false;
     }
+    return true;
+  }
+  render(){
+      const {block, connectDropTarget, isOver} = this.props
+      console.log("render: ")
+      return (
+          block.childrens.length > 0 ? (
+          block.childrens.map((blockId, index) => {
+            const childBlock = getBlockById(blockId);
+            const { Component, name } = childBlock;
+            const activeClass = isOver ? 'active' : ''
+              return (
+                  <Fragment key={index}>
+                      <Component index={index} block={childBlock} addonId={blockId} />
+                  </Fragment>
+              )
+          })
+
+        ) : (
+          connectDropTarget(<div className="empty-block">
+            {" "}
+            <p> Please add addon here </p>{" "}
+          </div> )
+        )
+      )
+  }
 }
 
 
@@ -57,6 +66,10 @@ const mapStateToProps = state => {
        * @params parentIndex
        * @params blockName: block
        */
+      const hasDroppedOnChild = monitor.didDrop();
+      if (hasDroppedOnChild){
+        return;
+      }
       const dropData = monitor.getItem();
       props.addBlock({
         parentIndex: 0, //,
