@@ -91,31 +91,22 @@ export const createIndicator = (hoverItem, mousePositions) => {
   const { width: sidebarWidth } = document
     .querySelector("#sppb_sidebar")
     .getBoundingClientRect();
-  if (!document.querySelector(".sppb-indicator")) {
+  let indicator = document.querySelector(".sppb-indicator");
+  const body = document.querySelector("body");
+  if (!indicator) {
     indicator = document.createElement("div");
     indicator.classList.add("sppb-indicator");
+    body.appendChild(indicator);
   }
-
   indicator.style.width = `${width}px`;
   indicator.style.left = `${left + sidebarWidth}px`;
   indicator.style.top = `${top}px`;
   indicator.style.height = `${height}px`;
-  console.log("height", height);
-  if (mouseTop) {
-    console.log("mousetop");
-    indicator.style.borderTop = "1px solid blue";
-  }
-  if (mouseBottom) {
-    console.log("mousebottom");
-    indicator.style.borderBottom = "1px solid blue";
-  }
-  if (mouseInside) {
-    console.log("mouseinside");
-    indicator.style.border = `1px solid blue`;
-  }
 
-  const body = document.querySelector("body");
-  body.appendChild(indicator);
+  indicator.style.border = "none";
+  mouseTop && (indicator.style.borderTop = "1px solid blue");
+  mouseBottom && (indicator.style.borderBottom = "1px solid blue");
+  mouseInside && (indicator.style.border = `1px solid blue`);
 };
 
 export const removeIndicator = () => {

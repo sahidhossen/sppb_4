@@ -137,7 +137,7 @@ const ElementDragTarget = {
     // _index = 0;
     // }
     createIndicator(hoverBoundingRect, position);
-
+    console.log("position", position);
     monitor.position = position;
     // console.log(
     //   "index: ",
