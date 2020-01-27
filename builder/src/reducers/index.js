@@ -5,7 +5,7 @@ import addonListReducer from './addonListReducer';
 import builderControl from "./builderControl";
 
 export default combineReducers({
-  data: undoable(builder),
+  builder: undoable(builder),
   addonList: addonListReducer,
   control: builderControl
 });

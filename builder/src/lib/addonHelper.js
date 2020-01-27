@@ -1,16 +1,13 @@
-import deepcopy from "lodash";
-import React, { Fragment } from "react";
+import React from "react";
 import { select } from "store";
 import { revisedRandId } from "./utils";
-import { SPPBStore } from "../SPPBStore";
 import {clone} from 'lodash';
 
 /**
  * Prefix {sppb-addonName}
  * @param {String} addonName Only Default name. Prefix will be added by statically
  */
-export const getDefaultAddon = addonName => {
-  const addonList = select("addonList");
+export const getDefaultAddon = (addonList, addonName) => {
   const _addonName = `sppb_${addonName.toLowerCase()}`;
   const addon = addonList[_addonName] ? addonList[_addonName] : null;
   if (addon) {
@@ -46,6 +43,13 @@ export const generateBlock = (
     return editedAddon;
   }, {});
 
+  if ( !block['attributes']) {
+    block['attributes'] = {};
+  }
+  if ( !block['childrens']) {
+    block['childrens'] = [];
+  }
+  
   return {
     ...block,
     id: revisedRandId(),
@@ -67,6 +71,9 @@ export const getChildAddons = addonId => {
 
 export const renderChildAddons = (props) => {
   const childAddons = getChildAddons(props.addonId);
+  // if (props.block.name === 'column') {
+    // console.log("=======COLUMN=======:",props.block.name, childAddons)
+  // }
   return childAddons.map((addon, index) => {
     let {Component, id}  = addon;
     return <Component key={index} {...props} block={addon} addonId={id} />;

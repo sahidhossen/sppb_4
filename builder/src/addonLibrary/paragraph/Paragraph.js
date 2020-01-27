@@ -7,11 +7,11 @@ class Paragraph extends React.Component {
     }
 
     render(){
-        console.log("Paragraph props",this.props)
+        // console.log("Paragraph props",this.props)
         const clsNames = classNames('sppb-4' ,'sppb-Paragraph')
         return(
             <div className={clsNames}>
-               <h1>Paragraph</h1>
+               <h3 onClick={()=> this.props.setAttributes({color: 'yellow'})}>Paragraph</h3>
             </div>
         )
     }

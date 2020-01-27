@@ -2,15 +2,63 @@ import React from "react";
 import { connect } from "react-redux";
 import { DragSource, DropTarget } from "react-dnd";
 import { findDOMNode } from "react-dom";
+import _ from 'lodash';
 import { getChildAddons, renderChildAddons } from "../lib/addonHelper";
 import { Types } from "../actions/dragType";
-import { setAttribute, addAddon } from "../actions";
-import { dispatch } from "store";
+import { setAttribute, addAddon, transferAddon } from "../actions";
+import { dispatch, select } from "store";
 
 const StoreHoc = PureComponent => {
   class HOC extends React.Component {
     constructor(props) {
       super(props);
+      
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+      // console.log("next: ",nextProps.builder, nextProps.pastData )
+      // let {addonId, builder} = nextProps; 
+      // let {pastData} = this.props
+      // const nextBlock = builder[addonId]; 
+      // const {name} = nextProps.block;
+      // const prevBlock = typeof pastData[addonId] === 'undefined' ? null : pastData[addonId]; 
+      // if (prevBlock === null){
+      //   console.log("block: ", pastData)
+      // }
+      // if (name === 'Heading') {
+      //   console.log("block: ", prevBlock)
+      // }
+      // if (!_.isEqual(nextBlock, prevBlock) && name === 'column') {
+      //   console.log("column: ", prevBlock, nextBlock)
+      // }
+      // console.log("prev-1: "+name, _.isEqual(nextBlock, prevBlock))
+      // if (prevBlock!==null) { 
+      //   if (!_.isEqual(nextBlock.attributes, prevBlock.attributes)) { 
+      //     console.log("prev-2: "+name, nextBlock.attributes, prevBlock.attributes)
+      //   }
+      //   if (!_.isEqual(nextBlock.childrens, prevBlock.childrens)) { 
+      //     console.log("prev-3: "+name, nextBlock.childrens, prevBlock.childrens )
+      //   }
+
+      //   if (!_.isEqual(nextBlock.content, prevBlock.content)) { 
+      //     console.log("prev-4: "+name, nextBlock.content, prevBlock.content )
+      //   }
+      // }
+
+      // prevBlock === null &&
+      // _.isEqual(nextProps.block.attributes, this.props.block.attributes) &&
+      // _.isEqual(nextProps.block.childrens, this.props.block.childrens) &&
+      // _.isEqual(nextProps.block.content, this.props.block.content)
+
+      // if (
+      //   _.isEqual(nextBlock, prevBlock) &&
+      //   _.isEqual(nextBlock.attributes, prevBlock.attributes) &&
+      //   _.isEqual(nextBlock.childrens, prevBlock.childrens) &&
+      //   _.isEqual(nextBlock.content, prevBlock.content)
+      //   ) {
+      //   return false;
+      // }
+      // return true;
     }
 
     renderDnD(instance) {
@@ -24,31 +72,21 @@ const StoreHoc = PureComponent => {
     }
 
     render() {
+      // console.log("render pure", this.props.block.name)
       return <PureComponent ref={this.renderDnD.bind(this)} {...this.props} />;
     }
   }
   const mapStateToProps = state => {
-    const { data } = state;
-    const {
-      present: { builder }
-    } = data;
-    return {
-      builder
-    };
-  };
-
-  const ElementDragSource = {
-    beginDrag(props) {
-      console.log("begin: ", props)
-      return {
-        id: props.id,
-        index: props.index,
-        onPage: true
-      };
-    },
-    endDrag(props, monitor, component) {
-      console.log("End drop from element")
-    }
+    const { data: {present, past, history:{history}} } = state;
+    const {builder} = present;
+    // let {past} = history;
+    let pastData = typeof past[past.length-1] === 'undefined' ? null : Object.assign({},past[past.length-1].builder);
+    console.log("past: ", past[past.length-1])
+    // if (pastData !== null) {
+    //   pastData = pastData.builder;
+    // }
+    
+    return { builder, pastData };
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => {
@@ -72,6 +110,20 @@ const StoreHoc = PureComponent => {
         dispatch(setAttribute(payload));
       }
     };
+  };
+
+  const ElementDragSource = {
+    beginDrag(props) {
+      return {
+        addonId: props.addonId,
+        index: props.index,
+        name: props.block.name,
+        onPage: true
+      };
+    },
+    endDrag(props, monitor, component) {
+      console.log("End drop from element")
+    }
   };
 
   const ElementDragTarget = {
@@ -149,7 +201,6 @@ const StoreHoc = PureComponent => {
       }
       
       const { hoverOpt } = monitor;
-      
 
       const baseAddon = builder[props.addonId];
       let addonId = baseAddon.parentId;
@@ -166,8 +217,14 @@ const StoreHoc = PureComponent => {
         index: index,
         blockName: dropData.name
       };
-
-      dispatch(addAddon(actionData));
+      if (typeof dropData.onPage && dropData.onPage === true) {
+        // Drag inside page
+        actionData.addonId = dropData.addonId;
+        dispatch(transferAddon(actionData))
+      } else { 
+        // Add new addon on page
+        dispatch(addAddon(actionData));
+      }
 
       // Recive return option on endDrag hook
       return {move: true, element};

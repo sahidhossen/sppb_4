@@ -21,9 +21,7 @@
 import Root from '../addonLibrary/root';
 
 const initialState = {
-    builder: {
-        root: {...Root},
-    }
+    root: {...Root}
 }
 
 

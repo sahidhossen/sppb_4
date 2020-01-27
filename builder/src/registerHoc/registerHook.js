@@ -3,7 +3,7 @@ import {isFunction} from 'lodash';
 import {subscribe, dispatch} from "store";
 import {revisedRandId, isValidIcon} from '../lib/utils';
 import {registerAddon} from '../actions';
-import { SPPBStore } from "../SPPBStore";
+// import { SPPBStore } from "../SPPBStore";
 /**
  * Check all depedency
  * @param {OBject} addonOn Addon settings with component
@@ -42,11 +42,6 @@ export const RegisterAddon = (settings) => {
      * Generate an unique id
      */
     settings.id = revisedRandId();
-
-    /**
-     * Add super hook that provide a composite functions
-     */
-    settings.Component = SPPBStore(settings.Component);
 
     dispatch(registerAddon(settings));
 }
