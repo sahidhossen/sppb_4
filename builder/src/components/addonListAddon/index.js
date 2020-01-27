@@ -88,23 +88,37 @@ const ElementDragSource = {
 
       let _index = index
 
-
-        const isAcceptable = accept === '*' || (Array.isArray(accept) && accept.includes(dropData.name));
-
-        if (clientOffset.y <= hoverBoundingRect.top + 5) {
+      console.log(clientOffset, hoverBoundingRect.top, hoverBoundingRect.bottom)
+      const isAcceptable = accept === '*' || (Array.isArray(accept) && accept.includes(dropData.name));
+      if(isAcceptable) {
+        if (clientOffset.y >= hoverBoundingRect.top - 5 && clientOffset.y <= hoverBoundingRect.top + 5 ) {
           position.top = true;
         _index = index-1;
         } 
         
-        if ( clientOffset.y >= hoverBoundingRect.bottom - 5) {
+        else if ( clientOffset.y >= hoverBoundingRect.bottom - 5 && clientOffset.y <= hoverBoundingRect.bottom + 5 ) {
           position.bottom = true;
         } 
-        
-        if(isAcceptable && (insideCondition)){
+        else {
           position.inside = true;
-        
-        _index = 0;
         }
+      } else {
+        if(clientOffset.y <= hoverMiddleY && clientOffset.y >= hoverBoundingRect.top) {
+          position.top = true;
+          _index = index-1;
+        } 
+        if(clientOffset.y > hoverMiddleY && clientOffset.y <= hoverBoundingRect.bottom ) {
+          position.bottom = true;
+          _index = 0;
+        }
+        
+      }
+        // console.log(position, _index)
+        // if(isAcceptable && (insideCondition)){
+        //   position.inside = true;
+        
+        // _index = 0;
+        // }
       monitor.position = position;
       console.log("index: ", _index, " top: ", position.top, " insde: ", position.inside, " bottom: ", position.inside, " element: ", name)
       return;
