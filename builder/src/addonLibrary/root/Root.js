@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import {isEqual} from 'lodash';
 import { DragSource, DropTarget } from "react-dnd";
 import { getBlockById } from "../../lib/utils";
-import { addAddon } from "../../actions";
+import { insertAddon } from "../../actions";
 import { Types } from "../../actions/dragType";
 
 class Root extends React.Component {
   shouldComponentUpdate(nextProps, nextState){
-    console.log("change: ", nextProps.block.childrens, this.props.block.childrens)
+    // console.log("change: ", nextProps.block.childrens, this.props.block.childrens)
     if (isEqual(nextProps.block.childrens, this.props.block.childrens)) {
       // return false;
     }
@@ -16,7 +16,7 @@ class Root extends React.Component {
   }
   render(){
       const {block, connectDropTarget, isOver} = this.props
-      console.log("render: ")
+      // console.log("render: ")
       return (
           block.childrens.length > 0 ? (
           block.childrens.map((blockId, index) => {
@@ -47,7 +47,7 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
     return {
-      addBlock: payload => dispatch(addAddon(payload))
+      addBlock: payload => dispatch(insertAddon(payload))
     };
   };
   

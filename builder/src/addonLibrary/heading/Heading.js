@@ -7,10 +7,10 @@ class Heading extends React.Component {
     }
 
     render(){
-        const { block, getAttribute, setAttribute } = this.props
-        const clsNames = classNames('sppb-4' ,'sppb-heading', block.id)
-        console.log("header props: ", this.props)
-        return( <h1 className={clsNames} onClick={()=> setAttribute('src', 'http://google.com')}>Heading</h1>)
+        const { setAttributes, addonId } = this.props
+        // console.log("header: ", this.props)
+        const clsNames = classNames('sppb-4' ,'sppb-heading', addonId)
+    return( <h1 className={clsNames} onClick={()=> setAttributes({src: 'http://google.com'})}>Heading</h1>)
     }
 }
 

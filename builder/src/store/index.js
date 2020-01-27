@@ -1,27 +1,10 @@
-import _ from 'lodash';
-import {createSPPBStore} from './createStore';
-const sppbStore = createSPPBStore();
+import Registry from './registry';
+export {createSPPBStore} from './createStore';
+export { default as withSelect } from './withSelect';
+export { default as withDispatch } from './withDispatch';
+export { default as RegistryProvider, RegistryConsumer } from './registryProvider';
 
-export const store = sppbStore.store;
+export const store = Registry.store;
 export const dispatch = store.dispatch;
-export const subscribe = sppbStore.subscribe;
-/**
-* This select function will return individual redux storage
-* select('data')
-* @param {String} storeKey Store key 
-*/
-
-export const select = (storeKey) => {
- const currentState = store._genericStore();
- /**
-  * Expetional to select page data
-  * It will escape present keyword and retrive only the data part
-  */
- if (storeKey === 'data') {
-    let {builder} = currentState.data.present;
-    return builder;
- }
- // retrive data from redux state
- return typeof currentState[storeKey] === 'undefined' ? {} : {...currentState[storeKey]};
-
-}
+export const subscribe = Registry.subscribe;
+export const select = Registry.select;

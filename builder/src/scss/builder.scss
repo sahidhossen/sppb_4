@@ -515,3 +515,11 @@ DRAGGABLE PADDING
     grid-row-end: 2;
   }
 }
+.sppb-dnd-basement {
+  min-height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #dddddd;
+}

@@ -8,7 +8,6 @@ export default {
     className: 'sppb-row',
     attributes: {},
     childrens: [],
-    content: [],
     droppable: true,
     accept: '*',
     Component: Row

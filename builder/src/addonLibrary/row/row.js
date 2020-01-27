@@ -7,9 +7,11 @@ class Row extends React.Component {
   }
 
   render() {
-    const clsNames = classNames("sppb-4", "sppb-row");
+    const { addonId } = this.props;
+    const clsNames = classNames("sppb-4", "sppb-row", addonId);
+    // console.log("row props: ", this.props);
     return (
-      <div className={clsNames}> {this.props.renderChildren()}</div>
+      <div className={clsNames}> {this.props.renderChildren()} </div>
     );
   }
 }

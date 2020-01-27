@@ -23,12 +23,12 @@ const BlockSource = {
      * Get portal element from getResult
      * Remove portal element from document
      */
-    if (typeof dropResult.element === 'undefined' || dropResult.element === null ) {
-      return;
-    }
-    dropResult.element.classList.remove('center-placeholder');
-    dropResult.element.classList.remove('top-placeholder');
-    dropResult.element.classList.remove('bottom-placeholder');
+    // if (typeof dropResult.element === 'undefined' || dropResult.element === null ) {
+    //   return;
+    // }
+    // dropResult.element.classList.remove('center-placeholder');
+    // dropResult.element.classList.remove('top-placeholder');
+    // dropResult.element.classList.remove('bottom-placeholder');
     // console.log("end drop", dropResult);
   }
 };
