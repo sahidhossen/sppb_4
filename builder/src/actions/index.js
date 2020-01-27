@@ -30,4 +30,4 @@ export const setAttribute = payload => {
 
 export const updateAddonAttributes = (addonId, attributes) => {
   return { type: "SET_ATTRIBUTE", addonId, attributes };
-}
+};

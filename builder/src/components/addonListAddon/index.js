@@ -65,7 +65,7 @@ const ElementDragSource = {
       return true;
     },
     hover(props, monitor, component) {
-      const { addon: { droppable, name, accept }, index } = props;
+      const { addon: { droppable, name }, index } = props;
       const item = monitor.getItem();
 
       const element = findDOMNode(component);
@@ -88,23 +88,31 @@ const ElementDragSource = {
 
       let _index = index
 
+    //   if (item.name === name) {
+    //     return;
+    //   }
 
-        const isAcceptable = accept === '*' || (Array.isArray(accept) && accept.includes(dropData.name));
-
+    //   if (droppable) {
         if (clientOffset.y <= hoverBoundingRect.top + 5) {
           position.top = true;
+        //   element.classList.remove('bottom-placeholder');
+        //   element.classList.remove('center-placeholder');
+        //   element.classList.add('top-placeholder');
         _index = index-1;
         } 
-        
-        if ( clientOffset.y >= hoverBoundingRect.bottom - 5) {
+        if (clientOffset.y >= hoverBoundingRect.bottom - 5) {
           position.bottom = true;
-        } 
-        
-        if(isAcceptable && (insideCondition)){
+        //   element.classList.add('bottom-placeholder');
+        //   element.classList.remove('top-placeholder');
+        //   element.classList.remove('center-placeholder');
+        } else {
           position.inside = true;
-        
+        //   element.classList.add('center-placeholder');
+        //   element.classList.remove('top-placeholder');
+        //   element.classList.remove('bottom-placeholder');
         _index = 0;
         }
+    //   }
       monitor.position = position;
       console.log("index: ", _index, " top: ", position.top, " insde: ", position.inside, " bottom: ", position.inside, " element: ", name)
       return;
@@ -121,6 +129,10 @@ const ElementDragSource = {
       const hasDroppedOnChild = monitor.didDrop();
       const {addon:{name, accept}, parentId, addonId, onInsertAddon, onMoveAddon, getDefaultAddon, index } = props;
       const dropData = monitor.getItem(); // Droppable data from source
+
+    //   element.classList.remove('center-placeholder');
+    //   element.classList.remove('top-placeholder');
+    //   element.classList.remove('bottom-placeholder');
 
       // denied if has child dropped element
       if (hasDroppedOnChild) {

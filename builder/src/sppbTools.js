@@ -10,12 +10,16 @@ class SppbTools extends Component {
       enable_tools: false
     }
   }
+  savePageData(event) {
+    
+  }
   render() {
     return (
       <Fragment>
         <div className="sppb-tools-menu">
               <ul className="sppb-ul">
                   <li className="sppb-control-item" onClick={()=>this.setState({ enable_tools: !this.state.enable_tools })}> <span className={this.state.enable_tools ? `fa fa-angle-left` : `fa fa-angle-right`}></span></li>
+                  <li className="sppb-control-item" onClick={this.savePageData.bind(this)}> <span className={`fa fa-save`}></span></li>
               </ul>
         </div>
         

@@ -12,27 +12,18 @@ const getMutateSafeObject = (original, working) => {
 const builder = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_BLOCK":
-      // const {builder} = state;
-      const {
-        defaultAddon,
-        payload: { index, parentId }
-      } = action;
+      const { defaultAddon, payload: { index, parentId } } = action;
       /**
        * Set default block with unique ID
        * Update parentId associated with the new Addon
        * Update parent Addon children array with currect index and new addonId
-       * */
-
-      state[defaultAddon.id] = defaultAddon;
-      state[defaultAddon.id].parentId = parentId; // Add parent Id
-      let parentAddon = {...state[parentId]};
-      let childrens = [...parentAddon.childrens];
-      childrens.splice(index, 0, defaultAddon.id)
-      parentAddon = {...parentAddon, childrens:[...childrens]}
-      state[parentId] = {...parentAddon};
-      // state[parentId].childrens.splice(index, 0, defaultAddon.id);
-      // console.log("parent: ", state)
-      return state;
+       * */ 
+      
+      return {
+        ...state, 
+        [defaultAddon.id]: {...defaultAddon, parentId: parentId},
+        [parentId] : {...state[parentId], childrens:[insertAt(state[parentId].childrens, defaultAddon.id, index)] }
+      };
     case "TRANSFER_BLOCK": {
       /**
        * Index: drop index
@@ -60,7 +51,6 @@ const builder = (state = initialState, action) => {
         sourceParent.childrens = childrens;
         state[sourceParent.id] = {...sourceParent }
         state[addonId] = {...sourceAddon, parentId};
-        console.log("insert & remove")
         // Insert into new addon
         state[parentId].childrens = insertAt(state[parentId].childrens, addonId, index );
       } else {

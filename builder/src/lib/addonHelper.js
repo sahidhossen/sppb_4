@@ -29,7 +29,6 @@ export const generateBlock = (
   attributes = {}
 ) => {
   const acceptedFields = [
-    "Component",
     "name",
     "attributes",
     "childrens",
@@ -50,6 +49,15 @@ export const generateBlock = (
     block['childrens'] = [];
   }
   
+  // Check if Components has templateSet static functions
+
+  const {Component} = defaultAddon; 
+  console.log("component: ", defaultAddon)
+  if (Component.templateSet) {
+    let templateSet = Component.templateSet()
+    console.log(" has template sets", templateSet)
+  }
+
   return {
     ...block,
     id: revisedRandId(),
