@@ -1,6 +1,6 @@
-import {isValidElement, Component} from 'react';
-import {isString, isFunction} from 'lodash';
-import {select} from 'store';
+import { isValidElement, Component } from "react";
+import { isString, isFunction } from "lodash";
+import { select } from "store";
 
 export const revisedRandId = () => {
   const S4 = function() {
@@ -28,8 +28,8 @@ export const isObject = obj =>
 export const isArray = arg =>
   Object.prototype.toString.call(arg) === "[object Array]";
 
-export const getBlockById = (blockId) => {
-  const builder = select('data');
+export const getBlockById = blockId => {
+  const builder = select("data");
   return builder[blockId];
 };
 
@@ -56,11 +56,12 @@ export const blockListForTools = blockList => {
   return _blocklist;
 };
 
-export const isValidIcon = (icon) => {
-  return !! icon && (
-      isString(icon) ||
+export const isValidIcon = icon => {
+  return (
+    !!icon &&
+    (isString(icon) ||
       isFunction(icon) ||
       isValidElement(icon) ||
-      icon instanceof Component
-    )
-}
+      icon instanceof Component)
+  );
+};
