@@ -478,7 +478,9 @@ DRAGGABLE PADDING
   margin-bottom: 1px;
   margin-top: 1px;
   min-height: 100px;
-  box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 4px rgba(255, 255, 255, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
   .sppb-column {
     border-right: 1px dashed #dddddd;
     &:last-child {
@@ -491,7 +493,7 @@ DRAGGABLE PADDING
   height: 10px;
   width: 100%;
   // background: #22b0da;
-  border:1px dashed #22b0da;
+  border: 1px dashed #22b0da;
   &:hover {
     background: red;
   }
@@ -506,7 +508,8 @@ DRAGGABLE PADDING
   &:after {
     clear: both;
   }
-  &:before, &:after {
+  &:before,
+  &:after {
     content: " ";
     display: table;
     grid-column-start: 1;

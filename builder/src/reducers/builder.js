@@ -22,7 +22,7 @@ const builder = (state = initialState, action) => {
       return {
         ...state, 
         [defaultAddon.id]: {...defaultAddon, parentId: parentId},
-        [parentId] : {...state[parentId], childrens:[insertAt(state[parentId].childrens, defaultAddon.id, index)] }
+        [parentId] : {...state[parentId], childrens: insertAt(state[parentId].childrens, defaultAddon.id, index) }
       };
     case "TRANSFER_BLOCK": {
       /**

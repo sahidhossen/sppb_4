@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
 import { Types } from "../../actions/dragType";
+import { removeIndicator } from "../../lib/addonHelper";
 
 const BlockSource = {
   beginDrag(props) {
@@ -18,7 +19,8 @@ const BlockSource = {
     };
   },
   endDrag(props, monitor, component) {
-    const dropResult = monitor.getDropResult()
+    const dropResult = monitor.getDropResult();
+    removeIndicator();
     /**
      * Get portal element from getResult
      * Remove portal element from document
