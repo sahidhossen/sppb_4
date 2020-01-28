@@ -8,7 +8,6 @@ import Addon from "./Addon";
 import withChildren from "../childAddon";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 
-
 class AddonListAddon extends React.Component {
   constructor(props) {
     super(props);
@@ -105,10 +104,34 @@ const ElementDragTarget = {
         clientOffset.y <= hoverBoundingRect.bottom + 5
       ) {
         position.bottom = true;
-        position.index = index+1;
+        position.index = index + 1;
       } else {
         position.inside = true;
         position.index = 0;
+      }
+
+      let dis = 0;
+      if (element.hasChildNodes()) {
+        const childNodes = element.childNodes;
+        const hoveredItemPositionFromTop = hoverBoundingRect.top;
+        for (let i = 0; i < childNodes.length; i++) {
+          let childHeight = 0;
+          if (childNodes[i].nodeType !== 3) {
+            childHeight = childNodes[i].getBoundingClientRect().height;
+          } else {
+            // For text nodes
+            const range = document.createRange();
+            range.selectNode(childNodes[i]);
+            childHeight = range.getBoundingClientRect();
+            range.detach();
+          }
+          dis += childHeight + hoveredItemPositionFromTop;
+          if (dis > clientOffset.y) {
+            position.index = i;
+            console.log("<<<<<>>>>>> ", childNodes[i]);
+            break;
+          }
+        }
       }
     } else {
       if (
@@ -122,12 +145,12 @@ const ElementDragTarget = {
         clientOffset.y <= hoverBoundingRect.bottom
       ) {
         position.bottom = true;
-        position.index = index+1
+        position.index = index + 1;
       }
     }
-    
+
     createIndicator(hoverBoundingRect, position);
-    console.log("lst position: ", position, isAcceptable, index, name)
+    console.log("lst position: ", position, isAcceptable, index, name);
     monitor.position = position;
     return;
   },
@@ -174,7 +197,7 @@ const ElementDragTarget = {
        * @defaultAddon      Collect dropped defaultAddon data for page render
        * @dispatch()        Dispatch the data for redux store update
        */
-    //   actionData.index = index - 1;
+      //   actionData.index = index - 1;
     }
 
     if (position.inside === true && accept) {
@@ -201,9 +224,9 @@ const ElementDragTarget = {
         return { move: false, element };
       }
       actionData.parentId = addonId;
-    //   actionData.index = 0;
+      //   actionData.index = 0;
     }
-    console.log("position: ", position)
+    console.log("position: ", position);
     if (dropData.onPage && dropData.onPage === true) {
       // Move addon target to destination
       actionData.addonId = dropData.addonId;
