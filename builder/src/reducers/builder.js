@@ -95,12 +95,7 @@ const builder = (state = initialState, action) => {
         };
         return store;
     }
-
-    case "ADD_SECTION":
-      return {
-        ...state,
-        sections: action.payload
-      };
+ 
     default:
       return state;
   }

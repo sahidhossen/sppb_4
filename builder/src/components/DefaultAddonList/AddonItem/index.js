@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
-import { Types } from "../../actions/dragType";
-import { removeIndicator } from "../../lib/addonHelper";
+import { Types } from "../../../actions/dragType";
 
 const BlockSource = {
   beginDrag(props) {
-    console.log("begin drop");
     /**
      * Create an portal to move with mouse position
      * Attach portal element with props
@@ -20,18 +18,6 @@ const BlockSource = {
   },
   endDrag(props, monitor, component) {
     const dropResult = monitor.getDropResult();
-    removeIndicator();
-    /**
-     * Get portal element from getResult
-     * Remove portal element from document
-     */
-    // if (typeof dropResult.element === 'undefined' || dropResult.element === null ) {
-    //   return;
-    // }
-    // dropResult.element.classList.remove('center-placeholder');
-    // dropResult.element.classList.remove('top-placeholder');
-    // dropResult.element.classList.remove('bottom-placeholder');
-    // console.log("end drop", dropResult);
   }
 };
 
@@ -59,12 +45,12 @@ class AddonItem extends Component {
     } = this.props;
     return connectDragPreview(
       connectDragSource(
-        <div className="sppb-tool-inner">
+        <div className="sppb-addon-list-item">
           <div className="sppb-tool-icon">
             {" "}
             <span className={block.icon}></span>
           </div>
-          <div className="sppb-tool-name"> {block.title} </div>
+          <div className="sppb-addon-list-item-title"> {block.title} </div>
         </div>
       )
     );

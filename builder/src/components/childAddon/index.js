@@ -1,8 +1,64 @@
 import React from 'react';
-import AddonList from '../addonList';
+import {pick} from 'lodash';
+import {withSelect, withDispatch} from 'store';
+import AddonList from '../AddonList';
+import {compose} from '../compose';
+import {withBlockEditContext} from '../AddonEditContext';
+import {generateAddonWithTemplate} from '../../lib/template';
+import GridView from '../GridView';
 
-const withChildren = (addonId) => {
-    return () => <AddonList parentId={addonId}/>;
+const withChildren = (settings ={} ) => {
+
+    class ChildAddon extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+
+        componentDidMount() {
+            let {addon} = this.props; 
+            // Check it doesn't have any children addon
+            if (addon.childrens && addon.childrens.length === 0) {
+                this.generateAddonWithTemplate();
+            }
+        }
+
+        generateAddonWithTemplate(){
+            let { settings:{template}, addon, insertAddons, addonId } = this.props;
+            if (template && template.length) {
+                const nextAddons = generateAddonWithTemplate( {[addonId]: addon }, addonId, template)
+                insertAddons(nextAddons)
+            }
+        }
+
+        render() {
+            const {addonId, settings:{ref}} = this.props;
+            return ( 
+                <GridView refs={ref}>
+                    <AddonList parentId={addonId}/>;
+                </GridView>
+            )
+        }
+    }
+
+    ChildAddon = compose(
+        withBlockEditContext( ( context ) => pick( context, [ 'addonId' ] ) ),
+        withSelect((select, {addonId}) => {
+            let { getAddon } = select();
+            return {
+                addon: getAddon(addonId)
+            }
+        }),
+        withDispatch( dispatch => {
+            let {addAddons} = dispatch(); 
+            return {
+                insertAddons(addons) {
+                    addAddons(addons)
+                }
+            }
+        })
+    )(ChildAddon);
+
+    return <ChildAddon settings={settings}/>
 }
 
 export default withChildren;

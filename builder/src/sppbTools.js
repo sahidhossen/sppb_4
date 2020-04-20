@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import AddonList from './toolsComponent/AddonList';
+import AddonList from './components/DefaultAddonList';
 import DragDropContext from './lib/DragDropContext';
 
 class SppbTools extends Component {

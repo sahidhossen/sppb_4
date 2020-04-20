@@ -31,3 +31,35 @@ export const setAttribute = payload => {
 export const updateAddonAttributes = (addonId, attributes) => {
   return { type: "SET_ATTRIBUTE", addonId, attributes };
 };
+
+
+
+/**
+ * ===========
+ * CONTROL ACTIONS
+ * ===========
+ */
+ 
+export const selectAddon = addonId => {
+  let type = "SELECT_ADDON";
+
+  if (addonId.split(",").length > 1) {
+    type = "SELECT_MULTIPLE_ADDON";
+  }
+
+  return {type: type, payload:{addonId}}
+}
+export const deselectAddon = () => {
+  return {type: 'DESELECT_ADDON'}
+}
+/**
+ * 
+ * @param {*} payload 
+ */
+export const updateSidebarSettings = (sidebarName, settings) => {
+  return {type: 'SET_SIDEBAR', payload:{sidebarName, settings} }
+}
+
+export const updateDocker = (dockerName, tabName) => {
+  return {type: 'SET_DOCKER', payload:{dockerName, tabName} }
+}

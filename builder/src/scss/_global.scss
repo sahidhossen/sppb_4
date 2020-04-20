@@ -1,0 +1,75 @@
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+ html {
+    font-size: 11px !important;
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+html,
+body,
+#sp-page-builder {
+    height: var(--height-100);
+}
+body.sppb-full-view {
+    padding-left: var(--space-0);
+}
+
+body {
+    font-family: var(--default-font-family);
+    font-size: inherit !important;
+    font-weight: var(--default-font-weight);
+    margin: var(--space-0);
+    padding-left: var(--sidebar-width);
+    padding-right: var(--sidebar-width);
+    background-color: var(--default-bg-color) !important;
+    transition: padding 0.3s;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+//Button style
+.sppb-btn {
+    background-color: var(--btn-primary-bg-color);
+    padding: 0.6364rem 2rem;
+    border: 0;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--btn-primary-bg-color);
+        color: var(--white);
+        box-shadow: none;
+    }
+}
+
+#sppb-editor-view {
+    width: var(--width-100);
+    height: var(--height-100);
+    border: var(--border-none);
+    display: var(--dis-block);
+    margin: var(--mar-auto);
+    transition: all 0.3s;
+    padding: calc(var(--top-portal-height) + var(--space-15)) var(--space-30)
+        var(--space-15);
+}
+
+#sppb-editor-view.sppb-tabel-view {
+    width: 991px;
+}
+#sppb-editor-view.sppb-mobile-view {
+    width: 480px;
+}
+
+//Resetting ul,ol browser default style
+ol,
+ul {
+    list-style: none;
+    padding: var(--space-0);
+    margin: var(--space-0) !important;
+}

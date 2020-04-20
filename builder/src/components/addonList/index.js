@@ -11,7 +11,6 @@ class AddonList extends React.Component {
 
     render() {
         const {childAddonIds, parentId} = this.props
-        console.log("change addonList: ", childAddonIds)
         return (
             <Fragment>
                 {map(childAddonIds, (addonId, addonIndex) =>

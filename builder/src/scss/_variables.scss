@@ -1,0 +1,93 @@
+//CSS Variables
+:root {
+    //Sizes
+    --top-portal-height: 5.4545rem; //60px
+    --sidebar-width: 21.8182rem; //240px
+    --width-100: 100%;
+    --height-50: 50%;
+    --height-100: 100%;
+    --height-100vh: 100vh;
+    --height-50vh: 50vh;
+
+    //All spaces of REM values equivalent to left numbers PX
+    --space-0: 0;
+    --space-5: 0.4545rem;
+    --space-10: 0.9091rem;
+    --space-15: 1.3636rem;
+    --space-20: 1.8182rem;
+    --space-25: 2.2727rem;
+    --space-30: 2.7273rem;
+    --space-35: 3.1818rem;
+    --space-40: 3.6364rem;
+    --space-50: 4.5455rem;
+    --space-60: 5.4545rem;
+    --space-70: 6.3636rem;
+    --space-80: 7.2727rem;
+    --space-90: 8.1818rem;
+    --space-100: 9.0909rem;
+
+    //Margin
+    --mar-auto: auto;
+
+    //Fonts
+    --default-font-family: "Helvetica Neue", Helvetica, Arial,
+        sans-serif;
+    --font-weight-thin: 100;
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extra-bold: 800;
+    --font-weight-black: 900;
+    --font-style-normal: normal;
+    --font-style-italic: italic;
+    --letter-spacing-default: 0.0273rem;
+
+    //Colors
+    --default-bg-color: #292c36;
+    --sidebar-bg-color: #14171d;
+    --default-text-color: #b7becb;
+    --btn-primary-bg-color: #4e5eda;
+    --white: #fff;
+    --black: #000;
+    --user-bg-color: #ec407a;
+
+    //Rare use colors
+    --tab-border-color: #7e8897;
+    --addon-hover-color: #707785;
+    --topbar-border-color: #1d2027;
+
+    //Borders
+    --border-none: none;
+    --border-1px-solid: 1px solid;
+    --border-radius-50: 50%;
+
+    //Text align
+    --textalign-left: left;
+    --textalign-center: center;
+    --textalign-right: right;
+
+    //Display property
+    --dis-block: block;
+    --dis-inline-block: inline-block;
+    --dis-flex: flex;
+    --flex-wrap: wrap;
+    --space-between: space-between;
+    --space-around: space-around;
+    --align-item-center: center;
+
+    //Overflow
+    --overflow-scroll: scroll;
+    --overflow-hidden: hidden;
+
+    //Positions
+    --pos-fixed: fixed;
+    --pos-absolute: absolute;
+    --pos-relative: relative;
+
+    //Browser Scrollbar
+    --scrollbar-truck-bg: #181a23;
+    --scrollbar-thumb-bg: #3a404c;
+}

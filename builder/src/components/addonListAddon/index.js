@@ -4,7 +4,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import { withSelect, withDispatch } from "store";
 import { Types } from "../../actions/dragType";
 import { compose } from "../compose";
-import Addon from "./Addon";
+import AddonEdit from "../AddonEdit";
 import withChildren from "../childAddon";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 
@@ -13,6 +13,7 @@ class AddonListAddon extends React.Component {
     super(props);
     this.state = {};
     this.setAttributes = this.setAttributes.bind(this);
+    this.ref = React.createRef();
   }
 
   setAttributes(attributes) {
@@ -28,17 +29,24 @@ class AddonListAddon extends React.Component {
     }
   }
 
+  withChildren(settings = {}) {
+
+    return withChildren({...settings, ref: this.ref });
+  }
+
   render() {
     const { addonId, addon, index } = this.props;
     return (
-      <Addon
+      <AddonEdit
+        ref={this.ref}
         refs={this.renderDnd.bind(this)}
         name={addon.name}
         index={index}
+        isSelected={false}
         addonId={addonId}
         attributes={addon.attributes}
         setAttributes={this.setAttributes}
-        renderChildren={withChildren(addonId)}
+        renderChildren={this.withChildren.bind(this)}
       />
     );
   }

@@ -3,3 +3,6 @@
 !/dist/css/bootstrap.min.css
 /dist/js
 /dist/node_modules
+dist/css/.DS_Store
+builder/.DS_Store
+.DS_Store
