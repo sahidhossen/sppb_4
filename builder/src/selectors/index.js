@@ -61,8 +61,7 @@ export const getDefaultAddonList = (store) => {
  * @param {String} addonName Registered addon Name
  */
 export const getDefaultAddon = (store, addonName) => {
-    const _addonName = `sppb_${addonName.toLowerCase()}`
-    return store.addonList[_addonName];
+    return store.addonList[addonName];
 }
 
 

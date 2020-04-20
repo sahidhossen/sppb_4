@@ -2,9 +2,8 @@ import React from 'react';
 import {withSelect, withDispatch} from 'store';
 import {compose} from '../compose';
 
-class Addon extends React.Component {
+class AddonEditView extends React.Component {
     
-
     render() {
         const {
             name,
@@ -39,4 +38,4 @@ export default compose([
     withDispatch( dispatch => {
 
     })
-])(Addon);
+])(AddonEditView);

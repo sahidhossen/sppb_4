@@ -7,6 +7,8 @@ const api = require('./api');
 const port = 3000
 app.use(express.static(path.join(__dirname, '.')));
 
+console.log("path: ", path.join(__dirname, '.'))
+
 app.post('/api', api );
 
 app.get('/', (req, res) => {

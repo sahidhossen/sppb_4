@@ -1,5 +1,8 @@
 import {map} from 'lodash';
-import { generateAddon, nextNodeId, insertAt } from "./addonHelper";
+import { getDefaultAddon } from "./addonHelper";
+import {insertAt} from './array';
+import {revisedRandId} from './utils';
+
 /**
  * 
  * @param {*} block 
@@ -11,8 +14,8 @@ export const generateAddonWithTemplate = (addons = {}, addonId, template) => {
     map( template, ([name, attributes, innerTemplate], index) => {
 
         let nextAddon = {
-            ...generateAddon(name, attributes || {}),
-            id: nextNodeId(),
+            ...getDefaultAddon(name, attributes || {}),
+            id: revisedRandId(),
             parentId: addonId
           };
 

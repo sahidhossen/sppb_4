@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {map} from 'lodash';
 import {withSelect, withDispatch} from 'store';
 import {compose} from '../compose';
-import AddonListAddon from '../addonListAddon'; 
+import AddonListAddon from '../AddonListAddon'; 
 
 class AddonList extends React.Component {
     constructor(props) {
