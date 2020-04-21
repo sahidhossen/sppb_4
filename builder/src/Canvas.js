@@ -7,10 +7,17 @@ import {compose} from './components/compose';
 
 
 class Canvas extends React.Component {
-    constructor(){
-        super(); 
-        this.setBlockListRef = this.setBlockListRef.bind(this);
-    }
+  constructor() {
+    super();
+    this.setBlockListRef = this.setBlockListRef.bind(this);
+  }
+
+  setBlockListRef(node) {
+    this.wrapperNode = node;
+    // it depents on this.wrapperNode but we can't keep this.wrapperNode in state
+    // Because we need it to be immediately availeble for `focusableTabbable` to work.
+    this.forceUpdate();
+  }
 
     setBlockListRef( node ) {
         this.wrapperNode = node;
@@ -26,16 +33,16 @@ class Canvas extends React.Component {
             gridCol
         } = attributes; 
 
-        let style = {
-            '--gw': `${mediaQuery.value}px`,
-            '--gg': gridGap,
-            '--gc': gridCol,
-            '--gr': 'auto',
-            '--x': 'auto',
-            '--y': 'auto',
-            '--w': 'auto',
-            '--h': 'auto'
-        }
+    let style = {
+      "--gw": `${mediaQuery.value}px`,
+      "--gg": gridGap,
+      "--gc": gridCol,
+      "--gr": "auto",
+      "--x": "auto",
+      "--y": "auto",
+      "--w": "auto",
+      "--h": "auto",
+    };
 
         const className = classnames({'sppb-builder-wrapper': true,'basegrid': true, 'cursor-draggable': isAddonPicked})
 
