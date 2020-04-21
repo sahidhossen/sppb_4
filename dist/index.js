@@ -1,17 +1,17 @@
-const express = require('express')
-const path = require('path');
-const app = express()
+const express = require("express");
+const path = require("path");
+const app = express();
 
-const api = require('./api');
+const api = require("./api");
 
-const port = 3000
-app.use(express.static(path.join(__dirname, '.')));
+const port = 3000;
+app.use(express.static(path.join(__dirname, ".")));
 
-console.log("path: ", path.join(__dirname, '.'))
+console.log("path: ", path.join(__dirname, "."));
 
-app.post('/api', api );
+app.post("/api", api);
 
-app.get('/', (req, res) => {
-    res.sendFile('./builder.html', { root: __dirname });
+app.get("/", (req, res) => {
+  res.sendFile("./builder.html", { root: __dirname });
 });
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
