@@ -1,5 +1,6 @@
 import React, { Fragment} from 'react';
-import {GridItem, SelectPlaceHolder, getGridArea} from './gridHelper';
+import {getGridDimention, SelectPlaceHolder, getGridArea} from './gridHelper';
+import GridItem from './GridItem';
 import {withSelect, withDispatch} from 'store';
 import {compose} from '../compose';
 
@@ -107,23 +108,34 @@ class GridView extends React.Component {
     render(){    
         
         let {GridSelectStart, GridSelectEnd} = this.state;
-        let {addon, mediaQuery} = this.props;
+        let {addonId, addon, mediaQuery} = this.props;
 
         let { attributes: {
+                _addonWidth,
                 gridGap,
                 gridCol
             } } = addon
-
-        const attributes = {
-            gridWidth: `${mediaQuery.value}px`,
+        let gridWidth = '';
+        
+        if (addonId) {
+            // Any addon 
+            gridWidth = _addonWidth;
+        } else {
+            // Root
+            gridWidth = mediaQuery.value;
+        }
+        const gridItemAttributes = {
+            gridWidth: gridWidth,
             gridGap: gridGap,
             gridCol: gridCol,
           };
-          console.log("grid area: ",addon, attributes)
+
+
         const gridArea = getGridArea(GridSelectStart, GridSelectEnd);
+        const gridDimention = getGridDimention(gridItemAttributes);
         return (
             <Fragment>
-                <GridItem {...attributes}/>
+                <GridItem {...gridDimention}/>
                 {GridSelectStart.col > 0 && GridSelectEnd.col > 0 
                 ?
                     <SelectPlaceHolder gridArea={gridArea} />
