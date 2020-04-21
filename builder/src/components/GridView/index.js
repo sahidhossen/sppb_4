@@ -1,5 +1,13 @@
 import React, { Fragment } from "react";
-import { GridItem, SelectPlaceHolder, getGridArea } from "./gridHelper";
+import { getGridDimention, SelectPlaceHolder, getGridArea } from "./gridHelper";
+import GridItem from "./GridItem";
+import { withSelect, withDispatch } from "store";
+import { compose } from "../compose";
+
+/**
+ * Calculate select grid items
+ * When drop add addon on selected grid-layout
+ */
 
 class GridView extends React.Component {
   constructor(props) {
@@ -95,24 +103,35 @@ class GridView extends React.Component {
 
     return { row, col };
   }
-
   render() {
     let { GridSelectStart, GridSelectEnd } = this.state;
+    let { addonId, addon, mediaQuery } = this.props;
 
-    const attributes = {
-      gridWidth: "900px",
-      gridGap: "10px",
-      gridCol: 20,
+    let {
+      attributes: { _addonWidth, gridGap, gridCol },
+    } = addon;
+    let gridWidth = "";
+
+    if (addonId) {
+      // Any addon
+      gridWidth = _addonWidth;
+    } else {
+      // Root
+      gridWidth = mediaQuery.value;
+    }
+    const gridItemAttributes = {
+      gridWidth: gridWidth,
+      gridGap: gridGap,
+      gridCol: gridCol,
     };
-    console.log("girdL ", GridSelectStart);
+
+    const gridArea = getGridArea(GridSelectStart, GridSelectEnd);
+    const gridDimention = getGridDimention(gridItemAttributes);
     return (
       <Fragment>
-        <GridItem {...attributes} />
-
+        <GridItem {...gridDimention} />
         {GridSelectStart.col > 0 && GridSelectEnd.col > 0 ? (
-          <SelectPlaceHolder
-            gridArea={getGridArea(GridSelectStart, GridSelectEnd)}
-          />
+          <SelectPlaceHolder gridArea={gridArea} />
         ) : (
           <div className="sppb-empty-grid-placeholder"></div>
         )}
@@ -123,4 +142,12 @@ class GridView extends React.Component {
   }
 }
 
-export default GridView;
+export default compose(
+  withSelect((select, { addonId = "root" }) => {
+    let { getActiveMediaQuery, getAddon } = select();
+    return {
+      mediaQuery: getActiveMediaQuery(),
+      addon: getAddon(addonId),
+    };
+  })
+)(GridView);

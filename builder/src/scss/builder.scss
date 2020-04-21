@@ -8,8 +8,8 @@ body {
 .sppb-builder-wrapper {
   // background-color: #f3f3f3;
   position: relative;
-  min-height: 400px;
-  height: 100vh;
+  min-height: 200px;
+  height: auto;
   .sppb-empty-wrapper-box {
     width: 360px;
     height: 258px;
@@ -106,11 +106,22 @@ body {
   --x: 1;
   --h: 1;
 }
-
+.sppb-placeholder-text {
+  background: white;
+  opacity: 1;
+  z-index: 1;
+  padding: 2px;
+  border-radius: 3px;
+  font-size: 10px;
+}
 .placeholder {
-  opacity: 0.2;
+  opacity: 0.5;
   background-color: slateblue;
   display: grid;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: red;
 }
 
 .sppb-column-empty-wrapper {

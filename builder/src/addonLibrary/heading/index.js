@@ -10,7 +10,9 @@ export default {
   childrens: [],
   attributes: {
     class: "sppb-heading",
-    color: "red"
+    color: "red",
+    displayType: 'grid',
+    gridArea: ''
   },
   content: "",
   childrens: [],

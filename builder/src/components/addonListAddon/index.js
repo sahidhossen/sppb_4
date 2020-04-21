@@ -30,7 +30,7 @@ class AddonListAddon extends React.Component {
   }
 
   withChildren(settings = {}) {
-    return withChildren({...settings, ref: this.ref });
+    return withChildren({...settings, ref: this.ref, index: this.props.index });
   }
 
   render() {

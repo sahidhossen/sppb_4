@@ -51,41 +51,14 @@ export const getGridArea = (gridStartIndex, gridFinishIndex) => {
  * @param {string} param.gridWidth The width of the entire gridBox with unit
  * @param {string} param.gridGap The gap between each grid with unit
  * @param {number} param.gridCol The number of columns of the grid
- * @return {Element}
+ * @return {Object}
  */
-
-export const GridItem = ({ gridWidth, gridGap, gridCol }) => {
-  const gridBoxWidth = getNum(gridWidth);
-  const gridBoxGap = getNum(gridGap);
-  const gridBoxSize = parseFloat(
-    (gridBoxWidth - (gridCol - 1) * gridBoxGap) / gridCol
-  );
-  return (
-    <svg
-      width="100%"
-      height="100%"
-      xmlns="http://www.w3.org/2000/svg"
-      className="guides"
-    >
-      <defs>
-        <pattern
-          id="grid-id-uskirv"
-          width={gridBoxSize + gridBoxGap}
-          height={gridBoxSize + gridBoxGap}
-          patternUnits="userSpaceOnUse"
-        >
-          <rect
-            width={gridBoxSize}
-            height={gridBoxSize}
-            fill="#333333"
-            className="gridbox"
-          />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid-id-uskirv)" />
-    </svg>
-  );
-};
+export const getGridDimention = ({gridWidth, gridGap, gridCol}) => {
+  const gridBoxWidth = isNaN(gridWidth) ? getNum(gridWidth) : gridWidth;
+  const gridBoxGap =  getNum(gridGap);
+  const gridBoxSize = parseFloat((gridBoxWidth - (gridCol - 1) * gridBoxGap) / gridCol);
+   return {gridBoxSize, gridBoxGap};
+}
 
 /**
  *
@@ -94,5 +67,9 @@ export const GridItem = ({ gridWidth, gridGap, gridCol }) => {
  */
 
 export const SelectPlaceHolder = ({ className = "placeholder", gridArea }) => {
-  return <div className={className} style={{ gridArea: gridArea }} />;
+  return (
+    <div className={className} style={{ gridArea: gridArea }}>
+      <span className="sppb-placeholder-text">{gridArea}</span>
+    </div>
+  )
 };

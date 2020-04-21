@@ -15,7 +15,7 @@ class Row extends React.Component {
 
   render() {
     const { addonId } = this.props;
-    const clsNames = classNames("sppb-4", "sppb-row", addonId);
+    const clsNames = classNames("sppb-4", "sppb-row", addonId, 'basegrid');
     // console.log("row props: ", this.props);
     return (
       <div className={clsNames}> {this.props.renderChildren()} </div>

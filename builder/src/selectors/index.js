@@ -4,6 +4,15 @@
 let EMPTY_ARRAY = [];
 
 /**
+ * Return all addon from redux store
+ * @param {Object} store Page State
+ * @param {String} addonId Addon Id
+ */
+export const getAddons = (store) => {
+  return store.builder.present;
+}
+
+/**
  * Return addon by addonId from redux store
  * @param {Object} store Page State
  * @param {String} addonId Addon Id
@@ -89,4 +98,19 @@ export const selectedAddonId = store => {
       return null;
     }
     return dockerPalet[dockerName];
+  }
+
+  export const getActiveMediaQuery = (store) => {
+    let {mediaQuery} = store.control
+    return mediaQuery.list[mediaQuery.active];
+  }
+
+  export const getMediaQuery = (store, name) => {
+    let {mediaQuery:{list}} = store.control
+    return list[name];
+  }
+
+  export const getMediaQueries = (store) => {
+    let {mediaQuery:{list}} = store.control
+    return list;
   }
