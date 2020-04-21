@@ -1,5 +1,13 @@
 import React, { Fragment} from 'react';
 import {GridItem, SelectPlaceHolder, getGridArea} from './gridHelper';
+import {withSelect, withDispatch} from 'store';
+import {compose} from '../compose';
+
+
+/**
+ * Calculate select grid items
+ * When drop add addon on selected grid-layout
+ */
 
 class GridView extends React.Component {
     constructor(props){
@@ -99,28 +107,41 @@ class GridView extends React.Component {
     render(){    
         
         let {GridSelectStart, GridSelectEnd} = this.state;
-        
+        let {addon, mediaQuery} = this.props;
+
+        let { attributes: {
+                gridGap,
+                gridCol
+            } } = addon
+
         const attributes = {
-            gridWidth: "900px",
-            gridGap: "10px",
-            gridCol: 20,
-          };  
-          console.log("girdL ", GridSelectStart)
+            gridWidth: `${mediaQuery.value}px`,
+            gridGap: gridGap,
+            gridCol: gridCol,
+          };
+          console.log("grid area: ",addon, attributes)
+        const gridArea = getGridArea(GridSelectStart, GridSelectEnd);
         return (
-        <Fragment>
-            
-            <GridItem {...attributes}/>
+            <Fragment>
+                <GridItem {...attributes}/>
+                {GridSelectStart.col > 0 && GridSelectEnd.col > 0 
+                ?
+                    <SelectPlaceHolder gridArea={gridArea} />
+                : 
+                    <div className="sppb-empty-grid-placeholder"></div>}
 
-            {GridSelectStart.col > 0 && GridSelectEnd.col > 0 
-            ?
-                <SelectPlaceHolder gridArea={getGridArea(GridSelectStart, GridSelectEnd)} />
-            : 
-                <div className="sppb-empty-grid-placeholder"></div>}
-
-            {this.props.children}
-        </Fragment>
+                {this.props.children}
+            </Fragment>
         )
     }
 }
 
-export default GridView;
+export default compose(
+    withSelect( (select, {addonId='root'}) => {
+        let { getActiveMediaQuery, getAddon } = select();
+        return {
+            mediaQuery: getActiveMediaQuery(),
+            addon: getAddon(addonId)
+        }
+    })
+)(GridView);

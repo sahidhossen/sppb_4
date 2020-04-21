@@ -10,7 +10,6 @@ class Builder extends React.Component {
   render() {
     return (
       <Fragment>
-        
         <Canvas/>
         <SppbPortal className="sppb-docker-portal">
               <Docker/>

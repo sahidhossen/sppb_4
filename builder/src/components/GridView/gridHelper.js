@@ -94,5 +94,9 @@ export const GridItem = ({ gridWidth, gridGap, gridCol }) => {
  */
 
 export const SelectPlaceHolder = ({ className = "placeholder", gridArea }) => {
-  return <div className={className} style={{ gridArea: gridArea }} />;
+  return (
+    <div className={className} style={{ gridArea: gridArea }}>
+      <span className="sppb-placeholder-text">{gridArea}</span>
+    </div>
+  )
 };

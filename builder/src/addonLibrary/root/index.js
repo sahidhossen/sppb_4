@@ -7,6 +7,13 @@ export default {
     private: true,
     childrens: [],
     droppable: true,
+    attributes: {
+        display: 'grid',
+        width: '900px',
+        gridGap: '1px',
+        gridCol: 50,
+
+    },
     accept: '*',
     Component: Root
 }
