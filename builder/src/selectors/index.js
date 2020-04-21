@@ -114,3 +114,15 @@ export const selectedAddonId = store => {
     let {mediaQuery:{list}} = store.control
     return list;
   }
+
+  export const getPickedAddon = (store) => {
+    const pickedAddonName = store.control.pickedAddon;
+    if (pickedAddonName === null) {
+      return;
+    }
+    return store.addonList[`sppb_${pickedAddonName}`];
+  }
+
+  export const isAddonPicked = (store) => {
+    return store.control.pickedAddon !== null;
+  }

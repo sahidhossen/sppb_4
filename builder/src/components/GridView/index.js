@@ -108,8 +108,8 @@ class GridView extends React.Component {
     render(){    
         
         let {GridSelectStart, GridSelectEnd} = this.state;
-        let {addonId, addon, mediaQuery} = this.props;
-
+        let {addonId, addon, mediaQuery, pickedAddon} = this.props;
+        console.log("picked: ", pickedAddon)
         let { attributes: {
                 _addonWidth,
                 gridGap,
@@ -150,10 +150,11 @@ class GridView extends React.Component {
 
 export default compose(
     withSelect( (select, {addonId='root'}) => {
-        let { getActiveMediaQuery, getAddon } = select();
+        let { getActiveMediaQuery, getAddon, getPickedAddon } = select();
         return {
             mediaQuery: getActiveMediaQuery(),
-            addon: getAddon(addonId)
+            addon: getAddon(addonId),
+            pickedAddon: getPickedAddon()
         }
     })
 )(GridView);

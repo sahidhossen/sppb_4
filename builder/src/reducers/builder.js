@@ -11,7 +11,7 @@ const getMutateSafeObject = (original, working) => {
 
 const builder = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_BLOCK":
+    case "ADD_ADDON":
       const { defaultAddon, payload: { index, parentId } } = action;
       /**
        * Set default block with unique ID
@@ -24,7 +24,7 @@ const builder = (state = initialState, action) => {
         [defaultAddon.id]: {...defaultAddon, parentId: parentId},
         [parentId] : {...state[parentId], childrens: insertAt(state[parentId].childrens, defaultAddon.id, index) }
       };
-    case "TRANSFER_BLOCK": {
+    case "TRANSFER_ADDON": {
       /**
        * Index: drop index
        * AddonId: source AddonId

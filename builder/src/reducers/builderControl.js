@@ -106,6 +106,12 @@ const builderControl = ( state = initialControls, action ) => {
           return {...state, mediaQuery: {mediaQuery, active: name }}
 
         }
+
+        case "PICK_ADDON": {
+          const {addonName} = action; 
+          return {...state, pickedAddon: addonName}
+        }
+
         case 'TOOLS_ON':
             return{
                 ...state,

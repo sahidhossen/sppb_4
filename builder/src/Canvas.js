@@ -1,4 +1,5 @@
 import React from 'react'; 
+import classnames from 'classnames/bind';
 import GridView from './components/GridView';
 import AddonList from './components/AddonList';
 import {withSelect, withDispatch} from 'store';
@@ -19,7 +20,7 @@ class Canvas extends React.Component {
     }
     
     render() {
-        let {attributes, mediaQuery} = this.props;
+        let {attributes, mediaQuery, isAddonPicked} = this.props;
         let {
             gridGap,
             gridCol
@@ -36,8 +37,10 @@ class Canvas extends React.Component {
             '--h': 'auto'
         }
 
+        const className = classnames({'sppb-builder-wrapper': true,'basegrid': true, 'cursor-draggable': isAddonPicked})
+
         return ( 
-            <div style={style} className="sppb-builder-wrapper basegrid" ref={this.setBlockListRef}> 
+            <div style={style} className={className} ref={this.setBlockListRef}> 
                 <GridView container={this.wrapperNode}>
                     <AddonList/>
                 </GridView>
@@ -48,12 +51,13 @@ class Canvas extends React.Component {
 
 export default compose(
     withSelect( select => {
-        const {getAddon, getActiveMediaQuery} = select(); 
+        const {getAddon, getActiveMediaQuery, isAddonPicked} = select(); 
         const {attributes} = getAddon('root');
-    
+        
         return {
             mediaQuery: getActiveMediaQuery(),
-            attributes
+            attributes,
+            isAddonPicked: isAddonPicked()
         }
     })
 )(Canvas);

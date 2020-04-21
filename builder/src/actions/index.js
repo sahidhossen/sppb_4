@@ -13,7 +13,7 @@ export const registerAddon = payload => dispatch => {
  */
 export const insertAddon = payload => {
   const defaultAddon = generateBlock(payload.defaultAddon);
-  return { type: "ADD_BLOCK", payload, defaultAddon };
+  return { type: "ADD_ADDON", payload, defaultAddon };
 };
 
 /**
@@ -21,7 +21,7 @@ export const insertAddon = payload => {
  * @param {Object} payload Settings
  */
 export const moveAddon = payload => {
-  return { type: 'TRANSFER_BLOCK', payload };
+  return { type: 'TRANSFER_ADDON', payload };
 }
 
 export const setAttribute = payload => {
@@ -32,7 +32,9 @@ export const updateAddonAttributes = (addonId, attributes) => {
   return { type: "SET_ATTRIBUTE", addonId, attributes };
 };
 
-
+export const pickAddon = addonName => {
+  return {type: "PICK_ADDON", addonName }
+}
 
 /**
  * ===========

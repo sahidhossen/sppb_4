@@ -25,7 +25,7 @@ class AddonListAddon extends React.Component {
     const { connectDragSource, connectDropTarget } = this.props;
     const node = findDOMNode(instance);
     if (node) {
-      connectDragSource(connectDropTarget(node));
+      // connectDragSource(connectDropTarget(node));
     }
   }
 

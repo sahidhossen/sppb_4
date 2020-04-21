@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { DragSource } from "react-dnd";
+import { compose } from '../../compose';
+import {withSelect, withDispatch} from 'store';
 import { Types } from "../../../actions/dragType";
 
 const BlockSource = {
@@ -36,6 +38,9 @@ class AddonItem extends Component {
       enable_tools: false
     };
   }
+  onAddonPicked() {
+    this.props.addonPicked();
+  }
   render() {
     const {
       block,
@@ -43,16 +48,14 @@ class AddonItem extends Component {
       connectDragSource,
       isDragging
     } = this.props;
-    return connectDragPreview(
-      connectDragSource(
-        <div className="sppb-addon-list-item">
+    return (
+        <div className="sppb-addon-list-item" onClick={this.onAddonPicked.bind(this)}>
           <div className="sppb-tool-icon">
             {" "}
             <span className={block.icon}></span>
           </div>
           <div className="sppb-addon-list-item-title"> {block.title} </div>
         </div>
-      )
     );
   }
 }
@@ -69,7 +72,20 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DragSourceDecorator(AddonItem));
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(DragSourceDecorator(AddonItem));
+
+
+
+export default compose(
+  withDispatch( (dispatch, {block}) => {
+    let {pickAddon} = dispatch(); 
+    return {
+      addonPicked() {
+        pickAddon(block.name);
+      }
+    }
+  })
+)(AddonItem);
