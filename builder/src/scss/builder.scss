@@ -81,13 +81,13 @@ body {
 }
 .basegrid{
   position: relative;
-  width: var(--gw);
+  // width: var(--gw);
   max-width: 100%;
   display: grid;
-  grid-gap:var(--gg);
+  // grid-gap:var(--gg);
   grid-auto-flow:row dense; 
-  grid-template-columns: repeat(var(--gc),calc((var(--gw) + var(--gg))/var(--gc) - var(--gg)))!important;
-  grid-auto-rows: calc((var(--gw) + var(--gg))/var(--gc) - var(--gg))!important;
+  // grid-template-columns: repeat(var(--gc),calc((var(--gw) + var(--gg))/var(--gc) - var(--gg)))!important;
+  // grid-auto-rows: calc((var(--gw) + var(--gg))/var(--gc) - var(--gg))!important;
 }
   
 .basegrid>div{

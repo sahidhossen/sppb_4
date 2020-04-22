@@ -1,5 +1,5 @@
 import React, { Fragment} from 'react';
-import {getGridDimention, SelectPlaceHolder, getGridArea} from './gridHelper';
+import {getGridDimention, SelectPlaceHolder, getGridArea, getNum} from './gridHelper';
 import GridItem from './GridItem';
 import {withSelect, withDispatch} from 'store';
 import {compose} from '../compose';
@@ -51,7 +51,6 @@ class GridView extends React.Component {
       window.frames["sppb-editor-view"].window[method]("mousemove", this.gridAxis.bind(this));
     }
 
-  
     gridAxis(event) {
         let {isMouseMove} = this.state; 
 
@@ -109,11 +108,21 @@ class GridView extends React.Component {
     }
 
     onInsertAddon() {
-        let {pickedAddon, addonId, index} = this.props;
+        let {pickedAddon, addonId, addon:{attributes:{gridGap, gridCol}}, mediaQuery, index} = this.props;
         let {GridSelectStart, GridSelectEnd} = this.state;
 
         let gridArea = getGridArea(GridSelectStart, GridSelectEnd);
-        
+
+        let w = (GridSelectEnd.col - GridSelectStart.col) + 1;
+        let h = (GridSelectEnd.row - GridSelectStart.row) + 1;
+        let gap = getNum(gridGap);
+        let width = mediaQuery.value;
+
+        let cell = (width/gridCol) - gap
+
+        let _height = (cell * h) + ((h-1)*gap)
+        let _width = (cell * w) + ((w-1)*gap)
+
         let settings = {
             parentId: addonId || 'root',
             index,
@@ -173,7 +182,7 @@ export default compose(
             pickedAddon: getPickedAddon()
         }
     }), 
-    withDispatch( (dispatch, {addonId="root"})=> {
+    withDispatch( (dispatch)=> {
         const {insertAddon} = dispatch(); 
 
         return {
@@ -183,3 +192,26 @@ export default compose(
         }
     })
 )(GridView);
+
+
+// // grid-row-start: 1; y
+// // grid-row-end: 3; w
+
+// // grid-column-start: 4; x
+// // grid-column-end: 7;
+
+// --x: 4;
+// --y: 1;
+// --w: 3;
+// --h: 2;
+
+
+// // grid-row-start: 1;
+// // grid-row-end: 4;
+// // grid-column-start: 3;
+// // grid-column-end: 10;
+
+// --x: 3;
+// --y: 1;
+// --w: 7;
+// --h: 3;

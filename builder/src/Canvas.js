@@ -34,14 +34,18 @@ class Canvas extends React.Component {
         } = attributes; 
 
         let style = {
-        "--gw": `${mediaQuery.value}px`,
-        "--gg": gridGap,
-        "--gc": gridCol,
-        "--gr": "auto",
-        "--x": "auto",
-        "--y": "auto",
-        "--w": "auto",
-        "--h": "auto",
+            gridTemplateColumns: `repeat(${gridCol}, calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}))`,
+            gridAutoRows: `calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap})`,
+            width: `${mediaQuery.value}px`,
+            gridGap: gridGap,
+            // "--gw": `${mediaQuery.value}px`,
+            // "--gg": gridGap,
+            // "--gc": gridCol,
+            // "--gr": "auto",
+            "--x": "auto",
+            "--y": "auto",
+            "--w": "auto",
+            "--h": "auto",
         };
 
         const className = classnames({'sppb-builder-wrapper': true,'basegrid': true, 'cursor-draggable': isAddonPicked})

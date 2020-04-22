@@ -10,8 +10,8 @@ export default {
     attributes: {
         display: 'grid',
         width: '900px',
-        gridGap: '1px',
-        gridCol: 50,
+        gridGap: '3px',
+        gridCol: 20,
 
     },
     accept: '*',
