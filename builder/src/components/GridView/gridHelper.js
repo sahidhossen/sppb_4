@@ -53,12 +53,14 @@ export const getGridArea = (gridStartIndex, gridFinishIndex) => {
  * @param {number} param.gridCol The number of columns of the grid
  * @return {Object}
  */
-export const getGridDimention = ({gridWidth, gridGap, gridCol}) => {
+export const getGridDimention = ({ gridWidth, gridGap, gridCol }) => {
   const gridBoxWidth = isNaN(gridWidth) ? getNum(gridWidth) : gridWidth;
-  const gridBoxGap =  getNum(gridGap);
-  const gridBoxSize = parseFloat((gridBoxWidth - (gridCol - 1) * gridBoxGap) / gridCol);
-   return {gridBoxSize, gridBoxGap};
-}
+  const gridBoxGap = getNum(gridGap);
+  const gridBoxSize = parseFloat(
+    (gridBoxWidth - (gridCol - 1) * gridBoxGap) / gridCol
+  );
+  return { gridBoxSize, gridBoxGap };
+};
 
 /**
  *
@@ -71,5 +73,42 @@ export const SelectPlaceHolder = ({ className = "placeholder", gridArea }) => {
     <div className={className} style={{ gridArea: gridArea }}>
       <span className="sppb-placeholder-text">{gridArea}</span>
     </div>
-  )
+  );
+};
+
+/**
+ *
+ * @param {object} param
+ * @param {Element} param.container The container which holds the addon
+ * @param {object} param.addon Addon Data
+ * @param {{row: number, col: number}} param.GridSelectStart
+ * @param {{row: number, col: number}} param.GridSelectEnd
+ * @return {{height: number, width: number}} Returns value in pixel (px)
+ */
+
+export const getGridHeightWidth = ({
+  container,
+  addon,
+  GridSelectStart,
+  GridSelectEnd,
+}) => {
+  const {
+    attributes: { gridGap, gridCol },
+  } = addon;
+  const totalRow = Math.abs(GridSelectEnd.row - GridSelectStart.row) + 1;
+  const totalCol = Math.abs(GridSelectEnd.col - GridSelectStart.col) + 1;
+
+  const containerRect = container.getBoundingClientRect();
+  const gridWidth = containerRect.width;
+
+  const { gridBoxSize } = getGridDimention({ gridWidth, gridGap, gridCol });
+  const gridBoxGap = getNum(gridGap);
+
+  const width = gridBoxSize * totalCol + (totalCol - 1) * gridBoxGap;
+  const height = gridBoxSize * totalRow + (totalRow - 1) * gridBoxGap;
+
+  return {
+    width: { value: width, unit: "px" },
+    height: { value: height, unit: "px" },
+  };
 };
