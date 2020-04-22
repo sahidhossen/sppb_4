@@ -12,12 +12,13 @@ const getMutateSafeObject = (original, working) => {
 const builder = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_ADDON":
-      const { defaultAddon, payload: { index, parentId } } = action;
+      const { defaultAddon, payload: { parentId } } = action;
       /**
        * Set default block with unique ID
        * Update parentId associated with the new Addon
        * Update parent Addon children array with currect index and new addonId
        * */ 
+      let index = state[parentId].childrens.length; 
       
       return {
         ...state, 

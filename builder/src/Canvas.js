@@ -33,16 +33,16 @@ class Canvas extends React.Component {
             gridCol
         } = attributes; 
 
-    let style = {
-      "--gw": `${mediaQuery.value}px`,
-      "--gg": gridGap,
-      "--gc": gridCol,
-      "--gr": "auto",
-      "--x": "auto",
-      "--y": "auto",
-      "--w": "auto",
-      "--h": "auto",
-    };
+        let style = {
+        "--gw": `${mediaQuery.value}px`,
+        "--gg": gridGap,
+        "--gc": gridCol,
+        "--gr": "auto",
+        "--x": "auto",
+        "--y": "auto",
+        "--w": "auto",
+        "--h": "auto",
+        };
 
         const className = classnames({'sppb-builder-wrapper': true,'basegrid': true, 'cursor-draggable': isAddonPicked})
 

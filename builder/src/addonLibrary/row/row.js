@@ -14,11 +14,22 @@ class Row extends React.Component {
   }
 
   render() {
-    const { addonId } = this.props;
+    const { addonId, attributes } = this.props;
+    let {
+      gridGap,
+      gridCol, 
+      gridArea
+    } = attributes
     const clsNames = classNames("sppb-4", "sppb-row", addonId, 'basegrid');
-    // console.log("row props: ", this.props);
+    console.log("row props: ", this.props);
+    let style = {
+      "--gg": gridGap,
+      "--gc": gridCol,
+      gridArea: gridArea
+    }
+
     return (
-      <div className={clsNames}> {this.props.renderChildren()} </div>
+      <div style={style} className={clsNames}> {this.props.renderChildren()} </div>
     );
   }
 }

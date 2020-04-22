@@ -17,6 +17,7 @@ class AddonEdit extends React.Component {
     }
     
     render(){
+        console.log("prop: ", this.props)
         return (
             <BlockEditContextProvider value={this.state}>
                 <AddonEditView {...this.props}/>

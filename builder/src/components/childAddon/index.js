@@ -31,10 +31,14 @@ const withChildren = (settings ={} ) => {
         }
 
         render() {
-            const {addonId, settings:{ref}} = this.props;
+            const {addonId, settings:{ref}, index} = this.props;
             return ( 
-                <GridView refs={ref}>
-                    <AddonList parentId={addonId}/>;
+                <GridView  
+                    addonId={addonId}
+                    index={index}
+                    refs={ref}
+                >
+                    <AddonList parentId={addonId}/>
                 </GridView>
             )
         }

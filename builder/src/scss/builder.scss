@@ -41,8 +41,10 @@ body {
     -ms-flex-align: center;
     align-items: center;
   }
+  &.cursor-draggable {
+    cursor: crosshair;
+  }
 }
-
 
 #sppb_root_view {
   margin: 0;
@@ -584,23 +586,23 @@ DRAGGABLE PADDING
     border-color: red;
   }
 }
-.sppb-4 {
-  position: relative;
-  margin: 10px;
+// .sppb-4 {
+//   position: relative;
+//   margin: 10px;
 
-  &:after {
-    clear: both;
-  }
-  &:before,
-  &:after {
-    content: " ";
-    display: table;
-    grid-column-start: 1;
-    grid-row-start: 1;
-    grid-column-end: 2;
-    grid-row-end: 2;
-  }
-}
+//   &:after {
+//     clear: both;
+//   }
+//   &:before,
+//   &:after {
+//     content: " ";
+//     display: table;
+//     grid-column-start: 1;
+//     grid-row-start: 1;
+//     grid-column-end: 2;
+//     grid-row-end: 2;
+//   }
+// }
 .sppb-dnd-basement {
   min-height: 100px;
   width: 100%;

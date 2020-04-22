@@ -55,8 +55,9 @@ body {
     display: var(--dis-block);
     margin: var(--mar-auto);
     transition: all 0.3s;
-    padding: calc(var(--top-portal-height) + var(--space-15)) var(--space-30)
-        var(--space-15);
+    // padding: calc(var(--top-portal-height) + var(--space-15)) var(--space-30)
+    //     var(--space-15);
+    padding-top: calc(var(--top-portal-height) + var(--space-15));
 }
 
 #sppb-editor-view.sppb-tabel-view {

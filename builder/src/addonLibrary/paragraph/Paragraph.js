@@ -8,9 +8,19 @@ class Paragraph extends React.Component {
 
     render(){
         // console.log("Paragraph props",this.props)
+        let {attributes} = this.props;
+        let {
+            gridArea
+        } = attributes
+        let style = {
+            gridArea, 
+            justifyContent: 'center',
+            display:"grid",
+            backgroundColor:'rgba(0,0,0,0.2)'
+        }
         const clsNames = classNames('sppb-4' ,'sppb-Paragraph')
         return(
-            <div className={clsNames}>
+            <div style={style} className={clsNames}>
                <h3 onClick={()=> this.props.setAttributes({color: 'yellow'})}>Paragraph</h3>
             </div>
         )

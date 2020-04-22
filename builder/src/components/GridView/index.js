@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import { getGridDimention, SelectPlaceHolder, getGridArea } from "./gridHelper";
-import GridItem from "./GridItem";
-import { withSelect, withDispatch } from "store";
-import { compose } from "../compose";
+import React, { Fragment} from 'react';
+import {getGridDimention, SelectPlaceHolder, getGridArea} from './gridHelper';
+import GridItem from './GridItem';
+import {withSelect, withDispatch} from 'store';
+import {compose} from '../compose';
 
 /**
  * Calculate select grid items
@@ -10,77 +10,124 @@ import { compose } from "../compose";
  */
 
 class GridView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      GridSelectStart: { row: 0, col: 0 },
-      GridSelectEnd: { row: 0, col: 0 },
-      isMouseMove: false,
-    };
-  }
-  componentDidMount() {
-    if (this.props.container) {
-      this.toggleListeners(this.props.container);
+    constructor(props){
+        super(props)
+        this.state = {
+            GridSelectStart: {row: 0, col: 0},
+            GridSelectEnd: {row: 0, col: 0},
+            isMouseMove: false
+        }
     }
-  }
-
-  componentWillUnmount() {
-    if (this.props.container) {
-      this.toggleListeners(this.props.container, false);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.container === this.props.container) {
-      return;
-    }
-    if (prevProps.container) {
-      this.toggleListeners(prevProps.container, false);
-    }
-    if (this.props.container) {
-      this.toggleListeners(this.props.container, true);
-    }
-  }
-
-  toggleListeners(node, shouldListnerToEvents = true) {
-    const method = shouldListnerToEvents
-      ? "addEventListener"
-      : "removeEventListener";
-    node[method]("mousedown", this.gridAxis.bind(this));
-    node[method]("mouseup", this.gridAxis.bind(this));
-    window.frames["sppb-editor-view"].window[method](
-      "mousemove",
-      this.gridAxis.bind(this)
-    );
-  }
-
-  gridAxis(event) {
-    let { isMouseMove } = this.state;
-
-    if (!isMouseMove && event.type === "mousedown") {
-      event.preventDefault();
-      if (event.target === event.currentTarget) {
-        this.setState({
-          isMouseMove: true,
-          GridSelectStart: { ...this.getGridAxis(event) },
-          GridSelectEnd: { row: 0, col: 0 },
-        });
-      }
+    componentDidMount(){        
+        if ( this.props.container ) {
+			this.toggleListeners( this.props.container );
+		}
     }
 
-    if (this.state.isMouseMove && event.type === "mousemove") {
-      this.setState({ GridSelectEnd: { ...this.getGridAxis(event) } });
+    componentWillUnmount() {
+        if ( this.props.container ) {
+			this.toggleListeners( this.props.container, false );
+		}
     }
-    if (isMouseMove && event.type === "mouseup") {
-      this.setState({ isMouseMove: false });
+
+    componentDidUpdate(prevProps) {
+        if ( prevProps.container === this.props.container ) {
+			return;
+        }
+		if ( prevProps.container ) {
+			this.toggleListeners( prevProps.container, false );
+		}
+		if ( this.props.container ) {
+			this.toggleListeners( this.props.container, true );
+		}
     }
-  }
+
+    toggleListeners(node, shouldListnerToEvents = true) {
+        const method = shouldListnerToEvents
+        ? "addEventListener"
+        : "removeEventListener";
+      node[method]("mousedown", this.gridAxis.bind(this));
+      node[method]("mouseup", this.gridAxis.bind(this));
+      window.frames["sppb-editor-view"].window[method]("mousemove", this.gridAxis.bind(this));
+    }
+
+  
+    gridAxis(event) {
+        let {isMouseMove} = this.state; 
+
+        if (!this.props.pickedAddon) {
+            return;
+        }
+        
+        if (!isMouseMove && event.type === "mousedown") {
+            
+            event.preventDefault();
+            if (event.target === event.currentTarget) {
+                this.setState({
+                    isMouseMove: true, 
+                    GridSelectStart: {...this.getGridAxis(event)}, 
+                    GridSelectEnd:{ row:0, col:0}
+                })
+            }
+        }
+        
+        if (this.state.isMouseMove && event.type === "mousemove") {
+            this.setState({ GridSelectEnd: {...this.getGridAxis(event)} })
+        }
+        if (isMouseMove && event.type === "mouseup") {
+            this.setState({ isMouseMove: false})
+            this.onInsertAddon();
+        }
+    }
+
+    getGridAxis(event) {
+        const {container} = this.props;
+        if (!container) {
+            return;
+        }
+        let basegrid = container;
+
+        const basegridRect = basegrid.getBoundingClientRect();
+    
+        const x = event.clientX - basegridRect.left;
+        const y = event.clientY - basegridRect.top;
+    
+        const styles = window.getComputedStyle(basegrid);
+        const gridWidth = +styles
+        .getPropertyValue("grid-template-columns")
+        .split(" ")[0]
+        .replace("px", "");
+        const gridGap = +styles
+        .getPropertyValue("grid-gap")
+        .split(" ")[0]
+        .replace("px", "");
+    
+        const col = Math.floor(x / (gridWidth + gridGap)) + 1;
+        const row = Math.floor(y / (gridWidth + gridGap)) + 1;
+
+        return {row, col}
+    }
+
+    onInsertAddon() {
+        let {pickedAddon, addonId, index} = this.props;
+        let {GridSelectStart, GridSelectEnd} = this.state;
+
+        let gridArea = getGridArea(GridSelectStart, GridSelectEnd);
+        
+        let settings = {
+            parentId: addonId || 'root',
+            index,
+            defaultAddon: {...pickedAddon, attributes:{ ...pickedAddon.attributes, gridArea }}
+        }
+        this.setState({GridSelectEnd:{ row:0, col:0}, GridSelectStart:{ row:0, col:0}})
+        this.props.onInsertAddon(settings);
+    }
 
     render(){    
         
         let {GridSelectStart, GridSelectEnd} = this.state;
         let {addonId, addon, mediaQuery, pickedAddon} = this.props;
-        console.log("picked: ", pickedAddon)
+
         let { attributes: {
                 _addonWidth,
                 gridGap,
@@ -107,16 +154,14 @@ class GridView extends React.Component {
         return (
             <Fragment>
                 <GridItem {...gridDimention}/>
-                {GridSelectStart.col > 0 && GridSelectEnd.col > 0 
-                ?
+                {GridSelectStart.col > 0 && GridSelectEnd.col &&
                     <SelectPlaceHolder gridArea={gridArea} />
-                : 
-                    <div className="sppb-empty-grid-placeholder"></div>}
+                }
 
                 {this.props.children}
             </Fragment>
         )
-  }
+    }
 }
 
 export default compose(
@@ -126,6 +171,15 @@ export default compose(
             mediaQuery: getActiveMediaQuery(),
             addon: getAddon(addonId),
             pickedAddon: getPickedAddon()
+        }
+    }), 
+    withDispatch( (dispatch, {addonId="root"})=> {
+        const {insertAddon} = dispatch(); 
+
+        return {
+            onInsertAddon(settings) {
+                insertAddon(settings);
+            }
         }
     })
 )(GridView);

@@ -28,6 +28,7 @@ export const getAddon = (store, addonId) => {
  */
 
 export const getChildrenIds = (store, parentId) => {
+  console.log("data: ",store.builder.present);
     return store.builder.present[parentId || 'root'].childrens || EMPTY_ARRAY;
 }
 
@@ -70,7 +71,7 @@ export const getDefaultAddonList = (store) => {
  * @param {String} addonName Registered addon Name
  */
 export const getDefaultAddon = (store, addonName) => {
-    return store.addonList[addonName];
+    return store.addonList[`sppb_${addonName.toLowerCase()}`];
 }
 
 
@@ -117,10 +118,11 @@ export const selectedAddonId = store => {
 
   export const getPickedAddon = (store) => {
     const pickedAddonName = store.control.pickedAddon;
+    console.log("name: ", pickedAddonName)
     if (pickedAddonName === null) {
       return;
     }
-    return store.addonList[`sppb_${pickedAddonName}`];
+    return store.addonList[`sppb_${pickedAddonName.toLowerCase()}`];
   }
 
   export const isAddonPicked = (store) => {
