@@ -52,10 +52,10 @@ body {
   position: relative;
   /* padding: 0; */
   outline: 1px dashed transparent;
-  transition: outline .3s,padding .3s,margin .3s;
+  transition: outline 0.3s, padding 0.3s, margin 0.3s;
   justify-content: center;
   align-items: center;
-  transition: outline .3s;
+  transition: outline 0.3s;
   outline: 1px solid transparent;
   outline-offset: -1px;
   padding: 20px 0px;
@@ -74,33 +74,38 @@ body {
   opacity: 1;
 }
 .gridbox {
-  fill: rgba(0,0,0,.2);
+  fill: rgba(0, 0, 0, 0.2);
 }
 .guides rect {
-  transition: fill .3s;
+  transition: fill 0.3s;
 }
-.basegrid{
+.basegrid {
   position: relative;
   width: var(--gw);
   max-width: 100%;
   display: grid;
-  grid-gap:var(--gg);
-  grid-auto-flow:row dense; 
-  grid-template-columns: repeat(var(--gc),calc((var(--gw) + var(--gg))/var(--gc) - var(--gg)))!important;
-  grid-auto-rows: calc((var(--gw) + var(--gg))/var(--gc) - var(--gg))!important;
+  grid-gap: var(--gg);
+  grid-auto-flow: row dense;
+  grid-template-columns: repeat(
+    var(--gc),
+    calc((var(--gw) + var(--gg)) / var(--gc) - var(--gg))
+  ) !important;
+  grid-auto-rows: calc(
+    (var(--gw) + var(--gg)) / var(--gc) - var(--gg)
+  ) !important;
 }
-  
-.basegrid>div{
-  grid-column: var(--x)/span var(--w);
-  grid-row: var(--y)/span var(--h)
+
+.basegrid > div {
+  grid-column: var(--x) / span var(--w);
+  grid-row: var(--y) / span var(--h);
 }
 .sppb-empty-grid-placeholder {
   display: grid;
   text-align: center;
   align-items: center;
   line-height: 1em;
-  font-size: 1.5rem!important;
-  color: rgba(0,0,0,.15);
+  font-size: 1.5rem !important;
+  color: rgba(0, 0, 0, 0.15);
   font-weight: 400;
   z-index: -1;
   --w: var(--gc);
