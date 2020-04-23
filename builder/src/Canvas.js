@@ -30,9 +30,16 @@ class Canvas extends React.Component {
     let { gridGap, gridCol } = attributes;
 
     let style = {
-      "--gw": `${mediaQuery.value}px`,
-      "--gg": gridGap,
-      "--gc": gridCol,
+      gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
+      // gridTemplateColumns: `repeat(auto-fit, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
+      gridAutoRows: `calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap})`,
+      width: `${mediaQuery.value}px`,
+      gridAutoFlow: "row dense",
+      gridGap: gridGap,
+
+      // "--gw": `${mediaQuery.value}px`,
+      // "--gg": gridGap,
+      // "--gc": gridCol,
       "--gr": "auto",
       "--x": "auto",
       "--y": "auto",

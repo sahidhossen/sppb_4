@@ -13,7 +13,8 @@ class AddonListAddon extends React.Component {
     super(props);
     this.state = {};
     this.setAttributes = this.setAttributes.bind(this);
-    this.ref = React.createRef();
+    // this.ref = React.createRef();
+    this.renderDnd = this.renderDnd.bind(this);
   }
 
   setAttributes(attributes) {
@@ -27,18 +28,21 @@ class AddonListAddon extends React.Component {
     // if (node) {
     //   // connectDragSource(connectDropTarget(node));
     // }
+    this.wrapperNode = findDOMNode(instance);
+
+    this.forceUpdate();
   }
 
   withChildren(settings = {}) {
-    return withChildren({...settings, ref: this.ref, index: this.props.index });
+    return withChildren({...settings, ref: this.wrapperNode, index: this.props.index });
   }
 
   render() {
     const { addonId, addon, index } = this.props;
     return (
       <AddonEdit
-        ref={this.ref}
-        refs={this.renderDnd.bind(this)}
+        ref={this.renderDnd}
+        // refs={this.renderDnd}
         name={addon.name}
         index={index}
         isSelected={false}
@@ -53,12 +57,11 @@ class AddonListAddon extends React.Component {
 
 export default compose([
   withSelect((select, ownProps) => {
-    const { getAddon, getDefaultAddon } = select();
+    const { getAddon } = select();
     const { addonId } = ownProps;
     const addon = getAddon(addonId);
     return {
-      addon,
-      getDefaultAddon
+      addon
     };
   }),
   withDispatch(dispatch => {

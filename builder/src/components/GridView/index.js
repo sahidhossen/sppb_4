@@ -134,8 +134,8 @@ class GridView extends React.Component {
         attributes: {
           ...pickedAddon.attributes,
           gridArea,
-          width,
-          height,
+          _addonWidth: width.value,
+          _addonHeight: height.value,
         },
       },
     };
@@ -148,7 +148,7 @@ class GridView extends React.Component {
 
   render() {
     let { GridSelectStart, GridSelectEnd } = this.state;
-    let { addonId, addon, mediaQuery, pickedAddon } = this.props;
+    let { addonId, addon, mediaQuery } = this.props;
     let {
       attributes: { _addonWidth, gridGap, gridCol },
     } = addon;
@@ -161,6 +161,7 @@ class GridView extends React.Component {
       // Root
       gridWidth = mediaQuery.value;
     }
+
     const gridItemAttributes = {
       gridWidth: gridWidth,
       gridGap: gridGap,
@@ -171,12 +172,13 @@ class GridView extends React.Component {
     const gridDimention = getGridDimention(gridItemAttributes);
     return (
       <Fragment>
-        <GridItem {...gridDimention} />
+        {this.props.children}
+        <GridItem {...gridDimention} addonId={addonId} />
         {GridSelectStart.col > 0 && GridSelectEnd.col && (
           <SelectPlaceHolder gridArea={gridArea} />
         )}
 
-        {this.props.children}
+      
       </Fragment>
     );
   }
@@ -191,7 +193,7 @@ export default compose(
       pickedAddon: getPickedAddon(),
     };
   }),
-  withDispatch((dispatch, { addonId = "root" }) => {
+  withDispatch((dispatch) => {
     const { insertAddon } = dispatch();
 
     return {

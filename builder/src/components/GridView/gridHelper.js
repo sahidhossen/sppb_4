@@ -7,7 +7,7 @@ import React from "react";
  */
 
 export const getNum = (str) => {
-  var num = str.replace(/[^0-9]/g, "");
+  let num = str.replace(/[^0-9]/g, "");
   return parseInt(num, 10);
 };
 

@@ -44,7 +44,7 @@ const initialControls = {
       isMultiple: false
     },
     dockerPalet: {
-      navigator: 'navigator', // Navigator, bookmark
+      navigator: 'addonlist', // Navigator, bookmark, addonlist
       addon: 'all', // addon categoeis, /recent, all, layout
       design: 'style', // Style, settings, interaction
     },
