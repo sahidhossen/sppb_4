@@ -9,8 +9,8 @@ export default {
     attributes: {
         display: 'grid',
         _addonWidth: 0,
-        gridGap: '5px',
-        gridCol: 10
+        gridGap: '2px',
+        gridCol: 15
     },
     childrens: [],
     droppable: true,

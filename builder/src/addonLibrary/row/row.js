@@ -18,18 +18,38 @@ class Row extends React.Component {
     let {
       gridGap,
       gridCol, 
-      gridArea
+      gridArea,
+      _addonWidth
     } = attributes
-    const clsNames = classNames("sppb-4", "sppb-row", addonId, 'basegrid');
-    console.log("row props: ", this.props);
+    const clsNames = classNames(addonId, 'basegrid');    
+
+    let _gridArea = gridArea.split('/');
+
+    let rowS = _gridArea[0];
+    let colS = _gridArea[1];
+    let rowE = _gridArea[2];
+    let colE = _gridArea[3];
+
+    let w = colE - colS;
+    let h = rowE - rowS;
+    console.log("grid area: ", w, h)
+
     let style = {
-      "--gg": gridGap,
-      "--gc": gridCol,
-      gridArea: gridArea
-    }
+      // gridArea,
+      gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap}),1fr))`,
+      gridAutoRows: `calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap})`,
+      gridGap: gridGap, 
+      '--w': w,
+      '--h': h,
+      '--x': colS,
+      '--y': rowS
+  };
 
     return (
-      <div style={style} className={clsNames}> {this.props.renderChildren()} </div>
+      <div style={style} className={clsNames}> 
+        <span className="sppb-row-tag">Row</span>
+        {this.props.renderChildren()} 
+      </div>
     );
   }
 }

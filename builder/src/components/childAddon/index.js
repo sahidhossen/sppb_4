@@ -36,7 +36,7 @@ const withChildren = (settings ={} ) => {
                 <GridView  
                     addonId={addonId}
                     index={index}
-                    refs={ref}
+                    container={ref}
                 >
                     <AddonList parentId={addonId}/>
                 </GridView>

@@ -21,7 +21,7 @@ class AddonList extends React.Component {
                         parentId={ parentId }
                     />
                 )}
-                {childAddonIds.length === 0 && <div className="sppb-empty-grid-placeholder"></div>}
+                {/* {childAddonIds.length === 0 && <div className="sppb-empty-grid-placeholder"></div>} */}
             </Fragment>
         )
     }

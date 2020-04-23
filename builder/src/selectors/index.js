@@ -118,7 +118,6 @@ export const selectedAddonId = store => {
 
   export const getPickedAddon = (store) => {
     const pickedAddonName = store.control.pickedAddon;
-    console.log("name: ", pickedAddonName)
     if (pickedAddonName === null) {
       return;
     }

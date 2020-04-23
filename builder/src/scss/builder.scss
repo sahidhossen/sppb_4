@@ -4,11 +4,54 @@ body {
   padding: 0;
   background-color: #f3f3f3;
 }
+.custom-item {
+  // grid-area: 1 / 17 / 4 / 21 !important;
+  // grid-row: 1/span 3 !important;
+  // grid-column: 17/span 4 !important;
+
+  // grid-row: span 3 !important;
+  // grid-column: span 4 !important;
+  grid-column: span 3;
+  background-color: rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+.custom-item-2 {
+  grid-row: span 4;
+  grid-column: span 3;
+  // grid-area: 1 / 1 / 4 / 16 !important;
+  
+  // grid-row: 1/span 3 !important;
+  // grid-column: 1/span 17 !important;
+
+  // grid-row: span 3 !important;
+  // grid-column: span 7 !important;
+
+  background-color: rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+
+// grid-row-start: 1 
+// grid-column-start: 1 
+// grid-row-end: 4 
+// grid-column-end: 16 
+
+// grid-row-start: 1;
+// grid-column-start: 8;
+// grid-row-end: 4;
+// grid-column-end: 11;
+
+// -x: 8;
+//     --y: 1;
+//     --w: 3;
+//     --h: 3;
 
 .sppb-builder-wrapper {
   // background-color: #f3f3f3;
   position: relative;
-  min-height: 200px;
+  // min-height: 200px;
+  padding-bottom: 20px;
   height: auto;
   .sppb-empty-wrapper-box {
     width: 360px;
@@ -81,16 +124,38 @@ body {
 }
 .basegrid{
   position: relative;
-  // width: var(--gw);
-  max-width: 100%;
   display: grid;
-  // grid-gap:var(--gg);
-  grid-auto-flow:row dense; 
-  // grid-template-columns: repeat(var(--gc),calc((var(--gw) + var(--gg))/var(--gc) - var(--gg)))!important;
-  // grid-auto-rows: calc((var(--gw) + var(--gg))/var(--gc) - var(--gg))!important;
+  grid-auto-columns: min-content !important;
+  > .basegrid {
+    background-color: white;
+    .guides {
+      z-index: 1;
+      .gridbox {
+        fill: rgba(0,0,0,.1);
+      }
+    }
+  }
+}
+
+//Test
+.sppb-row-tag {
+  position: absolute;
+  display: grid;
+  top: -14px;
+  left: 0;
+  grid-auto-flow: column;
+  grid-auto-columns: auto;
+  align-items: center;
+  background: #178df7;
+  color: white;
+  text-align: center;
+  height: 14px;
+  font-size: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
   
-.basegrid>div{
+.basegrid>div, .basegrid>.sppb-4{
   grid-column: var(--x)/span var(--w);
   grid-row: var(--y)/span var(--h)
 }

@@ -1,7 +1,8 @@
 
 import React from 'react';
 
-const GridItem = ({gridBoxSize, gridBoxGap}) => {
+const GridItem = ({gridBoxSize, gridBoxGap, addonId}) => {
+      let gridId = `sppb-grid-${addonId || 'root'}`;
         return (
             <svg
               width="100%"
@@ -11,7 +12,7 @@ const GridItem = ({gridBoxSize, gridBoxGap}) => {
             >
               <defs>
                 <pattern
-                  id="grid-id-uskirv"
+                  id={gridId}
                   width={gridBoxSize + gridBoxGap}
                   height={gridBoxSize + gridBoxGap}
                   patternUnits="userSpaceOnUse"
@@ -24,7 +25,7 @@ const GridItem = ({gridBoxSize, gridBoxGap}) => {
                   />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid-id-uskirv)" />
+              <rect width="100%" height="100%" fill={`url(#${gridId})`} />
             </svg>
           );
 }
