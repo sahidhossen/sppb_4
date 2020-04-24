@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 let EMPTY_ARRAY = [];
 
@@ -10,7 +10,7 @@ let EMPTY_ARRAY = [];
  */
 export const getAddons = (store) => {
   return store.builder.present;
-}
+};
 
 /**
  * Return addon by addonId from redux store
@@ -18,8 +18,8 @@ export const getAddons = (store) => {
  * @param {String} addonId Addon Id
  */
 export const getAddon = (store, addonId) => {
-    return store.builder.present[addonId];
-}
+  return store.builder.present[addonId];
+};
 
 /**
  * Return an array containing all block ID's from parent addon
@@ -28,102 +28,102 @@ export const getAddon = (store, addonId) => {
  */
 
 export const getChildrenIds = (store, parentId) => {
-  // console.log("data: ",store.builder.present);
-    return store.builder.present[parentId || 'root'].childrens || EMPTY_ARRAY;
-}
+  return store.builder.present[parentId || "root"].childrens || EMPTY_ARRAY;
+};
 
 export const getValue = (store, addonId, key) => {
-  let addon = store.builder.present[addonId]; 
+  let addon = store.builder.present[addonId];
   if (!addon.attributes[key]) {
     return null;
   }
   return addon.attributes[key];
-}
+};
 
 export const getAddonAttributes = (store, addonId) => {
-  if(store.builder.present[addonId]){ 
-    return store.builder.present[addonId].attributes
+  if (store.builder.present[addonId]) {
+    return store.builder.present[addonId].attributes;
   }
-  return {} ;
-}
+  return {};
+};
 
 /**
- * 
+ *
  * =================
  * FOR DEFAULT ADDON
  * =================
- * 
+ *
  */
 
 /**
  * Return all default block list
- * 
+ *
  * @param {Object} store Page State
  */
 export const getDefaultAddonList = (store) => {
-    return store.addonList;
-}
+  return store.addonList;
+};
 
 /**
  * Return selected addon from registered addon
- * 
+ *
  * @param {Object} store Page State
  * @param {String} addonName Registered addon Name
  */
 export const getDefaultAddon = (store, addonName) => {
-    return store.addonList[`sppb_${addonName.toLowerCase()}`];
-}
-
-
+  return store.addonList[`sppb_${addonName.toLowerCase()}`];
+};
 
 /**
  * ==============
- * FOR CONTROLLER 
+ * FOR CONTROLLER
  * ==============
  */
 
-export const selectedAddonId = store => {
-    let {addonId} = store.control.selector;
-    return addonId;
-  }
-  export const getSelectedAddon = store => {
-    let {addonId} = store.control.selector;
-    if (addonId === null) 
-      return null;
-    return store.builder.present[addonId];
-  }
-  
-  export const getActiveDockerName = (store, dockerName) => {
-    let {dockerPalet} = store.control
-    if (!dockerPalet[dockerName]) {
-      return null;
-    }
-    return dockerPalet[dockerName];
-  }
+export const selectedAddonId = (store) => {
+  let { addonId } = store.control.selector;
+  return addonId;
+};
+export const getSelectedAddon = (store) => {
+  let { addonId } = store.control.selector;
+  if (addonId === null) return null;
+  return store.builder.present[addonId];
+};
 
-  export const getActiveMediaQuery = (store) => {
-    let {mediaQuery} = store.control
-    return mediaQuery.list[mediaQuery.active];
+export const getActiveDockerName = (store, dockerName) => {
+  let { dockerPalet } = store.control;
+  if (!dockerPalet[dockerName]) {
+    return null;
   }
+  return dockerPalet[dockerName];
+};
 
-  export const getMediaQuery = (store, name) => {
-    let {mediaQuery:{list}} = store.control
-    return list[name];
-  }
+export const getActiveMediaQuery = (store) => {
+  let { mediaQuery } = store.control;
+  return mediaQuery.list[mediaQuery.active];
+};
 
-  export const getMediaQueries = (store) => {
-    let {mediaQuery:{list}} = store.control
-    return list;
-  }
+export const getMediaQuery = (store, name) => {
+  let {
+    mediaQuery: { list },
+  } = store.control;
+  return list[name];
+};
 
-  export const getPickedAddon = (store) => {
-    const pickedAddonName = store.control.pickedAddon;
-    if (pickedAddonName === null) {
-      return;
-    }
-    return store.addonList[`sppb_${pickedAddonName.toLowerCase()}`];
-  }
+export const getMediaQueries = (store) => {
+  let {
+    mediaQuery: { list },
+  } = store.control;
+  return list;
+};
 
-  export const isAddonPicked = (store) => {
-    return store.control.pickedAddon !== null;
+export const getPickedAddon = (store) => {
+  const pickedAddonName = store.control.pickedAddon;
+  if (pickedAddonName === null) {
+    return;
   }
+  return store.addonList[`sppb_${pickedAddonName.toLowerCase()}`];
+};
+
+export const isAddonPicked = (store) => {
+  return store.control.pickedAddon !== null;
+};

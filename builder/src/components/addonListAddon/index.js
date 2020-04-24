@@ -37,7 +37,14 @@ class AddonListAddon extends React.Component {
     if (this.node) {
       this.toggleListeners(this.node, false);
     }
-    this.toggleListeners(window.frames["sppb-editor-view"].document, false);
+    window.frames["sppb-editor-view"].document.removeEventListener(
+      "mousemove",
+      this.onMouseMove.bind(this)
+    );
+    window.frames["sppb-editor-view"].document.removeEventListener(
+      "mouseup",
+      this.onMouseUp.bind(this)
+    );
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
@@ -51,8 +58,8 @@ class AddonListAddon extends React.Component {
 
     // drag
     node[method]("mousedown", this.onMouseDown.bind(this, node));
-    node[method]("mousemove", this.onMouseMove.bind(this, node));
-    node[method]("mouseup", this.onMouseUp.bind(this, node));
+    // node[method]("mousemove", this.onMouseMove.bind(this, node));
+    // node[method]("mouseup", this.onMouseUp.bind(this, node));
   }
 
   setAttributes(attributes) {
@@ -106,6 +113,8 @@ class AddonListAddon extends React.Component {
   setGridArea() {
     const { addonId, onChange } = this.props;
     const { dragStartData, dragEndIndex: gridStartIndex } = this.state;
+    if (Object.keys(dragStartData).length === 0) return;
+
     const gridTemplateSplit = dragStartData.split("/");
     const totalRow = Math.abs(gridTemplateSplit[2] - gridTemplateSplit[0] - 1);
     const totalCol = Math.abs(gridTemplateSplit[3] - gridTemplateSplit[1] - 1);
@@ -118,7 +127,6 @@ class AddonListAddon extends React.Component {
     const newGridArea = getGridArea(gridStartIndex, gridEndIndex);
 
     onChange(addonId, { gridArea: newGridArea });
-    console.log("update: ",newGridArea);
   }
 
   onMouseOver(node, event) {
@@ -154,7 +162,7 @@ class AddonListAddon extends React.Component {
         attributes: { gridGap },
       },
     } = this.props;
-
+    // console.log("test container", container);
     if (!container) {
       return;
     }
@@ -238,7 +246,6 @@ class AddonListAddon extends React.Component {
           setAttributes={this.setAttributes}
           renderChildren={this.withChildren.bind(this)}
         />
-        
       </Fragment>
     );
   }
@@ -251,12 +258,12 @@ export default compose([
       getDefaultAddon,
       selectedAddonId,
       isAddonPicked,
-      getActiveMediaQuery
+      getActiveMediaQuery,
     } = select();
     const addon = getAddon(addonId);
     const parentAddon = getAddon(addon.parentId);
     const selectedId = selectedAddonId();
-    
+
     return {
       addon,
       defaultAddon: getDefaultAddon(addon.name),

@@ -8,22 +8,17 @@ class Row extends React.Component {
 
   static templateSet() {
     return [
-      { name: 'column', attributes: {border: '1px solid red'} },
-      { name: 'column', attributes: {border: '1px solid green'} }
-    ]
+      { name: "column", attributes: { border: "1px solid red" } },
+      { name: "column", attributes: { border: "1px solid green" } },
+    ];
   }
 
   render() {
     const { addonId, attributes, viewport } = this.props;
-    let {
-      gridGap,
-      gridCol, 
-      gridArea,
-      _addonWidth
-    } = attributes
-    const clsNames = classNames(addonId, 'basegrid');    
+    let { gridGap, gridCol, gridArea, _addonWidth } = attributes;
+    const clsNames = classNames(addonId, "basegrid");
 
-    let _gridArea = gridArea.split('/');
+    let _gridArea = gridArea.split("/");
 
     let rowS = _gridArea[0];
     let colS = _gridArea[1];
@@ -32,7 +27,7 @@ class Row extends React.Component {
 
     let w = colE - colS;
     let h = rowE - rowS;
-    console.log("grid area: ", w, h, viewport)
+    // console.log("grid area: ", w, h, viewport)
 
     // if(viewport.value === 768) {
     //   gridCol = _addonWidth - 100;
@@ -42,25 +37,24 @@ class Row extends React.Component {
     //   gridCol = _addonWidth - 150;
     // }
 
-
     let style = {
       // gridArea,
       gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap}),1fr))`,
       gridAutoRows: `calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap})`,
-      gridGap: gridGap, 
+      gridGap: gridGap,
       // gridColumn: `${colS}/${w+1}`,
       // gridRow: `${rowS}/${h+1}`,
       gridArea,
-      '--w': w,
-      '--h': h,
-      '--x': colS,
-      '--y': rowS
-  };
+      "--w": w,
+      "--h": h,
+      "--x": colS,
+      "--y": rowS,
+    };
 
     return (
-      <div style={style} className={clsNames}> 
+      <div style={style} className={clsNames}>
         <span className="sppb-row-tag">Row</span>
-        {this.props.renderChildren()} 
+        {this.props.renderChildren()}
       </div>
     );
   }

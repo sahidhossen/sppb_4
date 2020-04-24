@@ -64,11 +64,10 @@ class GridView extends React.Component {
     if (!this.props.pickedAddon) {
       return;
     }
-    
+
     if (!isMouseMove && event.type === "mousedown") {
       // event.preventDefault();
       if (event.target === event.currentTarget) {
-        
         this.setState({
           isMouseMove: true,
           GridSelectStart: { ...this.getGridAxis(event) },
@@ -78,7 +77,6 @@ class GridView extends React.Component {
     }
 
     if (this.state.isMouseMove && event.type === "mousemove") {
-      
       this.setState({ GridSelectEnd: { ...this.getGridAxis(event) } });
     }
     if (isMouseMove && event.type === "mouseup") {
@@ -145,7 +143,6 @@ class GridView extends React.Component {
       GridSelectEnd: { row: 0, col: 0 },
       GridSelectStart: { row: 0, col: 0 },
     });
-    console.log("Insrt: ", settings)
     this.props.onInsertAddon(settings);
   }
 
@@ -189,6 +186,7 @@ class GridView extends React.Component {
 export default compose(
   withSelect((select, { addonId = "root" }) => {
     let { getActiveMediaQuery, getAddon, getPickedAddon } = select();
+
     return {
       mediaQuery: getActiveMediaQuery(),
       addon: getAddon(addonId),
