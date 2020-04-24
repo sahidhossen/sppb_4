@@ -61,14 +61,14 @@ class GridView extends React.Component {
 
   gridAxis(event) {
     let { isMouseMove } = this.state;
-
     if (!this.props.pickedAddon) {
       return;
     }
-
+    
     if (!isMouseMove && event.type === "mousedown") {
-      event.preventDefault();
+      // event.preventDefault();
       if (event.target === event.currentTarget) {
+        
         this.setState({
           isMouseMove: true,
           GridSelectStart: { ...this.getGridAxis(event) },
@@ -78,6 +78,7 @@ class GridView extends React.Component {
     }
 
     if (this.state.isMouseMove && event.type === "mousemove") {
+      
       this.setState({ GridSelectEnd: { ...this.getGridAxis(event) } });
     }
     if (isMouseMove && event.type === "mouseup") {
@@ -136,6 +137,7 @@ class GridView extends React.Component {
           gridArea,
           _addonWidth: width.value,
           _addonHeight: height.value,
+          container,
         },
       },
     };
@@ -143,6 +145,7 @@ class GridView extends React.Component {
       GridSelectEnd: { row: 0, col: 0 },
       GridSelectStart: { row: 0, col: 0 },
     });
+    console.log("Insrt: ", settings)
     this.props.onInsertAddon(settings);
   }
 
@@ -170,6 +173,7 @@ class GridView extends React.Component {
 
     const gridArea = getGridArea(GridSelectStart, GridSelectEnd);
     const gridDimention = getGridDimention(gridItemAttributes);
+    // console.log("gridarea: ", GridSelectStart, GridSelectEnd)
     return (
       <Fragment>
         {this.props.children}
@@ -177,8 +181,6 @@ class GridView extends React.Component {
         {GridSelectStart.col > 0 && GridSelectEnd.col && (
           <SelectPlaceHolder gridArea={gridArea} />
         )}
-
-      
       </Fragment>
     );
   }

@@ -10,45 +10,53 @@ function getHoverStyle(node) {
       width: `${nodeRect.width}px`,
       height: `${nodeRect.height}px`,
       position: "absolute",
-      top: '0px',
-      left: '0px',
-      transform: `translate(${nodeRect.left + 270}px, ${nodeRect.top + 75}px)`,
-      border: "1px solid green",
+      top: "0px",
+      left: "0px",
+      transform: `translate(${nodeRect.left + 240}px, ${nodeRect.top + 75}px)`,
+      border: "1px solid #4e5eda",
       backgroundColor: "none",
-      pointerEvents: "none"
+      pointerEvents: "none",
     };
   }
 }
-
 
 export default class AddonOutline extends React.Component {
   constructor() {
     super(...arguments);
     this.state = {
-      style: {}
+      style: {},
     };
   }
 
   componentDidMount() {
-    const container = findDOMNode(this.props.container.current);
+    const container = this.props.container; // findDOMNode(this.props.container.current);
     const style = getHoverStyle(container);
-    this.setState(state => ({ ...state, style }));
-    window.frames["sp-pagebuilder-view"].window.addEventListener(
-      "scroll",
-      this.getStyle.bind(this)
-    );
+    this.setState((state) => ({ ...state, style }));
+    window.frames["sppb-editor-view"].window.addEventListener("scroll",this.getStyle.bind(this));
   }
 
   componentWillUnmount() {
-    window.frames["sp-pagebuilder-view"].document.removeEventListener(
-      "scroll",
+    window.frames["sppb-editor-view"].document.removeEventListener("scroll",this.getStyle.bind(this));
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.container === this.props.container) {
+      return;
+    }
+    if (prevProps.container) {
+      // this.toggleListeners(prevProps.container, false);
+      // this.getStyle.bind(this)
+    }
+    if (this.props.container) {
       this.getStyle.bind(this)
-    );
+      // this.toggleListeners(this.props.container, true);
+    }
   }
 
   getStyle() {
-    const style = getHoverStyle(findDOMNode(this.props.container.current));
-    this.setState(state => ({ ...state, style }));
+    // const style = getHoverStyle(findDOMNode(this.props.container.current));
+    const style = getHoverStyle(this.props.container);
+    this.setState((state) => ({ ...state, style }));
   }
 
   render() {

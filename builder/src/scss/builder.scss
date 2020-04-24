@@ -13,14 +13,14 @@ body {
   // grid-column: span 4 !important;
   grid-column: span 3;
   background-color: rgba(0, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 .custom-item-2 {
   grid-row: span 4;
   grid-column: span 3;
   // grid-area: 1 / 1 / 4 / 16 !important;
-  
+
   // grid-row: 1/span 3 !important;
   // grid-column: 1/span 17 !important;
 
@@ -28,14 +28,14 @@ body {
   // grid-column: span 7 !important;
 
   background-color: rgba(0, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
-// grid-row-start: 1 
-// grid-column-start: 1 
-// grid-row-end: 4 
-// grid-column-end: 16 
+// grid-row-start: 1
+// grid-column-start: 1
+// grid-row-end: 4
+// grid-column-end: 16
 
 // grid-row-start: 1;
 // grid-column-start: 8;
@@ -95,10 +95,10 @@ body {
   position: relative;
   /* padding: 0; */
   outline: 1px dashed transparent;
-  transition: outline .3s,padding .3s,margin .3s;
+  transition: outline 0.3s, padding 0.3s, margin 0.3s;
   justify-content: center;
   align-items: center;
-  transition: outline .3s;
+  transition: outline 0.3s;
   outline: 1px solid transparent;
   outline-offset: -1px;
   padding: 20px 0px;
@@ -117,12 +117,12 @@ body {
   opacity: 1;
 }
 .gridbox {
-  fill: rgba(0,0,0,.2);
+  fill: rgba(0, 0, 0, 0.2);
 }
 .guides rect {
-  transition: fill .3s;
+  transition: fill 0.3s;
 }
-.basegrid{
+.basegrid {
   position: relative;
   display: grid;
   grid-auto-columns: min-content !important;
@@ -131,7 +131,7 @@ body {
     .guides {
       z-index: 1;
       .gridbox {
-        fill: rgba(0,0,0,.1);
+        fill: rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -164,8 +164,8 @@ body {
   text-align: center;
   align-items: center;
   line-height: 1em;
-  font-size: 1.5rem!important;
-  color: rgba(0,0,0,.15);
+  font-size: 1.5rem !important;
+  color: rgba(0, 0, 0, 0.15);
   font-weight: 400;
   z-index: -1;
   --w: var(--gc);

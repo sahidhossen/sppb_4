@@ -39,7 +39,7 @@ class Heading extends React.Component {
             '--y': rowS,
             gridArea
         }
-        // console.log("header: ", this.props)
+        console.log("header: ", this.props)
         const clsNames = classNames('sppb-4' ,'sppb-heading', addonId)
         return( <h1 style={style} className={clsNames} onClick={()=> setAttributes({src: 'http://google.com'})}>Heading</h1>)
     }

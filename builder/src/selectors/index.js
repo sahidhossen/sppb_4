@@ -28,7 +28,7 @@ export const getAddon = (store, addonId) => {
  */
 
 export const getChildrenIds = (store, parentId) => {
-  console.log("data: ",store.builder.present);
+  // console.log("data: ",store.builder.present);
     return store.builder.present[parentId || 'root'].childrens || EMPTY_ARRAY;
 }
 
