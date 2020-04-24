@@ -13,7 +13,7 @@ function getHoverStyle(node) {
       top: "0px",
       left: "0px",
       transform: `translate(${nodeRect.left + 240}px, ${nodeRect.top + 75}px)`,
-      border: "1px solid green",
+      border: "1px solid #4e5eda",
       backgroundColor: "none",
       pointerEvents: "none",
     };

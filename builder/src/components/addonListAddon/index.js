@@ -8,6 +8,7 @@ import AddonEdit from "../AddonEdit";
 import withChildren from "../childAddon";
 import AddonOutline from "./AddonOutline";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
+import { getNum, getGridArea } from "../GridView/gridHelper";
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -19,6 +20,9 @@ class AddonListAddon extends React.Component {
       instance: null,
       currentElement: null,
       style: {},
+      isMouseMove: false,
+      dragStartData: {},
+      dragEndIndex: {},
     };
     this.ref = React.createRef();
     this.setAttributes = this.setAttributes.bind(this);
@@ -33,6 +37,7 @@ class AddonListAddon extends React.Component {
     if (this.node) {
       this.toggleListeners(this.node, false);
     }
+    this.toggleListeners(window.frames["sppb-editor-view"].document, false);
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
@@ -42,11 +47,76 @@ class AddonListAddon extends React.Component {
     node[method]("mouseover", this.onMouseOver.bind(this, node));
     node[method]("mouseout", this.onMouseOut.bind(this, node));
     node[method]("click", this.selectAddon.bind(this));
+    // drag
+    node[method]("mousedown", this.onMouseDown.bind(this, node));
+    node[method]("mousemove", this.onMouseMove.bind(this, node));
+    node[method]("mouseup", this.onMouseUp.bind(this, node));
   }
 
   setAttributes(attributes) {
     const { addonId, onChange } = this.props;
     onChange(addonId, attributes);
+  }
+
+  onMouseDown(node, event) {
+    event.preventDefault();
+
+    let { isMouseMove } = this.state;
+    const {
+      addon: {
+        attributes: { gridArea },
+      },
+      isAddonPicked,
+    } = this.props;
+
+    if (isAddonPicked) return;
+
+    if (!isMouseMove) {
+      if (event.target === event.currentTarget) {
+        this.setState({
+          isMouseMove: true,
+          dragStartData: gridArea,
+        });
+      }
+    }
+
+    window.frames["sppb-editor-view"].document.addEventListener(
+      "mousemove",
+      this.onMouseMove.bind(this)
+    );
+    window.frames["sppb-editor-view"].document.addEventListener(
+      "mouseup",
+      this.onMouseUp.bind(this)
+    );
+  }
+  onMouseMove(event) {
+    if (this.state.isMouseMove) {
+      this.setState({ dragEndIndex: { ...this.getGridAxis(event) } });
+    }
+  }
+
+  onMouseUp(event) {
+    this.setState({ isMouseMove: false });
+    this.toggleListeners(window.frames["sppb-editor-view"].document, false);
+    this.setGridArea();
+  }
+
+  setGridArea() {
+    const { addonId, onChange } = this.props;
+    const { dragStartData, dragEndIndex: gridStartIndex } = this.state;
+    const gridTemplateSplit = dragStartData.split("/");
+    const totalRow = Math.abs(gridTemplateSplit[2] - gridTemplateSplit[0] - 1);
+    const totalCol = Math.abs(gridTemplateSplit[3] - gridTemplateSplit[1] - 1);
+
+    const gridEndIndex = {
+      row: gridStartIndex.row + totalRow,
+      col: gridStartIndex.col + totalCol,
+    };
+
+    const newGridArea = getGridArea(gridStartIndex, gridEndIndex);
+
+    onChange(addonId, { gridArea: newGridArea });
+    console.log(newGridArea);
   }
 
   onMouseOver(node, event) {
@@ -72,6 +142,38 @@ class AddonListAddon extends React.Component {
         this.setState({ hover: false, currentElement: null });
         return;
       }
+  }
+  getGridAxis(event) {
+    const {
+      addon: {
+        attributes: { gridArea, _addonWidth, container },
+      },
+      parentAddon: {
+        attributes: { gridGap },
+      },
+    } = this.props;
+
+    if (!container) {
+      return;
+    }
+    let basegrid = container;
+    const basegridRect = basegrid.getBoundingClientRect();
+
+    const x = event.clientX - basegridRect.left;
+    const y = event.clientY - basegridRect.top;
+
+    const gridAreaSplit = gridArea.split("/");
+    const colStart = gridAreaSplit[1];
+    const colEnd = gridAreaSplit[3];
+    const totalCol = Math.abs(colEnd - colStart);
+
+    const gridItemGap = getNum(gridGap);
+    const gridWidth = (_addonWidth - (totalCol - 1) * gridItemGap) / totalCol;
+
+    const col = Math.floor(x / (gridWidth + gridItemGap)) + 1;
+    const row = Math.floor(y / (gridWidth + gridItemGap)) + 1;
+
+    return { row, col };
   }
 
   getAddonRefs(instance) {
@@ -110,6 +212,7 @@ class AddonListAddon extends React.Component {
   render() {
     const { addonId, addon, index, isSelected } = this.props;
     let { hover } = this.state;
+
     return (
       <Fragment>
         <AddonEdit
@@ -148,13 +251,21 @@ class AddonListAddon extends React.Component {
 
 export default compose([
   withSelect((select, { addonId }) => {
-    const { getAddon, getDefaultAddon, selectedAddonId } = select();
+    const {
+      getAddon,
+      getDefaultAddon,
+      selectedAddonId,
+      isAddonPicked,
+    } = select();
     const addon = getAddon(addonId);
+    const parentAddon = getAddon(addon.parentId);
     const selectedId = selectedAddonId();
     return {
       addon,
       defaultAddon: getDefaultAddon(addon.name),
       isSelected: selectedId === addonId,
+      parentAddon,
+      isAddonPicked: isAddonPicked(),
     };
   }),
   withDispatch((dispatch) => {

@@ -136,6 +136,7 @@ class GridView extends React.Component {
           gridArea,
           _addonWidth: width.value,
           _addonHeight: height.value,
+          container,
         },
       },
     };
@@ -177,8 +178,6 @@ class GridView extends React.Component {
         {GridSelectStart.col > 0 && GridSelectEnd.col && (
           <SelectPlaceHolder gridArea={gridArea} />
         )}
-
-      
       </Fragment>
     );
   }
