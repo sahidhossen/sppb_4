@@ -1,6 +1,7 @@
 import React from "react";
 import Zoom from "./Zoom/Zoom";
 import Right from "./Right/Right"
+import Viewport from './Viewport';
 
 class Topbar extends React.Component {
     render() {
@@ -12,11 +13,7 @@ class Topbar extends React.Component {
                     </div>
 
                     <Zoom />
-                    
-                    <div className="sppb-responsive-btn">
-                        <i className="fas fa-mobile"></i>
-                        <span>Responsive</span>
-                    </div>
+                    <Viewport/>
                 </div>
                 <div className="sppb-topbar-middle">TopBar Middle</div>
                 <div className="sppb-topbar-right">

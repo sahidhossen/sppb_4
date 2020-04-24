@@ -156,8 +156,8 @@ body {
 }
   
 .basegrid>div, .basegrid>.sppb-4{
-  grid-column: var(--x)/span var(--w);
-  grid-row: var(--y)/span var(--h)
+  // grid-column: var(--x)/span var(--w);
+  // grid-row: var(--y)/span var(--h)
 }
 .sppb-empty-grid-placeholder {
   display: grid;

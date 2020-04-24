@@ -38,7 +38,7 @@ class AddonListAddon extends React.Component {
   }
 
   render() {
-    const { addonId, addon, index } = this.props;
+    const { addonId, addon, viewport, index } = this.props;
     return (
       <AddonEdit
         ref={this.renderDnd}
@@ -47,6 +47,7 @@ class AddonListAddon extends React.Component {
         index={index}
         isSelected={false}
         addonId={addonId}
+        viewport={viewport}
         attributes={addon.attributes}
         setAttributes={this.setAttributes}
         renderChildren={this.withChildren.bind(this)}
@@ -57,11 +58,12 @@ class AddonListAddon extends React.Component {
 
 export default compose([
   withSelect((select, ownProps) => {
-    const { getAddon } = select();
+    const { getAddon, getActiveMediaQuery } = select();
     const { addonId } = ownProps;
     const addon = getAddon(addonId);
     return {
-      addon
+      addon,
+      viewport: getActiveMediaQuery()
     };
   }),
   withDispatch(dispatch => {

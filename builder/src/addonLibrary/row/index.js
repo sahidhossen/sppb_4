@@ -10,7 +10,7 @@ export default {
         display: 'grid',
         _addonWidth: 0,
         gridGap: '2px',
-        gridCol: 15
+        gridCol: 5
     },
     childrens: [],
     droppable: true,

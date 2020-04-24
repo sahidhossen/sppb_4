@@ -13,7 +13,7 @@ class Paragraph extends React.Component {
             gridArea
         } = attributes
         let style = {
-            // gridArea, 
+            gridArea, 
             justifyContent: 'center',
             alignItems: 'center',
             display:"grid",

@@ -65,3 +65,7 @@ export const updateSidebarSettings = (sidebarName, settings) => {
 export const updateDocker = (dockerName, tabName) => {
   return {type: 'SET_DOCKER', payload:{dockerName, tabName} }
 }
+
+export const updateViewport = (viewportName) => {
+  return {type: 'UPDATE_ACTIVE_MEDIA_QUERY', name: viewportName}
+}

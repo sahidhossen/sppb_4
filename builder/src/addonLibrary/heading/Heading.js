@@ -28,11 +28,16 @@ class Heading extends React.Component {
             justifyContent: 'center',
             alignItems: 'center',
             display:"grid",
+            // gridColumn: `span ${w}`,
+            // gridColumnStart: `${colS}`,
+            // gridColumnEnd: `${colE}`,
+            // gridRowStart: `${rowS}`,
+            // gridRowEnd: `${rowS}`,
             '--w': w,
             '--h': h,
             '--x': colS,
-            '--y': rowS
-            // gridArea
+            '--y': rowS,
+            gridArea
         }
         // console.log("header: ", this.props)
         const clsNames = classNames('sppb-4' ,'sppb-heading', addonId)

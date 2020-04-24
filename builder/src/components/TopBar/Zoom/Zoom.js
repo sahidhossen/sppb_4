@@ -11,8 +11,8 @@ class Zoom extends React.Component {
 
     handleClick(clickType) {
         const stateUpdate = 10;
-        const iframe = document.querySelector('#sp-pagebuilder-view');
-        const body = iframe.contentWindow.document.querySelector('.layout-edit-iframe');
+        const iframe = window.frames["sppb-editor-view"];
+        const body = iframe.document.querySelector('.layout-edit-iframe');
         if (
             typeof clickType !== "undefined" &&
             clickType === "minus" &&

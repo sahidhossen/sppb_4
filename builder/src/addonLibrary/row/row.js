@@ -14,7 +14,7 @@ class Row extends React.Component {
   }
 
   render() {
-    const { addonId, attributes } = this.props;
+    const { addonId, attributes, viewport } = this.props;
     let {
       gridGap,
       gridCol, 
@@ -32,13 +32,25 @@ class Row extends React.Component {
 
     let w = colE - colS;
     let h = rowE - rowS;
-    console.log("grid area: ", w, h)
+    console.log("grid area: ", w, h, viewport)
+
+    // if(viewport.value === 768) {
+    //   gridCol = _addonWidth - 100;
+    //   console.log("tablet found")
+    // }
+    // if (viewport.value === 320) {
+    //   gridCol = _addonWidth - 150;
+    // }
+
 
     let style = {
       // gridArea,
       gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap}),1fr))`,
       gridAutoRows: `calc((${_addonWidth}px + ${gridGap})/${gridCol} - ${gridGap})`,
       gridGap: gridGap, 
+      // gridColumn: `${colS}/${w+1}`,
+      // gridRow: `${rowS}/${h+1}`,
+      gridArea,
       '--w': w,
       '--h': h,
       '--x': colS,

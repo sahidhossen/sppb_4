@@ -33,6 +33,15 @@ class Canvas extends React.Component {
             gridCol
         } = attributes; 
 
+        // if(mediaQuery.value === 768) {
+        //     gridCol = 5;
+        //     console.log("tablet found")
+        //   }
+        //   if (mediaQuery.value === 320) {
+        //     gridCol = 3;
+        //   }
+      
+
         let style = {
             gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
             // gridTemplateColumns: `repeat(auto-fit, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,

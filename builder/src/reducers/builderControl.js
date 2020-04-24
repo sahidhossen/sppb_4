@@ -24,14 +24,14 @@ const initialControls = {
           value: 768,
           scale: 100,
           title: 'tablet',
-          icon: 'fa fa-desktop',
+          icon: 'fa fa-tablet',
           details: 'Styles added here will apply at 1170px and up.'
         },
         mobile: {
           value: 320,
           scale: 100,
           title: 'tablet',
-          icon: 'fa fa-desktop',
+          icon: 'fa fa-mobile',
           details: 'Styles added here will apply at 1170px and up.'
         },
       }
@@ -97,13 +97,13 @@ const builderControl = ( state = initialControls, action ) => {
         
         case "UPDATE_ACTIVE_MEDIA_QUERY": {
 
-          const {payload:{name}} = action; 
+          const {name} = action; 
           const {mediaQuery} = state; 
 
           if (!mediaQuery.list[name])
             return state;
 
-          return {...state, mediaQuery: {mediaQuery, active: name }}
+          return {...state, mediaQuery: {...mediaQuery, active: name }}
 
         }
 
