@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames/bind";
 import GridView from "./components/GridView";
+import WithDropArea from './components/WithDropArea';
 import AddonList from "./components/AddonList";
 import { withSelect, withDispatch } from "store";
 import { compose } from "./components/compose";
@@ -21,16 +22,6 @@ class Canvas extends React.Component {
   render() {
     let { attributes, mediaQuery, isAddonPicked } = this.props;
     let { gridGap, gridCol } = attributes;
-
-        // if(mediaQuery.value === 768) {
-        //     gridCol = 5;
-        //     console.log("tablet found")
-        //   }
-        //   if (mediaQuery.value === 320) {
-        //     gridCol = 3;
-        //   }
-      
-
         let style = {
             gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
             // gridTemplateColumns: `repeat(auto-fit, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
@@ -38,10 +29,6 @@ class Canvas extends React.Component {
             width: `${mediaQuery.value}px`,
             gridAutoFlow: 'row dense',
             gridGap: gridGap,
-
-      // "--gw": `${mediaQuery.value}px`,
-      // "--gg": gridGap,
-      // "--gc": gridCol,
       "--gr": "auto",
       "--x": "auto",
       "--y": "auto",
@@ -49,18 +36,23 @@ class Canvas extends React.Component {
       "--h": "auto",
     };
 
-    const className = classnames({
-      "sppb-builder-wrapper": true,
-      basegrid: true,
-      "cursor-draggable": isAddonPicked,
-    });
+   
 
     return (
-      <div style={style} className={className} ref={this.setBlockListRef}>
-        <GridView container={this.wrapperNode}>
-          <AddonList />
-        </GridView>
-      </div>
+      <WithDropArea
+        container={this.wrapperNode}>
+          { ( { isHover } ) => {
+             const className = classnames({
+                "sppb-builder-wrapper": true,
+                "cursor-draggable": isAddonPicked && isHover,
+              });
+              return (
+                <div className={className} ref={this.setBlockListRef}>
+                    <AddonList />
+                </div>
+              )
+      	    } }
+      </WithDropArea>  
     );
   }
 }

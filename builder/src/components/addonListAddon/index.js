@@ -9,6 +9,7 @@ import withChildren from "../childAddon";
 import AddonOutline from "./AddonOutline";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 import { getNum, getGridArea } from "../GridView/gridHelper";
+import WithDropArea from '../WithDropArea';
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -30,21 +31,21 @@ class AddonListAddon extends React.Component {
   }
 
   componentDidMount() {
-    this.toggleListeners(this.node);
+    // this.toggleListeners(this.node);
   }
 
   componentWillUnmount() {
     if (this.node) {
-      this.toggleListeners(this.node, false);
+      // this.toggleListeners(this.node, false);
     }
-    window.frames["sppb-editor-view"].document.removeEventListener(
-      "mousemove",
-      this.onMouseMove.bind(this)
-    );
-    window.frames["sppb-editor-view"].document.removeEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    // window.frames["sppb-editor-view"].document.removeEventListener(
+    //   "mousemove",
+    //   this.onMouseMove.bind(this)
+    // );
+    // window.frames["sppb-editor-view"].document.removeEventListener(
+    //   "mouseup",
+    //   this.onMouseUp.bind(this)
+    // );
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
@@ -57,7 +58,7 @@ class AddonListAddon extends React.Component {
     node[method]("click", this.selectAddon.bind(this));
 
     // drag
-    node[method]("mousedown", this.onMouseDown.bind(this, node));
+    // node[method]("mousedown", this.onMouseDown.bind(this, node));
     // node[method]("mousemove", this.onMouseMove.bind(this, node));
     // node[method]("mouseup", this.onMouseUp.bind(this, node));
   }
@@ -106,7 +107,7 @@ class AddonListAddon extends React.Component {
 
   onMouseUp(event) {
     this.setState({ isMouseMove: false });
-    this.toggleListeners(window.frames["sppb-editor-view"].document, false);
+    // this.toggleListeners(window.frames["sppb-editor-view"].document, false);
     this.setGridArea();
   }
 
@@ -186,14 +187,9 @@ class AddonListAddon extends React.Component {
     return { row, col };
   }
 
-  getAddonRefs(instance) {
-    const node = findDOMNode(instance);
-    this.node = node;
-  }
-
   selectAddon(event) {
     event.stopPropagation();
-    this.props.selectAddon(this.props.addonId);
+    // this.props.selectAddon(this.props.addonId);
   }
 
   renderDnd(instance) {
@@ -211,42 +207,57 @@ class AddonListAddon extends React.Component {
   }
 
   render() {
-    const { addonId, addon, viewport, index, isSelected } = this.props;
-    let { hover } = this.state;
-    // console.log("wrapper: ", this.wrapperNode)
+    
     return (
-      <Fragment>
-        {!isSelected && hover && (
-          <AddonOutline
-            addonId={addonId}
-            container={this.wrapperNode}
-            type="onHover"
-            className="sppb-hover-wrapper"
-          />
-        )}
-        {isSelected && (
-          <AddonOutline
-            addonId={addonId}
-            container={this.wrapperNode}
-            type="onSelect"
-            addon={addon}
-            className="sppb-selected-wrapper"
-          />
-        )}
-        <AddonEdit
-          ref={this.renderDnd}
-          refs={this.getAddonRefs.bind(this)}
-          name={addon.name}
-          viewport={viewport}
-          index={index}
-          addon={addon}
-          addonId={addonId}
-          attributes={addon.attributes}
-          isSelected={isSelected}
-          setAttributes={this.setAttributes}
-          renderChildren={this.withChildren.bind(this)}
-        />
-      </Fragment>
+      <WithDropArea 
+        index={this.props.index}
+        addonId={this.props.addonId}
+        isSelected={this.props.isSelected}
+        container={this.wrapperNode}
+        >
+        { ( { isHover, hoverArea } ) => {
+
+           const { addonId, addon, viewport, index, isSelected } = this.props;
+          console.log("area: ", hoverArea)
+          return (
+            <Fragment>
+               {!isSelected && isHover && (
+                <AddonOutline
+                  addonId={addonId}
+                  container={this.wrapperNode}
+                  type="onHover"
+                  className="sppb-hover-wrapper"
+                >
+                  <div className="sppb-addon-tag">{addon.name}</div>
+                </AddonOutline>
+              )}
+              {isSelected && (
+                <AddonOutline
+                  isHover={isHover}
+                  addonId={addonId}
+                  container={this.wrapperNode}
+                  type="onSelect"
+                  addon={addon}
+                  className="sppb-selected-wrapper"
+                />
+              )}
+              <AddonEdit
+                ref={this.renderDnd}
+                name={addon.name}
+                viewport={viewport}
+                index={index}
+                addon={addon}
+                addonId={addonId}
+                attributes={addon.attributes}
+                isSelected={isSelected}
+                setAttributes={this.setAttributes}
+                renderChildren={this.withChildren.bind(this)}
+              />
+            </Fragment>
+          )
+        }}
+       
+      </WithDropArea>
     );
   }
 }

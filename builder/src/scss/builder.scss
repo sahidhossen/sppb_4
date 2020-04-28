@@ -1,7 +1,10 @@
 // Import Necessary files
-body {
+html, body { 
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+html, body {
   background-color: #f3f3f3;
 }
 .custom-item {
@@ -49,10 +52,11 @@ body {
 
 .sppb-builder-wrapper {
   // background-color: #f3f3f3;
+  min-height: 100%;
+  height: auto;
   position: relative;
   // min-height: 200px;
-  padding-bottom: 20px;
-  height: auto;
+  padding: 20px;
   .sppb-empty-wrapper-box {
     width: 360px;
     height: 258px;
@@ -91,20 +95,19 @@ body {
 
 #sppb_root_view {
   margin: 0;
-  display: grid;
   position: relative;
+  height: 100%;
   /* padding: 0; */
-  outline: 1px dashed transparent;
-  transition: outline 0.3s, padding 0.3s, margin 0.3s;
-  justify-content: center;
-  align-items: center;
-  transition: outline 0.3s;
-  outline: 1px solid transparent;
-  outline-offset: -1px;
-  padding: 20px 0px;
-  z-index: 3;
-  width: 100%;
-  min-height: auto;
+  // outline: 1px dashed transparent;
+  // transition: outline 0.3s, padding 0.3s, margin 0.3s;
+  // justify-content: center;
+  // align-items: center;
+  // transition: outline 0.3s;
+  // outline: 1px solid transparent;
+  // outline-offset: -1px;
+  // padding: 20px 0px;
+  // z-index: 3;
+  // width: 100%;
 }
 
 .guides {
@@ -138,7 +141,7 @@ body {
 }
 
 //Test
-.sppb-row-tag {
+.sppb-addon-tag {
   position: absolute;
   display: grid;
   top: -14px;
@@ -622,7 +625,7 @@ DRAGGABLE PADDING
   font-weight: 100;
 }
 .sppb-row {
-  // border: 1px dashed #dddddd;
+  border: 1px dashed #dddddd;
   outline: 1px dashed #555 !important;
   outline-offset: -1px !important;
   margin-bottom: 1px;

@@ -82,13 +82,8 @@ export const renderChildAddons = props => {
 
 export const createIndicator = (hoverItem, mousePositions) => {
   const { width, height, left, top } = hoverItem;
-  const {
-    top: mouseTop,
-    bottom: mouseBottom,
-    inside: mouseInside
-  } = mousePositions;
   const { width: sidebarWidth } = document
-    .querySelector("#sppb_sidebar")
+    .querySelector(".sppb-left-sidebar")
     .getBoundingClientRect();
   let indicator = document.querySelector(".sppb-indicator");
   const body = document.querySelector("body");
@@ -103,9 +98,9 @@ export const createIndicator = (hoverItem, mousePositions) => {
   indicator.style.height = `${height}px`;
 
   indicator.style.border = "none";
-  mouseTop && (indicator.style.borderTop = "1px solid blue");
-  mouseBottom && (indicator.style.borderBottom = "1px solid blue");
-  mouseInside && (indicator.style.border = `1px solid blue`);
+  mousePositions === 'top' && (indicator.style.borderTop = "1px solid blue");
+  mousePositions === 'bottom' && (indicator.style.borderBottom = "1px solid blue");
+  mousePositions === 'inside' && (indicator.style.border = `1px solid blue`);
 };
 
 export const removeIndicator = () => {

@@ -10,10 +10,10 @@ export default {
         display: 'grid',
         _addonWidth: 0,
         gridGap: '2px',
-        gridCol: 5
+        gridCol: 10
     },
     childrens: [],
     droppable: true,
-    accept: '*',
+    accept: ['column'],
     Component: Row
 }

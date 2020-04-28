@@ -5,8 +5,7 @@ class AddonEditView extends React.Component {
     
     render() {
         const {
-            name,
-            refs
+            name
         } = this.props;
 
         let {getDefaultAddon} = select();
@@ -21,7 +20,7 @@ class AddonEditView extends React.Component {
             return null;
         }
 
-        return <Component ref={refs} {...this.props}/>
+        return <Component {...this.props}/>
     }
 }
 
