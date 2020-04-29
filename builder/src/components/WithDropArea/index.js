@@ -88,7 +88,6 @@ class WithDropArea extends React.Component {
         if (this.state.isHover || this.props.isSelected) {
             return;
         }
-
         // Check if all condition satisfied
         this.setState({ currentElement: node, isHover: true });
     }
@@ -104,7 +103,6 @@ class WithDropArea extends React.Component {
             return;
         }
     }
-
 
     isAllow() {
         let {addon:{accept}, pickedAddon:{name}} = this.props;
@@ -150,7 +148,7 @@ class WithDropArea extends React.Component {
                 position.index = 0;
             }
         } else {
-            console.log("!allowed:")
+            console.log("!allowed")
             if (
                 event.clientY <= hoverMiddleY &&
                 event.clientY >= hoverBoundingRect.top
@@ -192,7 +190,7 @@ export default compose(
       };
     }),
     withDispatch((dispatch) => {
-      const { insertAddon } = dispatch();
+      const { insertAddon, selectAddon } = dispatch();
   
       return {
         onInsertAddon(settings) {
