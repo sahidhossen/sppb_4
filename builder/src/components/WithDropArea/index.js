@@ -112,11 +112,10 @@ class WithDropArea extends React.Component {
 
     onMouseMove(event) {
         const { isRTL, container, index, addonId, pickedAddon, addon} = this.props;
-
         if (!addonId || !pickedAddon) return;
-
+        
 		const hoverBoundingRect = container.getBoundingClientRect();
-
+        
         const hoverMiddleY = hoverBoundingRect.top + hoverBoundingRect.height / 2;
 
         const position = {
@@ -165,7 +164,6 @@ class WithDropArea extends React.Component {
                 position.index = index + 1;
               }
         }
-        
         if(hoverArea !== this.hoverArea) {
             createIndicator(hoverBoundingRect, hoverArea)
             this.hoverArea = hoverArea

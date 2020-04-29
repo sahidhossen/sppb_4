@@ -92,15 +92,16 @@ export const createIndicator = (hoverItem, mousePositions) => {
     indicator.classList.add("sppb-indicator");
     body.appendChild(indicator);
   }
+  indicator.style.position = `fixed`;
   indicator.style.width = `${width}px`;
   indicator.style.left = `${left + sidebarWidth}px`;
-  indicator.style.top = `${top}px`;
+  indicator.style.top = `${top+80}px`;
   indicator.style.height = `${height}px`;
 
   indicator.style.border = "none";
-  mousePositions === 'top' && (indicator.style.borderTop = "1px solid blue");
-  mousePositions === 'bottom' && (indicator.style.borderBottom = "1px solid blue");
-  mousePositions === 'inside' && (indicator.style.border = `1px solid blue`);
+  mousePositions === 'top' && (indicator.style.borderTop = "1px solid red");
+  mousePositions === 'bottom' && (indicator.style.borderBottom = "1px solid red");
+  mousePositions === 'inside' && (indicator.style.border = `1px solid red`);
 };
 
 export const removeIndicator = () => {
