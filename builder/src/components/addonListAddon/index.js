@@ -218,7 +218,7 @@ class AddonListAddon extends React.Component {
         { ( { isHover, hoverArea } ) => {
 
            const { addonId, addon, viewport, index, isSelected } = this.props;
-          console.log("area: ", hoverArea)
+          // console.log("area: ", hoverArea)
           return (
             <Fragment>
                {!isSelected && isHover && (
