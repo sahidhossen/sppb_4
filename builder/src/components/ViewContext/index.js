@@ -20,7 +20,9 @@ class ViewContextProvider extends Component {
 
   render() {
     return (
-      <ViewContext.Provider value={"hi"}>
+      <ViewContext.Provider
+        value={{ state: this.state, dispatch: this.dispatch }}
+      >
         {this.props.children}
       </ViewContext.Provider>
     );

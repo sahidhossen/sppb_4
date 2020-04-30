@@ -2,6 +2,7 @@ import React from "react";
 import Zoom from "./Zoom/Zoom";
 import Right from "./Right/Right";
 import Viewport from "./Viewport";
+import { ViewContextProvider } from "../ViewContext";
 
 class Topbar extends React.Component {
   render() {
@@ -11,8 +12,9 @@ class Topbar extends React.Component {
           <div className="sppb-topbar-menu">
             <i className="fas fa-bars"></i>
           </div>
-
-          <Zoom />
+          <ViewContextProvider>
+            <Zoom />
+          </ViewContextProvider>
           <Viewport />
         </div>
         <div className="sppb-topbar-middle">TopBar Middle</div>
