@@ -97,7 +97,7 @@ export const createIndicator = (hoverItem, mousePositions) => {
   indicator.style.left = `${left + sidebarWidth}px`;
   indicator.style.top = `${top+80}px`;
   indicator.style.height = `${height}px`;
-  indicator.style.pointerEvents = `none`;
+  indicator.style.pointerEvents = "none";
 
   indicator.style.border = "none";
   mousePositions === 'top' && (indicator.style.borderTop = "1px solid red");

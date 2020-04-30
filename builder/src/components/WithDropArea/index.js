@@ -113,7 +113,6 @@ class WithDropArea extends React.Component {
     onMouseMove(event) {
         const { isRTL, container, index, addonId, pickedAddon, addon} = this.props;
         
-        
         if (!addonId || !pickedAddon) return;
         
 		const hoverBoundingRect = container.getBoundingClientRect();
@@ -124,13 +123,14 @@ class WithDropArea extends React.Component {
             inside: false,
             top: false,
             bottom: false,
-            right: false,
-            left:false,
+            // right: false,
+            // left:false,
             index: index || 0
           };
 
         let hoverArea = null;
         if(this.isAllow()) {
+            console.log('allowed')
             if (
                 event.clientY >= hoverBoundingRect.top - 5 &&
                 event.clientY <= hoverBoundingRect.top + 5
@@ -152,7 +152,7 @@ class WithDropArea extends React.Component {
             }
         } else {
             console.log("!allowed:")
-            // set right-left
+            // // set right-left
             // if(event.clientX > hoverMiddleX && event.clientX <= hoverBoundingRect.right) {
             //     position.right = true;
             //     position.index = index + 1;
@@ -171,6 +171,7 @@ class WithDropArea extends React.Component {
               ) {
                 position.top = true;
                 hoverArea = 'top';
+                position.index = index;
               }
               if (
                 event.clientY > hoverMiddleY &&
@@ -182,6 +183,7 @@ class WithDropArea extends React.Component {
               }
         }
         if(hoverArea !== this.hoverArea) {
+            console.log('index', index, position)
             createIndicator(hoverBoundingRect, hoverArea)
             this.hoverArea = hoverArea
         }
