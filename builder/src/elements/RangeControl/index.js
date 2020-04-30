@@ -8,7 +8,7 @@ export class RangeControl extends Component {
 
   render() {
     const { label, value, min, max, step, className, instanceId } = this.props;
-    const defaultClass = "sppb-range";
+    const defaultClass = "sppb-range sppb-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -46,7 +46,7 @@ RangeControl.defaultProps = {
   max: 100,
   value: 0,
   step: 1,
-  className: ""
+  className: "",
 };
 
 export default withInstanceId(RangeControl);

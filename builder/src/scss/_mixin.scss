@@ -1,4 +1,34 @@
 //SCSS Mixin
+
+//Transition
 @mixin transition($value) {
     transition: all $value;
+}
+
+//Border 
+@mixin border($direction, $width, $style, $color) {
+    border#{$direction}: $width $style $color;
+}
+
+//Opacity
+@mixin opacity($value) {
+    opacity: $value;
+}
+
+//Browser scrollbar
+@mixin scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--brush-marble-gray) var(--scrollbar-truck-bg);
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--scrollbar-truck-bg);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--brush-marble-gray);
+        border-radius: 6px;
+        border: 3px solid var(--scrollbar-truck-bg);
+    }
 }

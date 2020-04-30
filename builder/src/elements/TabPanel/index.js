@@ -15,7 +15,7 @@ export class TabPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: null
+      selectedTab: null,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -23,7 +23,7 @@ export class TabPanel extends Component {
   componentDidMount() {
     const { value, tabs } = this.props;
     if (value) {
-      const defaultTabItem = tabs.find(tab => tab.name === value);
+      const defaultTabItem = tabs.find((tab) => tab.name === value);
       defaultTabItem && this.setState({ selectedTab: defaultTabItem });
     }
   }
@@ -37,21 +37,21 @@ export class TabPanel extends Component {
   render() {
     const { selectedTab } = this.state;
     const { className, activeClass, tabs, children, instanceId } = this.props;
-    const defaultClass = [
-      "sppb-tab-panel",
-      ...(className ? [className] : [])
-    ].join(" ");
+    const defaultClass = "sppb-tab-panel sppb-form-controllers";
+    const elementClass = [defaultClass, ...(className ? [className] : [])].join(
+      " "
+    );
 
     return (
       <React.Fragment>
-        <div className={defaultClass}>
-          {tabs.map(tab => (
+        <div className={elementClass}>
+          {tabs.map((tab) => (
             <TabHeader
               className={[
                 tab.className,
                 ...(selectedTab && selectedTab.name === tab.name
                   ? [activeClass]
-                  : [])
+                  : []),
               ].join(" ")}
               tabId={`${instanceId}-${tab.name}`}
               selected={selectedTab && tab.name === selectedTab.name}
@@ -79,7 +79,7 @@ export class TabPanel extends Component {
 TabPanel.defaultProps = {
   className: "",
   activeClass: "active-tab",
-  value: ""
+  value: "",
 };
 
 export default withInstanceId(TabPanel);

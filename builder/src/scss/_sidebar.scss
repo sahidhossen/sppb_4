@@ -2,7 +2,7 @@
 .sppb-left-sidebar,
 .sppb-right-sidebar {
     color: var(--default-text-color);
-    position: var(--pos-fixed);
+    position: fixed;
     width: var(--sidebar-width);
     background-color: var(--sidebar-bg-color);
     top: calc(var(--top-portal-height) + var(--space-15));
@@ -10,9 +10,9 @@
         var(--height-100) - (var(--top-portal-height) + var(--space-30))
     );
     box-shadow: 0 3px 3px 0px rgba(1, 1, 2, 0.67);
-    text-align: var(--textalign-center);
+    text-align: center;
     letter-spacing: var(--letter-spacing-default);
-    overflow: var(--overflow-hidden);
+    overflow: hidden;
     border-radius: var(--space-5);
 }
 .sppb-left-sidebar {
@@ -25,13 +25,22 @@
         height: auto;
     }
 }
+.sppb-right-sidebar-content-wrap {
+    background-color: var(--pearl-dark);
+}
+.sppb-right-setting-wrap {
+    padding: 0 8px 15px;
+    overflow-y: scroll;
+    height: 72vh;
+    @include scrollbar();
+}
 
 //Editor/Docker panel
 .sppb-editor-panel {
     ul {
-        border-top: var(--border-1px-solid) var(--tab-border-color);
-        display: var(--dis-flex);
-        justify-content: var(--space-around);
+        @include border("-top", 1px, solid, var(--controller-color));
+        display: flex;
+        justify-content: space-around;
     }
     li {
         display: inline-block;
@@ -39,66 +48,49 @@
         border-top: 2px solid transparent;
         margin-top: -1px;
         border-radius: 1px;
-        @include transition(.35s);
+        @include transition(0.35s);
         &:hover,
         &:focus,
         &.active {
-            border-color: var(--btn-primary-bg-color)
+            border-color: var(--primary-color);
         }
     }
 }
 
 .sppb-addon-list-wrapper {
-    display: var(--dis-flex);
-    justify-content: var(--space-between);
-    flex-wrap: var(--flex-wrap);
-    overflow-y: var(--overflow-scroll);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-y: scroll;
     height: 38vh;
-    //Browser scrollbar
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb-bg) var(--scrollbar-truck-bg);
-
-    &::-webkit-scrollbar {
-        width: 1rem;
-    }
-    &::-webkit-scrollbar-track {
-        background: var(--scrollbar-truck-bg);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--scrollbar-thumb-bg);
-        border-radius: 6px;
-        border: 3px solid var(--scrollbar-truck-bg);
-    }
+    @include scrollbar();
 }
 .sppb-docker {
-    background-color: var(--default-bg-color);
-    margin-bottom: var(--space-15);
+    margin: var(--space-15) 0;
+    background-color: var(--sidebar-bg-color);
     &:focus {
         outline: 0;
     }
 }
 .sidebar-panel {
-    height: auto;
-    // background-image: linear-gradient(to bottom, rgba(17, 20, 27, 0), var(--topbar-border-color));
+    height: calc(var(--height-50vh) - var(--space-80));
 }
 .sppb-addon-list {
     margin: 0 var(--space-10);
-    display: flex;
-    flex-direction: row;
+    flex: 1;
 }
 .sppb-addon-list-item {
     padding: var(--space-10);
     color: var(--default-text-color);
     transition: all 0.35s;
     border-radius: 0.1818rem;
-    flex: 1;
     img {
         max-width: var(--space-50);
         filter: invert(50%);
         transition: all 0.35s;
     }
     &:hover {
-        background-color: var(--addon-hover-color);
+        background-color: var(--battleship-gray);
         color: var(--white);
         img {
             filter: invert(100%);
@@ -108,4 +100,15 @@
 .sppb-addon-list-item-title {
     display: block;
     margin-top: var(--space-15);
+}
+
+/**
+Indicator
+*/
+.sppb-drop-target-outline {
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
 }

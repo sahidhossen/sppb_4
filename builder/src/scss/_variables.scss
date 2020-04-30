@@ -1,3 +1,8 @@
+/**
+*Importing font
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
 //CSS Variables
 :root {
     //Sizes
@@ -26,12 +31,8 @@
     --space-90: 8.1818rem;
     --space-100: 9.0909rem;
 
-    //Margin
-    --mar-auto: auto;
-
     //Fonts
-    --default-font-family: "Helvetica Neue", Helvetica, Arial,
-        sans-serif;
+    --default-font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-weight-thin: 100;
     --font-weight-extra-light: 200;
     --font-weight-light: 300;
@@ -46,48 +47,47 @@
     --letter-spacing-default: 0.0273rem;
 
     //Colors
-    --default-bg-color: #292c36;
-    --sidebar-bg-color: #14171d;
-    --default-text-color: #b7becb;
-    --btn-primary-bg-color: #4e5eda;
-    --white: #fff;
-    --black: #000;
-    --user-bg-color: #ec407a;
-
+    --primary-color: #4e5eda; //rgba 78,94,218,1
+    --primary-color-rgb: 78, 94, 218;
+    --dark-bg-text-color: #8095ff;
+    --small-text-color: #dce3f1;
+    --white: #ffffff;
+    --white-rgb: 255, 255, 255;
+    
+    //Dark
+    --black: #000000;
+    --black-rgb: 0, 0, 0;
+    --dark: #1d2427;
+    --shark-dark: #1d2027; // rgb 20, 23, 29
+    --shark-dark-rgb: 20, 23, 29;
+    --pearl-dark: #14171d;
+    --charcoal-dark: #2a2c36;
+    --squid-ink-dark: #2f303b;
+    
+    //Gray
+    --pale-gray: #edf0f5;
+    --brush-marble-gray: #3a404c;
+    --rhino-gray: #3f424e; // rgb 63, 66, 78
+    --rhino-gray-rgb: 63, 66, 78;
+    --battleship-gray: #707785; //rgb 112, 119, 133
+    --chateua-gray: #9fa5b1; //rgb 159, 165, 177
+    --chateua-gray-rgb: 159, 165, 177;
+    --regent-gray: #7e8897;
+    
     //Rare use colors
-    --tab-border-color: #7e8897;
-    --addon-hover-color: #707785;
-    --topbar-border-color: #1d2027;
+    --golden-color: #fd812b;
+    --popy-color: #fd6260;
+    --sidebar-bg-color: #292c36;
+    --default-text-color: #b7becb;
+    --user-bg-color: #ec407a;
+    --topbar-border-color: #0e1118;
+    --gradient-first-color: #5f6bdd;
+    --gradient-first-color-rgb: 95, 107, 221;
+    --select-border-color: #676f7f;
 
-    //Borders
-    --border-none: none;
-    --border-1px-solid: 1px solid;
-    --border-radius-50: 50%;
-
-    //Text align
-    --textalign-left: left;
-    --textalign-center: center;
-    --textalign-right: right;
-
-    //Display property
-    --dis-block: block;
-    --dis-inline-block: inline-block;
-    --dis-flex: flex;
-    --flex-wrap: wrap;
-    --space-between: space-between;
-    --space-around: space-around;
-    --align-item-center: center;
-
-    //Overflow
-    --overflow-scroll: scroll;
-    --overflow-hidden: hidden;
-
-    //Positions
-    --pos-fixed: fixed;
-    --pos-absolute: absolute;
-    --pos-relative: relative;
+    //Gradient
+    --primary-gradient-color: linear-gradient(to bottom, var(--gradient-first-color) 2%, var(--primary-color));
 
     //Browser Scrollbar
     --scrollbar-truck-bg: #181a23;
-    --scrollbar-thumb-bg: #3a404c;
 }
