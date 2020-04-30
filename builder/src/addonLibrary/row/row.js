@@ -55,7 +55,7 @@ class Row extends React.Component {
     return (
       <div className={clsNames}>
          <AddonControls>
-        <p> Its working {this}</p>
+        <p> Its working</p>
         </AddonControls>
         {this.props.renderChildren()}
       </div>
