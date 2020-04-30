@@ -112,16 +112,20 @@ class WithDropArea extends React.Component {
 
     onMouseMove(event) {
         const { isRTL, container, index, addonId, pickedAddon, addon} = this.props;
+        
+        
         if (!addonId || !pickedAddon) return;
         
 		const hoverBoundingRect = container.getBoundingClientRect();
         
         const hoverMiddleY = hoverBoundingRect.top + hoverBoundingRect.height / 2;
-
+        const hoverMiddleX = hoverBoundingRect.left + hoverBoundingRect.width / 2;
         const position = {
             inside: false,
             top: false,
             bottom: false,
+            right: false,
+            left:false,
             index: index || 0
           };
 
@@ -147,7 +151,20 @@ class WithDropArea extends React.Component {
                 position.index = 0;
             }
         } else {
-            console.log("!allowed")
+            console.log("!allowed:")
+            // set right-left
+            // if(event.clientX > hoverMiddleX && event.clientX <= hoverBoundingRect.right) {
+            //     position.right = true;
+            //     position.index = index + 1;
+            //     hoverArea = 'right';
+            // }
+            // if(event.clientX <= hoverMiddleX && event.clientX >= hoverBoundingRect.left) {
+            //     position.left = true;
+            //     position.index = index - 1;
+            //     hoverArea = 'left';
+            // }
+            
+            // set top-bottom
             if (
                 event.clientY <= hoverMiddleY &&
                 event.clientY >= hoverBoundingRect.top

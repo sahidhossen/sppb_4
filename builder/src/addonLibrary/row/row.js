@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
+import AddonControls from '../../components/AddonControls';
 
 class Row extends React.Component {
   constructor(props) {
@@ -53,6 +54,9 @@ class Row extends React.Component {
     console.log("chedk: row")
     return (
       <div className={clsNames}>
+         <AddonControls>
+        <p> Its working {addonId}</p>
+        </AddonControls>
         {this.props.renderChildren()}
       </div>
     );

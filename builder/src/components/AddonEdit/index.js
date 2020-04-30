@@ -12,7 +12,7 @@ class AddonEdit extends React.Component {
 		return {
 			name,
 			isSelected,
-			addonId,
+			addonId
 		};
     }
     

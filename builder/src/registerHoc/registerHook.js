@@ -39,6 +39,10 @@ export const RegisterAddon = (settings) => {
     }
 
     /**
+     * Add dfault style settings
+     */
+
+    /**
      * Generate an unique id
      */
     settings.id = revisedRandId();
