@@ -7,7 +7,7 @@ class InputText extends Component {
   }
   render() {
     const { value, label, placeholder, instanceId, className } = this.props;
-    const defaultClass = "sppb-input-text";
+    const defaultClass = "sppb-input-text sppb-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -32,7 +32,7 @@ class InputText extends Component {
 InputText.defaultProps = {
   value: "",
   className: "",
-  placeholder: "Insert text..."
+  placeholder: "Insert text...",
 };
 
 export default withInstanceId(InputText);

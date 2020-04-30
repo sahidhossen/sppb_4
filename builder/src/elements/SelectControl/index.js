@@ -7,13 +7,13 @@ class SelectControl extends Component {
       const defaultValue = [
         ...new Set(
           this.props.value.reduce((acc, value) => acc.concat(value), [])
-        )
+        ),
       ];
       const value = [
         ...new Set([
           ...defaultValue,
-          ...[...event.target.selectedOptions].map(o => o.value)
-        ])
+          ...[...event.target.selectedOptions].map((o) => o.value),
+        ]),
       ];
       this.props.onChange(value);
     } else {
@@ -23,7 +23,7 @@ class SelectControl extends Component {
 
   render() {
     const { label, className, value, options, instanceId } = this.props;
-    const defaultClass = "sppb-select";
+    const defaultClass = "sppb-select sppb-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -63,7 +63,7 @@ class SelectControl extends Component {
 }
 
 SelectControl.defaultProps = {
-  className: ""
+  className: "",
 };
 
 export default withInstanceId(SelectControl);

@@ -3,18 +3,17 @@ import React, { Component } from "react";
 export class ColorPalette extends Component {
   handleChange(color) {
     this.props.onChange(color);
-    console.log("yo", color);
   }
 
   render() {
     const { colors, value, className } = this.props;
-    const defaultClass = [
-      "sppb-color-palette",
-      ...(className ? [className] : [])
-    ].join(" ");
+    const defaultClass = "sppb-color-palette sppb-form-controllers";
+    const elementClass = [defaultClass, ...(className ? [className] : [])].join(
+      " "
+    );
 
     return (
-      <div className={defaultClass}>
+      <div className={elementClass}>
         {colors &&
           colors.map(({ color, name }) => (
             <button
@@ -23,10 +22,10 @@ export class ColorPalette extends Component {
               }`}
               style={{
                 backgroundColor: color,
-                height: "28px",
-                width: "28px",
-                borderRadius: "100%",
-                outline: "none"
+                // height: "28px",
+                // width: "28px",
+                // borderRadius: "100%",
+                // outline: "none",
               }}
               key={color}
               selected={color === value}
