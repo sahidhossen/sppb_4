@@ -1,42 +1,54 @@
 import initialState from "./initialState";
-import {insertAt, moveTo} from '../lib/array';
-import {reduce, pullAt, castArray} from 'lodash';
+import { insertAt, moveTo } from "../lib/array";
+import { reduce, pullAt, castArray } from "lodash";
 
 const getMutateSafeObject = (original, working) => {
-  if ( original === working ){
-    return {...original};
+  if (original === working) {
+    return { ...original };
   }
   return working;
-}
+};
 
 const builder = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_ADDON":
-      const { defaultAddon, payload: { parentId, index } } = action;
-      
+      const {
+        defaultAddon,
+        payload: { parentId, index },
+      } = action;
+
       /**
        * Set default block with unique ID
        * Update parentId associated with the new Addon
        * Update parent Addon children array with currect index and new addonId
-       * */ 
-      
+       * */
+
       return {
-        ...state, 
-        [defaultAddon.id]: {...defaultAddon, parentId: parentId},
-        [parentId] : {...state[parentId], childrens: insertAt(state[parentId].childrens, defaultAddon.id, index) }
+        ...state,
+        [defaultAddon.id]: { ...defaultAddon, parentId: parentId },
+        [parentId]: {
+          ...state[parentId],
+          childrens: insertAt(
+            state[parentId].childrens,
+            defaultAddon.id,
+            index
+          ),
+        },
       };
     case "TRANSFER_ADDON": {
       /**
        * Index: drop index
        * AddonId: source AddonId
-       * parentId: Target addonId 
+       * parentId: Target addonId
        */
-      const {payload:{index, addonId, parentId}} = action;
-      
+      const {
+        payload: { index, addonId, parentId },
+      } = action;
+
       /**
        * sourceAddon: Find parentId addon from source addon
        * Remove addonId from sourceParent children array
-       * 
+       *
        * Update SourceParent Childrens
        * Update destination children array with currect index and current addonId
        */
@@ -45,62 +57,72 @@ const builder = (state = initialState, action) => {
       const sourceParent = state[sourceAddon.parentId];
       const sourceAddonIndex = sourceParent.childrens.indexOf(addonId);
       // If source ParentId and target parentId not same then Do rest of the stuff
-      if (sourceAddon.parentId !== parentId) { 
+      if (sourceAddon.parentId !== parentId) {
         const childrens = [...sourceParent.childrens];
-        pullAt(childrens, [sourceAddonIndex])
+        pullAt(childrens, [sourceAddonIndex]);
 
         sourceParent.childrens = childrens;
-        state[sourceParent.id] = {...sourceParent }
-        state[addonId] = {...sourceAddon, parentId};
+        state[sourceParent.id] = { ...sourceParent };
+        state[addonId] = { ...sourceAddon, parentId };
         // Insert into new addon
-        state[parentId].childrens = insertAt(state[parentId].childrens, addonId, index );
+        state[parentId].childrens = insertAt(
+          state[parentId].childrens,
+          addonId,
+          index
+        );
       } else {
         // Move index position
-        console.log("move")
-        state[parentId].childrens = moveTo(state[parentId].childrens, sourceAddonIndex, index);
+        console.log("move");
+        state[parentId].childrens = moveTo(
+          state[parentId].childrens,
+          sourceAddonIndex,
+          index
+        );
       }
-      
-      return state;
 
-    };
+      return state;
+    }
 
     case "SET_ATTRIBUTE": {
       const { addonId, attributes } = action;
       // Ignore updates if block isn't known
-        if ( ! state[ addonId ] ) {
-          return state;
-        }
+      if (!state[addonId]) {
+        return state;
+      }
       // Consider as updates only changed values
-        const updatedAttributes = reduce( attributes, ( result, value, key ) => {
-          if ( value !== result[ key ] ) {
-            result = getMutateSafeObject( state[ addonId ].attributes, result );
-            result[ key ] = value;
+      const updatedAttributes = reduce(
+        attributes,
+        (result, value, key) => {
+          if (value !== result[key]) {
+            result = getMutateSafeObject(state[addonId].attributes, result);
+            result[key] = value;
           }
 
           return result;
-        }, state[ addonId ].attributes );
+        },
+        state[addonId].attributes
+      );
 
-        // Skip update if nothing has been changed. The reference will
-        // match the original block if `reduce` had no changed values.
-        if ( updatedAttributes === state[ addonId ].attributes ) {
-          return state;
-        }
+      // Skip update if nothing has been changed. The reference will
+      // match the original block if `reduce` had no changed values.
+      if (updatedAttributes === state[addonId].attributes) {
+        return state;
+      }
 
-        // Otherwise merge attributes into state
-        let store = {
-          ...state,
-          [ addonId ]: {
-            ...state[ addonId ],
-            attributes: updatedAttributes,
-          },
-        };
-        return store;
+      // Otherwise merge attributes into state
+      let store = {
+        ...state,
+        [addonId]: {
+          ...state[addonId],
+          attributes: updatedAttributes,
+        },
+      };
+      return store;
     }
- 
+
     default:
       return state;
   }
-  
 };
 
 export default builder;
