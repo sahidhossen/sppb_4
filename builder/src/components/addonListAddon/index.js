@@ -228,7 +228,7 @@ class AddonListAddon extends React.Component {
                   type="onHover"
                   className="sppb-hover-wrapper"
                 >
-                  <div className="sppb-addon-tag">{addon.name}</div>
+                  <div className="sppb-addon-tag">{addon.name} <i className="fas fa-cog"></i></div>
                 </AddonOutline>
               )}
               {isSelected && (

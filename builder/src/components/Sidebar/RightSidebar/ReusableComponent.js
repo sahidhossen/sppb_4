@@ -1,30 +1,26 @@
-import React from 'react';
-import SidebarHeader from '../SidebarHeader';
-import AddonControls from '../../AddonControls';
+import React from "react";
+import SidebarHeader from "../SidebarHeader";
+import AddonControls from "../../AddonControls";
 
 class ReusableComponent extends React.Component {
-    render(){
+    render() {
         return (
             <div className="sppb-docker-container sppb-reusable-component-docker">
-                <SidebarHeader
-                    className={'right-sidebar-header'}
-                >
-				<div className="sppb-top-alignment">
-					<span className="sppb-top-collaps-icon">
-						<i className="fas fa-angle-double-right"></i>
-					</span>
-					<span className="sppb-top-alignment-icon">
-						<i className="fas fa-columns"></i>
-						<i className="fas fa-columns"></i>
-						<i className="fas fa-columns"></i>
-					</span>
-				</div>
-                </SidebarHeader> 
-                <div className="sppb-panel-body">
-                    <AddonControls.Slot/>
-                </div>
+                <SidebarHeader className={"right-sidebar-header"}>
+                    <span className="sppb-drag-icon">
+                        <i className="fas fa-braille"></i>
+                    </span>
+                    <div className="sppb-reusable-content">
+                        <p className="sppb-reuseable-title">
+                            Reusable Styles <span>(Class & Combo Class)</span>
+                        </p>
+                        <div className="sppb-reusable-content-body">
+                            <AddonControls.Slot />
+                        </div>
+                    </div>
+                </SidebarHeader>
             </div>
-        )
+        );
     }
 }
 

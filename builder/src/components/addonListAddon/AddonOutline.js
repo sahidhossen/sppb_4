@@ -6,16 +6,12 @@ import ComponentPortal from "../../helpers/ComponentPortal";
 function getHoverStyle(node) {
   if (node) {
     const nodeRect = node.getBoundingClientRect();
+    console.log('width:', nodeRect);
     return {
       width: `${nodeRect.width}px`,
       height: `${nodeRect.height}px`,
       position: "absolute",
-      top: "0px",
-      left: "0px",
-      transform: `translate(${nodeRect.left + 240}px, ${nodeRect.top + 75}px)`,
-      border: "1px solid #4e5eda",
-      backgroundColor: "none",
-      pointerEvents: "none",
+      transform: `translate(${nodeRect.left + 272}px, ${nodeRect.top + 75}px)`,
     };
   }
 }

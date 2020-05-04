@@ -21,10 +21,10 @@ class Heading extends React.Component {
     let h = rowE - rowS;
 
     let style = {
-      backgroundColor: "rgba(0,0,0,0.2)",
+      // backgroundColor: "rgba(0,0,0,0.2)",
       justifyContent: "center",
       alignItems: "center",
-      display: "grid",
+      display: "flex",
       // gridColumn: `span ${w}`,
       // gridColumnStart: `${colS}`,
       // gridColumnEnd: `${colE}`,

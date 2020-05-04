@@ -29,8 +29,7 @@ body {
     margin: var(--space-0);
     padding-left: var(--sidebar-width);
     padding-right: var(--sidebar-width);
-    background-color: var(--pearl-dark) !important;
-    transition: padding 0.3s;
+    background-color: var(--shark-dark) !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
 }
@@ -41,7 +40,6 @@ body {
     border: none;
     display: block;
     margin: auto;
-    transition: all 0.3s;
     // padding: calc(var(--top-portal-height) + var(--space-15)) var(--space-30) var(--space-15);
     padding-top: calc(var(--top-portal-height) + var(--space-15));
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames/bind";
 import AddonControls from '../../components/AddonControls';
+import TagsBtn from '../../elements/TagsButton'
 
 class Row extends React.Component {
   constructor(props) {
@@ -55,7 +56,8 @@ class Row extends React.Component {
     return (
       <div className={clsNames}>
          <AddonControls>
-        <p> Its working {this}</p>
+          <p>It is working</p>
+          <TagsBtn className="dfdsafdaf" url="https://joomshaper.com" text="Hero Title" style={{background:'#fd812b', color: '#fff'}}/>
         </AddonControls>
         {this.props.renderChildren()}
       </div>

@@ -4,16 +4,15 @@
     color: var(--default-text-color);
     position: fixed;
     width: var(--sidebar-width);
-    background-color: var(--sidebar-bg-color);
+    // background: var(--charcoal-dark);
     top: calc(var(--top-portal-height) + var(--space-15));
     height: calc(
         var(--height-100) - (var(--top-portal-height) + var(--space-30))
     );
-    box-shadow: 0 3px 3px 0px rgba(1, 1, 2, 0.67);
-    text-align: center;
     letter-spacing: var(--letter-spacing-default);
     overflow: hidden;
     border-radius: var(--space-5);
+    padding: 0 1.1818rem;
 }
 .sppb-left-sidebar {
     left: var(--space-0);
@@ -34,7 +33,6 @@
     height: 72vh;
     @include scrollbar();
 }
-
 //Editor/Docker panel
 .sppb-editor-panel {
     ul {
@@ -67,7 +65,7 @@
 }
 .sppb-docker {
     margin: var(--space-15) 0;
-    background-color: var(--sidebar-bg-color);
+    background: var(--charcoal-dark);
     &:focus {
         outline: 0;
     }
@@ -102,13 +100,3 @@
     margin-top: var(--space-15);
 }
 
-/**
-Indicator
-*/
-.sppb-drop-target-outline {
-    height: 2px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    pointer-events: none;
-}

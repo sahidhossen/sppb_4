@@ -139,3 +139,15 @@
         color: var(--charcoal-dark);
     }
 }
+
+//Tags
+.sppb-tags-btn {
+    border-radius: 0.4545rem;
+    background: var(--popy-color);
+    padding: 0.0909rem 0.3rem;
+    text-decoration: none;
+    color: var(--black);
+    min-width: 5.5455rem;
+    display: inline-block;
+    text-align: center;
+}
