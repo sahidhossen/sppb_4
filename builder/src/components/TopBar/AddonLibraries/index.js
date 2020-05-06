@@ -49,7 +49,8 @@ class AddonLibraries extends React.Component {
   render() {
     const { showDropDown } = this.state;
     return (
-      <Fragment>
+      <div className="sppb-topbar-middle">
+        <h3>TopBar Middle</h3>
         <span>{this.renderLibarayList()}</span>
         {showDropDown && (
           <SppbPortal>
@@ -59,7 +60,7 @@ class AddonLibraries extends React.Component {
             />
           </SppbPortal>
         )}
-      </Fragment>
+      </div>
     );
   }
 }

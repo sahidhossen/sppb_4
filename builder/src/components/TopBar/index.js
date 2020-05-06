@@ -19,7 +19,6 @@ class Topbar extends React.Component {
           <Viewport />
         </div>
         <AddonLibraries />
-        <div className="sppb-topbar-middle">TopBar Middle</div>
 
         <div className="sppb-topbar-right">
           <Right />
