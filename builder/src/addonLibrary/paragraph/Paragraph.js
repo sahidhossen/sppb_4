@@ -16,13 +16,12 @@ class Paragraph extends React.Component {
             gridArea, 
             justifyContent: 'center',
             alignItems: 'center',
-            display:"grid",
-            backgroundColor:'rgba(0,0,0,0.2)'
+            display:"flex",
         }
         const clsNames = classNames('sppb-4' ,'sppb-Paragraph')
         return(
             <div style={style} className={clsNames}>
-               <h3 onClick={()=> this.props.setAttributes({color: 'yellow'})}>Paragraph</h3>
+               <p onClick={()=> this.props.setAttributes({color: 'yellow'})}>Paragraph</p>
             </div>
         )
     }
