@@ -32,7 +32,7 @@ const withChildren = (settings ={} ) => {
 
         render() {
             const {addonId, settings:{ref}, index, isGridview } = this.props;
-            return ( 
+            return (
                 isGridview ?
                     <GridView  
                         addonId={addonId}
