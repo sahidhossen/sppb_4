@@ -37,8 +37,8 @@ class Zoom extends React.Component {
   }
 
   render() {
-    const { state } = this.context;
-    console.log("view state", state);
+    // const { state } = this.context;
+    // console.log("view state", state);
     return (
       <div className="sppb-zoom-controller">
         <span
