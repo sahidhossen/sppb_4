@@ -158,74 +158,42 @@ class WithDropArea extends React.Component {
 
     const hoverMiddleY = hoverBoundingRect.top + hoverBoundingRect.height / 2;
     const hoverMiddleX = hoverBoundingRect.left + hoverBoundingRect.width / 2;
-    // const position = {
-    //   inside: false,
-    //   top: false,
-    //   bottom: false,
-    //   // right: false,
-    //   // left:false,
-    //   index: index || 0,
-    // };
-
+   
     let hoverArea = null;
     let isAllow = false;
     if (this.isAllowed()) {
       isAllow = true;
-      //   console.log("allowed");
       if (
         event.clientY >= hoverBoundingRect.top - 5 &&
         event.clientY <= hoverBoundingRect.top + 5
       ) {
-        // position.top = true;
-        // position.index = index;
         hoverArea = "top";
       } else if (
         event.clientY >= hoverBoundingRect.bottom - 5 &&
         event.clientY <= hoverBoundingRect.bottom + 5
       ) {
-        // position.bottom = true;
-        // position.index = index + 1;
         hoverArea = "bottom";
       } else {
-        // position.inside = true;
-        // position.index = 0;
         hoverArea = "inside";
       }
     } else {
       isAllow = false;
-      //   console.log("!allowed:");
-      // // set right-left
-      // if(event.clientX > hoverMiddleX && event.clientX <= hoverBoundingRect.right) {
-      //     position.right = true;
-      //     position.index = index + 1;
-      //     hoverArea = 'right';
-      // }
-      // if(event.clientX <= hoverMiddleX && event.clientX >= hoverBoundingRect.left) {
-      //     position.left = true;
-      //     position.index = index - 1;
-      //     hoverArea = 'left';
-      // }
-
+     
       // set top-bottom
       if (
         event.clientY <= hoverMiddleY &&
         event.clientY >= hoverBoundingRect.top
       ) {
-        // position.top = true;
-        // position.index = index;
         hoverArea = "top";
       }
       if (
         event.clientY > hoverMiddleY &&
         event.clientY <= hoverBoundingRect.bottom
       ) {
-        // position.bottom = true;
-        // position.index = index + 1;
         hoverArea = "bottom";
       }
     }
     if (hoverArea !== this.hoverArea) {
-      //   console.log("index", index, position);
       createIndicator(hoverBoundingRect, hoverArea);
       this.hoverArea = hoverArea;
     }
@@ -251,7 +219,7 @@ export default compose(
     };
   }),
   withDispatch((dispatch) => {
-    const { insertAddon } = dispatch();
+    const { insertAddon, selectAddon } = dispatch();
 
     return {
       onInsertAddon(settings) {

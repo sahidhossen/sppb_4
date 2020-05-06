@@ -21,7 +21,7 @@ const reduxStore = initialState => {
 export const createSPPBStore = () => {
 
   const store = reduxStore();
-  
+  console.log("store: ", store.getState())
   const _actions = mapActions( actions, store );
   
 
