@@ -86,6 +86,10 @@
     flex: 1;
     padding: 1.3636rem;
     margin-top: 1.3636rem;
+    display: flex;
+    .sppb-tags-btn {
+        margin-left: 0.9091rem;
+    }
 }
 //Sidebar panel
 .sppb-sidebar-panel {

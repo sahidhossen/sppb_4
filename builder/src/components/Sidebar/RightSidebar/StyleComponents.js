@@ -8,13 +8,13 @@ class StyleComponents extends React.Component {
                 <SidebarHeader className={"right-sidebar-header"}>
                     <div className="sppb-sidebar-panel">
                         <div className="sppb-sidebar-icons">
-                            <span className="sppb-drag-icon">
-                                <i className="fas fa-braille"></i>
-                            </span>
                             <span className="sppb-sidebar-panel-icon">
                                 <i className="fas fa-columns"></i>
                                 <i className="fas fa-columns"></i>
                                 <i className="fas fa-columns"></i>
+                            </span>
+                            <span className="sppb-drag-icon">
+                                <i className="fas fa-braille"></i>
                             </span>
                         </div>
                         <p className="sppb-panel-title">Style Components</p>
