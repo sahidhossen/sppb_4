@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ViewContext } from "../../components/ViewContext";
 
 export class ColorPalette extends Component {
   handleChange(color) {
