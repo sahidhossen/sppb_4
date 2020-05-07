@@ -4,6 +4,7 @@ import {withSelect} from 'store';
 import NavigatorDocker from './index';
 import NavigatorHeader from './NavigatorHeader';
 import AddonList from '../../../DefaultAddonList';
+import Navigator from '../../../Navigator'
 
 const SidebarSettings = ({sidebarName}) => (
     <NavigatorDocker
@@ -13,7 +14,7 @@ const SidebarSettings = ({sidebarName}) => (
         <NavigatorHeader sidebarName={sidebarName} />
         <div className="sidebar-panel">
             { sidebarName === 'addonlist'  && <AddonList addonType={sidebarName}/> }
-           Selected Navigator Sidebar {sidebarName}
+            { sidebarName === 'navigator'  && <Navigator/> }
         </div>
     </NavigatorDocker>
 )
