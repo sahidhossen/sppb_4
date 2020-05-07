@@ -15,9 +15,9 @@ export class Category extends Component {
       <span
         ref={this.props.categoryRef}
         style={style}
-        onClick={() => this.props.toggleDropDown(category)}
+        onClick={() => this.props.setCategory(category)}
       >
-        {category}
+        {category.title}
       </span>
     );
   }

@@ -65,12 +65,15 @@ class WithDropArea extends React.Component {
       if (this.isAllow) {
         if (this.hoverArea === "top") {
           _addonId = parentId;
+          console.log("allowed top");
         } else if (this.hoverArea === "bottom") {
           _index = index + 1;
           _addonId = parentId;
+          console.log("allowed bottom");
         } else {
           // inside
           _index = 0;
+          console.log("allowed inside");
         }
       } else {
         if (this.hoverArea === "top") {
@@ -158,7 +161,7 @@ class WithDropArea extends React.Component {
 
     const hoverMiddleY = hoverBoundingRect.top + hoverBoundingRect.height / 2;
     const hoverMiddleX = hoverBoundingRect.left + hoverBoundingRect.width / 2;
-   
+
     let hoverArea = null;
     let isAllow = false;
     if (this.isAllowed()) {
@@ -178,7 +181,7 @@ class WithDropArea extends React.Component {
       }
     } else {
       isAllow = false;
-     
+
       // set top-bottom
       if (
         event.clientY <= hoverMiddleY &&

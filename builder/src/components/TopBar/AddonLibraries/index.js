@@ -5,6 +5,7 @@ import Category from "./Category";
 import DropDownView from "./DropDownView";
 import SppbPortal from "../../sppbportal/SppbPortal";
 import { createRef } from "react";
+import { blockListForTools } from "../../../lib/utils";
 
 class AddonLibraries extends React.Component {
   constructor() {
@@ -15,7 +16,14 @@ class AddonLibraries extends React.Component {
     };
     this.categoryRef = createRef();
   }
-  toggleDropDown(category) {
+  toggleDropdown() {
+    this.setState((state) => ({
+      ...state,
+      showDropDown: !this.state.showDropDown,
+    }));
+  }
+
+  setCategory(category) {
     if (this.state.selectedCategory === category) {
       this.setState((state) => ({
         ...state,
@@ -36,13 +44,15 @@ class AddonLibraries extends React.Component {
     }
   }
   renderLibarayList() {
-    const categories = Object.keys(this.props.addonListCategory);
+    const { addonListCategory } = this.props;
+    const categories = Object.keys(addonListCategory);
+
     return categories.map((category) => (
       <Category
         categoryRef={this.categoryRef}
-        toggleDropDown={this.toggleDropDown.bind(this)}
+        setCategory={this.setCategory.bind(this)}
         key={category}
-        category={category}
+        category={addonListCategory[category]}
       />
     ));
   }
@@ -57,6 +67,7 @@ class AddonLibraries extends React.Component {
             <DropDownView
               category={this.state.selectedCategory}
               categoryRef={this.categoryRef}
+              toggleDropdown={this.toggleDropdown.bind(this)}
             />
           </SppbPortal>
         )}
@@ -72,10 +83,8 @@ export default compose([
       getActiveMediaQuery,
       getDefaultAddonList,
     } = select();
-    let addonListCategory = {
-      recent: {},
-      addon: {},
-    };
+    let addonList = getDefaultAddonList();
+    let addonListCategory = blockListForTools(addonList);
     return {
       addonListCategory,
       addonList: getDefaultAddonList(),
