@@ -5,8 +5,8 @@ export default {
     name: 'root',
     title: 'Root',
     private: true,
-    // childrens: ['079543af-25f4-ab9c-156a-8b66570bccfb'],
-    childrens: [],
+    childrens: ['079543af-25f4-ab9c-156a-8b66570bccfb'],
+    // childrens: [],
     droppable: true,
     attributes: {
         display: 'grid',
