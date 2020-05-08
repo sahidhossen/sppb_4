@@ -7,6 +7,7 @@ export class Category extends Component {
 
   render() {
     const { category } = this.props;
+    console.log(this.props);
     const style = {
       padding: "10px",
       cursor: "pointer",

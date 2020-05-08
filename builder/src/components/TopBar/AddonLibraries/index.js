@@ -46,6 +46,11 @@ class AddonLibraries extends React.Component {
   renderLibarayList() {
     const { addonListCategory } = this.props;
     const categories = Object.keys(addonListCategory);
+    const categoryIcons = {
+      text: "fa fa-text",
+      layouts: "fa fa-layouts",
+      containers: "fa fa-containers",
+    };
 
     return categories.map((category) => (
       <Category
@@ -53,6 +58,7 @@ class AddonLibraries extends React.Component {
         setCategory={this.setCategory.bind(this)}
         key={category}
         category={addonListCategory[category]}
+        categoryIcon={categoryIcons[category]}
       />
     ));
   }
