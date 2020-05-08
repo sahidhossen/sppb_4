@@ -43,6 +43,7 @@ class AddonLibraries extends React.Component {
   }
   renderLibarayList() {
     const { addonListCategory } = this.props;
+    const { showDropDown, selectedCategory } = this.state;
     const categories = Object.keys(addonListCategory);
     const categoryIcons = {
       text: "fas fa-text-height",
@@ -56,6 +57,7 @@ class AddonLibraries extends React.Component {
         key={category}
         category={addonListCategory[category]}
         categoryIcon={categoryIcons[category]}
+        isActive={showDropDown === true && selectedCategory.title === category}
       />
     ));
   }
