@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { compose } from "../../compose";
 import { withSelect, withDispatch } from "store";
 import { findDOMNode } from "react-dom";
+import AddonItem from "./AddonItem";
 
 export class DropDownView extends Component {
   constructor() {
@@ -20,7 +21,9 @@ export class DropDownView extends Component {
   }
   render() {
     const { categoryItemRect } = this.state;
-    const { category } = this.props;
+    const { category, toggleDropdown } = this.props;
+    const { list } = category;
+
     const style = {
       position: "absolute",
       height: "100px",
@@ -36,13 +39,16 @@ export class DropDownView extends Component {
       justifyContent: "center",
     };
 
-    if (categoryItemRect && category === "addon") {
-      console.log("addons", this.props.addonList);
-    }
-
     return (
       <div style={style}>
-        <h2>{category} DropDownView</h2>
+        {list.length > 0 &&
+          list.map((addon) => (
+            <AddonItem
+              key={addon.title}
+              block={addon}
+              toggleDropdown={toggleDropdown}
+            />
+          ))}
       </div>
     );
   }
@@ -54,12 +60,8 @@ export default compose([
       getActiveMediaQuery,
       getDefaultAddonList,
     } = select();
-    let addonListCategory = {
-      recent: {},
-      addon: {},
-    };
+
     return {
-      addonListCategory,
       addonList: getDefaultAddonList(),
       viewports: getMediaQueries(),
       viewport: getActiveMediaQuery(),

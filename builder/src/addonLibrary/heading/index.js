@@ -6,15 +6,15 @@ export default {
   name: "Heading",
   title: "Heading",
   icon: "fa fa-heading",
-  category: "common",
+  category: "Text",
   childrens: [],
   attributes: {
     class: "sppb-heading",
     color: "red",
-    displayType: 'grid',
-    gridArea: ''
+    displayType: "grid",
+    gridArea: "",
   },
   content: "",
   childrens: [],
-  Component: Heading
+  Component: Heading,
 };

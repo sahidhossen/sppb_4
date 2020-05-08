@@ -10,14 +10,10 @@ export class Category extends Component {
     return (
       <div
         ref={this.props.categoryRef}
-        onClick={() => this.props.toggleDropDown(name)}
-        className="editor-x-dropdown-item"
+        style={style}
+        onClick={() => this.props.setCategory(category)}
       >
-        <div className="editor-x-dropdown-icons">
-          {icon && <i className={`${icon} editor-x-dropdown-category`}></i>}
-          <i className="fas fa-angle-down editor-x-dropdown-angle"></i>
-        </div>
-        {name}
+        {category.title}
       </div>
     );
   }
