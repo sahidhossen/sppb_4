@@ -9,7 +9,7 @@ import withChildren from "../childAddon";
 import AddonOutline from "./AddonOutline";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 import { getNum, getGridArea } from "../GridView/gridHelper";
-import WithDropArea from '../WithDropArea';
+import WithDropArea from "../WithDropArea";
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class AddonListAddon extends React.Component {
   }
 
   componentDidMount() {
-    // this.toggleListeners(this.node);
+    this.toggleListeners(this.wrapperNode);
   }
 
   componentWillUnmount() {
@@ -207,28 +207,25 @@ class AddonListAddon extends React.Component {
   }
 
   render() {
-    
     return (
-      <WithDropArea 
+      <WithDropArea
         index={this.props.index}
         addonId={this.props.addonId}
         isSelected={this.props.isSelected}
         container={this.wrapperNode}
-        >
-        { ( { isHover, hoverArea } ) => {
-
-           const { addonId, addon, viewport, index, isSelected } = this.props;
-          // console.log("area: ", hoverArea)
+      >
+        {({ isHover, hoverArea }) => {
+          const { addonId, addon, viewport, index, isSelected } = this.props;
           return (
             <Fragment>
-               {!isSelected && isHover && (
+              {!isSelected && isHover && (
                 <AddonOutline
                   addonId={addonId}
                   container={this.wrapperNode}
                   type="onHover"
                   className="sppb-hover-wrapper"
                 >
-                  <div className="sppb-addon-tag">{addon.name} <i className="fas fa-cog"></i></div>
+                  <div className="sppb-addon-tag-hover">{addon.name}</div>
                 </AddonOutline>
               )}
               {isSelected && (
@@ -239,7 +236,11 @@ class AddonListAddon extends React.Component {
                   type="onSelect"
                   addon={addon}
                   className="sppb-selected-wrapper"
-                />
+                >
+                  <div className="sppb-addon-tag">
+                    {addon.name} <i className="fas fa-cog"></i>
+                  </div>
+                </AddonOutline>
               )}
               <AddonEdit
                 ref={this.renderDnd}
@@ -254,9 +255,8 @@ class AddonListAddon extends React.Component {
                 renderChildren={this.withChildren.bind(this)}
               />
             </Fragment>
-          )
+          );
         }}
-       
       </WithDropArea>
     );
   }
