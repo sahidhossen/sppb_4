@@ -42,7 +42,8 @@ class AddonLibraries extends React.Component {
         categoryRef={this.categoryRef}
         toggleDropDown={this.toggleDropDown.bind(this)}
         key={category}
-        category={category}
+        category={this.props.addonListCategory[category]}
+        name={category}
       />
     ));
   }
@@ -50,8 +51,7 @@ class AddonLibraries extends React.Component {
     const { showDropDown } = this.state;
     return (
       <div className="sppb-topbar-middle">
-        <h3>TopBar Middle</h3>
-        <span>{this.renderLibarayList()}</span>
+        {this.renderLibarayList()}
         {showDropDown && (
           <SppbPortal>
             <DropDownView
@@ -73,8 +73,12 @@ export default compose([
       getDefaultAddonList,
     } = select();
     let addonListCategory = {
-      recent: {},
-      addon: {},
+      recent: {
+        icon: "fas fa-history"
+      },
+      addon: {
+        icon: "fas fa-bolt"
+      },
     };
     return {
       addonListCategory,

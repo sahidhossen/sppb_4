@@ -6,19 +6,19 @@ export class Category extends Component {
   }
 
   render() {
-    const { category } = this.props;
-    const style = {
-      padding: "10px",
-      cursor: "pointer",
-    };
+    const { category: { icon }, name } = this.props;
     return (
-      <span
+      <div
         ref={this.props.categoryRef}
-        style={style}
-        onClick={() => this.props.toggleDropDown(category)}
+        onClick={() => this.props.toggleDropDown(name)}
+        className="editor-x-dropdown-item"
       >
-        {category}
-      </span>
+        <div className="editor-x-dropdown-icons">
+          {icon && <i className={`${icon} editor-x-dropdown-category`}></i>}
+          <i className="fas fa-angle-down editor-x-dropdown-angle"></i>
+        </div>
+        {name}
+      </div>
     );
   }
 }
