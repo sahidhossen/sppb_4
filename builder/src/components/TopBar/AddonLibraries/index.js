@@ -45,9 +45,9 @@ class AddonLibraries extends React.Component {
     const { addonListCategory } = this.props;
     const categories = Object.keys(addonListCategory);
     const categoryIcons = {
-      text: "fa fa-text",
-      layouts: "fa fa-layouts",
-      containers: "fa fa-containers",
+      text: "fas fa-text-height",
+      layouts: "fas fa-layer-group",
+      containers: "fas fa-toolbox",
     };
     return categories.map((category) => (
       <Category
@@ -63,8 +63,7 @@ class AddonLibraries extends React.Component {
     const { showDropDown } = this.state;
     return (
       <div className="sppb-topbar-middle">
-        <h3>TopBar Middle</h3>
-        <span>{this.renderLibarayList()}</span>
+        {this.renderLibarayList()}
         {showDropDown && (
           <SppbPortal>
             <DropDownView
