@@ -6,7 +6,6 @@ import DropDownView from "./DropDownView";
 import SppbPortal from "../../sppbportal/SppbPortal";
 import { createRef } from "react";
 import { blockListForTools } from "../../../lib/utils";
-
 class AddonLibraries extends React.Component {
   constructor() {
     super();
@@ -22,7 +21,6 @@ class AddonLibraries extends React.Component {
       showDropDown: !this.state.showDropDown,
     }));
   }
-
   setCategory(category) {
     if (this.state.selectedCategory === category) {
       this.setState((state) => ({
@@ -46,18 +44,18 @@ class AddonLibraries extends React.Component {
   renderLibarayList() {
     const { addonListCategory } = this.props;
     const categories = Object.keys(addonListCategory);
-
+    const categoryIcons = {
+      text: "fa fa-text",
+      layouts: "fa fa-layouts",
+      containers: "fa fa-containers",
+    };
     return categories.map((category) => (
       <Category
         categoryRef={this.categoryRef}
         setCategory={this.setCategory.bind(this)}
         key={category}
-<<<<<<< HEAD
-        category={this.props.addonListCategory[category]}
-        name={category}
-=======
         category={addonListCategory[category]}
->>>>>>> 82245e0ad57cfaea2e1c44c163b27c379abb7231
+        categoryIcon={categoryIcons[category]}
       />
     ));
   }
@@ -65,7 +63,8 @@ class AddonLibraries extends React.Component {
     const { showDropDown } = this.state;
     return (
       <div className="sppb-topbar-middle">
-        {this.renderLibarayList()}
+        <h3>TopBar Middle</h3>
+        <span>{this.renderLibarayList()}</span>
         {showDropDown && (
           <SppbPortal>
             <DropDownView
@@ -79,7 +78,6 @@ class AddonLibraries extends React.Component {
     );
   }
 }
-
 export default compose([
   withSelect((select) => {
     let {

@@ -6,13 +6,17 @@ export class Category extends Component {
   }
 
   render() {
-    const { category: { icon }, name } = this.props;
+    const { category, categoryIcon } = this.props;
     return (
       <div
         ref={this.props.categoryRef}
-        style={style}
         onClick={() => this.props.setCategory(category)}
+        className="editor-x-dropdown-item"
       >
+        <div className="editor-x-dropdown-icons">
+          {categoryIcon && <i className={`${categoryIcon} editor-x-dropdown-category`}></i>}
+          <i className="fas fa-angle-down editor-x-dropdown-angle"></i>
+        </div>
         {category.title}
       </div>
     );
