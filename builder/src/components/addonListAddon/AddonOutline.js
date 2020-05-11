@@ -26,13 +26,19 @@ export default class AddonOutline extends React.Component {
   componentDidMount() {
     const container = this.props.container; // findDOMNode(this.props.container.current);
     const style = getHoverStyle(container);
-    
+
     this.setState((state) => ({ ...state, style }));
-    window.frames["sppb-editor-view"].window.addEventListener("scroll",this.getStyle.bind(this));
+    window.frames["sppb-editor-view"].window.addEventListener(
+      "scroll",
+      this.getStyle.bind(this)
+    );
   }
 
   componentWillUnmount() {
-    window.frames["sppb-editor-view"].document.removeEventListener("scroll",this.getStyle.bind(this));
+    window.frames["sppb-editor-view"].document.removeEventListener(
+      "scroll",
+      this.getStyle.bind(this)
+    );
   }
 
   componentDidUpdate(prevProps) {
@@ -42,10 +48,9 @@ export default class AddonOutline extends React.Component {
     if (prevProps.container) {
       // this.toggleListeners(prevProps.container, false);
       // this.getStyle.bind(this)
-
     }
     if (this.props.container) {
-      this.getStyle()
+      this.getStyle();
       // this.toggleListeners(this.props.container, true);
     }
   }
