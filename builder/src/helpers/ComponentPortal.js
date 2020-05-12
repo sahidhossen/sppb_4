@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDom from "react-dom";
+import classNames from "classnames/bind";
 
 export default class ComponentPortal extends React.Component {
   constructor(props) {
@@ -8,7 +9,12 @@ export default class ComponentPortal extends React.Component {
   }
   componentDidMount() {
     let nextNodeId = new Date().getTime();
-    this.el.className = `sp-pagebuilder-portal-${nextNodeId}`;
+    this.el.className = classNames(
+      "sppb-portal",
+      this.props.className,
+      `sp-pagebuilder-portal-${nextNodeId}`
+    );
+    // this.el.className = `sp-pagebuilder-portal-${nextNodeId}`;
     document.body.appendChild(this.el);
   }
   componentWillUnmount() {

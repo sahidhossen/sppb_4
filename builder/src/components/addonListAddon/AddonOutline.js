@@ -10,7 +10,7 @@ function getHoverStyle(node) {
       width: `${nodeRect.width}px`,
       height: `${nodeRect.height}px`,
       position: "absolute",
-      transform: `translate(${nodeRect.left + 272}px, ${nodeRect.top + 75}px)`,
+      transform: `translate(${nodeRect.left + 272}px, ${nodeRect.top + 100}px)`,
     };
   }
 }
@@ -61,12 +61,13 @@ export default class AddonOutline extends React.Component {
   }
 
   render() {
-    let { className } = this.props;
+    let { className, type } = this.props;
     const styles = this.state.style;
     const _class = classNames("sppb-addon-outline", className);
+    const portalClass = type === "onSelect" ? "selected-portal" : "";
 
     return (
-      <ComponentPortal>
+      <ComponentPortal className={portalClass}>
         <div className={_class} style={styles}>
           {this.props.children}
         </div>
