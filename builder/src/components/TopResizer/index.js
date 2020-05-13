@@ -67,10 +67,10 @@ export class TopResizer extends Component {
 
       // left handler
       if (node === this.leftResizerRef.current) {
-        console.log(event.pageX - this.state.leftValue - 270);
+        console.log(event.pageX - this.state.leftValue - 273);
         this.setState((state) => ({
           ...state,
-          leftValue: event.pageX - this.state.leftValue - 270,
+          leftValue: event.pageX - this.state.leftValue - 273,
         }));
       }
 

@@ -136,7 +136,7 @@
 }
 .editor-x-resizer-right-container,
 .editor-x-resizer-left-container {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
 }
@@ -149,7 +149,7 @@
   display: flex;
   justify-content: center;
   font-size: 0.7rem;
-  position: absolute;
+  // position: absolute;
   align-items: center;
   cursor: pointer;
 }
