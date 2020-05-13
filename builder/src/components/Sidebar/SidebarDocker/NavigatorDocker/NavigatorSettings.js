@@ -12,6 +12,7 @@ const SidebarSettings = ({ sidebarName }) => (
     <div className="sidebar-panel">
       {sidebarName === "addonlist" && <AddonList addonType={sidebarName} />}
       {sidebarName === "navigator" && <Navigator />}
+      <div className="editor-x-navigation-collaps">Collaps All</div>
     </div>
   </NavigatorDocker>
 );
