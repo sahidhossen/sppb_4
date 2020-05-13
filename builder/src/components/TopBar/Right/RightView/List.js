@@ -55,9 +55,9 @@ class List extends Component {
       if (isSubList) {
         // console.log(this.contextMenuWrapper, this.props.target, document.body);
         if (docRect.width - targetRect.right > rect.width) {
-          leftDistance = targetRect.right;
+          leftDistance = targetRect.right + 10;
         } else {
-          leftDistance = targetRect.left - targetRect.width;
+          leftDistance = targetRect.left - targetRect.width - 10;
         }
         topDistance = targetRect.y;
       } else {
@@ -87,15 +87,15 @@ class List extends Component {
     let { viewports, isSubList } = this.props;
     return (
       <div
-        className="sppb-viewport-list sppb-popup"
+        className="editor-x-viewport-list editor-x-popup"
         style={this.state.contextStyle}
         ref={(ref) => {
           this.contextMenuWrapper = ref;
         }}
       >
-        <ul className="sppb-list-menu">
+        <ul className="editor-x-list-menu">
           {Object.keys(viewports).map((name) => {
-            let hasSubList = name === "desktop" && !isSubList ? true : false;
+            let hasSubList = name === "tablet" && !isSubList ? true : false;
             let viewport = viewports[name];
             return (
               <ListItem

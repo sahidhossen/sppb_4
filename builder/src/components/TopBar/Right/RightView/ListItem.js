@@ -34,17 +34,21 @@ class ListItem extends React.Component {
           }}
           onClick={this.openList.bind(this)}
         >
-          <div className="sppb-viewport-icon">
-            <i className={viewport.icon}></i>
-          </div>
-          <div className="sppb-viewport-title">
-            <h3 className="sppb-title">{viewport.title} </h3>
-            <span className="sppb-notes">{viewport.value} and down</span>
-            {hasSubList && (
-              <div className="sppb-nested-icon">
-                <i className="fas fa-arrow-right"></i>
-              </div>
-            )}
+          <div className="editor-x-viewport-content-wrap">
+            <div className="editor-x-viewport-icon">
+              <i className={viewport.icon}></i>
+            </div>
+            <div className="editor-x-viewport-title-wrap">
+              <span className="editor-x-viewport-title">{viewport.title} </span>
+              {/*<span className="sppb-viewport-notes">
+                      {viewport.value} and down
+                    </span>*/}
+              {hasSubList && (
+                <div className="editor-x-nested-icon">
+                  <i className="fas fa-arrow-right"></i>
+                </div>
+              )}
+            </div>
           </div>
         </li>
         {this.state.isList && (
@@ -65,10 +69,9 @@ class ListItem extends React.Component {
 
 export default compose([
   withSelect((select) => {
-    let { getMediaQueries, getActiveMediaQuery } = select();
+    let { getMediaQueries } = select();
     return {
       viewports: getMediaQueries(),
-      viewport: getActiveMediaQuery(),
     };
   }),
 ])(ListItem);

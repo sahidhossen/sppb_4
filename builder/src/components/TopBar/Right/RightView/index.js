@@ -40,7 +40,7 @@ class RightView extends React.Component {
               reset={this.reset.bind(this)}
               event={this.state.event}
               target={this.button}
-              viewports={this.props.viewports}
+              viewports={viewports}
             />
           </SppbPortal>
         )}

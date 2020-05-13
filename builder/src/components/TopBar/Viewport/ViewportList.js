@@ -6,8 +6,8 @@ class ViewportList extends Component {
     this.state = {
       active: false,
       contextStyle: {
-        visibility: "none"
-      }
+        visibility: "none",
+      },
     };
   }
 
@@ -65,8 +65,8 @@ class ViewportList extends Component {
         contextStyle: {
           visibility: "visible",
           top: topDistance + "px",
-          left: leftDistance + "px"
-        }
+          left: leftDistance + "px",
+        },
       });
     });
   }
@@ -77,12 +77,12 @@ class ViewportList extends Component {
       <div
         className="editor-x-viewport-list editor-x-popup"
         style={this.state.contextStyle}
-        ref={ref => {
+        ref={(ref) => {
           this.contextMenuWrapper = ref;
         }}
       >
         <ul className="editor-x-list-menu">
-          {Object.keys(viewports).map(name => {
+          {Object.keys(viewports).map((name) => {
             let viewport = viewports[name];
             return (
               <li key={name} onClick={() => this.props.update(name)}>
@@ -91,12 +91,12 @@ class ViewportList extends Component {
                     <i className={viewport.icon}></i>
                   </div>
                   <div className="editor-x-viewport-title-wrap">
-                    <span className="editor-x-viewport-title">{viewport.title} </span>
-                    {
-                    /*<span className="sppb-viewport-notes">
+                    <span className="editor-x-viewport-title">
+                      {viewport.title}{" "}
+                    </span>
+                    {/*<span className="sppb-viewport-notes">
                       {viewport.value} and down
-                    </span>*/
-                    }
+                    </span>*/}
                   </div>
                 </div>
               </li>
