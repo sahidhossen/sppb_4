@@ -3,34 +3,34 @@ const initialControls = {
 
     pickedAddon: null,
     mediaQuery:{
-      active: 'desktop',
+      active: 'mobile',
       scale: '100%',
       list: {
         large: {
           value: 1920,
           scale: 60.6,
-          title: 'Large Device',
+          title: 'Desktop(Default)',
           icon: 'fa fa-desktop',
           details: 'Styles added here will apply at 1280px and up.'
         },
-        desktop: {
-          value: 900, //1164,
-          scale: 100,
-          title: 'Desktop',
-          icon: 'fa fa-desktop',
-          details: 'Styles added here will apply at 1170px and up.'
-        },
+        // desktop: {
+        //   value: 900, //1164,
+        //   scale: 100,
+        //   title: 'Desktop',
+        //   icon: 'fa fa-desktop',
+        //   details: 'Styles added here will apply at 1170px and up.'
+        // },
         tablet: {
           value: 768,
           scale: 100,
-          title: 'tablet',
+          title: 'Tablet',
           icon: 'fa fa-tablet',
           details: 'Styles added here will apply at 1170px and up.'
         },
         mobile: {
           value: 320,
           scale: 100,
-          title: 'tablet',
+          title: 'Mobile',
           icon: 'fa fa-mobile',
           details: 'Styles added here will apply at 1170px and up.'
         },

@@ -23,12 +23,13 @@ class Viewport extends React.Component {
         this.props.updateViewport(viewport);
     }
     render() {
-        let {viewport,viewports} = this.props;
+        let { viewport, viewports } = this.props;
+        console.log("viewport", viewports)
         return (
             <Fragment>
                 <div className="sppb-responsive-btn" ref={ref => { this.button = ref }} onClick={this.openViewportList.bind(this)}>
-                    <i className={viewport.icon}></i>
-                    <span>Responsive</span>
+                    <i className={viewport.icon}></i> <span className="fas fa-angle-down"></span>
+                    <span className="editor-x-responsive-text">Responsive</span>
                 </div>
             {this.state.isList && 
                 <SppbPortal className="popover">
