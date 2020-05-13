@@ -103,7 +103,6 @@ class WithDropArea extends React.Component {
           },
         },
       };
-      console.log("hey", settings);
       this.hoverArea = null;
       this.isAllow = false;
       this.props.onInsertAddon(settings);
