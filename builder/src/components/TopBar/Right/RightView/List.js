@@ -84,7 +84,7 @@ class List extends Component {
   }
 
   render() {
-    let { viewports, isSubList } = this.props;
+    let { viewContextList, isSubList } = this.props;
     return (
       <div
         className="editor-x-viewport-list editor-x-popup"
@@ -94,13 +94,14 @@ class List extends Component {
         }}
       >
         <ul className="editor-x-list-menu">
-          {Object.keys(viewports).map((name) => {
-            let hasSubList = name === "tablet" && !isSubList ? true : false;
-            let viewport = viewports[name];
+          {Object.keys(viewContextList).map((item) => {
+            // just demo purpose
+            let hasSubList = item === "code" && !isSubList ? true : false;
+            let listItem = viewContextList[item];
             return (
               <ListItem
-                key={name}
-                viewport={viewport}
+                key={item}
+                listItem={listItem}
                 hasSubList={hasSubList}
               />
             );

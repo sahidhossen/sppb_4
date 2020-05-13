@@ -24,7 +24,7 @@ class ListItem extends React.Component {
   }
 
   render() {
-    const { viewport, hasSubList } = this.props;
+    const { listItem, hasSubList } = this.props;
     return (
       <Fragment>
         <li
@@ -36,10 +36,10 @@ class ListItem extends React.Component {
         >
           <div className="editor-x-viewport-content-wrap">
             <div className="editor-x-viewport-icon">
-              <i className={viewport.icon}></i>
+              <i className={listItem.icon}></i>
             </div>
             <div className="editor-x-viewport-title-wrap">
-              <span className="editor-x-viewport-title">{viewport.title} </span>
+              <span className="editor-x-viewport-title">{listItem.title} </span>
               {/*<span className="sppb-viewport-notes">
                       {viewport.value} and down
                     </span>*/}
@@ -58,7 +58,7 @@ class ListItem extends React.Component {
               reset={this.reset.bind(this)}
               event={this.state.event}
               target={this.button}
-              viewports={this.props.viewports}
+              viewContextList={this.props.viewContextList}
             />
           </SppbPortal>
         )}
@@ -69,9 +69,10 @@ class ListItem extends React.Component {
 
 export default compose([
   withSelect((select) => {
-    let { getMediaQueries } = select();
+    let { getMediaQueries, getViewContextList } = select();
     return {
       viewports: getMediaQueries(),
+      viewContextList: getViewContextList(),
     };
   }),
 ])(ListItem);

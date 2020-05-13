@@ -127,3 +127,7 @@ export const getPickedAddon = (store) => {
 export const isAddonPicked = (store) => {
   return store.control.pickedAddon !== null;
 };
+
+export const getViewContextList = (store) => {
+  return store.viewContextList;
+};

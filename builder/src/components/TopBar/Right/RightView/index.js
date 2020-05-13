@@ -21,7 +21,8 @@ class RightView extends React.Component {
   }
 
   render() {
-    let { viewport, viewports } = this.props;
+    let { viewport, viewports, viewContextList } = this.props;
+
     return (
       <Fragment>
         <div
@@ -40,7 +41,7 @@ class RightView extends React.Component {
               reset={this.reset.bind(this)}
               event={this.state.event}
               target={this.button}
-              viewports={viewports}
+              viewContextList={viewContextList}
             />
           </SppbPortal>
         )}
@@ -51,10 +52,11 @@ class RightView extends React.Component {
 
 export default compose([
   withSelect((select) => {
-    let { getMediaQueries, getActiveMediaQuery } = select();
+    let { getMediaQueries, getActiveMediaQuery, getViewContextList } = select();
     return {
       viewports: getMediaQueries(),
       viewport: getActiveMediaQuery(),
+      viewContextList: getViewContextList(),
     };
   }),
 ])(RightView);
