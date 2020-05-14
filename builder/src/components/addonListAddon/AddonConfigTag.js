@@ -23,6 +23,7 @@ class AddonConfigTag extends React.Component {
 
   render() {
     let { viewport, viewports, viewContextList, addon, target } = this.props;
+    console.log("here", this.state.isList);
     const targetRect = target && target.getBoundingClientRect();
     return (
       <Fragment>

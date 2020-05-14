@@ -134,6 +134,7 @@ class AddonListAddon extends React.Component {
   }
 
   onMouseOver(node, event) {
+    console.log("hover", this.props.addon, node);
     event.stopPropagation();
 
     if (this.state.currentElement) return;

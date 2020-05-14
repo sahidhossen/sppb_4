@@ -55,7 +55,7 @@ class List extends Component {
       if (isSubList) {
         // console.log(this.contextMenuWrapper, this.props.target, document.body);
         if (docRect.width - targetRect.right > rect.width) {
-          leftDistance = targetRect.right + 10;
+          leftDistance = targetRect.right + 2;
         } else {
           leftDistance = targetRect.left - targetRect.width - 10;
         }
@@ -65,9 +65,9 @@ class List extends Component {
         topDistance = targetRect.y + targetRect.height; // Right after the element
       }
       // calculating left position
-      if (event.clientX + rect.width > docRect.left + docRect.width) {
-        leftDistance = event.clientX - rect.width;
-      }
+      // if (event.clientX + rect.width > docRect.left + docRect.width) {
+      //   leftDistance = event.clientX - rect.width;
+      // }
       // calculating top position
       if (event.clientY + rect.height > window.innerHeight) {
         topDistance = event.clientY - rect.height;
