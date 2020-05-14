@@ -10,6 +10,9 @@ import AddonOutline from "./AddonOutline";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 import { getNum, getGridArea } from "../GridView/gridHelper";
 import WithDropArea from "../WithDropArea";
+import AddonConfigTag from "./AddonConfigTag";
+import ComponentPortal from "../../helpers/ComponentPortal";
+import SppbPortal from "../sppbportal/SppbPortal";
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -229,18 +232,16 @@ class AddonListAddon extends React.Component {
                 </AddonOutline>
               )}
               {isSelected && (
-                <AddonOutline
-                  isHover={isHover}
-                  addonId={addonId}
-                  container={this.wrapperNode}
-                  type="onSelect"
-                  addon={addon}
-                  className="sppb-selected-wrapper"
-                >
-                  <div className="sppb-addon-tag">
-                    {addon.name} <i className="fas fa-cog"></i>
-                  </div>
-                </AddonOutline>
+                <Fragment>
+                  <AddonOutline
+                    isHover={isHover}
+                    addonId={addonId}
+                    container={this.wrapperNode}
+                    type="onSelect"
+                    addon={addon}
+                    className="sppb-selected-wrapper"
+                  />
+                </Fragment>
               )}
               <AddonEdit
                 ref={this.renderDnd}

@@ -35,6 +35,7 @@ class ListItem extends React.Component {
           onClick={this.openList.bind(this)}
         >
           <div className="editor-x-viewport-content-wrap">
+            {listItem.status && <i className="fas fa-check"></i>}
             <div className="editor-x-viewport-icon">
               <i className={listItem.icon}></i>
             </div>
