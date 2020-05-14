@@ -16,14 +16,25 @@ class AddonConfigTag extends React.Component {
   openList(event) {
     event.persist();
     this.setState({ isList: true, event });
+    this.props.togglePopoverSettingPanel({
+      status: true,
+      ref: this.button,
+      event,
+    });
   }
   reset() {
     this.setState({ isList: false, event: null });
+    this.props.togglePopoverSettingPanel({
+      status: false,
+      ref: null,
+      contextMenuWrapper: null,
+      event: null,
+      contextStyle: null,
+    });
   }
 
   render() {
-    let { viewport, viewports, viewContextList, addon, target } = this.props;
-    console.log("here", this.state.isList);
+    let { addon, target, popoverSettingPanel } = this.props;
     const targetRect = target && target.getBoundingClientRect();
     return (
       <Fragment>
@@ -42,7 +53,7 @@ class AddonConfigTag extends React.Component {
             <span>{addon.name}</span> <i className="fas fa-cog"></i>
           </div>
         )}
-        {this.state.isList && (
+        {popoverSettingPanel.status && (
           <SppbPortal className="popover">
             <PopoverSetting
               reset={this.reset.bind(this)}
@@ -59,11 +70,25 @@ class AddonConfigTag extends React.Component {
 
 export default compose([
   withSelect((select) => {
-    let { getMediaQueries, getActiveMediaQuery, getViewContextList } = select();
+    let {
+      getMediaQueries,
+      getActiveMediaQuery,
+      getViewContextList,
+      popoverSettingPanel,
+    } = select();
     return {
       viewports: getMediaQueries(),
       viewport: getActiveMediaQuery(),
       viewContextList: getViewContextList(),
+      popoverSettingPanel: popoverSettingPanel(),
+    };
+  }),
+  withDispatch((dispatch) => {
+    const { togglePopoverSettingPanel } = dispatch();
+    return {
+      togglePopoverSettingPanel(status) {
+        togglePopoverSettingPanel(status);
+      },
     };
   }),
 ])(AddonConfigTag);

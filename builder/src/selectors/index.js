@@ -131,3 +131,7 @@ export const isAddonPicked = (store) => {
 export const getViewContextList = (store) => {
   return store.viewContextList;
 };
+
+export const popoverSettingPanel = (store) => {
+  return store.popoverSettingPanel;
+};

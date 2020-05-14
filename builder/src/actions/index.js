@@ -69,3 +69,7 @@ export const updateDocker = (dockerName, tabName) => {
 export const updateViewport = (viewportName) => {
   return { type: "UPDATE_ACTIVE_MEDIA_QUERY", name: viewportName };
 };
+
+export const togglePopoverSettingPanel = (payload) => {
+  return { type: "TOGGLE_POPOVER_SETTING_PANEL", payload };
+};
