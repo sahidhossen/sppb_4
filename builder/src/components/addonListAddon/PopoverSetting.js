@@ -62,7 +62,7 @@ class PopoverSetting extends Component {
     if (!isDragging && event.target === event.currentTarget) {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
       let x = event.clientX - contextHeaderRect.left;
-      let y = event.clientY - contextHeaderRect.top;
+      let y = event.clientY - contextHeaderRect.top + 4;
 
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(

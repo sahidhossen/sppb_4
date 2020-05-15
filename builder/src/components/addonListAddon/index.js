@@ -240,7 +240,9 @@ class AddonListAddon extends React.Component {
                     type="onSelect"
                     addon={addon}
                     className="sppb-selected-wrapper"
-                  />
+                  >
+                    <AddonConfigTag addon={addon} />
+                  </AddonOutline>
                 </Fragment>
               )}
               <AddonEdit
