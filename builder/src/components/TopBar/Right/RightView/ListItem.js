@@ -9,7 +9,7 @@ class ListItem extends React.Component {
     super();
     this.state = {
       isList: false,
-      event: null,
+      event: null
     };
   }
   openList(event) {
@@ -29,27 +29,34 @@ class ListItem extends React.Component {
       <Fragment>
         <li
           key={name}
-          ref={(ref) => {
+          ref={ref => {
             this.button = ref;
           }}
           onClick={this.openList.bind(this)}
+          className={
+            listItem.status ? "editor-x-context-menu-item-active" : false
+          }
         >
-          <div className="editor-x-viewport-content-wrap">
-            {listItem.status && <i className="fas fa-check"></i>}
-            <div className="editor-x-viewport-icon">
+          <div className="editor-x-context-menu-content-wrap">
+            {listItem.status && (
+              <i className="fas fa-check editor-x-context-menu-checkmark"></i>
+            )}
+            <div className="editor-x-context-menu-icon">
               <i className={listItem.icon}></i>
             </div>
-            <div className="editor-x-viewport-title-wrap">
-              <span className="editor-x-viewport-title">{listItem.title} </span>
+            <div className="editor-x-context-menu-title-wrap">
+              <span className="editor-x-context-menu-title">
+                {listItem.title}{" "}
+              </span>
               {/*<span className="sppb-viewport-notes">
                       {viewport.value} and down
                     </span>*/}
-              {hasSubList && (
-                <div className="editor-x-nested-icon">
-                  <i className="fas fa-arrow-right"></i>
-                </div>
-              )}
             </div>
+            {hasSubList && (
+              <div className="editor-x-context-menu-nested-icon">
+                <i className="fas fa-caret-right"></i>
+              </div>
+            )}
           </div>
         </li>
         {this.state.isList && (
@@ -69,11 +76,11 @@ class ListItem extends React.Component {
 }
 
 export default compose([
-  withSelect((select) => {
+  withSelect(select => {
     let { getMediaQueries, getViewContextList } = select();
     return {
       viewports: getMediaQueries(),
-      viewContextList: getViewContextList(),
+      viewContextList: getViewContextList()
     };
-  }),
+  })
 ])(ListItem);

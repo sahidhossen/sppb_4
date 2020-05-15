@@ -87,13 +87,13 @@ class List extends Component {
     let { viewContextList, isSubList } = this.props;
     return (
       <div
-        className="editor-x-viewport-list editor-x-popup"
+        className="editor-x-context-menu-list editor-x-popup"
         style={this.state.contextStyle}
         ref={(ref) => {
           this.contextMenuWrapper = ref;
         }}
       >
-        <ul className="editor-x-list-menu">
+        <ul className="editor-x-context-menu">
           {Object.keys(viewContextList).map((item) => {
             // just demo purpose
             let hasSubList = item === "code" && !isSubList ? true : false;

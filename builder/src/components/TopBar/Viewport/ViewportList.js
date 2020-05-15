@@ -72,26 +72,29 @@ class ViewportList extends Component {
   }
 
   render() {
-    let { viewports } = this.props;
+    let { viewports, activeViewport } = this.props;
+    console.log("viewport", activeViewport)
     return (
       <div
-        className="editor-x-viewport-list editor-x-popup"
+        className="editor-x-context-menu-list editor-x-popup"
         style={this.state.contextStyle}
         ref={(ref) => {
           this.contextMenuWrapper = ref;
         }}
       >
-        <ul className="editor-x-list-menu">
+        <ul className="editor-x-context-menu">
           {Object.keys(viewports).map((name) => {
             let viewport = viewports[name];
+            const isActive = activeViewport.name === name;
             return (
-              <li key={name} onClick={() => this.props.update(name)}>
-                <div className="editor-x-viewport-content-wrap">
-                  <div className="editor-x-viewport-icon">
+              <li key={name} onClick={() => this.props.update(name)} className={isActive ? 'editor-x-context-menu-item-active' : false}>
+                <div className="editor-x-context-menu-content-wrap">
+                  {isActive && <i className="fas fa-check editor-x-context-menu-checkmark"></i>}
+                  <div className="editor-x-context-menu-icon">
                     <i className={viewport.icon}></i>
                   </div>
-                  <div className="editor-x-viewport-title-wrap">
-                    <span className="editor-x-viewport-title">
+                  <div className="editor-x-context-menu-title-wrap">
+                    <span className="editor-x-context-menu-title">
                       {viewport.title}{" "}
                     </span>
                     {/*<span className="sppb-viewport-notes">

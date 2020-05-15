@@ -99,7 +99,8 @@ export const getActiveDockerName = (store, dockerName) => {
 
 export const getActiveMediaQuery = (store) => {
   let { mediaQuery } = store.control;
-  return mediaQuery.list[mediaQuery.active];
+  const viewport =  {...mediaQuery.list[mediaQuery.active], name: mediaQuery.active};
+  return viewport;
 };
 
 export const getMediaQuery = (store, name) => {

@@ -145,21 +145,27 @@ class PopoverSetting extends Component {
     const { addon } = this.props;
     return (
       <div
-        className="editor-x-viewport-list editor-x-popup"
+        className="editor-x-popup editor-x-settings-popup"
         style={this.state.contextStyle}
         ref={(ref) => {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div
-          className="popover-setting__header"
-          ref={this.contextHeader}
-          style={{ cursor: "move" }}
-        >
-          {addon.name}
+        <div className="editor-x-addon-settings-wrapper">
+          <div
+            className="editor-x-addon-settings-title"
+            ref={this.contextHeader}
+          >
+            {/* <i className="fas fa-cog"></i> */}
+            {addon.name}
+          </div>
+          <div className="editor-x-addon-settings-content">
+            Addon Content...
+          </div>
+          <div className="editor-x-addon-settings-footer">
+            footer section...
+          </div>
         </div>
-        <div className="popover-setting__content">Addon Content...</div>
-        <div className="popover-setting__footer">footer section...</div>
       </div>
     );
   }

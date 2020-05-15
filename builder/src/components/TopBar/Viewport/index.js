@@ -24,7 +24,6 @@ class Viewport extends React.Component {
   }
   render() {
     let { viewport, viewports } = this.props;
-    // console.log("viewport", viewports)
     return (
       <Fragment>
         <div
@@ -46,6 +45,7 @@ class Viewport extends React.Component {
               target={this.button}
               update={this.props.updateViewport}
               viewports={this.props.viewports}
+              activeViewport={this.props.viewport}
             />
           </SppbPortal>
         )}
