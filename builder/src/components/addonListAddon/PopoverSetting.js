@@ -62,7 +62,7 @@ class PopoverSetting extends Component {
     if (!isDragging && event.target === event.currentTarget) {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
       let x = event.clientX - contextHeaderRect.left;
-      let y = event.clientY - contextHeaderRect.top + 4;
+      let y = event.clientY - contextHeaderRect.top + 3;
 
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(
@@ -151,7 +151,7 @@ class PopoverSetting extends Component {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div className="sppb-sidebar-icons">
+        <div className="sppb-sidebar-icons" ref={this.contextHeader}>
           <span className="sppb-drag-icon">
             <i className="fas fa-braille"></i>
           </span>
@@ -170,10 +170,7 @@ class PopoverSetting extends Component {
         </div>
 
         <div className="editor-x-addon-settings-wrapper">
-          <div
-            className="editor-x-addon-settings-title"
-            ref={this.contextHeader}
-          >
+          <div className="editor-x-addon-settings-title">
             {/* <i className="fas fa-cog"></i> */}
             {addon.name}
           </div>
@@ -190,18 +187,18 @@ class PopoverSetting extends Component {
 }
 
 export default compose([
-  withSelect(select => {
+  withSelect((select) => {
     let { popoverSettingPanel } = select();
     return {
-      popoverSettingPanel: popoverSettingPanel()
+      popoverSettingPanel: popoverSettingPanel(),
     };
   }),
-  withDispatch(dispatch => {
+  withDispatch((dispatch) => {
     const { togglePopoverSettingPanel } = dispatch();
     return {
       togglePopoverSettingPanel(status) {
         togglePopoverSettingPanel(status);
-      }
+      },
     };
-  })
+  }),
 ])(PopoverSetting);
