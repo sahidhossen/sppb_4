@@ -141,7 +141,7 @@ class PopoverSetting extends Component {
   }
 
   render() {
-    const { addon } = this.props;
+    const { defaultAddon, selectedAddon } = this.props;
     return (
       <div
         className="editor-x-popup editor-x-settings-popup"
@@ -155,8 +155,8 @@ class PopoverSetting extends Component {
             className="editor-x-addon-settings-title"
             ref={this.contextHeader}
           >
-            <i className="fas fa-cog"></i>
-            {addon.name}
+            <i className={defaultAddon.icon}></i>
+            {selectedAddon.name}
           </div>
           <div className="editor-x-addon-setting">
             Your settings goes here...
@@ -175,9 +175,13 @@ class PopoverSetting extends Component {
 
 export default compose([
   withSelect((select) => {
-    let { popoverSettingPanel } = select();
+    let { popoverSettingPanel, getSelectedAddon, getDefaultAddon } = select();
+    let selectedAddon = getSelectedAddon();
+    let defaultAddon = getDefaultAddon(selectedAddon.name);
     return {
       popoverSettingPanel: popoverSettingPanel(),
+      defaultAddon,
+      selectedAddon,
     };
   }),
   withDispatch((dispatch) => {

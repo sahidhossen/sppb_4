@@ -20,18 +20,11 @@ class Canvas extends React.Component {
     this.createCustomCursor = this.createCustomCursor.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.isAddonPicked && this.props.isAddonPicked) {
-      window.frames["sppb-editor-view"].document.addEventListener(
-        "mousemove",
-        this.createCustomCursor.bind(this)
-      );
-    } else {
-      window.frames["sppb-editor-view"].document.removeEventListener(
-        "mousemove",
-        this.createCustomCursor.bind(this)
-      );
-    }
+  componentDidMount() {
+    window.frames["sppb-editor-view"].document.addEventListener(
+      "mousemove",
+      this.createCustomCursor.bind(this)
+    );
   }
 
   componentWillUnmount() {
@@ -80,6 +73,7 @@ class Canvas extends React.Component {
     let { attributes, mediaQuery, isAddonPicked, pickedAddon } = this.props;
     const { cursorPosition } = this.state;
     let { gridGap, gridCol } = attributes;
+
     let style = {
       gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
       // gridTemplateColumns: `repeat(auto-fit, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
