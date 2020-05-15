@@ -41,11 +41,13 @@
         justify-content: space-around;
     }
     li {
-        display: inline-block;
         padding: var(--space-10) var(--space-5);
         border-bottom: 2px solid transparent;
         margin-top: -1px;
         border-radius: 1px;
+        font-size: 1.4545rem;
+        letter-spacing: -0.18px;
+        font-weight: var(--font-weight-light);
         @include transition(0.35s);
         color: var(--white);
         &:hover,

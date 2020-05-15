@@ -1,14 +1,3 @@
-/**
-Indicator
-*/
-.sppb-drop-target-outline {
-  height: 2px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  pointer-events: none;
-}
-
 //Addon wrapper
 .sppb-addon-outline {
   border: 0.2rem dashed rgba(253, 129, 43, 0.56);
@@ -44,12 +33,130 @@ Indicator
   text-transform: capitalize;
 }
 
-.editor-x-addon-settings-wrapper {
-  width: 22.3636rem;
+// Context menu
+.editor-x-popup {
+  position: fixed;
+  background: var(--shark-dark);
   border-radius: 0.4545rem;
-  box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
-  background: var(--pearl-dark);
-  padding: 0.2727rem;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 6px 12px 0 rgba(var(--black-rgb), 0.5);
+  border: 1px solid var(--battleship-gray);
+  min-width: 19rem;
+  opacity: 1;
+  text-align: left;
+  z-index: 9999;
+  top: 0px;
+  left: -18.1818rem;
+  color: var(--chateua-gray);
+  //Addon settings context menu
+  &.editor-x-settings-popup {
+    min-width: 22.3636rem;
+    box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
+    background: var(--pearl-dark);
+    border: none;
+    padding: 0.2727rem;
+  }
+}
+.editor-x-context-menu {
+  margin: 0;
+  padding: 0.9091rem 0;
+  list-style: none;
+  li {
+    padding-left: 2.7273rem;
+    margin: 0 0.1818rem;
+    border-radius: 0.2727rem;
+    &.editor-x-context-menu-item-active,
+    &:hover {
+      background: var(--brush-marble-gray);
+      color: var(--white);
+    }
+    &:last-child {
+      .editor-x-context-menu-content-wrap {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+.editor-x-context-menu-content-wrap {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding: 0.4545rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--brush-marble-gray);
+  transition: all 0.2s linear 0s;
+  &:hover {
+    background: rgba(64, 72, 74, 0.1);
+  }
+}
+.editor-x-context-menu-checkmark {
+  position: absolute;
+  left: -1.8182rem;
+}
+.editor-x-context-menu-icon {
+  width: 2.7273rem;
+  font-size: 1.3rem;
+}
+.editor-x-context-menu-title-wrap {
+  flex: 1;
+  display: block;
+}
+.editor-x-context-menu-title {
+  margin: 0;
+  padding-bottom: 0;
+}
+// .editor-x-context-menu-note {
+//   display: inline-block;
+//   font-size: 10px;
+//   padding-top: 3px;
+// }
+
+.editor-x-navigation-collaps {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  background: var(--brush-marble-gray);
+  padding: 4.5px 0px;
+  border-bottom-left-radius: 0.2727rem;
+  border-bottom-right-radius: 0.2727rem;
+  border-top: 1px solid var(--pearl-dark);
+  cursor: pointer;
+  color: var(--chateua-gray);
+}
+.editor-x-context-menu-nested-icon {
+  font-size: 1.5rem;
+  padding-right: 0.6364rem;
+}
+
+//Addon Settings context menu
+.editor-x-addon-settings-tab-panel {
+  ul {
+    display: flex;
+    justify-content: space-around;
+  }
+  li {
+    padding: var(--space-10) var(--space-5);
+    border-bottom: 2px solid transparent;
+    margin-top: -1px;
+    border-radius: 1px;
+    letter-spacing: 0.3px;
+    font-weight: var(--font-weight-light);
+    @include transition(0.35s);
+    color: var(--white);
+    &:hover,
+    &:focus,
+    &.active {
+      border-color: var(--primary-color);
+    }
+  }
+}
+.editor-x-addon-settings-wrapper {
+  background: var(--charcoal-dark);
+  border-radius: 0.2727rem;
 }
 
 .editor-x-addon-settings-title {

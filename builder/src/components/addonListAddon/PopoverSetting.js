@@ -151,6 +151,24 @@ class PopoverSetting extends Component {
           this.contextMenuWrapper = ref;
         }}
       >
+        <div className="sppb-sidebar-icons">
+          <span className="sppb-drag-icon">
+            <i className="fas fa-braille"></i>
+          </span>
+          <span className="sppb-sidebar-panel-icon">
+            <i className="fas fa-columns"></i>
+            <i className="fas fa-columns"></i>
+            <i className="fas fa-columns"></i>
+          </span>
+        </div>
+        <div className="editor-x-addon-settings-tab-panel">
+          <ul>
+            <li>Addons</li>
+            <li>Navigator</li>
+            <li>Bookmark</li>
+          </ul>
+        </div>
+
         <div className="editor-x-addon-settings-wrapper">
           <div
             className="editor-x-addon-settings-title"
@@ -172,18 +190,18 @@ class PopoverSetting extends Component {
 }
 
 export default compose([
-  withSelect((select) => {
+  withSelect(select => {
     let { popoverSettingPanel } = select();
     return {
-      popoverSettingPanel: popoverSettingPanel(),
+      popoverSettingPanel: popoverSettingPanel()
     };
   }),
-  withDispatch((dispatch) => {
+  withDispatch(dispatch => {
     const { togglePopoverSettingPanel } = dispatch();
     return {
       togglePopoverSettingPanel(status) {
         togglePopoverSettingPanel(status);
-      },
+      }
     };
-  }),
+  })
 ])(PopoverSetting);
