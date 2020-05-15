@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ListItem from "../TopBar/Right/RightView/ListItem";
+import { compose } from "../compose";
+import { withSelect, withDispatch } from "store";
 
 class PopoverSetting extends Component {
   constructor(props) {
@@ -42,41 +44,39 @@ class PopoverSetting extends Component {
   }
 
   getContextMenuPosition() {
-    let { event, isSubList, addon } = this.props;
+    let { isSubList, addon, popoverSettingPanel } = this.props;
+    const { event, ref } = popoverSettingPanel;
     if (this.contextMenuTimer) {
       clearTimeout(this.contextMenuTimer);
     }
-    this.contextMenuTimer = setTimeout(() => {
-      const rect = this.contextMenuWrapper.getBoundingClientRect();
-      const targetRect = this.props.target.getBoundingClientRect();
-      const docRect = document.body.getBoundingClientRect();
-      // console.log("wo: ", docRect)
-      let leftDistance, topDistance;
+    // const rect = this.contextMenuWrapper.getBoundingClientRect();
+    const targetRect = ref.getBoundingClientRect();
+    const docRect = document.body.getBoundingClientRect();
+    // console.log("wo: ", docRect)
+    let leftDistance, topDistance;
 
-      leftDistance = event.clientX + docRect.left;
-      topDistance = targetRect.y + targetRect.height;
+    leftDistance = event.clientX + docRect.left;
+    topDistance = event.clientY;
 
-      // calculating left position
-      if (event.clientX + rect.width > docRect.left + docRect.width) {
-        leftDistance = event.clientX - rect.width;
-      }
-      // calculating top position
-      if (event.clientY + rect.height > window.innerHeight) {
-        topDistance = event.clientY - rect.height;
-      }
-
-      this.setState({
-        contextStyle: {
-          visibility: "visible",
-          top: topDistance + "px",
-          left: leftDistance + "px"
-        }
-      });
+    // calculating left position
+    // if (event.clientX + rect.width > docRect.left + docRect.width) {
+    //   leftDistance = event.clientX - rect.width;
+    // }
+    // // calculating top position
+    // if (event.clientY + rect.height > window.innerHeight) {
+    //   topDistance = event.clientY - rect.height;
+    // }
+    this.setState({
+      contextStyle: {
+        visibility: "visible",
+        top: topDistance + "px",
+        left: leftDistance + "px",
+      },
     });
   }
 
   render() {
-    const { addon } = this.props;
+    const { addon, togglePopoverSettingPanel } = this.props;
     return (
       <div
         className="editor-x-popup editor-x-settings-popup"
@@ -102,4 +102,19 @@ class PopoverSetting extends Component {
   }
 }
 
-export default PopoverSetting;
+export default compose([
+  withSelect((select) => {
+    let { popoverSettingPanel } = select();
+    return {
+      popoverSettingPanel: popoverSettingPanel(),
+    };
+  }),
+  withDispatch((dispatch) => {
+    const { togglePopoverSettingPanel } = dispatch();
+    return {
+      togglePopoverSettingPanel(status) {
+        togglePopoverSettingPanel(status);
+      },
+    };
+  }),
+])(PopoverSetting);

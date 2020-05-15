@@ -7,6 +7,7 @@ import builderControl from "./builderControl";
 import styleStore from "./StyleStore";
 import commonReducer from "./commonReducer";
 import viewContextList from "./viewContextList";
+import popoverSettingPanel from "./popoverSettingPanel";
 
 const reducers = reduceReducers(
   combineReducers({
@@ -15,6 +16,7 @@ const reducers = reduceReducers(
     control: builderControl,
     styleStore: styleStore,
     viewContextList: viewContextList,
+    popoverSettingPanel: popoverSettingPanel,
   }),
   commonReducer
 );
