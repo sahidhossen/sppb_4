@@ -12,6 +12,8 @@ class PopoverSetting extends Component {
         visibility: "none",
       },
       isDragging: false,
+      x: 0,
+      y: 0,
     };
     this.contextHeader = React.createRef();
   }
@@ -56,13 +58,14 @@ class PopoverSetting extends Component {
   }
 
   onMouseDown(event) {
+    event.stopPropagation();
     event.preventDefault();
     const { isDragging } = this.state;
 
     if (!isDragging && event.target === event.currentTarget) {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
-      let x = event.clientX - contextHeaderRect.left;
-      let y = event.clientY - contextHeaderRect.top + 3;
+      let x = event.clientX - contextHeaderRect.left + 4.3632;
+      let y = event.clientY - contextHeaderRect.top + 4.3632;
 
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(
@@ -73,6 +76,7 @@ class PopoverSetting extends Component {
   }
 
   onMouseMove(event) {
+    event.stopPropagation();
     event.preventDefault();
     const { isDragging } = this.state;
 
@@ -89,6 +93,7 @@ class PopoverSetting extends Component {
   }
 
   onMouseUp(event) {
+    event.stopPropagation();
     event.preventDefault();
     if (this.state.isDragging) {
       this.setState((state) => ({ ...state, isDragging: false }));
@@ -151,7 +156,11 @@ class PopoverSetting extends Component {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div className="sppb-sidebar-icons" ref={this.contextHeader}>
+        <div
+          className="sppb-sidebar-icons"
+          ref={this.contextHeader}
+          style={{ minHeight: "50px" }}
+        >
           <span className="sppb-drag-icon">
             <i className="fas fa-braille"></i>
           </span>
