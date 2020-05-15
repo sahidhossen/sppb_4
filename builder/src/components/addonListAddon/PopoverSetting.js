@@ -7,8 +7,8 @@ class PopoverSetting extends Component {
     this.state = {
       active: false,
       contextStyle: {
-        visibility: "none",
-      },
+        visibility: "none"
+      }
     };
   }
 
@@ -69,8 +69,8 @@ class PopoverSetting extends Component {
         contextStyle: {
           visibility: "visible",
           top: topDistance + "px",
-          left: leftDistance + "px",
-        },
+          left: leftDistance + "px"
+        }
       });
     });
   }
@@ -79,15 +79,24 @@ class PopoverSetting extends Component {
     const { addon } = this.props;
     return (
       <div
-        className="editor-x-viewport-list editor-x-popup"
+        className="editor-x-popup editor-x-settings-popup"
         style={this.state.contextStyle}
-        ref={(ref) => {
+        ref={ref => {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div className="popover-setting__header">{addon.name}</div>
-        <div className="popover-setting__content">Addon Content...</div>
-        <div className="popover-setting__footer">footer section...</div>
+        <div className="editor-x-addon-settings-wrapper">
+          <div className="editor-x-addon-settings-title">
+            <i className="fas fa-cog"></i>
+            {addon.name}
+          </div>
+          <div className="editor-x-addon-settings-content">
+            Addon Content...
+          </div>
+          <div className="editor-x-addon-settings-footer">
+            footer section...
+          </div>
+        </div>
       </div>
     );
   }

@@ -33,7 +33,8 @@ class RightView extends React.Component {
           onClick={this.openList.bind(this)}
         >
           <i className="fas fa-sliders-h"></i>
-          <span>View</span>
+          <span className="fas fa-angle-down editor-x-dropdown-angle"></span>
+          <span className="editor-x-context-text">View</span>
         </div>
         {this.state.isList && (
           <SppbPortal className="popover">

@@ -43,14 +43,21 @@
     li {
         display: inline-block;
         padding: var(--space-10) var(--space-5);
-        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
         margin-top: -1px;
         border-radius: 1px;
         @include transition(0.35s);
+        color: var(--white);
         &:hover,
         &:focus,
         &.active {
             border-color: var(--primary-color);
+            i {
+                color: var(--small-text-color);
+            }
+        }
+        i {
+            color: var(--battleship-gray);
         }
     }
 }
@@ -152,7 +159,7 @@
 }
 .sppb-panel-title {
     text-align: center;
-    color: var(--dark-bg-text-color);
+    color: var(--chateua-gray);
     letter-spacing: 0.3px;
     margin-top: 15px;
 }
