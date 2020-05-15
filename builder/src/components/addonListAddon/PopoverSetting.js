@@ -12,8 +12,6 @@ class PopoverSetting extends Component {
         visibility: "none",
       },
       isDragging: false,
-      x: 0,
-      y: 0,
     };
     this.contextHeader = React.createRef();
   }
@@ -58,15 +56,13 @@ class PopoverSetting extends Component {
   }
 
   onMouseDown(event) {
-    event.stopPropagation();
     event.preventDefault();
     const { isDragging } = this.state;
 
     if (!isDragging && event.target === event.currentTarget) {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
-      let x = event.clientX - contextHeaderRect.left + 4.3632;
-      let y = event.clientY - contextHeaderRect.top + 4.3632;
-
+      let x = event.clientX - contextHeaderRect.left + 15;
+      let y = event.clientY - contextHeaderRect.top + 15;
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(
         "mousemove",
@@ -76,7 +72,6 @@ class PopoverSetting extends Component {
   }
 
   onMouseMove(event) {
-    event.stopPropagation();
     event.preventDefault();
     const { isDragging } = this.state;
 
@@ -93,7 +88,6 @@ class PopoverSetting extends Component {
   }
 
   onMouseUp(event) {
-    event.stopPropagation();
     event.preventDefault();
     if (this.state.isDragging) {
       this.setState((state) => ({ ...state, isDragging: false }));
@@ -156,38 +150,22 @@ class PopoverSetting extends Component {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div
-          className="sppb-sidebar-icons"
-          ref={this.contextHeader}
-          style={{ minHeight: "50px" }}
-        >
-          <span className="sppb-drag-icon">
-            <i className="fas fa-braille"></i>
-          </span>
-          <span className="sppb-sidebar-panel-icon">
-            <i className="fas fa-columns"></i>
-            <i className="fas fa-columns"></i>
-            <i className="fas fa-columns"></i>
-          </span>
-        </div>
-        <div className="editor-x-addon-settings-tab-panel">
-          <ul>
-            <li>Addons</li>
-            <li>Navigator</li>
-            <li>Bookmark</li>
-          </ul>
-        </div>
-
         <div className="editor-x-addon-settings-wrapper">
-          <div className="editor-x-addon-settings-title">
-            {/* <i className="fas fa-cog"></i> */}
+          <div
+            className="editor-x-addon-settings-title"
+            ref={this.contextHeader}
+          >
+            <i className="fas fa-cog"></i>
             {addon.name}
           </div>
-          <div className="editor-x-addon-settings-content">
-            Addon Content...
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
           </div>
-          <div className="editor-x-addon-settings-footer">
-            footer section...
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
+          </div>
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
           </div>
         </div>
       </div>
