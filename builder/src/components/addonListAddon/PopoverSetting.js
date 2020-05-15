@@ -151,37 +151,23 @@ class PopoverSetting extends Component {
           this.contextMenuWrapper = ref;
         }}
       >
-        <div className="sppb-sidebar-icons">
-          <span className="sppb-drag-icon">
-            <i className="fas fa-braille"></i>
-          </span>
-          <span className="sppb-sidebar-panel-icon">
-            <i className="fas fa-columns"></i>
-            <i className="fas fa-columns"></i>
-            <i className="fas fa-columns"></i>
-          </span>
-        </div>
-        <div className="editor-x-addon-settings-tab-panel">
-          <ul>
-            <li>Addons</li>
-            <li>Navigator</li>
-            <li>Bookmark</li>
-          </ul>
-        </div>
 
         <div className="editor-x-addon-settings-wrapper">
           <div
             className="editor-x-addon-settings-title"
             ref={this.contextHeader}
           >
-            {/* <i className="fas fa-cog"></i> */}
+            <i className="fas fa-cog"></i>
             {addon.name}
           </div>
-          <div className="editor-x-addon-settings-content">
-            Addon Content...
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
           </div>
-          <div className="editor-x-addon-settings-footer">
-            footer section...
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
+          </div>
+          <div className="editor-x-addon-setting">
+            Your settings goes here...
           </div>
         </div>
       </div>
