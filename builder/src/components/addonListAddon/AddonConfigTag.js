@@ -35,24 +35,19 @@ class AddonConfigTag extends React.Component {
 
   render() {
     let { addon, target, popoverSettingPanel } = this.props;
-    const targetRect = target && target.getBoundingClientRect();
     return (
       <Fragment>
-        {target && (
-          <div
-            className="sppb-addon-tag"
-            ref={(ref) => {
-              this.button = ref;
-            }}
-            style={{
-              top: `${targetRect.top + 90}px`,
-              left: `${targetRect.left + 271}px`,
-            }}
-            onClick={this.openList.bind(this)}
-          >
-            <span>{addon.name}</span> <i className="fas fa-cog"></i>
-          </div>
-        )}
+        <div
+          className="sppb-addon-tag"
+          ref={(ref) => {
+            this.button = ref;
+          }}
+          style={{ pointerEvents: "auto" }}
+          onClick={this.openList.bind(this)}
+        >
+          <span>{addon.name}</span> <i className="fas fa-cog"></i>
+        </div>
+
         {popoverSettingPanel.status && (
           <SppbPortal className="popover">
             <PopoverSetting

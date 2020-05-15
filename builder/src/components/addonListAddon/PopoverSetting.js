@@ -9,9 +9,9 @@ class PopoverSetting extends Component {
     this.state = {
       active: false,
       contextStyle: {
-        visibility: "none",
+        visibility: "none"
       },
-      isDragging: false,
+      isDragging: false
     };
     this.contextHeader = React.createRef();
   }
@@ -62,9 +62,9 @@ class PopoverSetting extends Component {
     if (!isDragging && event.target === event.currentTarget) {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
       let x = event.clientX - contextHeaderRect.left;
-      let y = event.clientY - contextHeaderRect.top;
+      let y = event.clientY - contextHeaderRect.top + 3;
 
-      this.setState((state) => ({ ...state, isDragging: true, x, y }));
+      this.setState(state => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(
         "mousemove",
         this.onMouseMove.bind(this)
@@ -77,13 +77,13 @@ class PopoverSetting extends Component {
     const { isDragging } = this.state;
 
     if (isDragging) {
-      this.setState((state) => ({
+      this.setState(state => ({
         ...state,
         contextStyle: {
           visibility: "visible",
           top: event.clientY - this.state.y + "px",
-          left: event.clientX - this.state.x + "px",
-        },
+          left: event.clientX - this.state.x + "px"
+        }
       }));
     }
   }
@@ -91,14 +91,14 @@ class PopoverSetting extends Component {
   onMouseUp(event) {
     event.preventDefault();
     if (this.state.isDragging) {
-      this.setState((state) => ({ ...state, isDragging: false }));
+      this.setState(state => ({ ...state, isDragging: false }));
 
       this.contextHeader.current.removeEventListener(
         "mousemove",
         this.onMouseMove.bind(this)
       );
       this.props.togglePopoverSettingPanel({
-        contextStyle: this.state.contextStyle,
+        contextStyle: this.state.contextStyle
       });
     }
   }
@@ -131,12 +131,12 @@ class PopoverSetting extends Component {
         contextStyle: {
           visibility: "visible",
           top: topDistance + "px",
-          left: leftDistance + "px",
-        },
+          left: leftDistance + "px"
+        }
       });
     } else {
       this.setState({
-        contextStyle: { ...contextStyle },
+        contextStyle: { ...contextStyle }
       });
     }
   }
@@ -147,11 +147,10 @@ class PopoverSetting extends Component {
       <div
         className="editor-x-popup editor-x-settings-popup"
         style={this.state.contextStyle}
-        ref={(ref) => {
+        ref={ref => {
           this.contextMenuWrapper = ref;
         }}
       >
-
         <div className="editor-x-addon-settings-wrapper">
           <div
             className="editor-x-addon-settings-title"

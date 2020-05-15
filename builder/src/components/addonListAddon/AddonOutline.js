@@ -74,9 +74,6 @@ export default class AddonOutline extends React.Component {
           <div className={_class} style={styles}>
             {this.props.children}
           </div>
-          {type === "onSelect" && (
-            <AddonConfigTag target={container} addon={addon} />
-          )}
         </SppbPortal>
       </Fragment>
     );
