@@ -12,7 +12,7 @@ class Column extends React.Component {
     render(){
         const clsNames = classNames('sppb-4', this.props.addonId)
         const style = { flex:1, borderWidth:1, borderStyle:'solid', borderColor:'red' }
-        return(<div className={clsNames} style={style}>{this.props.renderChildren()}</div>)
+        return(<div data-id={this.props.addonId} className={clsNames} style={style}>{this.props.renderChildren()}</div>)
     }
 }
 

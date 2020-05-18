@@ -99,6 +99,8 @@ body {
     margin: 0;
     position: relative;
     height: 100%;
+    // background-color: #22b0da;
+    // box-shadow: rgb(219, 74, 74) 1px 1px 3px 0px, black 1px 1px 3px 0px;
     /* padding: 0; */
     // outline: 1px dashed transparent;
     // transition: outline 0.3s, padding 0.3s, margin 0.3s;
@@ -110,6 +112,9 @@ body {
     // padding: 20px 0px;
     // z-index: 3;
     // width: 100%;
+}
+.sppb-heading {
+    padding: 10px;
 }
 
 .guides {

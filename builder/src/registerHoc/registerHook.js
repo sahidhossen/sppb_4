@@ -23,13 +23,6 @@ export const RegisterAddon = (settings) => {
         console.error('Addon "category" must be string!');
         return;
     }
-    /**
-     * Check the component is actual react component
-     */
-    if ('Component' in settings && !isFunction(settings.Component)) {
-        console.error('The "Component" property must be a valid react component!');
-        return;
-    }
 
     /**
      * Check if the icon is valid

@@ -738,7 +738,7 @@ const styleState = {
         "valueFrom": null,
         "valueOverride": null
       },
-      "borderRadiusBottomLeft": {
+      "borderBottomLeftRadius": {
         "local": {
           "value": null,
           "unit": null
@@ -770,7 +770,7 @@ const styleState = {
         "valueFrom": null,
         "valueOverride": null
       },
-      "borderRadiusBottomRight": {
+      "borderBottomRightRadius": {
         "local": {
           "value": 1,
           "unit": "px"
@@ -802,7 +802,7 @@ const styleState = {
         "valueFrom": null,
         "valueOverride": null
       },
-      "borderRadiusTopLeft": {
+      "borderTopLeftRadius": {
         "local": {
           "value": 1,
           "unit": "px"
@@ -834,7 +834,7 @@ const styleState = {
         "valueFrom": null,
         "valueOverride": null
       },
-      "borderRadiusTopRight": {
+      "borderTopRightRadius": {
         "local": {
           "value": 1,
           "unit": "px"
@@ -2759,8 +2759,8 @@ const styleState = {
       },
       "paddingBottom": {
         "local": {
-          "value": 51,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -2771,8 +2771,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 51,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": null,
@@ -2855,8 +2855,8 @@ const styleState = {
       },
       "paddingTop": {
         "local": {
-          "value": 33,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -2867,8 +2867,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 33,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": null,
@@ -3525,3 +3525,5 @@ let backgroundType = [
         }
     }
 ]
+
+export default styleState;

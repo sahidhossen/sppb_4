@@ -7,6 +7,7 @@ class Docker extends React.Component {
         return (
            <Fragment>
                 <TopBar/>
+                
                 <LeftSidebar/>
                 <RightSidebar/>
            </Fragment>

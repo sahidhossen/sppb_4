@@ -41,6 +41,7 @@ class Heading extends React.Component {
     return (
       <h1
         style={style}
+        data-id={addonId}
         className={clsNames}
         onClick={() => setAttributes({ src: "http://google.com" })}
       >

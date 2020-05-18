@@ -8,7 +8,7 @@ class Paragraph extends React.Component {
 
     render(){
         // console.log("Paragraph props",this.props)
-        let {attributes} = this.props;
+        let {attributes, addonId} = this.props;
         let {
             gridArea
         } = attributes
@@ -18,9 +18,9 @@ class Paragraph extends React.Component {
             alignItems: 'center',
             display:"flex",
         }
-        const clsNames = classNames('sppb-4' ,'sppb-Paragraph')
+        const clsNames = classNames('sppb-4' ,'sppb-Paragraph', addonId)
         return(
-            <div style={style} className={clsNames}>
+            <div data-id={addonId} style={style} className={clsNames}>
                <p onClick={()=> this.props.setAttributes({color: 'yellow'})}>Paragraph</p>
             </div>
         )

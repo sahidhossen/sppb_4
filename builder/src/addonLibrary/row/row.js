@@ -54,7 +54,7 @@ class Row extends React.Component {
     // };
     console.log("chedk: row")
     return (
-      <div className={clsNames}>
+      <div data-id={addonId} className={clsNames}>
          <AddonControls>
           <p>It is working</p>
           <TagsBtn className="dfdsafdaf" url="https://joomshaper.com" text="Hero Title" style={{background:'#fd812b', color: '#fff'}}/>

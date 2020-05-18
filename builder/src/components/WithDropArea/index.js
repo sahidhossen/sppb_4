@@ -54,7 +54,9 @@ class WithDropArea extends React.Component {
     container[method]("mouseout", this.onMouseOut.bind(this, container));
     container[method]("mousemove", this.onMouseMove);
     // container[ method ]( 'mouseleave', this.onMouseLeave );
+    
   }
+
 
   onMouseClick(event) {
     let { pickedAddon, addonId, index, addon } = this.props;
@@ -76,7 +78,6 @@ class WithDropArea extends React.Component {
         if (this.hoverArea === "top") {
           _index = index;
           _addonId = parentId;
-          console.log("not allowed top", _index, _addonId, addon, pickedAddon);
         }
         if (this.hoverArea === "bottom") {
           _index = index + 1;
@@ -100,13 +101,13 @@ class WithDropArea extends React.Component {
           },
         },
       };
-      console.log("hey", settings);
       this.hoverArea = null;
       this.isAllow = false;
       this.props.onInsertAddon(settings);
     } else {
       // Select addon
       if (addonId) {
+        event.stopPropagation();
         this.props.selectAddon(addonId);
       }
     }

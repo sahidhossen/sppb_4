@@ -36,6 +36,8 @@ function afterLoading() {
     "sppb-editor-view"
   ].window.document.getElementById("sppb_root_view");
   if (container) {
+    // let s = getComputedStyle(container)
+    // console.log("s: ",s)
     Initialize(container); // Initialize page builder from here
   }
 }

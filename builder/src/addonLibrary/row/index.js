@@ -4,7 +4,7 @@ export default {
     name: 'row',
     title: 'Row',
     icon: 'fa fa-square-o',
-    category: 'addon/grid',
+    category: 'grid',
     className: 'sppb-row',
     attributes: {
         display: 'grid',
