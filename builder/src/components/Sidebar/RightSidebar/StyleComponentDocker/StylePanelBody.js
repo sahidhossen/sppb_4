@@ -42,11 +42,11 @@ class StylePanelBody extends React.Component {
     }
 
     updateComputedCssStyles(attributes) {
-        let {addonId, updateComutedAttributes} = this.props;
-        console.log("attribute: ", attributes)
+        let {addonId, updateComutedAttributes, selectedBlockId} = this.props;
+        console.log("selected block ID: ", selectedBlockId)
 
         let options = {
-            blockId: null, 
+            blockId: selectedBlockId, 
             addonId: addonId
         }
         updateComutedAttributes(attributes, options)

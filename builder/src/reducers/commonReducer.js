@@ -11,7 +11,7 @@ const commonReducer = (state, action) => {
       }
       case 'SET_COMPUTED_ATTRIBUTE': {
         let {attributes, options} = action.payload;
-        console.log("storeL ", state)
+
         let nextState = {...state};
         // Update styleBlockStore 
         /**
@@ -32,7 +32,7 @@ const commonReducer = (state, action) => {
           mapStore = {...mapStore, [styleBlockId]: styleMap}
 
 
-           // Update AddonBlock
+          // Update AddonBlock
           let {present, past} = nextState.builder;
           past = [...past, present]; 
           let addon = present[options.addonId]; 

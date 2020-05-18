@@ -16,7 +16,6 @@ class StylePanel extends React.Component {
     
     static getDerivedStateFromProps( prevProps, state ) {
         const { addonId, computeStyle } = prevProps;
-        console.log("prevL: ", prevProps.addonId, ' next:> ', state.addonId)
         if (prevProps.addonId !== state.addonId) {
             computeStyle();
             return {addonId}

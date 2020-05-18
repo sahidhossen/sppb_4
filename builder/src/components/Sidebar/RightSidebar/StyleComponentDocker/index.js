@@ -21,7 +21,7 @@ class StyleComponentDocker extends React.Component {
 
     render() {
         // console.log("state: ", this.state)
-        let {addonId, addonStyleBlockIds} = this.props;
+        let {addonId, addonStyleBlockIds, selectedBlockId} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">
                 <SidebarHeader className={"right-sidebar-header"}>
@@ -43,6 +43,7 @@ class StyleComponentDocker extends React.Component {
                     />
                     <StylePanelBody 
                         addonId={addonId}
+                        selectedBlockId={selectedBlockId}
                         addonStyleBlockIds={addonStyleBlockIds}
                     />
                 </div>
@@ -55,9 +56,11 @@ export default compose(
     withSelect( (select)=> {
         const {selectedAddonId, getAddonStyleBlockIds} = select();
         let addonId = selectedAddonId();
+        let addonStyleBlockIds = getAddonStyleBlockIds(addonId)
         return {
             addonId,
-            addonStyleBlockIds: getAddonStyleBlockIds(addonId)
+            addonStyleBlockIds, 
+            selectedBlockId: addonStyleBlockIds.length ? addonStyleBlockIds[0] : null
         }
     })
 
