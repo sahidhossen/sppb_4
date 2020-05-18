@@ -41,8 +41,8 @@ class Canvas extends React.Component {
       this.setState((state) => ({
         ...state,
         cursorPosition: {
-          x: event.clientX + 300,
-          y: event.clientY + 60,
+          x: event.clientX + 290,
+          y: event.clientY + 110,
         },
       }));
     }
