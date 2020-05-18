@@ -35,6 +35,7 @@ class AddonConfigTag extends React.Component {
 
   render() {
     let { addon, target, popoverSettingPanel } = this.props;
+
     return (
       <Fragment>
         <div
