@@ -72,7 +72,6 @@ export default compose(
     withSelect( (select, {addonStyleBlockIds })=> {
         const { getCSSProperties, getStyleStore} = select();
         let styleBlockIds =  addonStyleBlockIds;
-        // let currentStyleBlockId = styleBlockIds.length ? styleBlockIds[styleBlockIds.length-1] : null;
         let getAllCssProperties = getCSSProperties(styleBlockIds);
 
         let styleStore = getStyleStore();

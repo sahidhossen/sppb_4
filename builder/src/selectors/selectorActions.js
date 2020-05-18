@@ -85,9 +85,10 @@ export const getStyleMap = (addonId) => {
  */
 const getProperties = (PropertyStore, blockIds, viewport) => {
   let properties = {}; 
-
+  
   blockIds.map( blockId => {
     let blockState = PropertyStore[blockId]; // Pick object with viewport
+    console.log("blockStore: ", PropertyStore)
     if (blockState[viewport]) {
       properties = {...properties, ...blockState[viewport]};
     }
@@ -104,14 +105,16 @@ export const getCSSProperties = (store, cssBlockIds) => {
   if (cssBlockIds.length === 0) 
     return {}; 
 
-  let {PropertyStore} = store.styleBlockStore; 
+  let {blockStore} = store.styleBlockStore; 
+
+  console.log("store: ", store.styleBlockStore)
 
   let { mediaQuery } = store.control;
 
   let CSSProperties = {}; 
 
   if (cssBlockIds.length) {
-    CSSProperties = getProperties(PropertyStore, cssBlockIds, mediaQuery.active); 
+    CSSProperties = getProperties(blockStore, cssBlockIds, mediaQuery.active); 
   }
 
   return CSSProperties;
@@ -174,7 +177,8 @@ export const getActiveDockerName = (store, dockerName) => {
 
 export const getActiveMediaQuery = (store) => {
   let { mediaQuery } = store.control;
-  return mediaQuery.list[mediaQuery.active];
+  let {active} = mediaQuery;
+  return {...mediaQuery.list[active], name: active};
 };
 
 export const getMediaQuery = (store, name) => {

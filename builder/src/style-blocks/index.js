@@ -7,6 +7,8 @@ export {generateStyleState} from './style-component-context-value';
 
 import {getElementComputedStyle} from './messure-computed-style';
 
+export * from './css-markup';
+
 export * from './components';
 
 export {

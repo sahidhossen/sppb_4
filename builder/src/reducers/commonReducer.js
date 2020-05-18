@@ -1,3 +1,5 @@
+import { createStyleBlock, createStyleMap } from '../lib/styleHelper';
+
 const commonReducer = (state, action) => {
     switch (action.type) {
       case 'ADD_ADDON': {
@@ -9,25 +11,48 @@ const commonReducer = (state, action) => {
       }
       case 'SET_COMPUTED_ATTRIBUTE': {
         let {attributes, options} = action.payload;
+        console.log("storeL ", state)
+        let nextState = {...state};
         // Update styleBlockStore 
         /**
          * Generate new blockId if css blockId not exists
          * Generate custom css from computed value
          * Update with block Id
          */
-        let {blockStore, mapStore} = state.styleBlockStore;
-
+        let {blockStore, mapStore} = nextState.styleBlockStore;
+        let styleBlockId = null;
         if(!options.blockId || options.blockId === null ) {
-          // Generate new blockId
-          
+
+          let styleBlock = createStyleBlock(attributes, options)
+          styleBlockId = styleBlock.id; 
+          blockStore = {...blockStore, [styleBlockId]: styleBlock}
+
+          // Update stylePropertyStore
+          let styleMap = createStyleMap(attributes, options, styleBlockId)
+          mapStore = {...mapStore, [styleBlockId]: styleMap}
+
+
+           // Update AddonBlock
+          let {present, past} = nextState.builder;
+          past = [...past, present]; 
+          let addon = present[options.addonId]; 
+          addon = {...addon, styleBlockIds: [styleBlockId] }
+          present[options.addonId] = addon; 
+          let nextBuilder = {...nextState.builder, past, present}; 
+
+
+          return {
+            ...nextState, 
+            builder: nextBuilder,
+            styleBlockStore: {...nextState, blockStore, mapStore}
+          }
         } else {
           // Pick current blockId update fields
         }
-        console.log("store: ", options, attributes)
 
-        // Update stylePropertyStore
+        
 
-        // Update AddonBlock
+       
 
         return {...state};
       }
