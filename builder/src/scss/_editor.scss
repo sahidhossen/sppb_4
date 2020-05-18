@@ -136,14 +136,16 @@
 .editor-x-addon-settings-wrapper {
   background: var(--charcoal-dark);
   border-radius: 0.2727rem;
-  padding: 15px;
+  padding: 0 1.3636rem 1.3636rem;
 }
 
 .editor-x-addon-settings-title {
   cursor: move;
-  min-height: 50px;
+  min-height: 40px;
   color: var(--white);
-  padding-bottom: 0.9091rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   @include border("-bottom", 1px, solid, var(--shark-dark));
   i {
     margin-right: 0.4545rem;

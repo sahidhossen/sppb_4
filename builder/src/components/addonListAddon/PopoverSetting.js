@@ -9,9 +9,9 @@ class PopoverSetting extends Component {
     this.state = {
       active: false,
       contextStyle: {
-        visibility: "none",
+        visibility: "none"
       },
-      isDragging: false,
+      isDragging: false
     };
     this.contextHeader = React.createRef();
   }
@@ -63,7 +63,7 @@ class PopoverSetting extends Component {
       const contextHeaderRect = this.contextHeader.current.getBoundingClientRect();
       let x = event.clientX - contextHeaderRect.left + 15;
       let y = event.clientY - contextHeaderRect.top + 15;
-      this.setState((state) => ({ ...state, isDragging: true, x, y }));
+      this.setState(state => ({ ...state, isDragging: true, x, y }));
       this.contextHeader.current.addEventListener(
         "mousemove",
         this.onMouseMove.bind(this)
@@ -76,13 +76,13 @@ class PopoverSetting extends Component {
     const { isDragging } = this.state;
 
     if (isDragging) {
-      this.setState((state) => ({
+      this.setState(state => ({
         ...state,
         contextStyle: {
           visibility: "visible",
           top: event.clientY - this.state.y + "px",
-          left: event.clientX - this.state.x + "px",
-        },
+          left: event.clientX - this.state.x + "px"
+        }
       }));
     }
   }
@@ -90,14 +90,14 @@ class PopoverSetting extends Component {
   onMouseUp(event) {
     event.preventDefault();
     if (this.state.isDragging) {
-      this.setState((state) => ({ ...state, isDragging: false }));
+      this.setState(state => ({ ...state, isDragging: false }));
 
       this.contextHeader.current.removeEventListener(
         "mousemove",
         this.onMouseMove.bind(this)
       );
       this.props.togglePopoverSettingPanel({
-        contextStyle: this.state.contextStyle,
+        contextStyle: this.state.contextStyle
       });
     }
   }
@@ -130,12 +130,12 @@ class PopoverSetting extends Component {
         contextStyle: {
           visibility: "visible",
           top: topDistance + "px",
-          left: leftDistance + "px",
-        },
+          left: leftDistance + "px"
+        }
       });
     } else {
       this.setState({
-        contextStyle: { ...contextStyle },
+        contextStyle: { ...contextStyle }
       });
     }
   }
@@ -146,7 +146,7 @@ class PopoverSetting extends Component {
       <div
         className="editor-x-popup editor-x-settings-popup"
         style={this.state.contextStyle}
-        ref={(ref) => {
+        ref={ref => {
           this.contextMenuWrapper = ref;
         }}
       >
@@ -158,14 +158,16 @@ class PopoverSetting extends Component {
             <i className={defaultAddon.icon}></i>
             {selectedAddon.name}
           </div>
-          <div className="editor-x-addon-setting">
-            Your settings goes here...
-          </div>
-          <div className="editor-x-addon-setting">
-            Your settings goes here...
-          </div>
-          <div className="editor-x-addon-setting">
-            Your settings goes here...
+          <div className="editor-x-addon-settings-body">
+            <div className="editor-x-addon-setting">
+              Your settings goes here...
+            </div>
+            <div className="editor-x-addon-setting">
+              Your settings goes here...
+            </div>
+            <div className="editor-x-addon-setting">
+              Your settings goes here...
+            </div>
           </div>
         </div>
       </div>
@@ -174,22 +176,22 @@ class PopoverSetting extends Component {
 }
 
 export default compose([
-  withSelect((select) => {
+  withSelect(select => {
     let { popoverSettingPanel, getSelectedAddon, getDefaultAddon } = select();
     let selectedAddon = getSelectedAddon();
     let defaultAddon = getDefaultAddon(selectedAddon.name);
     return {
       popoverSettingPanel: popoverSettingPanel(),
       defaultAddon,
-      selectedAddon,
+      selectedAddon
     };
   }),
-  withDispatch((dispatch) => {
+  withDispatch(dispatch => {
     const { togglePopoverSettingPanel } = dispatch();
     return {
       togglePopoverSettingPanel(status) {
         togglePopoverSettingPanel(status);
-      },
+      }
     };
-  }),
+  })
 ])(PopoverSetting);
