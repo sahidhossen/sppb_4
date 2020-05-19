@@ -8,7 +8,13 @@ class StylePanelBody extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            rule: {
+                styles: {
+                    paddingLeft: '0px'
+                }
+            }
+        }
         this.counter = 0;
         this.startComputedStyle = this.startComputedStyle.bind(this)
     }
@@ -23,9 +29,9 @@ class StylePanelBody extends React.Component {
             let addonElement = _doc.querySelector(`[data-id="${addonId}"]`)
 
             if (addonElement !== null ) {
-                let {getAllCssProperties} = this.props;
-                console.log("rendered")
-                const styleGuide = getElementComputedStyle(addonElement, getAllCssProperties)
+                let {localCssProperties} = this.props;
+                
+                const styleGuide = getElementComputedStyle(addonElement, localCssProperties)
 
                 setElementComputedStyle(styleGuide);
 
@@ -43,8 +49,6 @@ class StylePanelBody extends React.Component {
 
     updateComputedCssStyles(attributes) {
         let {addonId, updateComutedAttributes, selectedBlockId} = this.props;
-        console.log("selected block ID: ", selectedBlockId)
-
         let options = {
             blockId: selectedBlockId, 
             addonId: addonId
@@ -53,16 +57,18 @@ class StylePanelBody extends React.Component {
     }
 
     render(){
-        console.log("changed")
+        // console.log("changed")
         return (
             <div className="editor-x-style-panel-body sppb-sidebar-panel-body">
-                <StylePanel
-                    styleBlockIds={this.props.addonStyleBlockIds}
-                    addonId={this.props.addonId}
-                    styleState={this.props.styleState}
-                    computeStyle={this.startComputedStyle}
-                    setCssAttributes={this.updateComputedCssStyles.bind(this)}
-                />
+                
+                    <StylePanel
+                        styleBlockIds={this.props.addonStyleBlockIds}
+                        addonId={this.props.addonId}
+                        styleState={this.props.styleState}
+                        computeStyle={this.startComputedStyle}
+                        setCssAttributes={this.updateComputedCssStyles.bind(this)}
+                    />
+                
             </div>
         )
     }
@@ -70,16 +76,14 @@ class StylePanelBody extends React.Component {
 
 export default compose(
     withSelect( (select, {addonStyleBlockIds })=> {
-        const { getCSSProperties, getStyleStore} = select();
-        let styleBlockIds =  addonStyleBlockIds;
-        let getAllCssProperties = getCSSProperties(styleBlockIds);
-
+        const { getStyleStore} = select();
+        // let getCssRules = getCssRules(addonStyleBlockIds);
         let styleStore = getStyleStore();
         let styleState = generateStyleState(styleStore); 
 
         return {
-            styleBlockIds,
-            getAllCssProperties, 
+            styleBlockIds: addonStyleBlockIds,
+            
             styleState,
             styleStore
         }

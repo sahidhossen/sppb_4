@@ -15,6 +15,12 @@ let differentProperties = {
 export const getElementComputedStyle = (element, localProperties) => {
     let computedStyle = getComputedStyle(element);
 
+    // let allComputedStyles = element.computedStyleMap()
+
+    // for (const [prop, val] of allComputedStyles) {
+    //   console.log("props: ", val[0], prop)
+    // }
+
     let defaultProperties = {...styleState}; 
 
     Object.keys(defaultProperties).map( cssKey => {

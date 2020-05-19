@@ -8,7 +8,7 @@ import {createMarkup} from 'style-blocks';
  */
 export const createStyleBlock = (attributes, options) => {
     const {className, viewport} = options;
-    const cssStyle = createMarkup(attributes);
+    const cssStyle = createCssMarkup(attributes)
     return {
         id: revisedRandId(), 
         type: 'class', 
@@ -24,10 +24,22 @@ export const createStyleBlock = (attributes, options) => {
  * @param {Object} options css depedency options {Exmp: viewport, className...}
  * @param {String} styleBlockId Style Block ID
  */
-export const createStyleMap = (attributes, options, styleBlockId) => {
+export const getStyleMap = (attributes, options) => {
     let properties = {}
     Object.keys(attributes).map( key =>{ properties[key] = true })
     return {
         [options.viewport]: {...properties}
     }
+}
+
+
+
+export const createCssMarkup = (attributes, cssString = '' ) => {
+    let cssMarkup = createMarkup(attributes);
+    if (cssString === '') { 
+        return cssMarkup
+    }; 
+    // replace css rules to existing css string
+    
+
 }

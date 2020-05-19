@@ -1,9 +1,11 @@
 import React from 'react';
 import {
-    SpacingComponent
+    SpacingComponent,
+    withStyleContext
 } from 'style-blocks'; 
 
 import {withSelect, withDispatch} from 'store';
+
 import {compose} from '../../../compose';
 
 class StylePanel extends React.Component {
@@ -25,7 +27,6 @@ class StylePanel extends React.Component {
 
 
     render() {
-        // console.log("stylesoreL: ", this.props.styleState)
         let {styleState, setCssAttributes} = this.props;
         let { spacing } = styleState;
         return(
@@ -39,4 +40,8 @@ class StylePanel extends React.Component {
         )
     }
 }
-export default StylePanel;
+export default compose(
+    withStyleContext( ownProps => {
+        console.log("ownProps: ", ownProps)
+    })
+)(StylePanel);

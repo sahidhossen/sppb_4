@@ -1,4 +1,4 @@
-import { createStyleBlock, createStyleMap } from '../lib/styleHelper';
+import { createStyleBlock, getStyleMap, createCssMarkup } from '../lib/styleHelper';
 
 const commonReducer = (state, action) => {
     switch (action.type) {
@@ -23,31 +23,47 @@ const commonReducer = (state, action) => {
         let styleBlockId = null;
         if(!options.blockId || options.blockId === null ) {
 
-          let styleBlock = createStyleBlock(attributes, options)
-          styleBlockId = styleBlock.id; 
-          blockStore = {...blockStore, [styleBlockId]: styleBlock}
+          // Update styleBlockStore
+          let styleBlock = createStyleBlock(attributes, options);
+              styleBlockId = styleBlock.id; 
+              blockStore = {...blockStore, [styleBlockId]: styleBlock};
 
           // Update stylePropertyStore
-          let styleMap = createStyleMap(attributes, options, styleBlockId)
-          mapStore = {...mapStore, [styleBlockId]: styleMap}
-
+          let styleMap = getStyleMap(attributes, options, styleBlockId);
+              mapStore = {...mapStore, [styleBlockId]: styleMap};
 
           // Update AddonBlock
           let {present, past} = nextState.builder;
-          past = [...past, present]; 
-          let addon = present[options.addonId]; 
-          addon = {...addon, styleBlockIds: [styleBlockId] }
-          present[options.addonId] = addon; 
-          let nextBuilder = {...nextState.builder, past, present}; 
-
+              past = [...past, present];
+          let addon = present[options.addonId];
+              addon = {...addon, styleBlockIds: [styleBlockId] };
+              present[options.addonId] = addon;
+          let nextBuilder = {...nextState.builder, past, present};
 
           return {
             ...nextState, 
             builder: nextBuilder,
-            styleBlockStore: {...nextState, blockStore, mapStore}
+            styleBlockStore: {...nextState.styleBlockStore, blockStore, mapStore}
           }
+
         } else {
           // Pick current blockId update fields
+          console.log("found block ID: ", options)
+          // Update styleBlockStore
+          let {blockId, viewport} = options
+          
+          let styleBlock = blockStore[options.blockId];
+
+          let cssMarkup = createCssMarkup(attributes, styleBlock[viewport])
+
+          // let styleMap = mapStore[options.blockId]; 
+
+          
+
+          return {
+            ...nextState
+          }
+
         }
 
         

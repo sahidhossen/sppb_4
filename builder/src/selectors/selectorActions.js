@@ -62,9 +62,24 @@ export const getAddonStyleBlockIds = (store, addonId) => {
   return addon.styleBlockIds || [];
 }
 
+export const getCssRules = (store, cssBlockIds) => {
+  let {blockStore} = store.styleBlockStore; 
+  let acitveViewport = getActiveMediaQuery(store);
+  let rules = cssBlockIds.map( cssBlockId => {
+
+    let cssBlock = blockStore[cssBlockId]; 
+    console.log("css string: ", cssBlock, cssBlockId)
+    let cssString = cssBlock.variant[acitveViewport.name]; 
+    
+    return cssString;
+    
+  })
+  console.log("css string-1: ", rules)
+}
+
 export const getStyleBlockIds = (store, parentId) => {
-  let {BlockStore} = store.styleBlockStore;
-  let childIds = BlockStore[parentId].children || []
+  let {blockStore} = store.styleBlockStore;
+  let childIds = blockStore[parentId].children || []
   return [parentId, ...childIds];
 }
 
@@ -88,7 +103,6 @@ const getProperties = (PropertyStore, blockIds, viewport) => {
   
   blockIds.map( blockId => {
     let blockState = PropertyStore[blockId]; // Pick object with viewport
-    console.log("blockStore: ", PropertyStore)
     if (blockState[viewport]) {
       properties = {...properties, ...blockState[viewport]};
     }
@@ -105,16 +119,16 @@ export const getCSSProperties = (store, cssBlockIds) => {
   if (cssBlockIds.length === 0) 
     return {}; 
 
-  let {blockStore} = store.styleBlockStore; 
+  let {mapStore} = store.styleBlockStore; 
 
-  console.log("store: ", store.styleBlockStore)
+  console.log("Style store: ", store)
 
   let { mediaQuery } = store.control;
 
   let CSSProperties = {}; 
 
   if (cssBlockIds.length) {
-    CSSProperties = getProperties(blockStore, cssBlockIds, mediaQuery.active); 
+    CSSProperties = getProperties(mapStore, cssBlockIds, mediaQuery.active); 
   }
 
   return CSSProperties;

@@ -1,27 +1,37 @@
 import React from "react";
 import SidebarHeader from "../../SidebarHeader";
 import { withSelect, withDispatch } from 'store';
+import {StyleBlockContextProvider} from 'style-blocks';
 import { compose } from '../../../compose';
 import StylePanelHeader from './StylePanelHeader'; 
 import StylePanelBody from './StylePanelBody';
-
-import {  styleData } from 'style-blocks'; 
 
 class StyleComponentDocker extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            styleStore: {
-                value: {...styleData}
-            }
-        }
+            rule: {},
+            rules: [], 
+            updateRule: this.updateRule,
+            addRules: this.addRules,
+        } 
+        this.updateRule = this.updateRule.bind(this);
+        this.addRules = this.addRules.bind(this);
     }
 
-   
+   updateRule(value) {
+       let {rule} = this.state;
+       this.setState({ rule: {...rule, value }})
+   }
+
+   addRules( nextRules ) {
+    let {rules} = this.state; 
+    this.setState({rules:[...rules, nextRules]})
+   }
 
     render() {
-        // console.log("state: ", this.state)
-        let {addonId, addonStyleBlockIds, selectedBlockId} = this.props;
+        console.log("render index: ")
+        let {addonId, addonStyleBlockIds, selectedBlockId, localCssProperties} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">
                 <SidebarHeader className={"right-sidebar-header"}>
@@ -37,15 +47,18 @@ class StyleComponentDocker extends React.Component {
                     </div>
                 </SidebarHeader>
                 <div className="sppb-sidebar-panel">
-                    <StylePanelHeader 
-                        addonId={addonId}
-                        addonStyleBlockIds={addonStyleBlockIds}
-                    />
-                    <StylePanelBody 
-                        addonId={addonId}
-                        selectedBlockId={selectedBlockId}
-                        addonStyleBlockIds={addonStyleBlockIds}
-                    />
+                    <StyleBlockContextProvider value={this.state}>
+                        <StylePanelHeader
+                            addonId={addonId}
+                            addonStyleBlockIds={addonStyleBlockIds}
+                        />
+                        <StylePanelBody
+                            addonId={addonId}
+                            selectedBlockId={selectedBlockId}
+                            addonStyleBlockIds={addonStyleBlockIds}
+                            localCssProperties={localCssProperties}
+                        />
+                    </StyleBlockContextProvider>
                 </div>
             </div>
         );
@@ -54,12 +67,13 @@ class StyleComponentDocker extends React.Component {
 
 export default compose(
     withSelect( (select)=> {
-        const {selectedAddonId, getAddonStyleBlockIds} = select();
+        const {selectedAddonId, getAddonStyleBlockIds, getCSSProperties} = select();
         let addonId = selectedAddonId();
-        let addonStyleBlockIds = getAddonStyleBlockIds(addonId)
+        let addonStyleBlockIds = getAddonStyleBlockIds(addonId); 
         return {
             addonId,
             addonStyleBlockIds, 
+            localCssProperties: getCSSProperties(addonStyleBlockIds), 
             selectedBlockId: addonStyleBlockIds.length ? addonStyleBlockIds[0] : null
         }
     })
