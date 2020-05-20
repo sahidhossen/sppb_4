@@ -1,0 +1,214 @@
+.editor-x-spacing-wrap {
+  border-radius: 0.1818rem;
+  @include border("", 1px, solid, var(--brush-marble-gray));
+  padding: 1.8182rem;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  input {
+    border: 0;
+    -moz-appearance: textfield;
+    background: transparent;
+    outline: 0;
+    text-align: center;
+    width: 24px;
+    height: 17px;
+    border-radius: 1px;
+    letter-spacing: 0.05px;
+    color: #9fa5b1;
+    display: inline-block;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &:focus {
+      border: 1px solid #fff;
+    }
+  }
+}
+.editor-x-spacing-panel {
+  padding: 0 6px;
+}
+//Margin settings
+.editor-x-margin-top {
+  width: 106px;
+  border-bottom: 2px solid #dce3f1;
+  height: 18px;
+  border-right: 1px solid #dce3f1;
+  border-left: 1px solid #dce3f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 10px;
+  .editor-x-spacing-value {
+    margin-bottom: 5px;
+  }
+}
+.editor-x-margin-text {
+  color: var(--dark-bg-text-color);
+  position: absolute;
+  right: 0px;
+  bottom: -13px;
+  margin: 0;
+}
+.editor-x-link-icon {
+  position: absolute;
+  bottom: -12px;
+  transform: rotate(45deg);
+  font-size: 8px;
+}
+.editor-x-margin-bottom {
+  width: 106px;
+  border-top: 2px solid #dce3f1;
+  height: 18px;
+  border-right: 1px solid #dce3f1;
+  border-left: 1px solid #dce3f1;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  position: relative;
+  .editor-x-link-icon {
+    bottom: auto;
+    top: -12px;
+  }
+  .editor-x-spacing-value {
+    margin-top: 5px;
+  }
+}
+.editor-x-margin-left {
+  height: 106px;
+  border-right: 2px solid #dce3f1;
+  width: 18px;
+  border-bottom: 1px solid #dce3f1;
+  border-top: 1px solid #dce3f1;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  .editor-x-link-icon {
+    bottom: auto;
+    right: -12px;
+    transform: rotate(-45deg);
+  }
+  .editor-x-spacing-value {
+    margin-right: 10px;
+  }
+}
+.editor-x-margin-right {
+  height: 106px;
+  border-left: 2px solid #dce3f1;
+  width: 18px;
+  border-bottom: 1px solid #dce3f1;
+  border-top: 1px solid #dce3f1;
+  position: absolute;
+  right: 20px;
+  left: auto;
+  top: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .editor-x-link-icon {
+    bottom: auto;
+    left: -12px;
+    transform: rotate(-45deg);
+  }
+  .editor-x-spacing-value {
+    margin-left: 10px;
+  }
+}
+//Padding settings
+.editor-x-padding-wrap {
+  position: absolute;
+  width: 106px;
+  border: 1px solid var(--dark-bg-text-color);
+  border-radius: 0.1818rem;
+  height: 106px;
+  margin: auto;
+  left: 0;
+  top: 2px;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.editor-x-padding-top {
+  width: 45px;
+  border-radius: 0.5px;
+  border-bottom: 1px solid #aaaaaa;
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1px;
+}
+.editor-x-padding-bottom {
+  width: 45px;
+  border-radius: 0.5px;
+  border-top: 1px solid #aaaaaa;
+  position: relative;
+  height: 28px;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .editor-x-link-icon {
+    bottom: auto;
+    top: -12px;
+  }
+}
+.editor-x-padding-left {
+  height: 45px;
+  border-radius: 0.5px;
+  border-right: 1px solid #aaaaaa;
+  position: relative;
+  width: 28px;
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  .editor-x-spacing-value {
+    margin-left: 2px;
+  }
+  .editor-x-link-icon {
+    bottom: auto;
+    right: -12px;
+    transform: rotate(-45deg);
+  }
+}
+.editor-x-padding-right {
+  height: 45px;
+  border-radius: 0.5px;
+  border-left: 1px solid #aaaaaa;
+  position: absolute;
+  right: 0;
+  width: 28px;
+  top: 28px;
+  display: flex;
+  align-items: center;
+  .editor-x-spacing-value {
+    margin-right: 2px;
+  }
+  .editor-x-link-icon {
+    bottom: auto;
+    left: -12px;
+    transform: rotate(-45deg);
+  }
+}
+.editor-x-padding-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 12px;
+  margin: auto;
+  width: 12px;
+  color: #8095ff;
+  font-size: 8px;
+}
