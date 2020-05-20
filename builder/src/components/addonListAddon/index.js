@@ -30,24 +30,6 @@ class AddonListAddon extends React.Component {
     this.renderDnd = this.renderDnd.bind(this);
   }
 
-  componentDidMount() {
-    // this.toggleListeners(this.node);
-  }
-
-  componentWillUnmount() {
-    if (this.node) {
-      // this.toggleListeners(this.node, false);
-    }
-    // window.frames["sppb-editor-view"].document.removeEventListener(
-    //   "mousemove",
-    //   this.onMouseMove.bind(this)
-    // );
-    // window.frames["sppb-editor-view"].document.removeEventListener(
-    //   "mouseup",
-    //   this.onMouseUp.bind(this)
-    // );
-  }
-
   toggleListeners(node, shouldListnerToEvents = true) {
     const method = shouldListnerToEvents
       ? "addEventListener"
@@ -207,7 +189,6 @@ class AddonListAddon extends React.Component {
   }
 
   render() {
-    
     return (
       <WithDropArea 
         index={this.props.index}

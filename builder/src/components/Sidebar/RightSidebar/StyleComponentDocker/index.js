@@ -31,7 +31,7 @@ class StyleComponentDocker extends React.Component {
 
     render() {
         console.log("render index: ")
-        let {addonId, addonStyleBlockIds, selectedBlockId, localCssProperties} = this.props;
+        let {addonId, addonStyleBlockIds} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">
                 <SidebarHeader className={"right-sidebar-header"}>
@@ -52,12 +52,7 @@ class StyleComponentDocker extends React.Component {
                             addonId={addonId}
                             addonStyleBlockIds={addonStyleBlockIds}
                         />
-                        <StylePanelBody
-                            addonId={addonId}
-                            selectedBlockId={selectedBlockId}
-                            addonStyleBlockIds={addonStyleBlockIds}
-                            localCssProperties={localCssProperties}
-                        />
+                        <StylePanelBody {...this.props} />
                     </StyleBlockContextProvider>
                 </div>
             </div>
@@ -67,12 +62,13 @@ class StyleComponentDocker extends React.Component {
 
 export default compose(
     withSelect( (select)=> {
-        const {selectedAddonId, getAddonStyleBlockIds, getCSSProperties} = select();
+        const {selectedAddonId, getAddonStyleBlockIds, getCSSProperties, getActiveMediaQuery} = select();
         let addonId = selectedAddonId();
         let addonStyleBlockIds = getAddonStyleBlockIds(addonId); 
         return {
             addonId,
             addonStyleBlockIds, 
+            viewport: getActiveMediaQuery(),
             localCssProperties: getCSSProperties(addonStyleBlockIds), 
             selectedBlockId: addonStyleBlockIds.length ? addonStyleBlockIds[0] : null
         }
