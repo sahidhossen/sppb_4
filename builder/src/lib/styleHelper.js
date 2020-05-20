@@ -39,15 +39,16 @@ export const createCssMarkup = (attributes, cssString = "") => {
   if (cssString === "") {
     return cssMarkup;
   } else {
-    const updatedProperties = cssMarkup.match(/([a-z\d_-]+):/gi);
-    updatedProperties.forEach((prop) => {
-      const regexp = new RegExp(`(?:${prop.slice(0, -1)}:[^;]*)`);
-      cssString.replace(regexp, "paddigLeft: 200px");
+    console.log("before", cssMarkup, cssString);
+    const updatedValues = cssMarkup.split(";");
+    updatedValues.forEach((updatedValue) => {
+      if (updatedValue) {
+        const updatedProperty = updatedValue.split(":")[0];
+        const regexp = new RegExp(`(?:${updatedProperty}:[^;]*)`);
+        cssString = cssString.replace(regexp, updatedValue);
+      }
     });
-    ///([a-z\d_-]+):/gi
-
-    // str.replace(/(?:paddingLeft:[^;]*)/, "paddigLeft: 200px")
-    console.log("here", attributes, cssMarkup, cssString);
+    console.log("after", cssMarkup, cssString);
   }
   // replace css rules to existing css string
 };
