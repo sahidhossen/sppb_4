@@ -69,7 +69,6 @@ class StylePanelBody extends React.Component {
 
     updateComputedCssStyles(attributes) {
         let {addonId, updateComutedAttributes, selectedBlockId} = this.props;
-        
         let { rule } = this.state;
         let { cssObject } = createMarkup(attributes);
             rule = {...rule, styleBlockId: selectedBlockId,  styles: {...rule.styles, ...cssObject} }
@@ -84,7 +83,7 @@ class StylePanelBody extends React.Component {
     }
 
     render(){
-        console.log("changed", this.props.cssBlock)
+        console.log("changed", this.props.selectedBlockId)
         return (
             <div className="editor-x-style-panel-body sppb-sidebar-panel-body">
                 
@@ -102,14 +101,14 @@ class StylePanelBody extends React.Component {
 }
 
 export default compose(
-    withSelect( (select, {addonStyleBlockIds, selectedBlock })=> {
+    withSelect( (select, {addonStyleBlockIds, selectedBlockId })=> {
         const { getStyleStore, getCssBlock} = select();
         let styleStore = getStyleStore();
         let styleState = generateStyleState(styleStore); 
 
         return {
             styleBlockIds: addonStyleBlockIds,
-            cssBlock: getCssBlock(selectedBlock),
+            cssBlock: getCssBlock(selectedBlockId),
             styleState,
             styleStore
         }
