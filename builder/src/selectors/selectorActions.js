@@ -52,9 +52,6 @@ export const getAddonAttributes = (store, addonId) => {
  * STYLE BLOCK AND MAP
  * ============
  */
-
-
-
 export const getAddonStyleBlockIds = (store, addonId) => {
   if (addonId === null)
     return [];
@@ -62,25 +59,18 @@ export const getAddonStyleBlockIds = (store, addonId) => {
   return addon.styleBlockIds || [];
 }
 
-export const getCssRules = (store, cssBlockIds) => {
-  let {blockStore} = store.styleBlockStore; 
-  let acitveViewport = getActiveMediaQuery(store);
-  let rules = cssBlockIds.map( cssBlockId => {
-
-    let cssBlock = blockStore[cssBlockId]; 
-    console.log("css string: ", cssBlock, cssBlockId)
-    let cssString = cssBlock.variant[acitveViewport.name]; 
-    
-    return cssString;
-    
-  })
-  console.log("css string-1: ", rules)
-}
-
 export const getStyleBlockIds = (store, parentId) => {
   let {blockStore} = store.styleBlockStore;
   let childIds = blockStore[parentId].children || []
   return [parentId, ...childIds];
+}
+
+export const getCssBlock = (store, blockId) => {
+  return store.styleBlockStore.blockStore[blockId];
+}
+
+export const getCssMap = (store, blockId) => {
+  return store.styleBlockStore.mapStore[blockId];
 }
 
 export const getStyleMap = (addonId) => {
@@ -121,8 +111,6 @@ export const getCSSProperties = (store, cssBlockIds) => {
 
   let {mapStore} = store.styleBlockStore; 
 
-  console.log("Style store: ", store)
-
   let { mediaQuery } = store.control;
 
   let CSSProperties = {}; 
@@ -136,6 +124,24 @@ export const getCSSProperties = (store, cssBlockIds) => {
 
 export const getStyleStore = (store) => {
   return store.styleStore;
+}
+
+export const getStyleBlockClasse = (store, styleBlockIds) => {
+  return styleBlockIds.map( styleBlockId => {
+    let block = store.styleBlockStore.blockStore[styleBlockId]; 
+    if (block.type === 'class') {
+      return block.className.replace(/\s/g, "-").toLowerCase();;
+    }
+  })
+}
+
+export const getAddonStyleClassName = (store, addonId) => {
+  let addon = getAddon(store, addonId);
+  let {styleBlockIds} = addon;
+  if (styleBlockIds.length > 0 ) {
+    return getStyleBlockClasse(store, styleBlockIds);
+  }
+  return '';
 }
 
 /**
