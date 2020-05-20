@@ -1,6 +1,7 @@
 import {
   createStyleBlock,
   getStyleMap,
+  getStyleMapProperty,
   createCssMarkup,
 } from "../lib/styleHelper";
 
@@ -13,6 +14,7 @@ const commonReducer = (state, action) => {
       control.pickedAddon = null;
       return { ...state, control: { ...control } };
     }
+
     case "SET_COMPUTED_ATTRIBUTE": {
       let { attributes, options } = action.payload;
 
@@ -27,7 +29,7 @@ const commonReducer = (state, action) => {
       let styleBlockId = null;
       if (!options.blockId || options.blockId === null) {
         // Update styleBlockStore
-        let styleBlock = createStyleBlock(attributes, options);
+        let styleBlock = createStyleBlock(options);
         styleBlockId = styleBlock.id;
         blockStore = { ...blockStore, [styleBlockId]: styleBlock };
 
@@ -53,25 +55,40 @@ const commonReducer = (state, action) => {
           },
         };
       } else {
-        // Pick current blockId update fields
-        console.log("found block ID: ", options);
         // Update styleBlockStore
-        let { blockId, viewport } = options;
+        let { blockId, viewport, styles } = options;
 
-        let styleBlock = blockStore[options.blockId];
-        let cssMarkup = createCssMarkup(
-          attributes,
-          styleBlock.variant[viewport]
-        );
+        let styleBlock = blockStore[blockId];
 
-        // let styleMap = mapStore[options.blockId];
+        let cssMarkup = createCssMarkup(styles);
+
+        styleBlock = {
+          ...styleBlock,
+          variant: { ...styleBlock.variant, [viewport]: cssMarkup },
+        };
+
+        blockStore = { ...blockStore, [blockId]: styleBlock };
+
+        // Update stylePropertyStore
+        let styleMap = mapStore[blockId];
+        let styleMapProperty = {
+          ...styleMap[viewport],
+          ...getStyleMapProperty(attributes),
+        };
+        mapStore = {
+          ...mapStore,
+          [blockId]: { ...styleMap, [viewport]: styleMapProperty },
+        };
 
         return {
           ...nextState,
+          styleBlockStore: {
+            ...nextState.styleBlockStore,
+            blockStore,
+            mapStore,
+          },
         };
       }
-
-      return { ...state };
     }
     default:
       return state;

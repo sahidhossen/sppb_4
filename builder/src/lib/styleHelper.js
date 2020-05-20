@@ -1,14 +1,14 @@
 import { revisedRandId } from "./utils";
-import { createMarkup } from "style-blocks";
+import { createMarkup, objectToCss } from "style-blocks";
 
 /**
  *
  * @param {Object} attributes List of attribute and their units
  * @param {Object} options css depedency options {Exmp: viewport, className...}
  */
-export const createStyleBlock = (attributes, options) => {
-  const { className, viewport } = options;
-  const cssStyle = createCssMarkup(attributes);
+export const createStyleBlock = (options) => {
+  const { className, viewport, styles } = options;
+  const cssStyle = objectToCss(styles);
   return {
     id: revisedRandId(),
     type: "class",
@@ -25,30 +25,24 @@ export const createStyleBlock = (attributes, options) => {
  * @param {String} styleBlockId Style Block ID
  */
 export const getStyleMap = (attributes, options) => {
+  return {
+    [options.viewport]: { ...getStyleMapProperty(attributes) },
+  };
+};
+
+export const getStyleMapProperty = (attributes) => {
   let properties = {};
   Object.keys(attributes).map((key) => {
     properties[key] = true;
   });
-  return {
-    [options.viewport]: { ...properties },
-  };
+  return properties;
 };
 
-export const createCssMarkup = (attributes, cssString = "") => {
-  let cssMarkup = createMarkup(attributes);
-  if (cssString === "") {
-    return cssMarkup;
-  } else {
-    console.log("before", cssMarkup, cssString);
-    const updatedValues = cssMarkup.split(";");
-    updatedValues.forEach((updatedValue) => {
-      if (updatedValue) {
-        const updatedProperty = updatedValue.split(":")[0];
-        const regexp = new RegExp(`(?:${updatedProperty}:[^;]*)`);
-        cssString = cssString.replace(regexp, updatedValue);
-      }
-    });
-    console.log("after", cssMarkup, cssString);
-  }
-  // replace css rules to existing css string
+/**
+ *
+ * @param {Object} attributes {paddingLeft:, paddingRight} -> padding-left:, padding-right
+ * @param {*} cssString "padding-left:10px, margin-left:10px;"
+ */
+export const createCssMarkup = (cssStyles) => {
+  return objectToCss(cssStyles);
 };

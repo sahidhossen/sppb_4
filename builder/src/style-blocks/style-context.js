@@ -17,22 +17,3 @@ export const withStyleContext = ( mapContextToProps ) => createHigherOrderCompon
 		</Consumer>
 	);
 }, 'withStyleContext' );
-
-// class Menu extends React.Component {
-// 	constructor() {
-// 	  super()
-// 	  this.state = {
-// 		value: this.props.defaultValue,
-// 		setValue: (newValue) => {
-// 		  this.setState({ value: newValue })
-// 		}
-// 	  }
-// 	}
-// 	render() {
-// 	  return (
-// 		<MenuContext.Provider value={this.state}>
-// 		  {/* other stuff */}
-// 		</MenuContext.Provider>
-// 	  )
-// 	}
-//   }
