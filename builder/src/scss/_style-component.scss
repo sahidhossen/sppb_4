@@ -43,16 +43,25 @@
   justify-content: center;
   position: relative;
   margin-left: 0.9091rem;
+  cursor: n-resize;
   .editor-x-spacing-value {
     margin-bottom: 0.4545rem;
   }
 }
+.editor-x-spacing-bottom-text,
 .editor-x-margin-text {
   color: var(--dark-bg-text-color);
   position: absolute;
+  margin: 0;
+  font-size: 0.7273rem;
+}
+.editor-x-margin-text {
   right: 0px;
   bottom: -1.1818rem;
-  margin: 0;
+}
+.editor-x-spacing-bottom-text {
+  bottom: 1px;
+  right: 2px;
 }
 .editor-x-link-icon {
   position: absolute;
@@ -72,6 +81,7 @@
   justify-content: center;
   margin-top: 1.0909rem;
   position: relative;
+  cursor: n-resize;
   .editor-x-link-icon {
     bottom: auto;
     top: -1.0909rem;
@@ -91,6 +101,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: w-resize;
   .editor-x-link-icon {
     bottom: auto;
     right: -1.0909rem;
@@ -113,6 +124,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: w-resize;
   .editor-x-link-icon {
     bottom: auto;
     left: -1.0909rem;
@@ -147,6 +159,7 @@
   align-items: center;
   justify-content: center;
   margin-left: 1px;
+  cursor: n-resize;
 }
 .editor-x-padding-bottom {
   width: 4.0909rem;
@@ -158,6 +171,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: n-resize;
   .editor-x-link-icon {
     bottom: auto;
     top: -1.0909rem;
@@ -172,6 +186,7 @@
   margin-top: 2.7273rem;
   display: flex;
   align-items: center;
+  cursor: w-resize;
   .editor-x-spacing-value {
     margin-left: 2px;
   }
@@ -191,6 +206,7 @@
   top: 2.5455rem;
   display: flex;
   align-items: center;
+  cursor: w-resize;
   .editor-x-spacing-value {
     margin-right: 2px;
   }

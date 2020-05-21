@@ -68,6 +68,7 @@ class SpacingComponent extends React.Component {
               <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="0" />
               <span class="fas fa-link editor-x-link-icon"></span>
             </div>
+            <p className="editor-x-spacing-bottom-text">B</p>
           </div>
         </div>
       </div>
