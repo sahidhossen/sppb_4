@@ -1,0 +1,230 @@
+.editor-x-spacing-wrap {
+  border-radius: 0.1818rem;
+  @include border("", 1px, solid, var(--brush-marble-gray));
+  padding: 1.8182rem;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  input {
+    border: 0;
+    -moz-appearance: textfield;
+    background: transparent;
+    outline: 0;
+    text-align: center;
+    width: 2.1818rem;
+    height: 1.5455rem;
+    border-radius: 1px;
+    letter-spacing: 0.05px;
+    color: var(--chateua-gray);
+    display: inline-block;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &:focus {
+      border: 1px solid #fff;
+    }
+  }
+}
+.editor-x-spacing-panel {
+  padding: 0 0.5455rem;
+}
+//Margin settings
+.editor-x-margin-top {
+  width: 9.6364rem;
+  border-bottom: 2px solid var(--small-text-color);
+  height: 1.6364rem;
+  border-right: 1px solid var(--small-text-color);
+  border-left: 1px solid var(--small-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 0.9091rem;
+  cursor: n-resize;
+  .editor-x-spacing-value {
+    margin-bottom: 0.4545rem;
+  }
+}
+.editor-x-spacing-bottom-text,
+.editor-x-margin-text {
+  color: var(--dark-bg-text-color);
+  position: absolute;
+  margin: 0;
+  font-size: 0.7273rem;
+}
+.editor-x-margin-text {
+  right: 0px;
+  bottom: -1.1818rem;
+}
+.editor-x-spacing-bottom-text {
+  bottom: 1px;
+  right: 2px;
+}
+.editor-x-link-icon {
+  position: absolute;
+  bottom: -1.0909rem;
+  transform: rotate(45deg);
+  font-size: 0.7273rem;
+}
+.editor-x-margin-bottom {
+  width: 9.6364rem;
+  border-top: 2px solid var(--small-text-color);
+  height: 1.6364rem;
+  border-right: 1px solid var(--small-text-color);
+  border-left: 1px solid var(--small-text-color);
+  margin-left: 2.7273rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.0909rem;
+  position: relative;
+  cursor: n-resize;
+  .editor-x-link-icon {
+    bottom: auto;
+    top: -1.0909rem;
+  }
+  .editor-x-spacing-value {
+    margin-top: 0.4545rem;
+  }
+}
+.editor-x-margin-left {
+  height: 9.6364rem;
+  border-right: 2px solid var(--small-text-color);
+  width: 1.6364rem;
+  border-bottom: 1px solid var(--small-text-color);
+  border-top: 1px solid var(--small-text-color);
+  margin-top: 2.7273rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: w-resize;
+  .editor-x-link-icon {
+    bottom: auto;
+    right: -1.0909rem;
+    transform: rotate(-45deg);
+  }
+  .editor-x-spacing-value {
+    margin-right: 0.9091rem;
+  }
+}
+.editor-x-margin-right {
+  height: 9.6364rem;
+  border-left: 2px solid var(--small-text-color);
+  width: 1.6364rem;
+  border-bottom: 1px solid var(--small-text-color);
+  border-top: 1px solid var(--small-text-color);
+  position: absolute;
+  right: 1.8182rem;
+  left: auto;
+  top: 4.6364rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: w-resize;
+  .editor-x-link-icon {
+    bottom: auto;
+    left: -1.0909rem;
+    transform: rotate(-45deg);
+  }
+  .editor-x-spacing-value {
+    margin-left: 0.9091rem;
+  }
+}
+//Padding settings
+.editor-x-padding-wrap {
+  position: absolute;
+  width: 9.6364rem;
+  border: 1px solid var(--dark-bg-text-color);
+  border-radius: 0.1818rem;
+  height: 9.6364rem;
+  margin: auto;
+  left: 0;
+  top: 2px;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.editor-x-padding-top {
+  width: 4.0909rem;
+  border-radius: 0.5px;
+  border-bottom: 1px solid #aaaaaa;
+  position: relative;
+  height: 2.5455rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1px;
+  cursor: n-resize;
+}
+.editor-x-padding-bottom {
+  width: 4.0909rem;
+  border-radius: 0.5px;
+  border-top: 1px solid #aaaaaa;
+  position: relative;
+  height: 2.5455rem;
+  margin-left: 2.7273rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: n-resize;
+  .editor-x-link-icon {
+    bottom: auto;
+    top: -1.0909rem;
+  }
+}
+.editor-x-padding-left {
+  height: 4.0909rem;
+  border-radius: 0.5px;
+  border-right: 1px solid #aaaaaa;
+  position: relative;
+  width: 2.5455rem;
+  margin-top: 2.7273rem;
+  display: flex;
+  align-items: center;
+  cursor: w-resize;
+  .editor-x-spacing-value {
+    margin-left: 2px;
+  }
+  .editor-x-link-icon {
+    bottom: auto;
+    right: -1.0909rem;
+    transform: rotate(-45deg);
+  }
+}
+.editor-x-padding-right {
+  height: 4.0909rem;
+  border-radius: 0.5px;
+  border-left: 1px solid #aaaaaa;
+  position: absolute;
+  right: 0;
+  width: 2.5455rem;
+  top: 2.5455rem;
+  display: flex;
+  align-items: center;
+  cursor: w-resize;
+  .editor-x-spacing-value {
+    margin-right: 2px;
+  }
+  .editor-x-link-icon {
+    bottom: auto;
+    left: -1.0909rem;
+    transform: rotate(-45deg);
+  }
+}
+.editor-x-padding-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 1.0909rem;
+  margin: auto;
+  width: 1.0909rem;
+  color: var(--dark-bg-text-color);
+  font-size: 0.7273rem;
+}

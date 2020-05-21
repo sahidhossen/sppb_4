@@ -1,8 +1,5 @@
-import React from 'react';
-import {
-    SpacingComponent,
-    Panel
-} from 'style-blocks'; 
+import React from "react";
+import { SpacingComponent, Panel } from "style-blocks";
 
 class StylePanel extends React.Component {
     constructor(props) {
@@ -21,21 +18,20 @@ class StylePanel extends React.Component {
         return state;
     }
 
-    render() {
+  render() {
+    let { styleState, setCssAttributes } = this.props;
+    let { spacing } = styleState;
 
-        let {styleState, setCssAttributes} = this.props;
-        let { spacing } = styleState;
-
-        return(
-            <div className="style-panel">
-              <Panel open={true}>
-                <SpacingComponent
-                    style={spacing}
-                    setCssAttributes={setCssAttributes}
-                />
-              </Panel>
-            </div>
-        )
-    }
+    return (
+      <div className="style-panel">
+        <Panel icon="fas fa-arrows-alt-v" title="Spacing">
+          <SpacingComponent
+            style={spacing}
+            setCssAttributes={setCssAttributes}
+          />
+        </Panel>
+      </div>
+    );
+  }
 }
 export default StylePanel;
