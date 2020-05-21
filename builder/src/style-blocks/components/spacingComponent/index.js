@@ -35,38 +35,38 @@ class SpacingComponent extends React.Component {
         <div className="editor-x-spacing-wrap">
           <div className="editor-x-margin-left">
             <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="40" />
-            <span class="fas fa-link editor-x-link-icon"></span>
+            <span className="fas fa-link editor-x-link-icon"></span>
           </div>
           <div className="editor-x-margin-top">
             <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="40" />
             <p className="editor-x-margin-text">M</p>
-            <span class="fas fa-link editor-x-link-icon"></span>
+            <span className="fas fa-link editor-x-link-icon"></span>
           </div>
           <div className="editor-x-margin-bottom">
             <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="0" />
-            <span class="fas fa-link editor-x-link-icon"></span>
+            <span className="fas fa-link editor-x-link-icon"></span>
           </div>
           <div className="editor-x-margin-right">
             <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="60" />
-            <span class="fas fa-link editor-x-link-icon"></span>
+            <span className="fas fa-link editor-x-link-icon"></span>
           </div>
           <div className="editor-x-padding-wrap">
             <div className="editor-x-padding-left">
               <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="40" />
-              <span class="fas fa-link editor-x-link-icon"></span>
+              <span className="fas fa-link editor-x-link-icon"></span>
             </div>
             <div className="editor-x-padding-top">
               <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="40" />
-              <span class="fas fa-link editor-x-link-icon"></span>
+              <span className="fas fa-link editor-x-link-icon"></span>
             </div>
             <p className="editor-x-padding-text">P</p>
             <div className="editor-x-padding-bottom">
               <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="0" />
-              <span class="fas fa-link editor-x-link-icon"></span>
+              <span className="fas fa-link editor-x-link-icon"></span>
             </div>
             <div className="editor-x-padding-right">
               <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="0" />
-              <span class="fas fa-link editor-x-link-icon"></span>
+              <span className="fas fa-link editor-x-link-icon"></span>
             </div>
             <p className="editor-x-spacing-bottom-text">B</p>
           </div>
