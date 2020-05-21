@@ -11,7 +11,7 @@ class StylePanel extends React.Component {
             addonId: null
         }
     }
-    
+
     static getDerivedStateFromProps( prevProps, state ) {
         const { addonId, computeStyle } = prevProps;
         if (prevProps.addonId !== state.addonId) {
@@ -20,7 +20,6 @@ class StylePanel extends React.Component {
         }
         return state;
     }
-
 
     render() {
 

@@ -10,6 +10,7 @@ import AddonOutline from "./AddonOutline";
 import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 import { getNum, getGridArea } from "../GridView/gridHelper";
 import WithDropArea from '../WithDropArea';
+import { collectAndEnqueueStyle } from 'style-blocks';
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -28,6 +29,14 @@ class AddonListAddon extends React.Component {
     this.ref = React.createRef();
     this.setAttributes = this.setAttributes.bind(this);
     this.renderDnd = this.renderDnd.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("prevProps ", prevProps)
+    let { styleBlockIds, getStyleBlocks, viewport} = this.props;
+    if (prevProps.styleBlockIds.length !== styleBlockIds.length || prevProps.viewport.name !== viewport.name) { 
+      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name)
+    }
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
@@ -56,7 +65,7 @@ class AddonListAddon extends React.Component {
     let { isMouseMove } = this.state;
     const {
       addon: {
-        attributes: { gridArea },
+        attributes: { gridArea }
       },
       isAddonPicked,
     } = this.props;
@@ -83,14 +92,14 @@ class AddonListAddon extends React.Component {
   }
   onMouseMove(event) {
     if (this.state.isMouseMove) {
-      this.setState({ dragEndIndex: { ...this.getGridAxis(event) } });
+      // this.setState({ dragEndIndex: { ...this.getGridAxis(event) } });
     }
   }
 
   onMouseUp(event) {
     this.setState({ isMouseMove: false });
     // this.toggleListeners(window.frames["sppb-editor-view"].document, false);
-    this.setGridArea();
+    // this.setGridArea();
   }
 
   setGridArea() {
@@ -142,8 +151,8 @@ class AddonListAddon extends React.Component {
         attributes: { gridArea, _addonWidth, container },
       },
       parentAddon: {
-        attributes: { gridGap },
-      },
+        attributes: { gridGap }
+      }
     } = this.props;
     // console.log("test container", container);
     if (!container) {
@@ -251,6 +260,8 @@ export default compose([
       selectedAddonId,
       isAddonPicked,
       getActiveMediaQuery,
+      getAddonStyleBlockIds,
+      getStyleBlocks
     } = select();
     const addon = getAddon(addonId);
     const parentAddon = getAddon(addon.parentId);
@@ -261,8 +272,10 @@ export default compose([
       defaultAddon: getDefaultAddon(addon.name),
       isSelected: selectedId === addonId,
       parentAddon,
+      getStyleBlocks,
       isAddonPicked: isAddonPicked(),
       viewport: getActiveMediaQuery(),
+      styleBlockIds: getAddonStyleBlockIds(addonId)
     };
   }),
   withDispatch((dispatch) => {

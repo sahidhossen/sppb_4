@@ -17,7 +17,6 @@ class SpacingComponent extends React.Component {
         if (type === 'unit') {
             _value.unit = value;
         }
-        console.log('value: ', _value)
         setCssAttributes({ [name]: {..._value} })
 
         // setCssAttributes({paddingLeft: {value, unit} })
@@ -25,9 +24,9 @@ class SpacingComponent extends React.Component {
 
     render(){ 
         
-        let {setCssAttributes, style} = this.props;
+        let {style} = this.props;
         let {paddingLeft, paddingRight} = style;
-        console.log("spacing: ", style)
+        
         return ( 
             <div className="editor-x-panel">
                 <input type="text" value={paddingLeft.value} onChange={this.onChange.bind(this, 'value')} name="paddingLeft"/>

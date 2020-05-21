@@ -17,7 +17,7 @@ class Row extends React.Component {
 
   render() {
     const { addonId, attributes, className } = this.props;
-    // let { gridGap, gridCol, gridArea, _addonWidth } = attributes;
+    console.log("row:")
     const clsNames = classNames(addonId, 'sppb-row', className);
 
     return (

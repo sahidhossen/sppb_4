@@ -65,8 +65,12 @@ export const getStyleBlockIds = (store, parentId) => {
   return [parentId, ...childIds];
 }
 
-export const getCssBlock = (store, blockId) => {
+export const getStyleBlock = (store, blockId) => {
   return store.styleBlockStore.blockStore[blockId];
+}
+
+export const getStyleBlocks = (store, styleBlockIds) => {
+  return styleBlockIds.map( styleBlockId => getStyleBlock(store, styleBlockId));
 }
 
 export const getCssMap = (store, blockId) => {

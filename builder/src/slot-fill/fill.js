@@ -24,7 +24,7 @@ class FillComponent extends Component {
 		registerFill( this.props.name, this );
 	}
 
-	componentWillUpdate() {
+	getSnapshotBeforeUpdate() {
 		if ( ! this.occurrence ) {
 			this.occurrence = ++occurrences;
 		}
@@ -33,6 +33,7 @@ class FillComponent extends Component {
 		if ( slot && ! slot.props.bubblesVirtually ) {
 			slot.forceUpdate();
 		}
+		return null;
 	}
 
 	componentWillUnmount() {

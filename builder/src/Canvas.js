@@ -36,7 +36,7 @@ class Canvas extends React.Component {
       "--h": "auto",
     };
 
-   
+    console.log("canvas")
 
     return (
       <WithDropArea

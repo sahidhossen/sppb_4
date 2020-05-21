@@ -65,7 +65,6 @@ export default compose(
         const {selectedAddonId, getAddonStyleBlockIds, getCSSProperties, getActiveMediaQuery} = select();
         let addonId = selectedAddonId();
         let addonStyleBlockIds = getAddonStyleBlockIds(addonId); 
-        console.log("addonblockID: ", addonStyleBlockIds)
         return {
             addonId,
             addonStyleBlockIds, 

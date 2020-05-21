@@ -11,6 +11,8 @@ export * from './css-markup';
 
 export * from './components';
 
+export * from './add-style-rules.js';
+
 export {
     getElementComputedStyle,
     StyleBlockContextProvider, 
