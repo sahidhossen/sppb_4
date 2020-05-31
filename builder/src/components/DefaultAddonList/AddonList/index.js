@@ -11,6 +11,7 @@ class AddonList extends Component {
   render() {
     const { addonList } = this.props
     const _blocklist = blockListForTools(addonList);
+    console.log("addons: ", _blocklist)
     return (
       <Fragment>
           { Object.keys(_blocklist).map( (key, index) => {

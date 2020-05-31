@@ -1,13 +1,13 @@
 import React from 'react';
 import ReusableComponent from './ReusableComponent';
-import StyleComponents from './StyleComponents';
+import StyleComponentDocker from './StyleComponentDocker';
 
 class RightSidebar extends React.Component {
 	render(){
 		return (
 			<div className="sppb-right-sidebar sppb-sidebar">
 				<ReusableComponent/>
-               	<StyleComponents/>
+               	<StyleComponentDocker/>
 			</div>
 		)
 	}

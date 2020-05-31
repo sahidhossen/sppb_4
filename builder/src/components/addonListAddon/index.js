@@ -13,6 +13,7 @@ import WithDropArea from "../WithDropArea";
 import AddonConfigTag from "./AddonConfigTag";
 import ComponentPortal from "../../helpers/ComponentPortal";
 import SppbPortal from "../sppbportal/SppbPortal";
+import { collectAndEnqueueStyle } from 'style-blocks';
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -33,22 +34,16 @@ class AddonListAddon extends React.Component {
     this.renderDnd = this.renderDnd.bind(this);
   }
 
-  componentDidMount() {
-    this.toggleListeners(this.wrapperNode);
-  }
+  // componentDidMount() {
+  //   this.toggleListeners(this.wrapperNode);
+  // }
 
-  componentWillUnmount() {
-    if (this.node) {
-      // this.toggleListeners(this.node, false);
+  componentDidUpdate(prevProps, prevState) {
+    // console.log("prevProps ", prevProps)
+    let { styleBlockIds, getStyleBlocks, viewport} = this.props;
+    if (prevProps.styleBlockIds.length !== styleBlockIds.length || prevProps.viewport.name !== viewport.name) { 
+      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name)
     }
-    // window.frames["sppb-editor-view"].document.removeEventListener(
-    //   "mousemove",
-    //   this.onMouseMove.bind(this)
-    // );
-    // window.frames["sppb-editor-view"].document.removeEventListener(
-    //   "mouseup",
-    //   this.onMouseUp.bind(this)
-    // );
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
@@ -77,7 +72,7 @@ class AddonListAddon extends React.Component {
     let { isMouseMove } = this.state;
     const {
       addon: {
-        attributes: { gridArea },
+        attributes: { gridArea }
       },
       isAddonPicked,
     } = this.props;
@@ -104,14 +99,14 @@ class AddonListAddon extends React.Component {
   }
   onMouseMove(event) {
     if (this.state.isMouseMove) {
-      this.setState({ dragEndIndex: { ...this.getGridAxis(event) } });
+      // this.setState({ dragEndIndex: { ...this.getGridAxis(event) } });
     }
   }
 
   onMouseUp(event) {
     this.setState({ isMouseMove: false });
     // this.toggleListeners(window.frames["sppb-editor-view"].document, false);
-    this.setGridArea();
+    // this.setGridArea();
   }
 
   setGridArea() {
@@ -163,8 +158,8 @@ class AddonListAddon extends React.Component {
         attributes: { gridArea, _addonWidth, container },
       },
       parentAddon: {
-        attributes: { gridGap },
-      },
+        attributes: { gridGap }
+      }
     } = this.props;
     // console.log("test container", container);
     if (!container) {
@@ -273,6 +268,8 @@ export default compose([
       selectedAddonId,
       isAddonPicked,
       getActiveMediaQuery,
+      getAddonStyleBlockIds,
+      getStyleBlocks
     } = select();
     const addon = getAddon(addonId);
     const parentAddon = getAddon(addon.parentId);
@@ -283,8 +280,10 @@ export default compose([
       defaultAddon: getDefaultAddon(addon.name),
       isSelected: selectedId === addonId,
       parentAddon,
+      getStyleBlocks,
       isAddonPicked: isAddonPicked(),
       viewport: getActiveMediaQuery(),
+      styleBlockIds: getAddonStyleBlockIds(addonId)
     };
   }),
   withDispatch((dispatch) => {

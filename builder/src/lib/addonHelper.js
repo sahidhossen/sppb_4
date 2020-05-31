@@ -31,6 +31,7 @@ export const generateBlock = (
   const acceptedFields = [
     "name",
     "attributes",
+    'styleBlockIds',
     "childrens",
     "content",
     "droppable",
@@ -48,6 +49,9 @@ export const generateBlock = (
   }
   if (!block["childrens"]) {
     block["childrens"] = [];
+  }
+  if(!block['styleBlockIds']) {
+    block['styleBlockIds'] = [];
   }
  
   return {

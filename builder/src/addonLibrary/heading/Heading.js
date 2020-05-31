@@ -7,40 +7,13 @@ class Heading extends React.Component {
   }
 
   render() {
-    const { setAttributes, addonId, attributes } = this.props;
-    let { gridArea } = attributes;
-
-    let _gridArea = gridArea.split("/");
-
-    let rowS = _gridArea[0];
-    let colS = _gridArea[1];
-    let rowE = _gridArea[2];
-    let colE = _gridArea[3];
-
-    let w = colE - colS;
-    let h = rowE - rowS;
-
-    let style = {
-      // backgroundColor: "rgba(0,0,0,0.2)",
-      justifyContent: "center",
-      alignItems: "center",
-      display: "flex",
-      // gridColumn: `span ${w}`,
-      // gridColumnStart: `${colS}`,
-      // gridColumnEnd: `${colE}`,
-      // gridRowStart: `${rowS}`,
-      // gridRowEnd: `${rowS}`,
-      "--w": w,
-      "--h": h,
-      "--x": colS,
-      "--y": rowS,
-      gridArea,
-    };
+    const { setAttributes, addonId, attributes, className } = this.props;
+    
     // console.log("header: ", this.props)
-    const clsNames = classNames("sppb-4", "sppb-heading", addonId);
+    const clsNames = classNames("sppb-4", "sppb-heading", addonId, className);
     return (
       <h1
-        style={style}
+        data-id={addonId}
         className={clsNames}
         onClick={() => setAttributes({ src: "http://google.com" })}
       >

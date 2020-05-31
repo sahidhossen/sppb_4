@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import AddonList from './components/DefaultAddonList';
-import DragDropContext from './lib/DragDropContext';
+// import DragDropContext from './lib/DragDropContext';
 
 class SppbTools extends Component {
   constructor(props){
@@ -43,4 +43,4 @@ const mapDispatchToProps = ( dispatch ) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DragDropContext(SppbTools));
+)(SppbTools);
