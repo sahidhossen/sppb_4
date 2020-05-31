@@ -7,7 +7,6 @@ export const enqueueStyle = (styleBlock, viewportName) => {
     let {variant} = styleBlock;
 
     let selector = getSelector(styleBlock);
-    let styles = '';
     
     if (variant[viewportName]) {
         addCSSRule( selector, variant[viewportName])
@@ -23,8 +22,6 @@ export const enqueueStyle = (styleBlock, viewportName) => {
     if (variant[focus]) {
         addCSSRule(`${selector}:focus`, variant[focus])
     }
-    
-    return  styles;
 }
 
 export const collectAndEnqueueStyle = (styleBlocks, viewportName) => {

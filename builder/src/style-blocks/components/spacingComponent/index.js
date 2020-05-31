@@ -17,7 +17,7 @@ class SpacingComponent extends React.Component {
     if (type === "unit") {
       _value.unit = value;
     }
-    console.log("value: ", _value);
+
     setCssAttributes({ [name]: { ..._value } });
 
     // setCssAttributes({paddingLeft: {value, unit} })
@@ -29,8 +29,8 @@ class SpacingComponent extends React.Component {
     console.log("spacing: ", style);
     return (
       <div className="editor-x-spacing-panel">
-        {/*<input className="editor-x-spacing-value" type="text" value={paddingLeft.value} onChange={this.onChange.bind(this, 'value')} name="paddingLeft" />
-        <input className="editor-x-spacing-value" type="text" value={paddingLeft.unit} onChange={this.onChange.bind(this, 'unit')} name="paddingLeft" />*/}
+        {/* <input className="editor-x-spacing-value" type="text" value={paddingLeft.value} onChange={this.onChange.bind(this, 'value')} name="paddingLeft" />
+        <input className="editor-x-spacing-value" type="text" value={paddingLeft.unit} onChange={this.onChange.bind(this, 'unit')} name="paddingLeft" /> */}
         <p className="editor-x-spacing-panel-title">Spacing</p>
         <div className="editor-x-spacing-wrap">
           <div className="editor-x-margin-left">

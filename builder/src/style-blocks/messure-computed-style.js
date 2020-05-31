@@ -2,7 +2,6 @@ import { hasUnit, extractUnit } from './unit-to-style';
 
 import styleState  from '../reducers/defaultStyle';
 
-
 let differentProperties = {
     backgroundImages: 'backgroundImage', 
     fontColor: 'color', 
@@ -42,8 +41,6 @@ export const getElementComputedStyle = (element, localProperties) => {
         }
     })
     
-    console.log("getElementComputedStyle: ", defaultProperties)  
-
     return defaultProperties;
     
 }
