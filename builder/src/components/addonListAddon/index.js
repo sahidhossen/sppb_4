@@ -39,10 +39,9 @@ class AddonListAddon extends React.Component {
   // }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log("prevProps ", prevProps)
     let { styleBlockIds, getStyleBlocks, viewport} = this.props;
     if (prevProps.styleBlockIds.length !== styleBlockIds.length || prevProps.viewport.name !== viewport.name) { 
-      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name)
+      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name); 
     }
   }
 

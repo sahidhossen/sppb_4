@@ -30,7 +30,7 @@ class StyleComponentDocker extends React.Component {
    }
 
     render() {
-        console.log("render index: ")
+        // console.log("render index: ")
         let {addonId, addonStyleBlockIds} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">

@@ -52,6 +52,7 @@ class Canvas extends React.Component {
         "mousemove",
         this.createCustomCursor.bind(this)
       );
+
       this.setState((state) => ({
         ...state,
         cursorPosition: {
@@ -70,23 +71,8 @@ class Canvas extends React.Component {
   }
 
   render() {
-    let { attributes, mediaQuery, isAddonPicked, pickedAddon } = this.props;
+    let { isAddonPicked, pickedAddon } = this.props;
     const { cursorPosition } = this.state;
-    let { gridGap, gridCol } = attributes;
-
-    let style = {
-      gridTemplateColumns: `repeat(${gridCol}, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
-      // gridTemplateColumns: `repeat(auto-fit, minmax(calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap}), 1fr))`,
-      gridAutoRows: `calc((${mediaQuery.value}px + ${gridGap})/${gridCol} - ${gridGap})`,
-      width: `${mediaQuery.value}px`,
-      gridAutoFlow: "row dense",
-      gridGap: gridGap,
-      "--gr": "auto",
-      "--x": "auto",
-      "--y": "auto",
-      "--w": "auto",
-      "--h": "auto",
-    };
 
     const cursorStyle = {
       position: "fixed",
@@ -94,7 +80,7 @@ class Canvas extends React.Component {
       top: `${cursorPosition.y}px`,
       zIndex: 10,
     };
-
+    
     return (
       <WithDropArea container={this.wrapperNode}>
         {({ isHover }) => {
@@ -123,16 +109,11 @@ class Canvas extends React.Component {
 export default compose(
   withSelect((select) => {
     const {
-      getAddon,
-      getActiveMediaQuery,
       isAddonPicked,
       getPickedAddon,
     } = select();
-    const { attributes } = getAddon("root");
 
     return {
-      mediaQuery: getActiveMediaQuery(),
-      attributes,
       isAddonPicked: isAddonPicked(),
       pickedAddon: getPickedAddon(),
     };
