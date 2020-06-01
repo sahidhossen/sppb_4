@@ -156,6 +156,7 @@ class Navigator extends React.Component {
           </div>
           <span className="fas fa-ellipsis-h editor-x-navigator-dot-btn"></span>
         </div>
+        <div className="editor-x-navigation-collaps">Collaps All</div>
       </div>
     );
   }

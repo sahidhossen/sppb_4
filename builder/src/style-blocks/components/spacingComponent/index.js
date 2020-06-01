@@ -31,7 +31,6 @@ class SpacingComponent extends React.Component {
       <div className="editor-x-spacing-panel">
         {/* <input className="editor-x-spacing-value" type="text" value={paddingLeft.value} onChange={this.onChange.bind(this, 'value')} name="paddingLeft" />
         <input className="editor-x-spacing-value" type="text" value={paddingLeft.unit} onChange={this.onChange.bind(this, 'unit')} name="paddingLeft" /> */}
-        <p className="editor-x-spacing-panel-title">Spacing</p>
         <div className="editor-x-spacing-wrap">
           <div className="editor-x-margin-left">
             <input className="editor-x-spacing-value" type="number" name="" min="0" max="100" value="40" />

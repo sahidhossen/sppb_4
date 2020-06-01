@@ -85,7 +85,7 @@ class StylePanelBody extends React.Component {
 
     render(){
         return (
-            <div className="editor-x-style-panel-body sppb-sidebar-panel-body">
+            <div className="editor-x-style-panel-wrap">
             
                 <StylePanel
                     styleBlockIds={this.props.addonStyleBlockIds}
