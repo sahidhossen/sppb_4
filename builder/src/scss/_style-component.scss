@@ -31,6 +31,37 @@
 .editor-x-spacing-panel {
   padding: 0 0.5455rem;
 }
+//Panel style
+.editor-x-panel-header {
+  display: flex;
+}
+.editor-x-panel-header-right {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 20px 8px 0;
+  @include border("-bottom", 1px, solid, var(--brush-marble-gray));
+}
+.editor-x-panel-header-left-icon {
+  padding-right: 10px;
+}
+.editor-x-panel-header-title {
+  padding-right: 6px;
+}
+.editor-x-panel-changes {
+  margin-right: auto;
+  border-radius: 0.4545rem;
+  background: var(--shark-dark);
+  padding: 2px 10px;
+  color: var(--dark-bg-text-color);
+}
+.editor-x-panel-x-body {
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.editor-x-panel-toggle-icon {
+  cursor: pointer;
+}
 //Margin settings
 .editor-x-margin-top {
   width: 9.6364rem;
