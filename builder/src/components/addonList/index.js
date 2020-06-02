@@ -1,13 +1,10 @@
 import React, {Fragment} from 'react';
 import {map} from 'lodash';
-import {withSelect, withDispatch} from 'store';
+import {withSelect} from 'store';
 import {compose} from '../compose';
 import AddonListAddon from '../AddonListAddon'; 
 
 class AddonList extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         const {childAddonIds, parentId} = this.props
@@ -21,7 +18,6 @@ class AddonList extends React.Component {
                         parentId={ parentId }
                     />
                 )}
-                {/* {childAddonIds.length === 0 && <div className="sppb-empty-grid-placeholder"></div>} */}
             </Fragment>
         )
     }
@@ -29,15 +25,10 @@ class AddonList extends React.Component {
 
 export default compose([
     withSelect( (select, ownProps ) => {
-        const {
-            getChildrenIds
-        } = select();
+        const { getChildrenIds } = select();
         const {parentId} = ownProps;
         return {
             childAddonIds: getChildrenIds(parentId)
         }
-    }),
-    withDispatch( dispatch => {
-
     })
 ])(AddonList);
