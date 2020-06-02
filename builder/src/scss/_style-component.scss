@@ -30,6 +30,10 @@
 }
 .editor-x-spacing-panel {
   padding: 0 0.5455rem;
+  .editor-x-radio-control {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 }
 //Panel style
 .editor-x-panel-header {
@@ -57,7 +61,6 @@
 }
 .editor-x-panel-x-body {
   padding-right: 10px;
-  padding-top: 10px;
 }
 .editor-x-panel-toggle-icon {
   cursor: pointer;

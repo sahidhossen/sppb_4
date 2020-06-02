@@ -166,8 +166,8 @@
 }
 
 //Tab or Radio Controll
-.sppb-tab-panel,
-.sppb-radio-control {
+.editor-x-tab-panel,
+.editor-x-radio-control {
   @include border("", 1px, solid, var(--brush-marble-gray));
   border-radius: 0.1864rem;
   padding: 0.183rem;
@@ -178,15 +178,16 @@
     color: rgba(var(--white), 0.8);
     outline: none;
     padding: 0.275rem;
-    &.active-tab,
-    &.active-item {
+    cursor: pointer;
+    &.editor-x-active-tab,
+    &.editor-x-active-item {
       border-radius: 0.2273rem;
       box-shadow: 0 0.5px 1.5px 0 rgba(var(--black-rgb), 0.2),
         inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.16),
         inset 0 1px 0 0 rgba(var(--white-rgb), 0.04);
       background: var(--battleship-gray);
     }
-    &.sppb-border-right {
+    &.editor-x-tab-border-right {
       @include border("-right", 1px, solid, var(--brush-marble-gray));
     }
   }
@@ -201,14 +202,17 @@
         left: auto;
         right: auto;
       }
-      &.active-tab,
-      &.active-item {
+      &.editor-x-active-tab,
+      &.editor-x-active-item {
         span {
           color: var(--small-text-color);
         }
       }
     }
   }
+}
+.sppb-tab-content {
+  display: none;
 }
 
 //Color pallete
