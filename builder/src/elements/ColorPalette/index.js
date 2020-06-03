@@ -8,7 +8,7 @@ export class ColorPalette extends Component {
 
   render() {
     const { colors, value, className } = this.props;
-    const defaultClass = "sppb-color-palette sppb-form-controllers";
+    const defaultClass = "sppb-color-palette editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );

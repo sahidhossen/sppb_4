@@ -21,7 +21,7 @@ class ToggleButton extends React.Component {
     render() {
         const { isChecked } = this.state;
         return (
-            <div className="sppb-toggle-btn-wrap sppb-form-controllers" onClick={this.handleClick}>
+            <div className="sppb-toggle-btn-wrap editor-x-form-controllers" onClick={this.handleClick}>
                 <span className={`sppb-toggle-btn-body${isChecked ? ' sppb-toggle-btn-checked' : ''}`}>
                     <span className="sppb-toggle-btn-bubble"></span>
                 </span>

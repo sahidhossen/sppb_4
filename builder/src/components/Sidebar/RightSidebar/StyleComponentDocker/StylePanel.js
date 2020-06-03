@@ -1,5 +1,5 @@
-import React from "react";
-import { SpacingComponent, Panel } from "style-blocks";
+import React, { Fragment } from "react";
+import { SpacingComponent, Panel, SizeComponent } from "style-blocks";
 
 class StylePanel extends React.Component {
   constructor(props) {
@@ -23,9 +23,20 @@ class StylePanel extends React.Component {
     let { spacing } = styleState;
 
     return (
-      <Panel icon="fas fa-arrows-alt-v" title="Spacing">
-        <SpacingComponent style={spacing} setCssAttributes={setCssAttributes} />
-      </Panel>
+      <Fragment>
+        <Panel icon="fas fa-arrows-alt-v" title="Spacing">
+          <SpacingComponent
+            style={spacing}
+            setCssAttributes={setCssAttributes}
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Size">
+          <SizeComponent
+            style={spacing}
+            setCssAttributes={setCssAttributes}
+          />
+        </Panel>
+      </Fragment>
     );
   }
 }
