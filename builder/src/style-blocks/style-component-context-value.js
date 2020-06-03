@@ -15,7 +15,7 @@ const updateFieldValue = (styleStore, fields) => {
     const contextFields = {}
     Object.keys(fields).map( fieldName => {
         let fieldValue = styleStore[fieldName]; 
-        let value = fieldValue.local.value === null ? fieldValue.browser : fieldValue.local
+        let value = fieldValue.local.value === null && fieldValue.local.unit === null ? fieldValue.browser : fieldValue.local
             contextFields[fieldName] = {...value};
     })
     return contextFields;

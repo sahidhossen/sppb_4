@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import classnames from 'classnames';
 import withInstanceId from "../../lib/withInstanceId";
 
 const RadioItem = ({ className, itemId, onClick, children, icon }) => (
@@ -11,33 +12,49 @@ export class RadioControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedItem: null,
+      value: null,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
-    const { value, items } = this.props;
-    if (value) {
+    const { value, items, disabled } = this.props;
+    if (value && !disabled) {
       const defaultRadioItem = items.find((item) => item.name === value);
-      defaultRadioItem && this.setState({ selectedItem: defaultRadioItem });
+      defaultRadioItem && this.setState({ value: defaultRadioItem });
     }
   }
 
-  handleClick(selectedItem) {
-    const { onSelect } = this.props;
-    this.setState({ selectedItem });
-    onSelect(selectedItem);
+  static getDerivedStateFromProps(prevProps, state) {
+    const { value, items } = prevProps;
+    if (state.value !== null && (value !== state.value.name) ) {
+      const defaultRadioItem = items.find((item) => item.name === value);
+      return { value: defaultRadioItem || null };
+    }
+    return state;
+  }
+
+  handleClick(value) {
+    const { onSelect, disabled } = this.props;
+    if (disabled) 
+      return;
+
+    this.setState({ value });
+    onSelect(value);
   }
 
   render() {
-    const { selectedItem } = this.state;
-    const { className, activeClass, items, instanceId } = this.props;
+    const { value } = this.state;
+    const { className, activeClass, items, instanceId, disabled } = this.props;
     const hasIcon = items.some((el) => el.icon);
-    const defaultClass = `editor-x-radio-control sppb-form-controllers${hasIcon ? ' spp-radio-has-icon' : ''}`;
-    const elementClass = [defaultClass, ...(className ? [className] : [])].join(
-      " "
-    );
+
+    const elementClass = classnames(
+        {'editor-x-radio-control': true, 
+        'sppb-form-controllers': true, 
+        'spp-radio-has-icon': hasIcon,
+        'editor-x-radio-control-disable': disabled
+      }, className);
+
 
     return (
       <React.Fragment>
@@ -46,12 +63,12 @@ export class RadioControl extends Component {
             <RadioItem
               className={[
                 item.className,
-                ...(selectedItem && selectedItem.name === item.name
+                ...(value && value.name === item.name
                   ? [activeClass]
                   : []),
               ].join(" ")}
               itemId={`${instanceId}-${item.name}`}
-              selected={selectedItem && item.name === selectedItem.name}
+              selected={value && item.name === value.name}
               key={item.name}
               onClick={() => this.handleClick(item)}
               icon={item.icon ? item.icon : ''}

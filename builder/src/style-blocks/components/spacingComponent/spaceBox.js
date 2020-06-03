@@ -37,7 +37,7 @@ export default class SpaceBox extends React.Component {
     onDragOverAction(event) {
         let { x, y, isDragStart } = this.state;
 
-        if (!isDragStart) 
+        if (!isDragStart)
             return; 
         
         let { value, direction, action, onDragChange } = this.props; 
@@ -65,7 +65,9 @@ export default class SpaceBox extends React.Component {
 
     onDragStopAction(event) {
         event.preventDefault();
-        this.setState({ isDragStart: false, x: 0 , y: 0 })
+        if(this.state.isDragStart) { 
+            this.setState({ isDragStart: false, x: 0 , y: 0 })
+        }
     }
 
     onMouseDownAction(event) {
@@ -77,12 +79,17 @@ export default class SpaceBox extends React.Component {
         })
     }
 
+    onBoxClick(event) {
+        this.props.onClick(event)
+    }
+
     render(){
-        let { className } = this.props;
-        let classNames = classnames( className );
+        let { className, isActive, isLocked } = this.props;
+        let classNames = classnames( className, {'editor-x-spacing-active': isActive || isLocked} );
         return ( 
             <div 
                 className={classNames}
+                onClick={this.onBoxClick.bind(this)}
                 onMouseDown={this.onMouseDownAction.bind(this)}
             >
                 {this.props.children}

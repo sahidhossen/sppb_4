@@ -14,7 +14,6 @@ const styleStore = (state= defaultStyle , action) => {
         let _attributes = {}; 
 
         let fields = Object.keys(attributes); 
-    
         fields.map( field => {
           _attributes[field] = {...nextState[field], local: attributes[field] }
         })
