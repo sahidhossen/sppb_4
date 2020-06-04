@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent } from "style-blocks";
+import { SpacingComponent, Panel, SizeComponent, StyleComponent } from "style-blocks";
 
 class StylePanel extends React.Component {
   constructor(props) {
@@ -32,6 +32,12 @@ class StylePanel extends React.Component {
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
           <SizeComponent
+            style={spacing}
+            setCssAttributes={setCssAttributes}
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Style">
+          <StyleComponent
             style={spacing}
             setCssAttributes={setCssAttributes}
           />

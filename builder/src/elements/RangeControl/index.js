@@ -8,7 +8,7 @@ export class RangeControl extends Component {
 
   render() {
     const { label, value, min, max, step, className, instanceId } = this.props;
-    const defaultClass = "sppb-range editor-x-form-controllers";
+    const defaultClass = "editor-x-range editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -16,7 +16,7 @@ export class RangeControl extends Component {
     return (
       <div className={elementClass}>
         {label && (
-          <label htmlFor={`sppb-range-control${instanceId}`}>{label}</label>
+          <label htmlFor={`editor-x-range-control${instanceId}`}>{label}</label>
         )}
         <input
           type="range"
@@ -28,7 +28,7 @@ export class RangeControl extends Component {
         />
         <input
           type="number"
-          id={`sppb-range-control${instanceId}`}
+          id={`editor-x-range-control${instanceId}`}
           value={value}
           min={min}
           max={max}

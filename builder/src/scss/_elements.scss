@@ -61,6 +61,7 @@
       margin-right: var(--space-5);
       background: var(--controller-color);
       border-radius: 50%;
+      width: 100%;
 
       &:focus {
         outline: none;
@@ -150,22 +151,32 @@
 
     //Number input
     &[type="number"] {
-      background: var(--shark-dark);
-      color: var(--white);
+      background: transparent;
+      border: solid 0.5px transparent;
       outline: 0;
       text-align: center;
       border-radius: 0.2727rem;
-      box-shadow: inset 0 1.5px 1.5px 0 rgba(var(--black-rgb), 0.1),
-        inset 0 -0.5px 0 0 rgba(var(--white-rgb), 0.09),
-        inset 0 -1px 0 0 rgba(var(--white-rgb), 0.08),
-        inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.05);
-      border: solid 0.5px rgba(var(--white-rgb), 0.05);
       padding: 0.3636rem 0.1818rem;
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        opacity: 1;
-        background: transparent;
-        color: var(--regent-gray);
+      color: var(--white);
+      &:hover,
+      &:focus {
+        background: var(--shark-dark);
+        border-color: rgba(var(--white-rgb), 0.05);
+        box-shadow: inset 0 1.5px 1.5px 0 rgba(var(--black-rgb), 0.1),
+          inset 0 -0.5px 0 0 rgba(var(--white-rgb), 0.09),
+          inset 0 -1px 0 0 rgba(var(--white-rgb), 0.08),
+          inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.05);
+      }
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      &[type=number] {
+        -moz-appearance: textfield;
       }
     }
   }
