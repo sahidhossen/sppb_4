@@ -2,6 +2,7 @@ export { default as InputText } from "./InputText";
 export { default as InputControl } from "./InputControl";
 export { default as SelectControl } from "./SelectControl";
 export { default as RangeControl } from "./RangeControl";
+export { default as RangeWithTwoController } from "./RangeWithTwoController";
 export { default as RadioControl } from "./RadioControl";
 export { default as TabPanel } from "./TabPanel";
 export { default as ColorPicker } from "./ColorPicker";

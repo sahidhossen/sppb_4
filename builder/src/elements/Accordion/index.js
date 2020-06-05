@@ -10,7 +10,8 @@ export class Accordion extends Component {
   constructor(props) {
     super(props);
     const openSections = {};
-    this.props.children.forEach(
+
+    React.Children.toArray(this.props.children).forEach(
       ({ props: { label, isOpen } } = child) =>
         isOpen && (openSections[label] = true)
     );
@@ -52,7 +53,7 @@ export class Accordion extends Component {
       props: { children },
       state: { openSections },
     } = this;
-    const childrenWithProps = children.map((child) =>
+    const childrenWithProps = React.Children.toArray(children).map((child) =>
       React.cloneElement(child, {
         isOpen: !!openSections[child.props.label],
         onClick: onClick,
@@ -60,7 +61,9 @@ export class Accordion extends Component {
       })
     );
     return (
-      <div className="sppb-form-controllers sppb-accordion">{childrenWithProps}</div>
+      <div className="sppb-form-controllers sppb-accordion">
+        {childrenWithProps}
+      </div>
     );
   }
 }
