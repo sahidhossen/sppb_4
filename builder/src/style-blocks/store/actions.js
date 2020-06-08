@@ -4,3 +4,10 @@ export const updateStyleAttributes = (attribues) => {
       payload: attribues,
     };
   };
+
+  export const initiateStyleState = (styleState) => {
+    return {
+      type: "INITIATE_STYLE_STATE",
+      payload: styleState,
+    };
+  };

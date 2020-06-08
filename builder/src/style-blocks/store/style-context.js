@@ -1,18 +1,17 @@
 import React, { createContext } from 'react';
 import {mapValues} from 'lodash';
+import { defaultComponentValues } from '../default-components-value';
 import {createHigherOrderComponent} from '../../components/compose';
 import { styleContextReducer } from './reducer';
 import * as actions from './actions';
 
 const { Consumer, Provider } = createContext();
 
-
 export class StyleBlockContextProvider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: "",
-      		value: "",
+			styleState: {...defaultComponentValues}
 		}
 		this.dispatch = this.dispatch.bind(this);
 	}
