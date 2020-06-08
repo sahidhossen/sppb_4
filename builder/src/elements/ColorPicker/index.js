@@ -21,7 +21,7 @@ export class ColorPicker extends Component {
 }
 
 ColorPicker.defaultProps = {
-  color: "#ffffff"
+  color: "#ffffff",
 };
 
 export default ColorPicker;

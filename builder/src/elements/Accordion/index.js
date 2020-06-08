@@ -60,7 +60,9 @@ export class Accordion extends Component {
       })
     );
     return (
-      <div className="editor-x-form-controllers editor-x-accordion">{childrenWithProps}</div>
+      <div className="editor-x-form-controllers editor-x-accordion">
+        {childrenWithProps}
+      </div>
     );
   }
 }

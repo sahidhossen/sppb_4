@@ -61,6 +61,7 @@
       margin-right: var(--space-5);
       background: var(--controller-color);
       border-radius: 50%;
+      width: 100%;
 
       &:focus {
         outline: none;
@@ -150,22 +151,32 @@
 
     //Number input
     &[type="number"] {
-      background: var(--shark-dark);
-      color: var(--white);
+      background: transparent;
+      border: solid 0.5px transparent;
       outline: 0;
       text-align: center;
       border-radius: 0.2727rem;
-      box-shadow: inset 0 1.5px 1.5px 0 rgba(var(--black-rgb), 0.1),
-        inset 0 -0.5px 0 0 rgba(var(--white-rgb), 0.09),
-        inset 0 -1px 0 0 rgba(var(--white-rgb), 0.08),
-        inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.05);
-      border: solid 0.5px rgba(var(--white-rgb), 0.05);
       padding: 0.3636rem 0.1818rem;
-      &::-webkit-inner-spin-button,
-      &::-webkit-outer-spin-button {
-        opacity: 1;
-        background: transparent;
-        color: var(--regent-gray);
+      color: var(--white);
+      &:hover,
+      &:focus {
+        background: var(--shark-dark);
+        border-color: rgba(var(--white-rgb), 0.05);
+        box-shadow: inset 0 1.5px 1.5px 0 rgba(var(--black-rgb), 0.1),
+          inset 0 -0.5px 0 0 rgba(var(--white-rgb), 0.09),
+          inset 0 -1px 0 0 rgba(var(--white-rgb), 0.08),
+          inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.05);
+      }
+      /* Chrome, Safari, Edge, Opera */
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Firefox */
+      &[type=number] {
+        -moz-appearance: textfield;
       }
     }
   }
@@ -589,4 +600,134 @@ label.editor-x-checkbox-label {
     width: 0.35rem;
     transform: rotate(30deg);
   }
+}
+
+/*
+  range with two controller
+*/
+
+@mixin range-slider(
+  $width,
+  $height,
+  $input-top,
+  $input-bg-color,
+  $input-thumb-color,
+  $float: none,
+  $input-height: 10px,
+  $input-border-radius: 14px
+) {
+  position: relative;
+  width: $width;
+  height: $height;
+  float: $float;
+  text-align: center;
+  padding: 10px 0px;
+  background: #2a2c36;
+
+  input[type="range"] {
+    pointer-events: none;
+    position: absolute;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: $input-border-radius;
+    background: $input-bg-color;
+    box-shadow: inset 0 1px 0 0 darken($input-bg-color, 15%),
+      inset 0 -1px 0 0 darken($input-bg-color, 10%);
+    -webkit-box-shadow: inset 0 1px 0 0 darken($input-bg-color, 15%),
+      inset 0 -1px 0 0 darken($input-bg-color, 10%);
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: $width;
+    outline: none;
+    height: $input-height;
+    margin: 0;
+    padding: 0;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    pointer-events: all;
+    cursor: ew-resize;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+    -webkit-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border: none;
+    border-radius: $input-border-radius;
+    background-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      color-stop(0%, lighten($input-thumb-color, 60%)),
+      color-stop(100%, $input-thumb-color)
+    ); /* android <= 2.2 */
+    background-image: -webkit-linear-gradient(
+      top,
+      lighten($input-thumb-color, 60%) 0,
+      $input-thumb-color 100%
+    ); /* older mobile safari and android > 2.2 */
+    background-image: linear-gradient(
+      to bottom,
+      lighten($input-thumb-color, 60%) 0,
+      $input-thumb-color 100%
+    ); /* W3C */
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    pointer-events: all;
+    cursor: ew-resize;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border: none;
+    border-radius: $input-border-radius;
+    background-image: linear-gradient(
+      to bottom,
+      lighten($input-thumb-color, 60%) 0,
+      $input-thumb-color 100%
+    ); /* W3C */
+  }
+
+  input[type="range"]::-ms-thumb {
+    pointer-events: all;
+    cursor: ew-resize;
+    position: relative;
+    z-index: 10;
+    -ms-appearance: none;
+    width: $input-height;
+    height: $input-height;
+    border-radius: $input-border-radius;
+    border: 0;
+    background-image: linear-gradient(
+      to bottom,
+      lighten($input-thumb-color, 60%) 0,
+      $input-thumb-color 100%
+    ); /* W3C */
+  }
+
+  input[type="range"]::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 1);
+    border: 0;
+  }
+
+  input[type="range"]:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+  }
+
+  input[type="range"]::-moz-focus-outer {
+    border: 0;
+  }
+}
+
+section.range-slider {
+  @include range-slider(100%, auto, 50px, #f1efef, #413f41, left);
 }

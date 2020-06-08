@@ -1,12 +1,22 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent } from "style-blocks";
+import {
+  SpacingComponent,
+  Panel,
+  SizeComponent,
+  StyleComponent,
+} from "style-blocks";
+import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
 
 class StylePanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addonId: null
+      addonId: null,
     };
+  }
+
+  handleChange(event) {
+    addonId: null;
   }
 
   static getDerivedStateFromProps(prevProps, state) {
@@ -35,6 +45,8 @@ class StylePanel extends React.Component {
             setCssAttributes={setCssAttributes}
           />
         </Panel>
+
+        <ColorPickerContainer />
       </Fragment>
     );
   }

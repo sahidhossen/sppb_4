@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import withInstanceId from "../../lib/withInstanceId";
 import SelectCustom from "../SelectCustom";
 
-const isObject = value => {
+const isObject = (value) => {
   return (
     typeof value === "object" &&
     value instanceof Object &&
@@ -20,12 +20,12 @@ class InputControl extends Component {
       if (unit) {
         this.props.onChange({
           value: this.inputEl.current.value,
-          unit
+          unit,
         });
       } else {
         this.props.onChange({
           value: this.inputEl.current.value,
-          unit: this.props.value.unit
+          unit: this.props.value.unit,
         });
       }
     } else {
@@ -39,7 +39,7 @@ class InputControl extends Component {
       unit,
       placeholder,
       instanceId,
-      className
+      className,
     } = this.props;
     const defaultClass = "sppb-input-text editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
@@ -62,18 +62,17 @@ class InputControl extends Component {
           id={`sppb-input-text${instanceId}`}
           placeholder={placeholder}
         />
-        {/*isObject(value) && (
-          <SelectControl
-            className="input-control-selector"
+        {isObject(value) && (
+          <SelectCustom
+            className="select-custom-class"
             value={value.unit}
-            options={Object.keys(unit).map(key => ({
-              label: unit[key],
-              value: key
+            options={Object.keys(unit).map((key) => ({
+              value: unit[key],
             }))}
-            onChange={value => this.onChange(value)}
+            onSelectChange={(value) => this.onChange(value)}
           />
-        )*/}
-        <SelectCustom
+        )}
+        {/* <SelectCustom
           options={[
             { value: "px", icon: "far fa-square", selected: true },
             { value: "%", icon: "fas fa-th-large" },
@@ -87,7 +86,7 @@ class InputControl extends Component {
           //   this.handleChange(value, "select_value");
           // }}
           className="select-custom-class"
-        />
+        /> */}
       </div>
     );
   }
@@ -97,7 +96,7 @@ InputControl.defaultProps = {
   value: "",
   className: "",
   placeholder: "Insert text...",
-  unit: { px: "Pixel", em: "EM", "%": "%" }
+  unit: { px: "Pixel", em: "EM", "%": "%" },
 };
 
 export default withInstanceId(InputControl);
