@@ -160,17 +160,19 @@
     padding: 0 0.4545rem;
   }
 }
-.sppb-panel-title {
+.editor-x-style-panel-manage-title {
   text-align: center;
   color: var(--chateua-gray);
   letter-spacing: 0.3px;
   margin-top: 15px;
 }
-.sppb-sidebar-panel-body {
-  border-radius: 0.2727rem;
+.editor-x-style-panel-wrap {
   background: var(--charcoal-dark);
-  padding: 15px 10px;
-  height: 50vh;
+  border-radius: 0.2727rem;
+  box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 0 #2b2b2b, inset 0 -0.5px 0 0 #000000;
+  padding: 18px 0 15px 10px;
+  height: 60vh;
 }
 //Left sidebar layer
 .editor-x-navigator {

@@ -1,5 +1,10 @@
-import React from "react";
-import { SpacingComponent, Panel } from "style-blocks";
+import React, { Fragment } from "react";
+import {
+  SpacingComponent,
+  Panel,
+  SizeComponent,
+  StyleComponent,
+} from "style-blocks";
 import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
 
 class StylePanel extends React.Component {
@@ -10,7 +15,9 @@ class StylePanel extends React.Component {
     };
   }
 
-  handleChange(event) {}
+  handleChange(event) {
+    addonId: null;
+  }
 
   static getDerivedStateFromProps(prevProps, state) {
     const { addonId, computeStyle } = prevProps;
@@ -26,16 +33,22 @@ class StylePanel extends React.Component {
     let { spacing } = styleState;
 
     return (
-      <div className="style-panel">
+      <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
           <SpacingComponent
             style={spacing}
             setCssAttributes={setCssAttributes}
           />
         </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Size">
+          <SizeComponent style={spacing} setCssAttributes={setCssAttributes} />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Style">
+          <StyleComponent style={spacing} setCssAttributes={setCssAttributes} />
+        </Panel>
 
         <ColorPickerContainer />
-      </div>
+      </Fragment>
     );
   }
 }

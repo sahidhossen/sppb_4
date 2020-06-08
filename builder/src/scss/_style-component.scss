@@ -6,6 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
+  margin-bottom: 5px;
   input {
     border: 0;
     -moz-appearance: textfield;
@@ -30,6 +31,101 @@
 }
 .editor-x-spacing-panel {
   padding: 0 0.5455rem;
+  .editor-x-radio-control {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+}
+//Panel style
+.editor-x-panel-header {
+  display: flex;
+  padding-bottom: 10px;
+}
+.editor-x-panel-header-right {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0 20px 8px 0;
+  @include border("-bottom", 1px, solid, var(--shark-dark));
+}
+.editor-x-panel-header-left-icon {
+  padding-right: 10px;
+  color: var(--regent-gray);
+}
+.editor-x-panel-header-title {
+  padding-right: 6px;
+  color: var(--chateua-gray);
+}
+.editor-x-panel-changes {
+  margin-right: auto;
+  border-radius: 0.4545rem;
+  background: var(--shark-dark);
+  padding: 2px 10px;
+  color: var(--dark-bg-text-color);
+}
+.editor-x-panel-x-body {
+  padding-right: 10px;
+}
+.editor-x-panel-toggle-icon {
+  cursor: pointer;
+  color: var(--battleship-gray);
+}
+.editor-x-panel-active {
+  .editor-x-panel-header-left-icon {
+    color: var(--acuamarine);
+  }
+  .editor-x-panel-header-title {
+    color: var(--white);
+  }
+}
+.editor-x-size-component {
+  .editor-accordion-content {
+    padding: 5px 0;
+    @include border("-bottom", 1px, solid, var(--brush-marble-gray));
+  }
+}
+.editor-x-size-height-width {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+  margin-top: 5px;
+  .sppb-custom-select {
+    background: transparent;
+    padding: 0;
+    height: 21px;
+    position: absolute;
+    width: 25px;
+    box-shadow: none;
+    left: auto;
+    right: 0;
+    align-items: flex-start;
+    color: var(--default-text-color);
+  }
+  .sppb-select-arrow {
+    right: auto;
+    left: auto;
+    position: relative;
+    color: var(--regent-gray);
+    .sppb-option-arrow-up {
+      display: none;
+    }
+    .sppb-option-arrow-down {
+      top: -5px;
+      font-size: 1rem;
+      right: -8px;
+    }
+  }
+  .sppb-custom-options {
+    width: 6.3636rem;
+  }
+}
+.editor-x-size-lock {
+  color: var(--battleship-gray);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transform: rotate(-45deg);
+  padding: 3px;
 }
 //Margin settings
 .editor-x-margin-top {

@@ -30,14 +30,14 @@ export class AccordionSection extends Component {
     } = this;
     return (
       <div
-        className="sppb-accordion-item"
+        className="editor-x-accordion-item"
       >
-        <div onClick={onClick.bind(this)} className={`sppb-accordion-head${isOpen ? ' sppb-accordion-opened' : ''}`}>
+        <div onClick={onClick.bind(this)} className={`editor-x-accordion-head${isOpen ? ' editor-x-accordion-opened' : ''}`}>
           {label}
           <span className={icon}></span>
         </div>
         {isOpen && (
-          <div className="sppb-accordion-content">
+          <div className="editor-x-accordion-content">
             {children}
           </div>
         )}

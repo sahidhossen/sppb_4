@@ -44,7 +44,7 @@ const commonReducer = (state, action) => {
         addon = { ...addon, styleBlockIds: [styleBlockId] };
         present[options.addonId] = addon;
         let nextBuilder = { ...nextState.builder, past, present };
-
+        console.log("nextbuilder: ", nextBuilder)
         return {
           ...nextState,
           builder: nextBuilder,

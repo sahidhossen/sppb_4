@@ -17,7 +17,6 @@ class Row extends React.Component {
 
   render() {
     const { addonId, attributes, className } = this.props;
-    console.log("row:")
     const clsNames = classNames(addonId, 'sppb-row', className);
 
     return (

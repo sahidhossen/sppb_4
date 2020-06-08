@@ -3,8 +3,8 @@ import React from 'react';
 class StylePanelHeader extends React.Component {
     render() {
         return (
-            <div className="style-panel-header">
-                <p className="sppb-panel-title">Style Components</p>
+            <div className="editor-x-style-panel-manage">
+                <p className="editor-x-style-panel-manage-title">Manage Components</p>
             </div>
         )
     }

@@ -41,7 +41,7 @@ class InputControl extends Component {
       instanceId,
       className,
     } = this.props;
-    const defaultClass = "sppb-input-text sppb-form-controllers";
+    const defaultClass = "sppb-input-text editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -70,6 +70,21 @@ class InputControl extends Component {
             onSelectChange={(value) => this.onChange(value)}
           />
         )}
+        {/* <SelectCustom
+          options={[
+            { value: "px", icon: "far fa-square", selected: true },
+            { value: "%", icon: "fas fa-th-large" },
+            { value: "em", icon: "fas fa-th" },
+            { value: "rem", icon: "far fa-square" },
+            { value: "vh", icon: "fas fa-th-large" },
+            { value: "vw", icon: "far fa-square" },
+          ]}
+          value={'select_value'}
+          // onSelectChange={(value) => {
+          //   this.handleChange(value, "select_value");
+          // }}
+          className="select-custom-class"
+        /> */}
       </div>
     );
   }

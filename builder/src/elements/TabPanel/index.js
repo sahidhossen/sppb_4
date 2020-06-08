@@ -37,7 +37,7 @@ export class TabPanel extends Component {
   render() {
     const { selectedTab } = this.state;
     const { className, activeClass, tabs, children, instanceId } = this.props;
-    const defaultClass = "sppb-tab-panel sppb-form-controllers";
+    const defaultClass = "editor-x-tab-panel editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -64,7 +64,7 @@ export class TabPanel extends Component {
         </div>
         {selectedTab && (
           <div
-            className="sppb-tab-content"
+            className="editor-x-tab-content"
             id={`${instanceId}-${selectedTab.name}`}
             tabIndex="0"
           >
@@ -78,7 +78,7 @@ export class TabPanel extends Component {
 
 TabPanel.defaultProps = {
   className: "",
-  activeClass: "active-tab",
+  activeClass: "editor-x-active-tab",
   value: "",
 };
 

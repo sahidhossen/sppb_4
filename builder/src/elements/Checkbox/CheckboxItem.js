@@ -15,7 +15,7 @@ const CheckboxItem = ({
             onChange={onChange}
             value={value}
         />
-        <label htmlFor={id} className="sppb-checkbox-label">
+        <label htmlFor={id} className="editor-x-checkbox-label">
             {name}
         </label>
     </React.Fragment>

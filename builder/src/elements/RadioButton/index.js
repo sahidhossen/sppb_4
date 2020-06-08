@@ -38,7 +38,7 @@ class RadioButton extends React.Component {
         const { isChecked, checkedItem } = this.state;
         const { options, title, className } = this.props;
         return (
-            <div className={`sppb-form-controllers sppb-radio-buttons${className ? ' ' + className : ''}`}>
+            <div className={`editor-x-form-controllers sppb-radio-buttons${className ? ' ' + className : ''}`}>
                 {title && <h3 className="sppb-radio-title">{title}</h3>}
                 <div className="sppb-radio-button-wrap">
                     <RadioOptions

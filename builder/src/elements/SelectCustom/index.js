@@ -104,7 +104,7 @@ class SelectCustom extends React.Component {
 
         return (
             <div
-                className={`sppb-select-wrapper sppb-form-controllers${styleTwo ? ' sppb-select-custom-style-two' : ''}${className ? ' ' + className : ''}`}
+                className={`sppb-select-wrapper editor-x-form-controllers${styleTwo ? ' sppb-select-custom-style-two' : ''}${className ? ' ' + className : ''}`}
                 onClick={() => this.onToggle()}
             >
                 <div

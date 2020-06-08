@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {isEqual} from 'lodash';
+import { isEqual } from 'lodash';
 import { createHigherOrderComponent } from '../components';
 import { RegistryConsumer } from './registryProvider';
 

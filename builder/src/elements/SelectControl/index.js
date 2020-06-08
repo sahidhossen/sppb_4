@@ -23,7 +23,7 @@ class SelectControl extends Component {
 
   render() {
     const { label, className, value, options, instanceId } = this.props;
-    const defaultClass = "sppb-select sppb-form-controllers";
+    const defaultClass = "sppb-select editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );

@@ -10,7 +10,6 @@ export class Accordion extends Component {
   constructor(props) {
     super(props);
     const openSections = {};
-
     React.Children.toArray(this.props.children).forEach(
       ({ props: { label, isOpen } } = child) =>
         isOpen && (openSections[label] = true)
@@ -61,7 +60,7 @@ export class Accordion extends Component {
       })
     );
     return (
-      <div className="sppb-form-controllers sppb-accordion">
+      <div className="editor-x-form-controllers editor-x-accordion">
         {childrenWithProps}
       </div>
     );

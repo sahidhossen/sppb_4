@@ -116,8 +116,8 @@ class StyleSettings extends React.Component {
         />
 
         <RadioControl
-          className="radio-control"
-          activeClass="active-item"
+          className="editor-x-radio-control"
+          activeClass="editor-x-active-item"
           value={background_type_tab}
           // value="item1"
           onSelect={(selectedItem) =>
@@ -127,13 +127,13 @@ class StyleSettings extends React.Component {
             {
               name: "item1",
               title: "Item 1",
-              className: "item-one sppb-border-right",
+              className: "item-one editor-x-tab-border-right",
               icon: "fas fa-magic",
             },
             {
               name: "item2",
               title: "Item 2",
-              className: "item-two sppb-border-right",
+              className: "item-two editor-x-tab-border-right",
               icon: "fas fa-feather-alt",
             },
             {
@@ -221,8 +221,8 @@ class StyleSettings extends React.Component {
         />
 
         <TabPanel
-          className="tab-panel"
-          activeClass="active-tab"
+          className="editor-x-tab-panel"
+          activeClass="editor-x-active-tab"
           value={background_type_tab}
           // value="tab1"
           onSelect={(selectedTab) =>
@@ -232,12 +232,12 @@ class StyleSettings extends React.Component {
             {
               name: "tab1",
               title: "Tab 1",
-              className: "tab-one",
+              className: "editor-x-tab-one",
             },
             {
               name: "tab2",
               title: "Tab 2",
-              className: "tab-two",
+              className: "editor-x-tab-two",
             },
           ]}
         >
