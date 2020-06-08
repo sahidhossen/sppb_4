@@ -14,7 +14,7 @@ class Checkbox extends React.Component {
     /**
      * Setting intial moment checkbox value
      */
-    componentWillMount() {
+    componentDidMount() {
         const { options } = this.props;
         const { checkedItems } = this.state;
 
@@ -47,9 +47,9 @@ class Checkbox extends React.Component {
         const { options, title, className } = this.props;
         const { checkedItems } = this.state;
         return (
-            <div className={`sppb-checkbox${className ? ' ' + className : ''}`}>
-                {title && <h3 className="sppb-checkbox-title">{title}</h3>}
-                <div className="sppb-checkbox-wrap">
+            <div className={`editor-x-checkbox${className ? ' ' + className : ''}`}>
+                {title && <h3 className="editor-x-checkbox-title">{title}</h3>}
+                <div className="editor-x-checkbox-wrap">
                     {options.map((option, key) => {
                         return (
                             <CheckboxItem

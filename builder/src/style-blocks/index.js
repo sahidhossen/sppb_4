@@ -1,4 +1,5 @@
-import { StyleBlockContextProvider, withStyleContext} from './style-context';
+// import { StyleBlockContextProvider, withStyleContext} from './style-context';
+
 export * from './store';
 
 export * from './unit-to-style';
@@ -13,8 +14,6 @@ export * from './components';
 
 export * from './add-style-rules.js';
 
-export {
-    getElementComputedStyle,
-    StyleBlockContextProvider, 
-    withStyleContext
-}
+export * from './css-store-selector';
+
+export { getElementComputedStyle }

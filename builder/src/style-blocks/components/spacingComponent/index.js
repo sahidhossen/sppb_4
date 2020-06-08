@@ -36,7 +36,7 @@ class SpacingComponent extends React.Component {
     let { marginLock, paddingLock, active } = this.state;
     let { setCssAttributes, style } = this.props;
 
-    let valueSet = style[name];
+    let valueSet = style[name].value;
 
     let opositeProp = "";
 
@@ -55,7 +55,7 @@ class SpacingComponent extends React.Component {
     if (opositeProp !== "") {
       properties = {
         ...properties,
-        [opositeProp]: { ...style[opositeProp], value }
+        [opositeProp]: { ...style[opositeProp].value, value }
       };
     }
 
@@ -72,9 +72,8 @@ class SpacingComponent extends React.Component {
     let { active } = this.state; 
     if (active !== '') { 
       let { style, setCssAttributes } = this.props; 
-      let valueSet = {...style[active]}; 
+      let valueSet = {...style[active].unit}; 
       let unit = value.name;
-      console.log("changed unit: ", {[active]: {...valueSet, unit } } )
       setCssAttributes({[active]: {...valueSet, unit } })
     }
   }
@@ -111,9 +110,7 @@ class SpacingComponent extends React.Component {
 
     let { marginLock, paddingLock, active } = this.state;
 
-    let selectedUnit = active ? style[active].unit : null;
-
-    console.log("selected: ", selectedUnit, active, style[active])
+    let selectedUnit = active ? style[active].value.unit : null;
 
     return (
       <div className="editor-x-spacing-panel">
@@ -148,14 +145,14 @@ class SpacingComponent extends React.Component {
             action="margin"
             isLocked={marginLock === "V"}
             isActive={active === 'marginLeft'}
-            value={marginLeft ? marginLeft.value : 0}
+            value={marginLeft ? marginLeft.value.value : 0}
             onClick={() => this.onActiveSpaceBox('marginLeft') }
             onDragChange={value =>
               this.onPropertyChange("VM", "marginLeft", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginLeft.value || 0}
+              {marginLeft.value.value || 0}
             </div>
             <span
               className={`fas ${
@@ -171,13 +168,13 @@ class SpacingComponent extends React.Component {
             action="margin"
             isActive={active === 'marginTop'}
             isLocked={marginLock === "H"}
-            value={marginTop ? marginTop.value : 0}
+            value={marginTop ? marginTop.value.value : 0}
             onClick={() => this.onActiveSpaceBox('marginTop') }
             onDragChange={value =>
               this.onPropertyChange("HM", "marginTop", value)
             }
           >
-            <div className="editor-x-spacing-value">{marginTop.value || 0}</div>
+            <div className="editor-x-spacing-value">{marginTop.value.value || 0}</div>
             <p className="editor-x-margin-text">M</p>
             <span
               className={`fas ${
@@ -193,14 +190,14 @@ class SpacingComponent extends React.Component {
             action="margin"
             isActive={active === 'marginBottom'}
             isLocked={marginLock === "H"}
-            value={marginBottom ? marginBottom.value : 0}
+            value={marginBottom ? marginBottom.value.value : 0}
             onClick={() => this.onActiveSpaceBox('marginBottom') }
             onDragChange={value =>
               this.onPropertyChange("HM", "marginBottom", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginBottom.value || 0}
+              {marginBottom.value.value || 0}
             </div>
             <span
               className={`fas ${
@@ -216,14 +213,14 @@ class SpacingComponent extends React.Component {
             action="margin"
             isActive={active === 'marginRight'}
             isLocked={marginLock === "V"}
-            value={marginRight ? marginRight.value : 0}
+            value={marginRight ? marginRight.value.value : 0}
             onClick={() => this.onActiveSpaceBox('marginRight') }
             onDragChange={value =>
               this.onPropertyChange("VM", "marginRight", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginRight.value || 0}
+              {marginRight.value.value || 0}
             </div>
             <span
               className={`fas ${
@@ -240,14 +237,14 @@ class SpacingComponent extends React.Component {
               action="padding"
               isActive={active === 'paddingLeft'}
               isLocked={paddingLock === "V"}
-              value={paddingLeft ? paddingLeft.value : 0}
+              value={paddingLeft ? paddingLeft.value.value : 0}
               onClick={() => this.onActiveSpaceBox('paddingLeft') }
               onDragChange={value =>
                 this.onPropertyChange("VP", "paddingLeft", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingLeft.value || 0}
+                {paddingLeft.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -262,14 +259,14 @@ class SpacingComponent extends React.Component {
               action="padding"
               isActive={active === 'paddingTop'}
               isLocked={paddingLock === "H"}
-              value={paddingTop ? paddingTop.value : 0}
+              value={paddingTop ? paddingTop.value.value : 0}
               onClick={() => this.onActiveSpaceBox('paddingTop') }
               onDragChange={value =>
                 this.onPropertyChange("HP", "paddingTop", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingTop.value || 0}
+                {paddingTop.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -285,14 +282,14 @@ class SpacingComponent extends React.Component {
               action="padding"
               isActive={active === 'paddingBottom'}
               isLocked={paddingLock === "H"}
-              value={paddingBottom ? paddingBottom.value : 0}
+              value={paddingBottom ? paddingBottom.value.value : 0}
               onClick={() => this.onActiveSpaceBox('paddingBottom') }
               onDragChange={value =>
                 this.onPropertyChange("HP", "paddingBottom", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingBottom.value || 0}
+                {paddingBottom.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -307,14 +304,14 @@ class SpacingComponent extends React.Component {
               action="padding"
               isActive={active === 'paddingRight'}
               isLocked={paddingLock === "V"}
-              value={paddingRight ? paddingRight.value : 0}
+              value={paddingRight ? paddingRight.value.value : 0}
               onClick={() => this.onActiveSpaceBox('paddingRight') }
               onDragChange={value =>
                 this.onPropertyChange("VP", "paddingRight", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingRight.value || 0}
+                {paddingRight.value.value || 0}
               </div>
               <span
                 className={`fas ${

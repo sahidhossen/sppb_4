@@ -19,18 +19,19 @@ class SelectCustom extends React.Component {
     /**
      * Setting intial moment select value
      */
-    componentWillMount() {
+    componentDidMount() {
         const { options } = this.props;
-        options.map((option, i) => {
-            if (option.selected) {
-                this.setState({
-                    selectedItem: i
-                });
+        for (let i = 0; i<options.length; i++) {
+            if (options[i].selected) {
+                this.setState({ selectedItem: i });
+                break;
             }
-            return true;
-        });
+        }
     }
 
+
+
+   
     /**
      * Updating select option element CSS translate value
      * This function will fire with {onToggle} function
@@ -104,7 +105,7 @@ class SelectCustom extends React.Component {
 
         return (
             <div
-                className={`sppb-select-wrapper sppb-form-controllers${styleTwo ? ' sppb-select-custom-style-two' : ''}${className ? ' ' + className : ''}`}
+                className={`sppb-select-wrapper editor-x-form-controllers${styleTwo ? ' sppb-select-custom-style-two' : ''}${className ? ' ' + className : ''}`}
                 onClick={() => this.onToggle()}
             >
                 <div

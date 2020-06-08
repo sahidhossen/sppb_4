@@ -13,7 +13,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "normal",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -45,7 +45,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "normal",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -77,7 +77,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -109,7 +109,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -141,7 +141,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "visible",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -208,7 +208,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "rgba(0, 0, 0, 0)",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -336,8 +336,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -368,7 +368,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -400,7 +400,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "rgb(223, 39, 39)",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -432,8 +432,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -464,7 +464,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -528,8 +528,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -560,7 +560,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -624,8 +624,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -656,7 +656,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -725,7 +725,7 @@ const styleState = {
         },
         "default": {
           "value": null,
-          "unit": "px"
+          "unit": null
         },
         "placeholder": {
           "value": "0",
@@ -753,7 +753,7 @@ const styleState = {
         },
         "browser": {
           "value": null,
-          "unit": "px"
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -772,8 +772,8 @@ const styleState = {
       },
       "borderBottomRightRadius": {
         "local": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -784,8 +784,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -804,8 +804,8 @@ const styleState = {
       },
       "borderTopLeftRadius": {
         "local": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -816,8 +816,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -836,8 +836,8 @@ const styleState = {
       },
       "borderTopRightRadius": {
         "local": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -848,8 +848,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 1,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -880,7 +880,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -947,7 +947,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "border-box",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -979,7 +979,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1043,7 +1043,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1075,7 +1075,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "normal",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1107,7 +1107,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "rgb(223, 39, 39)",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1139,7 +1139,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1171,8 +1171,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": 0,
@@ -1203,7 +1203,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1235,7 +1235,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "default",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1267,7 +1267,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "ltr",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1299,7 +1299,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "block",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1363,7 +1363,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "row",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1395,7 +1395,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1523,7 +1523,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1555,7 +1555,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "Arial",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -1588,7 +1588,7 @@ const styleState = {
         },
         "browser": {
           "value": null,
-          "unit": "px"
+          "unit": null
         },
         "default": {
           "value": "",
@@ -2131,8 +2131,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 104,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": "auto",
@@ -2515,7 +2515,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2523,7 +2523,7 @@ const styleState = {
           "unit": "px"
         },
         "placeholder": {
-          "value": "none",
+          "value": "Auto",
           "unit": null
         },
         "id": {
@@ -2547,11 +2547,11 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
-          "value": 0,
+          "value": null,
           "unit": "px"
         },
         "placeholder": {
@@ -2579,11 +2579,11 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
-          "value": 0,
+          "value": null,
           "unit": "px"
         },
         "placeholder": {
@@ -2611,11 +2611,11 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "fill",
+          "value": null,
           "unit": null
         },
         "default": {
-          "value": "fill",
+          "value": null,
           "unit": null
         },
         "placeholder": {
@@ -2643,7 +2643,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "50% 50%",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2663,8 +2663,8 @@ const styleState = {
       },
       "opacity": {
         "local": {
-          "value": 0.9,
-          "unit": "%"
+          "value": null,
+          "unit": null
         },
         "upstream": {
           "value": null,
@@ -2707,7 +2707,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2739,11 +2739,11 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "visible",
+          "value": null,
           "unit": null
         },
         "default": {
-          "value": "visible",
+          "value": null,
           "unit": null
         },
         "placeholder": {
@@ -2803,8 +2803,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": null,
@@ -2835,8 +2835,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": null,
@@ -2899,7 +2899,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2931,7 +2931,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "470px 52px",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2963,7 +2963,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "static",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -2995,7 +2995,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3027,7 +3027,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "start",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3059,7 +3059,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3091,8 +3091,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 0,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": null,
@@ -3155,7 +3155,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "none",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3187,7 +3187,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3283,7 +3283,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "flat",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3347,7 +3347,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "baseline",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3379,7 +3379,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "visible",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3411,7 +3411,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "normal",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3443,8 +3443,8 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": 940,
-          "unit": "px"
+          "value": null,
+          "unit": null
         },
         "default": {
           "value": "auto",
@@ -3475,7 +3475,7 @@ const styleState = {
           "unit": null
         },
         "browser": {
-          "value": "auto",
+          "value": null,
           "unit": null
         },
         "default": {
@@ -3494,36 +3494,5 @@ const styleState = {
         "valueOverride": null
       }
 }
-
-
-/**
- * ==========
- * BACKGROUND TYPES
- * ==========
- * type: 
- *  1. linear-gradient-background, 
- *  2. radial-gradient-background, 
- *  3. solid-color-background, 
- *  4. image-background
- */
-
-let backgroundType = [
-    {
-        type: "linear-gradient-background",
-        value: {
-            angle: {
-                unit: 'deg', 
-                value: 180
-            },
-            hidden: false,
-            colorStopList: [
-                {
-                    color: { type: 'color', value: ''},
-                    position: { unit: '%', value: '0'}
-                }
-            ]
-        }
-    }
-]
 
 export default styleState;

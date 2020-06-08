@@ -23,7 +23,7 @@ export const createMarkup = (attributes) => {
 };
 
 const addUnit = (valueObj) => {
-  let unit = valueObj.unit === null ? "px" : valueObj.unit
+  let unit = valueObj.unit === null ? "" : valueObj.unit
   return valueObj.value + unit;
 };
 

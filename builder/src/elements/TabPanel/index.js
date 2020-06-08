@@ -37,7 +37,7 @@ export class TabPanel extends Component {
   render() {
     const { selectedTab } = this.state;
     const { className, activeClass, tabs, children, instanceId } = this.props;
-    const defaultClass = "editor-x-tab-panel sppb-form-controllers";
+    const defaultClass = "editor-x-tab-panel editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
@@ -64,7 +64,7 @@ export class TabPanel extends Component {
         </div>
         {selectedTab && (
           <div
-            className="sppb-tab-content"
+            className="editor-x-tab-content"
             id={`${instanceId}-${selectedTab.name}`}
             tabIndex="0"
           >

@@ -17,7 +17,7 @@ export default class Panel extends React.Component {
     const { isOpen } = this.state;
     return (
       <Fragment>
-        <div className="editor-x-panel-header">
+        <div className={`editor-x-panel-header ${isOpen ? 'editor-x-panel-active' : ''}`}>
           <span className={`editor-x-panel-header-left-icon ${icon}`}></span>
           <div className="editor-x-panel-header-right">
             <span className="editor-x-panel-header-title">{title}</span>

@@ -7,7 +7,7 @@ class InputText extends Component {
   }
   render() {
     const { value, label, placeholder, instanceId, className } = this.props;
-    const defaultClass = "sppb-input-text sppb-form-controllers";
+    const defaultClass = "sppb-input-text editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );

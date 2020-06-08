@@ -13,7 +13,7 @@ let differentProperties = {
 
 export const getElementComputedStyle = (element, localProperties) => {
     let computedStyle = getComputedStyle(element);
-
+    
     let defaultProperties = {...styleState}; 
 
     Object.keys(defaultProperties).map( cssKey => {
@@ -40,7 +40,7 @@ export const getElementComputedStyle = (element, localProperties) => {
             defaultProperties[cssKey] = {...defaultProperties[cssKey], browser: {...mountableValue} }
         }
     })
-    
+    // console.log("pick value: ", defaultProperties)
     return defaultProperties;
     
 }
@@ -50,8 +50,14 @@ const cssToLocalValue = (key, value) => {
     if(key === 'backgroundColor') {
         nextProperty.value = value;
     }
+    if (key === 'overflow') {
+        nextProperty.value = value;
+    }
     if(hasUnit(key)) {
         nextProperty = {...extractUnit(key, value) }
+    } else {
+        nextProperty.value = value;
     }
+    
     return nextProperty;
 }

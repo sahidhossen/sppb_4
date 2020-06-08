@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withInstanceId from "../../lib/withInstanceId";
-import SelectControl from "../SelectControl";
+import SelectCustom from "../SelectCustom";
 
 const isObject = value => {
   return (
@@ -41,12 +41,14 @@ class InputControl extends Component {
       instanceId,
       className
     } = this.props;
-    const defaultClass = "sppb-input-text sppb-form-controllers";
+    const defaultClass = "sppb-input-text editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );
 
     const inputValue = isObject(value) ? value.value : value;
+    const unitValue = isObject(value) ? value.unit : unit;
+
     return (
       <div className={elementClass}>
         {label && (
@@ -60,7 +62,7 @@ class InputControl extends Component {
           id={`sppb-input-text${instanceId}`}
           placeholder={placeholder}
         />
-        {isObject(value) && (
+        {/*isObject(value) && (
           <SelectControl
             className="input-control-selector"
             value={value.unit}
@@ -70,7 +72,22 @@ class InputControl extends Component {
             }))}
             onChange={value => this.onChange(value)}
           />
-        )}
+        )*/}
+        <SelectCustom
+          options={[
+            { value: "px", icon: "far fa-square", selected: true },
+            { value: "%", icon: "fas fa-th-large" },
+            { value: "em", icon: "fas fa-th" },
+            { value: "rem", icon: "far fa-square" },
+            { value: "vh", icon: "fas fa-th-large" },
+            { value: "vw", icon: "far fa-square" },
+          ]}
+          value={unitValue}
+          // onSelectChange={(value) => {
+          //   this.handleChange(value, "select_value");
+          // }}
+          className="select-custom-class"
+        />
       </div>
     );
   }
