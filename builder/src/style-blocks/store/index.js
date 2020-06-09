@@ -1,2 +1,1 @@
-import styleData from './style-data';
-export {styleData}
+export { StyleBlockContextProvider, withStyleContext } from './style-context';

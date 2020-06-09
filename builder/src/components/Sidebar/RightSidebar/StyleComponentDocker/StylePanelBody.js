@@ -1,7 +1,7 @@
 import React from 'react'; 
 import { withSelect, withDispatch } from 'store';
-import { getElementComputedStyle, generateStyleState, cssToObject, createMarkup, enqueueStyle } from 'style-blocks'; 
 import { compose } from '../../../compose';
+import { getElementComputedStyle, generateStyleState, cssToObject, createMarkup, enqueueStyle, withStyleContext } from 'style-blocks'; 
 import StylePanel from './StylePanel'; 
 
 class StylePanelBody extends React.Component {
@@ -35,7 +35,7 @@ class StylePanelBody extends React.Component {
                 let { localCssProperties } = this.props;
 
                 const styleGuide = getElementComputedStyle(addonElement, localCssProperties)
-
+                console.log("css guide", styleGuide)
                 setElementComputedStyle(styleGuide);
 
                 this.updateCssRules();
@@ -71,6 +71,7 @@ class StylePanelBody extends React.Component {
     updateComputedCssStyles(attributes) {
         let {addonId, updateComutedAttributes, selectedBlockId} = this.props;
         let { rule } = this.state;
+
         let { cssObject } = createMarkup(attributes);
             rule = {...rule, styleBlockId: selectedBlockId,  styles: {...rule.styles, ...cssObject} }
 
@@ -84,12 +85,14 @@ class StylePanelBody extends React.Component {
     }
 
     render(){
+        console.log("prop[s: ", this.props)
         return (
             <div className="editor-x-style-panel-wrap">
             
                 <StylePanel
                     styleBlockIds={this.props.addonStyleBlockIds}
                     addonId={this.props.addonId}
+                    styleStore={this.props.styleStore}
                     styleState={this.props.styleState}
                     computeStyle={this.startComputedStyle}
                     setCssAttributes={this.updateComputedCssStyles.bind(this)}
@@ -101,6 +104,13 @@ class StylePanelBody extends React.Component {
 }
 
 export default compose(
+    withStyleContext( ({state, dispatch}) => {
+        console.log("value: ", dispatch() )
+        let { updateStyleAttributes } = dispatch();
+        return {
+            styleStates: state
+        }
+    }), 
     withSelect( (select, { addonStyleBlockIds, selectedBlockId })=> {
         const { getStyleStore, getStyleBlock} = select();
         let styleStore = getStyleStore();

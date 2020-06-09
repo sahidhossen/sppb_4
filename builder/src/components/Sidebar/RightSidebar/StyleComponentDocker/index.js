@@ -30,7 +30,6 @@ class StyleComponentDocker extends React.Component {
    }
 
     render() {
-        // console.log("render index: ")
         let {addonId, addonStyleBlockIds} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">
@@ -47,7 +46,7 @@ class StyleComponentDocker extends React.Component {
                     </div>
                 </SidebarHeader>
                 <div className="sppb-sidebar-panel">
-                    <StyleBlockContextProvider value={this.state}>
+                    <StyleBlockContextProvider>
                         <StylePanelHeader
                             addonId={addonId}
                             addonStyleBlockIds={addonStyleBlockIds}

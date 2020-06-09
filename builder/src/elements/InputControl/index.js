@@ -47,6 +47,8 @@ class InputControl extends Component {
     );
 
     const inputValue = isObject(value) ? value.value : value;
+    const unitValue = isObject(value) ? value.unit : unit;
+
     return (
       <div className={elementClass}>
         {label && (
@@ -79,7 +81,7 @@ class InputControl extends Component {
             { value: "vh", icon: "fas fa-th-large" },
             { value: "vw", icon: "far fa-square" },
           ]}
-          value={'select_value'}
+          value={unitValue}
           // onSelectChange={(value) => {
           //   this.handleChange(value, "select_value");
           // }}

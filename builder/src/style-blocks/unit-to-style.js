@@ -8,7 +8,47 @@ const has_units = {
     paddingLeft: true, 
     paddingRight: true, 
     paddingBottom: true, 
-    paddingTop: true
+    paddingTop: true, 
+    marginLeft: true, 
+    marginRight: true, 
+    marginBottom: true, 
+    marginTop: true,
+    fontSize: true,
+    top: true,
+    left: true,
+    right: true,
+    bottom: true,
+    columnGap: true,
+    columnRuleWidth: true,
+    borderRadius: true,
+    borderBottomLeftRadius: true,
+    borderBottomRightRadius: true,
+    borderTopLeftRadius: true,
+    borderTopRightRadius: true,
+    borderWidth: true,
+    borderBottomWidth: true,
+    borderLeftWidth: true,
+    borderRightWidth: true,
+    borderTopWidth: true,
+    fontSize: true,
+    lineHeight: true,
+
+}
+
+const unitless = {
+    backgroundColor: true, 
+    background: true, 
+    columnCount: true,
+    flex: true,
+    flexGrow: true,
+    flexPositive: true,
+    flexShrink: true,
+    flexNegative: true,
+    flexOrder: true,
+    gridRow: true,
+    gridColumn: true,
+    opacity: true, 
+    zIndex: true,
 }
 
 export const hasUnit = (key) => has_units[key] || false;
@@ -27,14 +67,11 @@ export const extractUnit = (key, value) => {
         return property;
     }
 
-    if (hasUnit(key)) {
+    let extractor = arrayFilter(value.split(/(\d+)/)); 
 
-        let extractor = arrayFilter(value.split(/(\d+)/)); 
+    property.value = extractor[0] || null;
+    property.unit = extractor[1] || null;
 
-        property.value = extractor[0] || null;
-        property.unit = extractor[1] || null;
-
-        return property;
-    }
-    return false;
+    return property;
+    
 }

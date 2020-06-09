@@ -23,7 +23,6 @@ export const updateComputedStyle = ( attributes, options={} ) => {
 
     // set local keywork between name and value;
     let nextOptions = {...options, ...getCssBlockDepedencies(options)};
-  
 
     return {type: "SET_COMPUTED_ATTRIBUTE", payload: {attributes, options: nextOptions } }
 }

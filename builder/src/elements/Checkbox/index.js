@@ -14,7 +14,7 @@ class Checkbox extends React.Component {
     /**
      * Setting intial moment checkbox value
      */
-    componentWillMount() {
+    componentDidMount() {
         const { options } = this.props;
         const { checkedItems } = this.state;
 

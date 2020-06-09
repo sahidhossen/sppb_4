@@ -30,8 +30,7 @@ class StylePanel extends React.Component {
 
   render() {
     let { styleState, setCssAttributes } = this.props;
-    let { spacing } = styleState;
-
+    let { spacing, size } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
@@ -41,10 +40,10 @@ class StylePanel extends React.Component {
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
-          <SizeComponent style={spacing} setCssAttributes={setCssAttributes} />
-        </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Style">
-          <StyleComponent style={spacing} setCssAttributes={setCssAttributes} />
+          <SizeComponent
+            style={size}
+            setCssAttributes={setCssAttributes}
+          />
         </Panel>
 
         <ColorPickerContainer />

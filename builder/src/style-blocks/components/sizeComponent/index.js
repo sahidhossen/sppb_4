@@ -1,7 +1,8 @@
 import React from "react";
+import { getBrowserValue } from '../index';
 import { InputControl, Accordion, AccordionSection, Checkbox, RadioControl } from "../../../elements";
 
-export default class SizeComponent extends React.Component {
+class SizeComponent extends React.Component {
   handleChange(value, name) {
     let { setAttributes } = this.props;
     setAttributes({ [name]: value });
@@ -11,6 +12,17 @@ export default class SizeComponent extends React.Component {
     setAttributes({ [name]: selectedItem.name });
   }
   render() {
+    let { style } = this.props;
+    // console.log("size component: ", this.props)
+    let {
+      height,
+      maxHeight, 
+      minHeight, 
+      width, 
+      maxWidth, 
+      minWidth
+    } =  style; 
+
     return (
       <div className="editor-x-size-component">
         <div className="editor-x-size-height-width">
@@ -110,3 +122,5 @@ export default class SizeComponent extends React.Component {
     );
   }
 }
+
+export default SizeComponent;

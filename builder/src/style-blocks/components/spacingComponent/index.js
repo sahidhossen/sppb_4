@@ -7,16 +7,36 @@ class SpacingComponent extends React.Component {
     super(props);
     this.state = {
       paddingLock: "",
-      marginLock: ""
+      marginLock: "", 
+      active: ''
     };
+
     this.onPropertyChange = this.onPropertyChange.bind(this);
+    this.onActiveSpaceBox = this.onActiveSpaceBox.bind(this);
+    this.onUnitChange = this.onUnitChange.bind(this);
   }
 
+  /**
+   * Active property by on click
+   * @param {String} name Property name
+   */
+  onActiveSpaceBox(name) {
+    if (this.state.active !== name) {
+      this.setState({ active: name })
+    }
+  }
+
+  /**
+   * Change the propeties of margin and padding when drag
+   * @param {String} direction Direction of margin and padding drag
+   * @param {String} name Name of the property
+   * @param {String} value Value of the property when drag
+   */
   onPropertyChange(direction, name, value) {
-    let { marginLock, paddingLock } = this.state;
+    let { marginLock, paddingLock, active } = this.state;
     let { setCssAttributes, style } = this.props;
 
-    let valueSet = style[name];
+    let valueSet = style[name].value;
 
     let opositeProp = "";
 
@@ -35,13 +55,27 @@ class SpacingComponent extends React.Component {
     if (opositeProp !== "") {
       properties = {
         ...properties,
-        [opositeProp]: { ...style[opositeProp], value }
+        [opositeProp]: { ...style[opositeProp].value, value }
       };
     }
 
     setCssAttributes({ ...properties });
 
+    active = name; 
+    if (this.state.active !== active) {
+      this.setState({ active })
+    }
     // setCssAttributes({[name]: {...valueSet, value } })
+  }
+
+  onUnitChange(value) {
+    let { active } = this.state; 
+    if (active !== '') { 
+      let { style, setCssAttributes } = this.props; 
+      let valueSet = {...style[active].unit}; 
+      let unit = value.name;
+      setCssAttributes({[active]: {...valueSet, unit } })
+    }
   }
 
   onMarginLock(direction) {
@@ -55,6 +89,7 @@ class SpacingComponent extends React.Component {
     paddingLock = paddingLock === direction ? "" : direction;
     this.setState({ paddingLock });
   }
+
   handleSelect(selectedItem, name) {
     // console.log({selectedItem, name})
     // let { setAttributes } = this.props;
@@ -73,19 +108,17 @@ class SpacingComponent extends React.Component {
       marginBottom
     } = style;
 
-    let { marginLock, paddingLock } = this.state;
-    
+    let { marginLock, paddingLock, active } = this.state;
+
+    let selectedUnit = active ? style[active].value.unit : null;
+
     return (
       <div className="editor-x-spacing-panel">
-        {/* <input className="editor-x-spacing-value" type="text" value={paddingLeft.value} onChange={this.onChange.bind(this, 'value')} name="paddingLeft" />
-        <input className="editor-x-spacing-value" type="text" value={paddingLeft.unit} onChange={this.onChange.bind(this, 'unit')} name="paddingLeft" /> */}
         <RadioControl
           activeClass="editor-x-active-item"
           // value=""
           value="item1"
-          onSelect={selectedItem =>
-            this.handleSelect(selectedItem, "background_type_tab")
-          }
+          onSelect={value => this.handleSelect(value, "background_type_tab") }
           items={[
             {
               name: "item1",
@@ -110,13 +143,16 @@ class SpacingComponent extends React.Component {
             className="editor-x-margin-left"
             direction={"VL"} // V | H
             action="margin"
-            value={marginLeft ? marginLeft.value : 0}
+            isLocked={marginLock === "V"}
+            isActive={active === 'marginLeft'}
+            value={marginLeft ? marginLeft.value.value : 0}
+            onClick={() => this.onActiveSpaceBox('marginLeft') }
             onDragChange={value =>
               this.onPropertyChange("VM", "marginLeft", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginLeft.value || 0}
+              {marginLeft.value.value || 0}
             </div>
             <span
               className={`fas ${
@@ -130,12 +166,15 @@ class SpacingComponent extends React.Component {
             className="editor-x-margin-top"
             direction={"HT"} // V | H
             action="margin"
-            value={marginTop ? marginTop.value : 0}
+            isActive={active === 'marginTop'}
+            isLocked={marginLock === "H"}
+            value={marginTop ? marginTop.value.value : 0}
+            onClick={() => this.onActiveSpaceBox('marginTop') }
             onDragChange={value =>
               this.onPropertyChange("HM", "marginTop", value)
             }
           >
-            <div className="editor-x-spacing-value">{marginTop.value || 0}</div>
+            <div className="editor-x-spacing-value">{marginTop.value.value || 0}</div>
             <p className="editor-x-margin-text">M</p>
             <span
               className={`fas ${
@@ -149,19 +188,22 @@ class SpacingComponent extends React.Component {
             className="editor-x-margin-bottom"
             direction={"HB"} // V | H
             action="margin"
-            value={marginBottom ? marginBottom.value : 0}
+            isActive={active === 'marginBottom'}
+            isLocked={marginLock === "H"}
+            value={marginBottom ? marginBottom.value.value : 0}
+            onClick={() => this.onActiveSpaceBox('marginBottom') }
             onDragChange={value =>
               this.onPropertyChange("HM", "marginBottom", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginBottom.value || 0}
+              {marginBottom.value.value || 0}
             </div>
             <span
               className={`fas ${
                 marginLock === "H" ? "fa-unlink" : "fa-link"
               } editor-x-link-icon`}
-              onClick={() => this.onMarginLock("V")}
+              onClick={() => this.onMarginLock("H")}
             ></span>
           </SpaceBox>
 
@@ -169,19 +211,22 @@ class SpacingComponent extends React.Component {
             className="editor-x-margin-right"
             direction={"VR"} // V | H
             action="margin"
-            value={marginRight ? marginRight.value : 0}
+            isActive={active === 'marginRight'}
+            isLocked={marginLock === "V"}
+            value={marginRight ? marginRight.value.value : 0}
+            onClick={() => this.onActiveSpaceBox('marginRight') }
             onDragChange={value =>
               this.onPropertyChange("VM", "marginRight", value)
             }
           >
             <div className="editor-x-spacing-value">
-              {marginRight.value || 0}
+              {marginRight.value.value || 0}
             </div>
             <span
               className={`fas ${
                 marginLock === "V" ? "fa-unlink" : "fa-link"
               } editor-x-link-icon`}
-              onClick={() => this.onMarginLock("H")}
+              onClick={() => this.onMarginLock("V")}
             ></span>
           </SpaceBox>
 
@@ -190,13 +235,16 @@ class SpacingComponent extends React.Component {
               className="editor-x-padding-left"
               direction={"VL"} // V | H
               action="padding"
-              value={paddingLeft ? paddingLeft.value : 0}
+              isActive={active === 'paddingLeft'}
+              isLocked={paddingLock === "V"}
+              value={paddingLeft ? paddingLeft.value.value : 0}
+              onClick={() => this.onActiveSpaceBox('paddingLeft') }
               onDragChange={value =>
                 this.onPropertyChange("VP", "paddingLeft", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingLeft.value || 0}
+                {paddingLeft.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -209,13 +257,16 @@ class SpacingComponent extends React.Component {
               className="editor-x-padding-top"
               direction={"HT"} // V | H
               action="padding"
-              value={paddingTop ? paddingTop.value : 0}
+              isActive={active === 'paddingTop'}
+              isLocked={paddingLock === "H"}
+              value={paddingTop ? paddingTop.value.value : 0}
+              onClick={() => this.onActiveSpaceBox('paddingTop') }
               onDragChange={value =>
                 this.onPropertyChange("HP", "paddingTop", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingTop.value || 0}
+                {paddingTop.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -229,13 +280,16 @@ class SpacingComponent extends React.Component {
               className="editor-x-padding-bottom"
               direction={"HB"} // V | H
               action="padding"
-              value={paddingBottom ? paddingBottom.value : 0}
+              isActive={active === 'paddingBottom'}
+              isLocked={paddingLock === "H"}
+              value={paddingBottom ? paddingBottom.value.value : 0}
+              onClick={() => this.onActiveSpaceBox('paddingBottom') }
               onDragChange={value =>
                 this.onPropertyChange("HP", "paddingBottom", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingBottom.value || 0}
+                {paddingBottom.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -248,13 +302,16 @@ class SpacingComponent extends React.Component {
               className="editor-x-padding-right"
               direction={"VR"} // V | H
               action="padding"
-              value={paddingRight ? paddingRight.value : 0}
+              isActive={active === 'paddingRight'}
+              isLocked={paddingLock === "V"}
+              value={paddingRight ? paddingRight.value.value : 0}
+              onClick={() => this.onActiveSpaceBox('paddingRight') }
               onDragChange={value =>
                 this.onPropertyChange("VP", "paddingRight", value)
               }
             >
               <div className="editor-x-spacing-value">
-                {paddingRight.value || 0}
+                {paddingRight.value.value || 0}
               </div>
               <span
                 className={`fas ${
@@ -268,40 +325,38 @@ class SpacingComponent extends React.Component {
         </div>
         <RadioControl
           activeClass="editor-x-active-item"
-          // value=""
-          value="item1"
-          onSelect={selectedItem =>
-            this.handleSelect(selectedItem, "background_type_tab")
-          }
+          value={selectedUnit}
+          disabled={active === ''}
+          onSelect={ value => this.onUnitChange(value) }
           items={[
             {
-              name: "item1",
+              name: "px",
               title: "PX",
               className: "item-one editor-x-tab-border-right"
               // icon: "fas fa-magic",
             },
             {
-              name: "item2",
+              name: "%",
               title: "%",
               className: "item-two editor-x-tab-border-right"
             },
             {
-              name: "item3",
+              name: "em",
               title: "EM",
               className: "item-three"
             },
             {
-              name: "item4",
+              name: "vw",
               title: "VW",
               className: "item-three"
             },
             {
-              name: "item5",
+              name: "vh",
               title: "VH",
               className: "item-three"
             },
             {
-              name: "item6",
+              name: "auto",
               title: "AUTO",
               className: "item-three"
             }
