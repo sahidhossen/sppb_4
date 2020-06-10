@@ -16,17 +16,17 @@ class SelectCustom extends React.Component {
     };
   }
 
-  /**
-   * Setting intial moment select value
-   */
-  componentDidMount() {
-    const { options } = this.props;
+  getSelectedIndex(unit, options) {
+    let index = "";
+    if (!unit) return index;
+
     for (let i = 0; i < options.length; i++) {
-      if (options[i].selected) {
-        this.setState({ selectedItem: i });
+      if (options[i].value === unit) {
+        index = i;
         break;
       }
     }
+    return index;
   }
 
   /**
@@ -95,8 +95,10 @@ class SelectCustom extends React.Component {
   }
 
   render() {
-    const { options, selectedIcon, styleTwo, className } = this.props;
+    const { options, selectedIcon, styleTwo, className, value } = this.props;
     const { selectedItem, addParentClass, translateTop } = this.state;
+
+    const selectedIndex = this.getSelectedIndex(value, options);
 
     return (
       <div
@@ -112,7 +114,7 @@ class SelectCustom extends React.Component {
           tabIndex="0"
           onBlur={this.collapseOnOutsideClick.bind(this)}
         >
-          <SelectedItem optionSelected={options[selectedItem]} />
+          <SelectedItem optionSelected={options[selectedIndex]} />
 
           <div
             className="sppb-custom-options"
