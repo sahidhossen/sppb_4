@@ -1,13 +1,13 @@
-export const updateStyleAttributes = (attribues) => {
+export const updateStyleAttributes = (attributes, options) => {
     return {
       type: "CHANGE_STYLE_ATTRIBUTES",
-      payload: attribues,
+      payload: {attributes, options},
     };
   };
 
-  export const initiateStyleState = (styleState) => {
+  export const initiateStyleState = (data) => {
     return {
       type: "INITIATE_STYLE_STATE",
-      payload: styleState,
+      payload: {...data},
     };
   };

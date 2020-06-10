@@ -9,7 +9,7 @@ const getCssBlockDepedencies =  (options) => {
     let {getAddon, getActiveMediaQuery} = select()
     if (!options.className) {
         let {name} = getAddon(addonId);
-        options['className'] = `${name} 1`;
+        options['className'] = `${name}-` + addonId;
     }
     if (!options.viewport) {
         let {name} = getActiveMediaQuery();

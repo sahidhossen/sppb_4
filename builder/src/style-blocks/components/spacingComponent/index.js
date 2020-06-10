@@ -70,11 +70,11 @@ class SpacingComponent extends React.Component {
 
   onUnitChange(value) {
     let { active } = this.state; 
-    if (active !== '') { 
+    if (active !== '') {
       let { style, setCssAttributes } = this.props; 
-      let valueSet = {...style[active].unit}; 
       let unit = value.name;
-      setCssAttributes({[active]: {...valueSet, unit } })
+      let valueSet = {...style[active].value, unit };
+      setCssAttributes({[active]: valueSet  })
     }
   }
 

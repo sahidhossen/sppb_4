@@ -3,8 +3,9 @@ import {
   SpacingComponent,
   Panel,
   SizeComponent,
-  StyleComponent,
-} from "style-blocks";
+  StyleComponent
+} from "style-blocks"; 
+
 import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
 
 class StylePanel extends React.Component {
@@ -13,10 +14,7 @@ class StylePanel extends React.Component {
     this.state = {
       addonId: null,
     };
-  }
-
-  handleChange(event) {
-    addonId: null;
+    this.onUpdateStyleAttributes  = this.onUpdateStyleAttributes.bind(this)
   }
 
   static getDerivedStateFromProps(prevProps, state) {
@@ -28,21 +26,26 @@ class StylePanel extends React.Component {
     return state;
   }
 
+  onUpdateStyleAttributes( attributes, key) {
+    let { setCssAttributes } = this.props;
+    setCssAttributes(attributes, key)
+  }
+
   render() {
-    let { styleState, setCssAttributes } = this.props;
+    let { styleState } = this.props;
     let { spacing, size } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
           <SpacingComponent
             style={spacing}
-            setCssAttributes={setCssAttributes}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, 'spacing') }
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
           <SizeComponent
             style={size}
-            setCssAttributes={setCssAttributes}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, 'size') }
           />
         </Panel>
 

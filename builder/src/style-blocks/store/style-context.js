@@ -11,7 +11,8 @@ export class StyleBlockContextProvider extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			styleState: {...defaultComponentValues}
+			styleState: {...defaultComponentValues}, 
+			rule: null
 		}
 		this.dispatch = this.dispatch.bind(this);
 	}

@@ -17,7 +17,7 @@ class StylePanelBody extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         let {styleBlock, viewport} = this.props;
-        if(prevProps.styleBlock !== styleBlock) {
+        if(styleBlock && prevProps.styleBlock !== styleBlock) {
             enqueueStyle(styleBlock, viewport.name);
         }
     }
@@ -28,17 +28,22 @@ class StylePanelBody extends React.Component {
 
         if (_doc) {
 
-            let { addonId, setElementComputedStyle } = this.props;
+            let { addonId } = this.props;
             let addonElement = _doc.querySelector(`[data-id="${addonId}"]`)
 
             if (addonElement !== null ) {
-                let { localCssProperties } = this.props;
+                let { localCssProperties, initiateStyleState, setElementComputedStyle } = this.props;
 
                 const styleGuide = getElementComputedStyle(addonElement, localCssProperties)
-                console.log("css guide", styleGuide)
+
                 setElementComputedStyle(styleGuide);
 
-                this.updateCssRules();
+                let styleState = generateStyleState(styleGuide);
+
+                console.log("css guide", styleGuide, styleState)
+
+                let rule = this.updateCssRules(addonElement);
+                initiateStyleState({styleState, rule})
 
                 this.counter = 0;
             } else if (this.counter < 3) {
@@ -52,25 +57,25 @@ class StylePanelBody extends React.Component {
         }
     }
 
-    updateCssRules() {
+    updateCssRules(addonElement) {
         let {styleBlock, viewport, selectedBlockId, pseudocode} = this.props; 
         let rule = {
             viewport: viewport.name,
             pseudocode: pseudocode || null,
             styleBlockId: selectedBlockId, 
+            tagName: addonElement.nodeName,
             styles: {}
         }
         if (styleBlock) {
             let cssObject = cssToObject(styleBlock.variant[viewport.name]);
             rule.styles = cssObject
         }
-        this.setState({rule})
+        return rule;
 
     }
 
-    updateComputedCssStyles(attributes) {
-        let {addonId, updateComutedAttributes, selectedBlockId} = this.props;
-        let { rule } = this.state;
+    updateComputedCssStyles(attributes, componentKey ) {
+        let {addonId, updateComutedAttributes, updateStyleAttributes, selectedBlockId, rule} = this.props;
 
         let { cssObject } = createMarkup(attributes);
             rule = {...rule, styleBlockId: selectedBlockId,  styles: {...rule.styles, ...cssObject} }
@@ -80,19 +85,21 @@ class StylePanelBody extends React.Component {
             addonId: addonId,
             ...rule
         }
+        
+        updateStyleAttributes(attributes, {rule, componentKey})
+
         updateComutedAttributes(attributes, options)
-        this.setState({rule})
+        // this.setState({rule})
     }
 
     render(){
-        console.log("prop[s: ", this.props)
+        // console.log("props: ", this.props)
         return (
             <div className="editor-x-style-panel-wrap">
             
                 <StylePanel
                     styleBlockIds={this.props.addonStyleBlockIds}
                     addonId={this.props.addonId}
-                    styleStore={this.props.styleStore}
                     styleState={this.props.styleState}
                     computeStyle={this.startComputedStyle}
                     setCssAttributes={this.updateComputedCssStyles.bind(this)}
@@ -105,22 +112,24 @@ class StylePanelBody extends React.Component {
 
 export default compose(
     withStyleContext( ({state, dispatch}) => {
-        console.log("value: ", dispatch() )
-        let { updateStyleAttributes } = dispatch();
+        let { initiateStyleState, updateStyleAttributes } = dispatch();
         return {
-            styleStates: state
+            ...state,
+            updateStyleAttributes(attributes, options) {
+                updateStyleAttributes(attributes, options)
+            },
+            initiateStyleState(styleState) {
+                console.log("dispatching")
+                initiateStyleState(styleState)
+            }, 
+
         }
     }), 
     withSelect( (select, { addonStyleBlockIds, selectedBlockId })=> {
-        const { getStyleStore, getStyleBlock} = select();
-        let styleStore = getStyleStore();
-        let styleState = generateStyleState(styleStore); 
-
+        const { getStyleBlock } = select();
         return {
             styleBlockIds: addonStyleBlockIds,
-            styleBlock: getStyleBlock(selectedBlockId),
-            styleState,
-            styleStore
+            styleBlock: getStyleBlock(selectedBlockId)
         }
     }), 
     withDispatch( dispatch => {
