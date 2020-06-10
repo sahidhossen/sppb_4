@@ -39,7 +39,7 @@ export default class SpaceBox extends React.Component {
 
         if (!isDragStart)
             return; 
-        
+
         let { value, direction, action, onDragChange } = this.props; 
 
         let nextValue = value === null ? 0 : parseInt(value); 
@@ -80,13 +80,13 @@ export default class SpaceBox extends React.Component {
     }
 
     onBoxClick(event) {
-        this.props.onClick(event)
+        this.props.onClick(event);
     }
 
     render(){
         let { className, isActive, isLocked } = this.props;
         let classNames = classnames( className, {'editor-x-spacing-active': isActive || isLocked} );
-        return ( 
+        return (
             <div 
                 className={classNames}
                 onClick={this.onBoxClick.bind(this)}

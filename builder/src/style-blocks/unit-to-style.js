@@ -60,9 +60,13 @@ const arrayFilter = arr => {
     return temp;
 }
 
+let validUnits = ['px','em','%','vh','vw','auto'];
+
+let isValidUnit = (unit) => validUnits.includes(unit);
+
 export const extractUnit = (key, value) => {
 
-    let property = {value: null, unit: null};
+    let property = { value: null, unit: null };
     if(!value) {
         return property;
     }
@@ -70,7 +74,7 @@ export const extractUnit = (key, value) => {
     let extractor = arrayFilter(value.split(/(\d+)/)); 
 
     property.value = extractor[0] || null;
-    property.unit = extractor[1] || null;
+    property.unit = isValidUnit(extractor[1] || null) ? extractor[1] : null;
 
     return property;
     

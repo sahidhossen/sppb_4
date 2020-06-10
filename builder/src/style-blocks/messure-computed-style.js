@@ -1,63 +1,70 @@
-import { hasUnit, extractUnit } from './unit-to-style'; 
+import { hasUnit, extractUnit } from "./unit-to-style";
 
-import styleState  from '../reducers/defaultStyle';
+import styleState from "../reducers/defaultStyle";
 
 let differentProperties = {
-    backgroundImages: 'backgroundImage', 
-    fontColor: 'color', 
-    filters: 'filter', 
-    textShadows: 'textShadow', 
-    transforms: 'transform', 
-    transitions: 'transition',
+  backgroundImages: "backgroundImage",
+  fontColor: "color",
+  filters: "filter",
+  textShadows: "textShadow",
+  transforms: "transform",
+  transitions: "transition",
 };
 
 export const getElementComputedStyle = (element, localProperties) => {
-    let computedStyle = getComputedStyle(element);
-    
-    let defaultProperties = {...styleState}; 
+  let computedStyle = getComputedStyle(element);
 
-    Object.keys(defaultProperties).map( cssKey => {
-       
-        let extenedKey = cssKey;
-       
-        if (differentProperties[extenedKey] && computedStyle[differentProperties[extenedKey]]){
-            extenedKey = differentProperties[extenedKey]; 
-        }
+  let defaultProperties = { ...styleState };
 
-        let hasLocalProperty = localProperties[extenedKey] || null;
+  Object.keys(defaultProperties).map((cssKey) => {
+    let extenedKey = cssKey;
 
-        let value = computedStyle[extenedKey];
+    if (
+      differentProperties[extenedKey] &&
+      computedStyle[differentProperties[extenedKey]]
+    ) {
+      extenedKey = differentProperties[extenedKey];
+    }
 
-        /**
-         * I have property and propertyKey
-         */
+    let hasLocalProperty = localProperties[extenedKey] || null;
 
-        let mountableValue = cssToLocalValue(cssKey, value)
-        
-        if (hasLocalProperty) {
-            defaultProperties[cssKey] = {...defaultProperties[cssKey], local: {...mountableValue} }
-        } else {
-            defaultProperties[cssKey] = {...defaultProperties[cssKey], browser: {...mountableValue} }
-        }
-    })
-    // console.log("pick value: ", defaultProperties)
-    return defaultProperties;
-    
-}
+    let value = computedStyle[extenedKey];
+
+    /**
+     * I have property and propertyKey
+     */
+
+    let mountableValue = cssToLocalValue(cssKey, value);
+
+    if (hasLocalProperty) {
+      defaultProperties[cssKey] = {
+        ...defaultProperties[cssKey],
+        local: { ...mountableValue },
+      };
+    } else {
+      defaultProperties[cssKey] = {
+        ...defaultProperties[cssKey],
+        browser: { ...mountableValue },
+      };
+    }
+  });
+  //   console.log("pick value: ", defaultProperties);
+  return defaultProperties;
+};
 
 const cssToLocalValue = (key, value) => {
-    let nextProperty = { value:null, unit: null }
-    if(key === 'backgroundColor') {
-        nextProperty.value = value;
-    }
-    if (key === 'overflow') {
-        nextProperty.value = value;
-    }
-    if(hasUnit(key)) {
-        nextProperty = {...extractUnit(key, value) }
-    } else {
-        nextProperty.value = value;
-    }
-    
-    return nextProperty;
-}
+  let nextProperty = { value: null, unit: null };
+  if (key === "backgroundColor") {
+    nextProperty.value = value;
+  }
+  if (key === "overflow") {
+    nextProperty.value = value;
+  }
+  if (hasUnit(key)) {
+    nextProperty = { ...extractUnit(key, value) };
+  } else {
+    nextProperty.value = value;
+  }
+
+  return nextProperty;
+};
