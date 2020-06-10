@@ -270,3 +270,15 @@
   opacity: 0;
   visibility: hidden;
 }
+
+// Color picker
+.circle-picker {
+  > span:first-child {
+    margin-left: 28px;
+  }
+}
+.sketch-picker {
+  > div.flexbox-fix:last-child {
+    display: none !important;
+  }
+}
