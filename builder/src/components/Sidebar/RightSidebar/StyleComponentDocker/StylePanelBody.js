@@ -78,7 +78,7 @@ class StylePanelBody extends React.Component {
         let {addonId, updateComutedAttributes, updateStyleAttributes, selectedBlockId, rule} = this.props;
 
         let { cssObject } = createMarkup(attributes);
-            rule = {...rule, styleBlockId: selectedBlockId,  styles: {...rule.styles, ...cssObject} }
+            rule = {...rule, styleBlockId: selectedBlockId,  styles: {...(rule && rule.styles), ...cssObject} }
 
         let options = {
             blockId: selectedBlockId, 
