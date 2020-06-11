@@ -90,7 +90,7 @@ InputControl.defaultProps = {
   value: "",
   className: "",
   placeholder: "Insert text...",
-  unit: { px: "Pixel", em: "EM", "%": "%" },
+  unit: { px: "px", em: "EM", "%": "%" },
 };
 
 export default withInstanceId(InputControl);

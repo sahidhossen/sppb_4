@@ -36,16 +36,16 @@ export class ColorPickerContainer extends Component {
     this.setState({ angle: value });
   }
 
-  handleColorChange(colorData) {
+  handleColorChange(color) {
     const { type, controller } = this.state;
-    const { hex } = colorData;
+
     if (type === "solid") {
-      this.setState({ color: hex });
+      this.setState({ color });
     } else {
       if (controller === "left") {
-        this.setState({ leftColor: hex, color: hex });
+        this.setState({ leftColor: color, color });
       } else {
-        this.setState({ rightColor: hex, color: hex });
+        this.setState({ rightColor: color, color });
       }
     }
   }
@@ -85,7 +85,6 @@ export class ColorPickerContainer extends Component {
       rightColorPosition,
     } = this.state;
 
-    // console.log("data", this.state);
     return (
       <div
         className="colorpicker-wrapper"
@@ -201,7 +200,7 @@ export class ColorPickerContainer extends Component {
         <ColorPicker
           color={color}
           onChange={(color) => this.handleColorChange(color)}
-          disableAlpha={true}
+          disableAlpha={false}
         />
       </div>
     );

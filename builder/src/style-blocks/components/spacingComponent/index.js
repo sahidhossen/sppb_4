@@ -111,7 +111,6 @@ class SpacingComponent extends React.Component {
     let { marginLock, paddingLock, active } = this.state;
 
     let selectedUnit = active ? style[active].value.unit : null;
-    console.log("spacing: ", style);
     return (
       <div className="editor-x-spacing-panel">
         <RadioControl

@@ -26,7 +26,17 @@ export class ColorPicker extends Component {
   }
 
   handleChange(color) {
-    this.props.onChange(color);
+    const { disableAlpha } = this.props;
+    const { hex, rgb } = color;
+
+    if (disableAlpha === false) {
+      const rgbColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`;
+      let _color = rgb.a < 1 ? rgbColor : hex;
+
+      this.props.onChange(_color);
+    } else {
+      this.props.onChange(hex);
+    }
   }
 
   handleSelect(selectedItem) {
