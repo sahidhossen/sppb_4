@@ -30,7 +30,7 @@ class SizeComponent extends React.Component {
   }
   render() {
     let { style } = this.props;
-    // console.log("size component: ", style);
+    console.log("size component: ", style);
     let { height, maxHeight, minHeight, width, maxWidth, minWidth } = style;
 
     return (
@@ -59,7 +59,7 @@ class SizeComponent extends React.Component {
                 label="min W"
                 // value={custom_height}
                 value={minWidth.value} // {height: {value:, unit:}} Object | string
-                // unit={{ px: "Pixel", em: "EM" }} // optional
+                placeholder={minWidth.placeholder || null}
                 onChange={(value) => this.onChangeSize(value, "minWidth")}
               />
               <span className="editor-x-size-lock">
@@ -67,7 +67,7 @@ class SizeComponent extends React.Component {
               </span>
               <InputControl
                 label="min H"
-                // value={custom_height}
+                placeholder={minHeight.placeholder || null}
                 value={minHeight.value}
                 onChange={(value) => this.onChangeSize(value, "minHeight")}
               />
@@ -75,7 +75,7 @@ class SizeComponent extends React.Component {
             <div className="editor-x-size-height-width">
               <InputControl
                 label="max W"
-                // value={custom_height}
+                placeholder={maxWidth.placeholder || null}
                 value={maxWidth.value} // {height: {value:, unit:}} Object | string
                 // unit={{ px: "Pixel", em: "EM" }} // optional
                 onChange={(value) => this.onChangeSize(value, "maxWidth")}
@@ -85,7 +85,7 @@ class SizeComponent extends React.Component {
               </span>
               <InputControl
                 label="max H"
-                // value={custom_height}
+                placeholder={maxHeight.placeholder || null}
                 value={maxHeight.value}
                 onChange={(value) => this.onChangeSize(value, "maxHeight")}
               />

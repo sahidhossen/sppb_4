@@ -14,13 +14,9 @@ const isObject = (value) => {
 class InputControl extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      value: isObject(props.value) ? { ...props.value } : value,
-    };
-
     this.inputEl = React.createRef();
   }
+
   onChange(event) {
     let { value, onChange } = this.props;
     if (isObject(value)) {
@@ -39,8 +35,8 @@ class InputControl extends Component {
     let { onChange, value } = this.props;
     let _value = value.value;
     if (unit === "auto") {
-      unit = "";
       _value = unit;
+      unit = "";
     }
     onChange({ ...value, value: _value, unit });
   }
@@ -59,7 +55,7 @@ class InputControl extends Component {
         ? placeholder.value
         : placeholder
       : "";
-
+    console.log("placeholder: ", placeholder);
     return (
       <div className={elementClass}>
         {label && (
@@ -69,7 +65,7 @@ class InputControl extends Component {
           type="text"
           ref={this.inputEl}
           onChange={this.onChange.bind(this)}
-          value={inputValue}
+          value={inputValue || ""}
           id={`sppb-input-text${instanceId}`}
           placeholder={_placeholder}
         />
