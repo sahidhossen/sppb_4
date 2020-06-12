@@ -85,8 +85,8 @@ class InputControl extends Component {
 InputControl.defaultProps = {
   value: "",
   className: "",
-  placeholder: "",
-  unit: { px: "Pixel", em: "EM", "%": "%" },
+  placeholder: "Insert text...",
+  unit: { px: "px", em: "EM", "%": "%" },
 };
 
 export default withInstanceId(InputControl);

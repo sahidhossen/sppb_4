@@ -3,10 +3,11 @@ import {
   SpacingComponent,
   Panel,
   SizeComponent,
-  StyleComponent
-} from "style-blocks"; 
+  StyleComponent,
+} from "style-blocks";
 
 import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
+import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class StylePanel extends React.Component {
     this.state = {
       addonId: null,
     };
-    this.onUpdateStyleAttributes  = this.onUpdateStyleAttributes.bind(this)
+    this.onUpdateStyleAttributes = this.onUpdateStyleAttributes.bind(this);
   }
 
   static getDerivedStateFromProps(prevProps, state) {
@@ -26,26 +27,38 @@ class StylePanel extends React.Component {
     return state;
   }
 
-  onUpdateStyleAttributes( attributes, key) {
+  onUpdateStyleAttributes(attributes, key) {
     let { setCssAttributes } = this.props;
-    setCssAttributes(attributes, key)
+    setCssAttributes(attributes, key);
   }
 
   render() {
     let { styleState } = this.props;
-    let { spacing, size } = styleState;
+    let { spacing, size, background } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
           <SpacingComponent
             style={spacing}
-            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, 'spacing') }
+            setCssAttributes={(attributes) =>
+              this.onUpdateStyleAttributes(attributes, "spacing")
+            }
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
           <SizeComponent
             style={size}
-            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, 'size') }
+            setCssAttributes={(attributes) =>
+              this.onUpdateStyleAttributes(attributes, "size")
+            }
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Background">
+          <BackgroundComponent
+            style={background}
+            setCssAttributes={(attributes) =>
+              this.onUpdateStyleAttributes(attributes, "background")
+            }
           />
         </Panel>
 
