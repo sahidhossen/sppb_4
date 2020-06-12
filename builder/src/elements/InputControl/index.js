@@ -55,7 +55,7 @@ class InputControl extends Component {
         ? placeholder.value
         : placeholder
       : "";
-    console.log("placeholder: ", placeholder);
+
     return (
       <div className={elementClass}>
         {label && (
