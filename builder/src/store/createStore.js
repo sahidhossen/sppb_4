@@ -1,29 +1,31 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
-import {mapValues} from 'lodash';
-import * as actions from '../actions';
-import * as selectors from '../selectors';
+import { mapValues } from "lodash";
+import batchedSubscribeMiddleware from "./batching/middleware";
+import batchedSubscribeEnhancer from "./batching/enhancer";
+import * as actions from "../actions";
+import * as selectors from "../selectors";
 import reducer from "../reducers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const reduxStore = initialState => {
-  const middleware = applyMiddleware(thunkMiddleware);
+const reduxStore = (initialState) => {
   const store = createStore(
     reducer,
     initialState,
-    composeEnhancers(middleware)
+    composeEnhancers(
+      batchedSubscribeEnhancer,
+      applyMiddleware(batchedSubscribeMiddleware, thunkMiddleware)
+    )
   );
 
   return store;
 };
 
 export const createSPPBStore = () => {
-
   const store = reduxStore();
-  console.log("store: ", store.getState())
-  const _actions = mapActions( actions, store );
-  
+
+  const _actions = mapActions(actions, store);
 
   const _selectors = mapSelectors(selectors, store);
 
@@ -34,18 +36,18 @@ export const createSPPBStore = () => {
   // Later will move to default-registry page
   const select = () => {
     return getSelectors();
-  }
+  };
 
   const dispatch = () => {
-      return getActions();
-  }
+    return getActions();
+  };
   // Customize subscribe behavior to call listeners only on effective change,
   // not on every dispatch.
   store._genericStore = store.getState;
 
   const subscribe =
     store &&
-    function(listener) {
+    function (listener) {
       let lastState = store.getState();
       store.subscribe(() => {
         const currentState = store.getState();
@@ -63,7 +65,7 @@ export const createSPPBStore = () => {
     select,
     dispatch,
     getActions,
-    getSelectors
+    getSelectors,
   };
   return registryStore;
 };
@@ -75,9 +77,10 @@ export const createSPPBStore = () => {
  * @param {Object} store      The redux store to which the actions should be mapped.
  * @return {Object}           Actions mapped to the redux store provided.
  */
-function mapActions( actions, store ) {
-	const createBoundAction = ( action ) => ( ...args ) => store.dispatch( action( ...args ) );
-	return mapValues( actions, createBoundAction );
+function mapActions(actions, store) {
+  const createBoundAction = (action) => (...args) =>
+    store.dispatch(action(...args));
+  return mapValues(actions, createBoundAction);
 }
 
 /**
@@ -89,7 +92,8 @@ function mapActions( actions, store ) {
  * @param {Object} store      The redux store to which the selectors should be mapped.
  * @return {Object}           Selectors mapped to the redux store provided.
  */
-function mapSelectors( selectors, store ) {
-	const createStateSelector = ( selector ) => ( ...args ) => selector( store.getState(), ...args );
-	return mapValues( selectors, createStateSelector );
+function mapSelectors(selectors, store) {
+  const createStateSelector = (selector) => (...args) =>
+    selector(store.getState(), ...args);
+  return mapValues(selectors, createStateSelector);
 }

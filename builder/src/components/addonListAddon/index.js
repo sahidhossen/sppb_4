@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { findDOMNode } from "react-dom";
-import { DragSource, DropTarget } from "react-dnd";
 import { withSelect, withDispatch } from "store";
 import { Types } from "../../actions/dragType";
 import { compose } from "../compose";
@@ -13,7 +12,7 @@ import WithDropArea from "../WithDropArea";
 import AddonConfigTag from "./AddonConfigTag";
 import ComponentPortal from "../../helpers/ComponentPortal";
 import SppbPortal from "../sppbportal/SppbPortal";
-import { collectAndEnqueueStyle } from 'style-blocks';
+import { collectAndEnqueueStyle } from "style-blocks";
 
 class AddonListAddon extends React.Component {
   constructor(props) {
@@ -39,9 +38,12 @@ class AddonListAddon extends React.Component {
   // }
 
   componentDidUpdate(prevProps, prevState) {
-    let { styleBlockIds, getStyleBlocks, viewport} = this.props;
-    if (prevProps.styleBlockIds.length !== styleBlockIds.length || prevProps.viewport.name !== viewport.name) { 
-      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name); 
+    let { styleBlockIds, getStyleBlocks, viewport } = this.props;
+    if (
+      prevProps.styleBlockIds.length !== styleBlockIds.length ||
+      prevProps.viewport.name !== viewport.name
+    ) {
+      collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name);
     }
   }
 
@@ -71,7 +73,7 @@ class AddonListAddon extends React.Component {
     let { isMouseMove } = this.state;
     const {
       addon: {
-        attributes: { gridArea }
+        attributes: { gridArea },
       },
       isAddonPicked,
     } = this.props;
@@ -157,8 +159,8 @@ class AddonListAddon extends React.Component {
         attributes: { gridArea, _addonWidth, container },
       },
       parentAddon: {
-        attributes: { gridGap }
-      }
+        attributes: { gridGap },
+      },
     } = this.props;
     // console.log("test container", container);
     if (!container) {
@@ -268,7 +270,7 @@ export default compose([
       isAddonPicked,
       getActiveMediaQuery,
       getAddonStyleBlockIds,
-      getStyleBlocks
+      getStyleBlocks,
     } = select();
     const addon = getAddon(addonId);
     const parentAddon = getAddon(addon.parentId);
@@ -282,7 +284,7 @@ export default compose([
       getStyleBlocks,
       isAddonPicked: isAddonPicked(),
       viewport: getActiveMediaQuery(),
-      styleBlockIds: getAddonStyleBlockIds(addonId)
+      styleBlockIds: getAddonStyleBlockIds(addonId),
     };
   }),
   withDispatch((dispatch) => {

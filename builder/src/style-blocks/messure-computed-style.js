@@ -40,6 +40,7 @@ export const getElementComputedStyle = (element, localProperties) => {
       defaultProperties[cssKey] = {
         ...defaultProperties[cssKey],
         local: { ...mountableValue },
+        browser: { ...mountableValue },
       };
     } else {
       defaultProperties[cssKey] = {
@@ -48,23 +49,27 @@ export const getElementComputedStyle = (element, localProperties) => {
       };
     }
   });
-  //   console.log("pick value: ", defaultProperties);
   return defaultProperties;
 };
 
 const cssToLocalValue = (key, value) => {
   let nextProperty = { value: null, unit: null };
-  if (key === "backgroundColor") {
-    nextProperty.value = value;
-  }
-  if (key === "overflow") {
-    nextProperty.value = value;
-  }
+
   if (hasUnit(key)) {
     nextProperty = { ...extractUnit(key, value) };
   } else {
-    nextProperty.value = value;
+    nextProperty.value = pickConditionaly(key, value);
   }
 
   return nextProperty;
+};
+
+const pickConditionaly = (key, value) => {
+  switch (key) {
+    case "backgroundImages": {
+      // linear-gradient(black, white), radial-gradient(circle at 50% 50%, black, white);
+    }
+    default:
+      return value;
+  }
 };

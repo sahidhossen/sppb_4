@@ -44,7 +44,7 @@ const commonReducer = (state, action) => {
         addon = { ...addon, styleBlockIds: [styleBlockId] };
         present[options.addonId] = addon;
         let nextBuilder = { ...nextState.builder, past, present };
-        console.log("nextbuilder: ", blockStore)
+        console.log("nextbuilder: ", blockStore);
         return {
           ...nextState,
           builder: nextBuilder,
@@ -56,6 +56,7 @@ const commonReducer = (state, action) => {
         };
       } else {
         // Update styleBlockStore
+
         let { blockId, viewport, styles } = options;
 
         let styleBlock = blockStore[blockId];

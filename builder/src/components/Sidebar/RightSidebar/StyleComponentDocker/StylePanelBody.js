@@ -1,6 +1,8 @@
 import React from "react";
+import { parse } from "gradient-parser";
 import { withSelect, withDispatch } from "store";
 import { compose } from "../../../compose";
+
 import {
   getElementComputedStyle,
   generateStyleState,
@@ -19,6 +21,22 @@ class StylePanelBody extends React.Component {
     };
     this.counter = 0;
     this.startComputedStyle = this.startComputedStyle.bind(this);
+  }
+
+  componentDidMount() {
+    let st =
+      "url(https://d3e54v103j8qbb.cloudfront.net/img/example-bg.png), linear-gradient(black, white), repeating-radial-gradient(circle closest-corner at 0% 50%, rgb(173, 47, 47) 30%, white)";
+    let _s = st.split(",");
+    _s.map((s, i) => {
+      if (s.includes("url")) {
+        _s.splice(i, 1);
+      }
+    });
+    console.log("string: ", _s);
+    const gradientParse = parse(
+      "linear-gradient(black, white), repeating-radial-gradient(circle closest-corner at 0% 50%, rgb(173, 47, 47) 30%, white)"
+    );
+    console.log("gradient: ", gradientParse);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,9 +68,8 @@ class StylePanelBody extends React.Component {
         setElementComputedStyle(styleGuide);
 
         let styleState = generateStyleState(styleGuide);
-
-        console.log("css guide", styleGuide, styleState);
-
+        console.log("state: ", styleState);
+        return;
         let rule = this.updateCssRules(addonElement);
         initiateStyleState({ styleState, rule });
 
@@ -104,12 +121,11 @@ class StylePanelBody extends React.Component {
       ...rule,
     };
 
-    console.log("cssobj: ", cssObject, attributes);
+    let hasBlockId = selectedBlockId !== null;
 
     updateStyleAttributes(attributes, { rule, componentKey });
 
-    updateComutedAttributes(attributes, options);
-    // this.setState({rule})
+    updateComutedAttributes(attributes, options, hasBlockId);
   }
 
   render() {
@@ -137,7 +153,6 @@ export default compose(
         updateStyleAttributes(attributes, options);
       },
       initiateStyleState(styleState) {
-        console.log("dispatching");
         initiateStyleState(styleState);
       },
     };
@@ -155,8 +170,8 @@ export default compose(
       setElementComputedStyle(styleGuide) {
         setComputeStyle(styleGuide);
       },
-      updateComutedAttributes(attributes, options) {
-        updateComputedStyle(attributes, options);
+      updateComutedAttributes(attributes, options, isBatch) {
+        updateComputedStyle(attributes, options, isBatch);
       },
     };
   })

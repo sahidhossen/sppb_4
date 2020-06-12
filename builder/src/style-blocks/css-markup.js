@@ -1,10 +1,13 @@
 import hyphenate from "hyphenate-style-name";
+import { isObject } from "lodash";
 /**
  * Convert computed property object to css object and string
  * @param {Object} attributes List of css computed property
+ * backgrounds:[]
  */
 export const createMarkup = (attributes) => {
   const keys = Object.keys(attributes);
+
   if (!keys.length) return "";
   let i,
     len = keys.length;
@@ -13,17 +16,25 @@ export const createMarkup = (attributes) => {
 
   for (i = 0; i < len; i++) {
     const key = keys[i];
-    const val = addUnit(attributes[key]);
-    cssString += hyphenate(key) + ":" + val + ";";
+    let preValue = attributes[key];
 
-    cssObject = { ...cssObject, [key]: val };
+    let value = "";
+    if (isObject(preValue)) {
+      value = addUnit(preValue);
+    } else {
+      value = preValue;
+    }
+
+    cssString += hyphenate(key) + ":" + value + ";";
+
+    cssObject = { ...cssObject, [key]: value };
   }
 
   return { cssString, cssObject };
 };
 
 const addUnit = (valueObj) => {
-  let unit = valueObj.unit === null ? "" : valueObj.unit
+  let unit = valueObj.unit === null ? "" : valueObj.unit;
   return valueObj.value + unit;
 };
 

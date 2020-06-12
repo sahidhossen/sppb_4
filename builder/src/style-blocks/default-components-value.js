@@ -18,4 +18,8 @@ export const defaultComponentValues = {
     minWidth: { value: { value: null, unit: null }, origin: "default" },
     overflow: { value: null },
   },
+  backgrounds: {
+    backgroundColor: { value: "" },
+    backgroundImages: { value: [] },
+  },
 };
