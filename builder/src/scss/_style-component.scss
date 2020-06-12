@@ -358,6 +358,8 @@
     padding: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
+    border-bottom: 1px solid var(--brush-marble-gray);
+    padding-bottom: 10px !important;
     > div {
       border-radius: 0.6364rem;
       &:nth-child(2) {
@@ -415,7 +417,7 @@
     &.editor-x-color-select-item-two {
       background: linear-gradient(
         to top,
-        var(--regent-gray) 100%,
+        var(--regent-gray) 10%,
         var(--small-text-color)
       );
     }
@@ -436,7 +438,90 @@
       border: solid 1px var(--white);
       border-radius: 50%;
       background: var(--dark-bg-text-color);
-      box-shadow: initial;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
     }
+  }
+}
+//Gradient
+.editor-x-range-slider-control-panel {
+  position: relative;
+  flex: 1;
+}
+.editor-x-range-slider-bottom {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.editor-x-radial-size {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  .editor-x-radio-control {
+    flex: 1;
+    margin: 0;
+    button {
+      span {
+        position: initial;
+      }
+    }
+  }
+}
+.editor-x-radial-position-text {
+  margin-right: 10px;
+}
+.editor-x-radial-positions-top-left {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .sppb-select-wrapper {
+    width: 30px;
+  }
+  .sppb-select-arrow {
+    display: none;
+  }
+  .sppb-custom-select {
+    background: transparent;
+    box-shadow: none;
+    padding: 2px 0px;
+    &:hover {
+      background: var(--shark-dark);
+    }
+  }
+  .sppb-custom-options {
+    width: 80px;
+  }
+  .editor-x-form-controllers {
+    input {
+      max-width: 50px;
+    }
+  }
+}
+.editor-x-linear-angle {
+  margin-bottom: 10px;
+  .sppb-custom-options,
+  .sppb-select-wrapper {
+    width: 80px;
+  }
+  .editor-x-form-controllers {
+    justify-content: space-between;
+    input {
+      margin-left: auto;
+    }
+  }
+  .sppb-select-wrapper {
+    width: 30px;
+  }
+  .sppb-select-arrow {
+    display: none;
+  }
+  .sppb-custom-select {
+    background: transparent;
+    box-shadow: none;
+    padding: 2px 0px;
+    &:hover {
+      background: var(--shark-dark);
+    }
+  }
+  .sppb-custom-options {
+    width: 80px;
   }
 }

@@ -71,7 +71,6 @@ class InputControl extends Component {
         />
         {isObject(value) && (
           <SelectCustom
-            className="select-custom-class"
             value={value.unit}
             options={units}
             onSelectChange={(value) => this.onUnitChange(value)}

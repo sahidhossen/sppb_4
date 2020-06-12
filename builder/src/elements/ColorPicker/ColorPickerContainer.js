@@ -136,7 +136,7 @@ export class ColorPickerContainer extends Component {
         )}
 
         {type === "linear" && (
-          <div className="linear-angle">
+          <div className="editor-x-linear-angle">
             <InputControl
               label="Angle"
               value={angle} // {height: {value:, unit:}} Object | string
@@ -148,8 +148,8 @@ export class ColorPickerContainer extends Component {
 
         {type === "radial" && (
           <Fragment>
-            <div className="radial-size">
-              <span className="radial-position">Position</span>
+            <div className="editor-x-radial-size">
+              <span className="editor-x-radial-position-text">Position</span>
               <RadioControl
                 className="editor-x-radio-control"
                 activeClass="editor-x-active-item"
@@ -182,7 +182,7 @@ export class ColorPickerContainer extends Component {
               />
             </div>
 
-            <div className="radial-position">
+            <div className="editor-x-radial-positions-top-left">
               <InputControl
                 label="Left"
                 value={position.x} // {height: {value:, unit:}} Object | string

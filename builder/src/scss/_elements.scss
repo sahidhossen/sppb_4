@@ -614,16 +614,15 @@ label.editor-x-checkbox-label {
   $input-top,
   $input-bg-color,
   $input-thumb-color,
-  $float: none,
-  $input-height: 10px,
+  $input-height: 0.9091rem,
   $input-border-radius: 14px
 ) {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   width: $width;
   height: $height;
-  float: $float;
   text-align: center;
-  padding: 10px 0px;
+  padding: 0 0px 0.9091rem;
   background: #2a2c36;
 
   input[type="range"] {
@@ -731,5 +730,5 @@ label.editor-x-checkbox-label {
 }
 
 .editor-x-range-slider {
-  @include range-slider(100%, auto, 50px, #f1efef, #413f41, left);
+  @include range-slider(100%, auto, 50px, #f1efef, #413f41);
 }
