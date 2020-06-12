@@ -2551,7 +2551,7 @@ const styleState = {
           "unit": null
         },
         "default": {
-          "value": null,
+          "value": "auto",
           "unit": "px"
         },
         "placeholder": {
@@ -2583,7 +2583,7 @@ const styleState = {
           "unit": null
         },
         "default": {
-          "value": null,
+          "value": "auto",
           "unit": "px"
         },
         "placeholder": {
