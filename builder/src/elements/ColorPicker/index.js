@@ -19,9 +19,9 @@ export class ColorPicker extends Component {
           "#00bcd4",
           "#cddc39",
           "#ffeb3b",
-          "#ffc107",
-        ],
-      },
+          "#ffc107"
+        ]
+      }
     };
   }
 
@@ -40,8 +40,8 @@ export class ColorPicker extends Component {
     this.setState({
       selectedItem: {
         ...selectedItem,
-        colorList: [...selectedItem.colorList, color],
-      },
+        colorList: [...selectedItem.colorList, color]
+      }
     });
   }
 
@@ -51,18 +51,22 @@ export class ColorPicker extends Component {
 
     return (
       <Fragment>
-        <div className="color-picker-wrapppe" style={{ marginBottom: "100px" }}>
+        <div
+          className="editor-x-sketch-picker-wrapper"
+          style={{ marginBottom: "100px" }}
+        >
           <SketchPicker
             color={color}
             onChange={this.handleChange.bind(this)}
             disableAlpha={disableAlpha ? true : false}
+            className="editor-x-sketch-picker"
           />
-          <div className="color-picker-footer">
+          <div className="editor-x-color-picker-footer">
             <RadioControl
               className="editor-x-radio-control"
               activeClass="editor-x-active-item"
               value={selectedItem.name}
-              onSelect={(selectedItem) => this.handleSelect(selectedItem)}
+              onSelect={selectedItem => this.handleSelect(selectedItem)}
               items={[
                 {
                   name: "pageColor",
@@ -79,13 +83,13 @@ export class ColorPicker extends Component {
                     "#00bcd4",
                     "#cddc39",
                     "#ffeb3b",
-                    "#ffc107",
-                  ],
+                    "#ffc107"
+                  ]
                 },
                 {
                   name: "globalColor",
                   title: "Global Color",
-                  className: "item-two editor-x-tab-border-right",
+                  className: "item-two",
                   colorList: [
                     "#000000",
                     "#4caf50",
@@ -96,33 +100,28 @@ export class ColorPicker extends Component {
                     "#ff9800",
                     "#ff5722",
                     "#795548",
-                    "#607d8b",
-                  ],
-                },
+                    "#607d8b"
+                  ]
+                }
               ]}
             />
 
             <div
-              className="circle-picker-wrapper"
+              className="editor-x-circle-picker-wrapper"
               style={{ position: "relative" }}
             >
               <CirclePicker
                 circleSize={16}
                 onChange={this.handleChange.bind(this)}
                 colors={selectedItem.colorList}
+                className="editor-x-circle-picker"
               />
               <div
-                className="add-color fas fa-plus-circle"
+                className="editor-x-add-color"
                 onClick={this.addColor.bind(this)}
-                style={{
-                  fontSize: "16px",
-                  position: "absolute",
-                  left: 0,
-                  top: 0,
-                  color: "#ccc",
-                  cursor: "pointer",
-                }}
-              ></div>
+              >
+                <i className="fas fa-plus"></i>
+              </div>
             </div>
           </div>
         </div>
@@ -132,7 +131,7 @@ export class ColorPicker extends Component {
 }
 
 ColorPicker.defaultProps = {
-  color: "#ffffff",
+  color: "#ffffff"
 };
 
 export default ColorPicker;

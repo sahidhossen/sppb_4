@@ -147,8 +147,8 @@
   border-radius: 0.4545rem;
   box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
   background: var(--pearl-dark);
-  padding: 0.2727rem;
   overflow-y: scroll;
+  @include scrollbar();
 }
 .sppb-sidebar-icons {
   display: flex;
@@ -172,7 +172,7 @@
   box-shadow: inset 0 0.5px 0 0 rgba(255, 255, 255, 0.1),
     inset 0 -1px 0 0 #2b2b2b, inset 0 -0.5px 0 0 #000000;
   padding: 18px 0 15px 10px;
-  height: 60vh;
+  height: 76vh;
 }
 //Left sidebar layer
 .editor-x-navigator {
@@ -271,14 +271,3 @@
   visibility: hidden;
 }
 
-// Color picker
-.circle-picker {
-  > span:first-child {
-    margin-left: 28px;
-  }
-}
-.sketch-picker {
-  > div.flexbox-fix:last-child {
-    display: none !important;
-  }
-}

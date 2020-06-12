@@ -68,8 +68,8 @@ export class RangeWithTwoController extends Component {
     }
 
     return (
-      <section className="range-slider">
-        <div className="range-slider-control-panel">
+      <div className="editor-x-range-slider">
+        <div className="editor-x-range-slider-control-panel">
           <input
             value={leftColorPosition.value}
             min="0"
@@ -93,13 +93,13 @@ export class RangeWithTwoController extends Component {
             style={{ background: gradiant }}
           />
         </div>
-        <div className="range-slider-bottom">
+        <div className="editor-x-range-slider-bottom">
           <div
-            className="range-slider-swap fas fa-sync-alt"
+            className="editor-x-range-slider-swap fas fa-sync-alt"
             onClick={this.handleSwap.bind(this)}
           ></div>
         </div>
-      </section>
+      </div>
     );
   }
 }

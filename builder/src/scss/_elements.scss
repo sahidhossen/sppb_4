@@ -175,7 +175,7 @@
       }
 
       /* Firefox */
-      &[type=number] {
+      &[type="number"] {
         -moz-appearance: textfield;
       }
     }
@@ -190,6 +190,7 @@
   padding: 0.183rem;
   background: var(--charcoal-dark);
   display: flex;
+  margin: 10px 0 15px;
   button {
     background: transparent;
     border: 0;
@@ -729,6 +730,6 @@ label.editor-x-checkbox-label {
   }
 }
 
-section.range-slider {
+.editor-x-range-slider {
   @include range-slider(100%, auto, 50px, #f1efef, #413f41, left);
 }
