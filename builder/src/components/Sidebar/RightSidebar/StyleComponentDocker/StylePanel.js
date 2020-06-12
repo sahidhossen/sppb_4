@@ -34,7 +34,7 @@ class StylePanel extends React.Component {
 
   render() {
     let { styleState } = this.props;
-    let { spacing, size, background } = styleState;
+    let { spacing, size, backgrounds } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
@@ -55,9 +55,9 @@ class StylePanel extends React.Component {
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Background">
           <BackgroundComponent
-            style={background}
+            style={backgrounds}
             setCssAttributes={(attributes) =>
-              this.onUpdateStyleAttributes(attributes, "background")
+              this.onUpdateStyleAttributes(attributes, "backgrounds")
             }
           />
         </Panel>

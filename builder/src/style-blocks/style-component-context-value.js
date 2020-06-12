@@ -61,12 +61,13 @@ const getValueAndUnit = (fieldOpts, initValue) => {
   return initValue;
 };
 
-const mergeValue = (oldValue, newValue) => {
+const mergeValue = (oldValue, value) => {
   let nextValue = oldValue;
-  if (isObject(oldValue) || isArray(oldValue)) {
-    nextValue = { ...oldValue, value: newValue };
+  if (isObject(oldValue)) {
+    nextValue = { ...oldValue, value };
   } else {
-    nextValue = newValue;
+    // Array or string
+    nextValue = value;
   }
   return nextValue;
 };

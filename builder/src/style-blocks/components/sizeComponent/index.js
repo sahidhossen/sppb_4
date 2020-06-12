@@ -11,14 +11,26 @@ import {
 class SizeComponent extends React.Component {
   onChangeSize(value, name) {
     let { setCssAttributes, style } = this.props;
-    if (name === "height" || name === "width") {
+    if (
+      name === "height" ||
+      name === "width" ||
+      name === "maxWidth" ||
+      name === "maxHeight"
+    ) {
       let _prevUnit = style[name].value.unit;
       let _prevValue = style[name].value.value;
       if (
         value.value === _prevValue &&
         (_prevUnit === "" || _prevUnit === null)
       ) {
-        let browserValue = getBrowserValue(name);
+        let browserValueFieldName = name;
+
+        if (name === "maxWidth") {
+          browserValueFieldName = "width";
+        } else if (name === "maxHeight") {
+          browserValueFieldName = "height";
+        }
+        let browserValue = getBrowserValue(browserValueFieldName);
         value = { ...value, value: browserValue.value };
       }
     }
@@ -28,11 +40,41 @@ class SizeComponent extends React.Component {
     let { setCssAttributes } = this.props;
     setCssAttributes({ [name]: selectedItem.name });
   }
+
+  onChangeOverflow(value) {
+    this.props.setCssAttributes({ overflow: value.name });
+  }
+
+  onCheckedOverflow(fieldValue) {
+    let {
+      style: { overflow },
+      setCssAttributes,
+    } = this.props;
+    let { value } = overflow;
+    if (fieldValue.overflow) {
+      value = "auto";
+    } else {
+      value = "visible";
+    }
+    setCssAttributes({ overflow: value });
+  }
+
   render() {
     let { style } = this.props;
-    console.log("size component: ", style);
-    let { height, maxHeight, minHeight, width, maxWidth, minWidth } = style;
 
+    let {
+      height,
+      maxHeight,
+      minHeight,
+      width,
+      maxWidth,
+      minWidth,
+      overflow,
+    } = style;
+
+    let isOverflow = overflow.value && overflow.value !== "visible";
+
+    console.log("overflow: ", isOverflow, overflow);
     return (
       <div className="editor-x-size-component">
         <div className="editor-x-size-height-width">
@@ -93,38 +135,42 @@ class SizeComponent extends React.Component {
           </AccordionSection>
         </Accordion>
         <Checkbox
-          options={[{ label: "Overflow", value: "overflow", isChecked: true }]}
-          value={"checkbox_value"}
+          options={[
+            {
+              label: "Overflow",
+              value: "overflow",
+              isChecked: isOverflow,
+            },
+          ]}
+          value={"visible"}
           onCheckboxChange={(value) => {
-            // this.onChangeSize(value, "checkbox_value");
+            this.onCheckedOverflow(value);
           }}
           className="checkbox-custom"
         />
-        <RadioControl
-          activeClass="editor-x-active-item"
-          // value={'background_type_tab'}
-          value="item1"
-          onSelect={(selectedItem) =>
-            this.handleSelect(selectedItem, "background_type_tab")
-          }
-          items={[
-            {
-              name: "item1",
-              title: "Hidden",
-              className: "item-one editor-x-tab-border-right",
-            },
-            {
-              name: "item2",
-              title: "Scroll",
-              className: "item-two editor-x-tab-border-right",
-            },
-            {
-              name: "item3",
-              title: "Auto",
-              className: "item-three",
-            },
-          ]}
-        />
+        {isOverflow && (
+          <RadioControl
+            activeClass="editor-x-active-item"
+            value={overflow.value}
+            onSelect={(value) => this.onChangeOverflow(value)}
+            items={[
+              {
+                name: "hidden",
+                title: "Hidden",
+                className: "editor-x-tab-border-right",
+              },
+              {
+                name: "scroll",
+                title: "Scroll",
+                className: "editor-x-tab-border-right",
+              },
+              {
+                name: "auto",
+                title: "Auto",
+              },
+            ]}
+          />
+        )}
       </div>
     );
   }

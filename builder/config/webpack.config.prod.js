@@ -1,11 +1,12 @@
-const webpack = require('webpack');
-const merge = require('webpack-merge');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
-const common = require('./webpack.common.js');
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
-  mode: 'production',
+  mode: "production",
+  performance: { hints: false },
   stats: {
     colors: false,
     hash: true,
@@ -22,10 +23,10 @@ module.exports = merge(common, {
         sourceMap: true,
         uglifyOptions: {
           compress: {
-            inline: false
-          }
-        }
-      })
+            inline: false,
+          },
+        },
+      }),
     ],
     runtimeChunk: false,
     splitChunks: {
@@ -33,17 +34,17 @@ module.exports = merge(common, {
         default: false,
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendor_app',
-          chunks: 'all',
-          minChunks: 2
-        }
-      }
-    }
+          name: "vendor_app",
+          chunks: "all",
+          minChunks: 2,
+        },
+      },
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
+      "process.env": {
+        NODE_ENV: JSON.stringify("production"),
       },
     }),
   ],
