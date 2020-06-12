@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListItem from "../TopBar/Right/RightView/ListItem";
 import { compose } from "../compose";
 import { withSelect, withDispatch } from "store";
+import ColorPickerContainer from "../../elements/ColorPicker/ColorPickerContainer";
 
 class PopoverSetting extends Component {
   constructor(props) {
@@ -159,7 +160,7 @@ class PopoverSetting extends Component {
             {selectedAddon.name}
           </div>
           <div className="editor-x-addon-settings-body">
-            <div className="editor-x-addon-setting">
+            {/* <div className="editor-x-addon-setting">
               Your settings goes here...
             </div>
             <div className="editor-x-addon-setting">
@@ -167,7 +168,8 @@ class PopoverSetting extends Component {
             </div>
             <div className="editor-x-addon-setting">
               Your settings goes here...
-            </div>
+            </div> */}
+            <ColorPickerContainer />
           </div>
         </div>
       </div>
