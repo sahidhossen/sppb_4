@@ -68,8 +68,6 @@ class StylePanelBody extends React.Component {
         setElementComputedStyle(styleGuide);
 
         let styleState = generateStyleState(styleGuide);
-        console.log("state: ", styleState);
-        return;
         let rule = this.updateCssRules(addonElement);
         initiateStyleState({ styleState, rule });
 

@@ -157,12 +157,10 @@ class SizeComponent extends React.Component {
               {
                 name: "hidden",
                 title: "Hidden",
-                className: "editor-x-tab-border-right",
               },
               {
                 name: "scroll",
                 title: "Scroll",
-                className: "editor-x-tab-border-right",
               },
               {
                 name: "auto",

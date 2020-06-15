@@ -122,13 +122,13 @@ class SpacingComponent extends React.Component {
             {
               name: "item1",
               title: <i className="fas fa-sort-amount-up"></i>,
-              className: "item-one editor-x-tab-border-right",
+              className: "item-one",
               // icon: "fas fa-magic",
             },
             {
               name: "item2",
               title: <i className="fas fa-sort-amount-down-alt"></i>,
-              className: "item-two editor-x-tab-border-right",
+              className: "item-two",
             },
             {
               name: "item3",
@@ -333,13 +333,13 @@ class SpacingComponent extends React.Component {
             {
               name: "px",
               title: "PX",
-              className: "item-one editor-x-tab-border-right",
+              className: "item-one",
               // icon: "fas fa-magic",
             },
             {
               name: "%",
               title: "%",
-              className: "item-two editor-x-tab-border-right",
+              className: "item-two",
             },
             {
               name: "em",

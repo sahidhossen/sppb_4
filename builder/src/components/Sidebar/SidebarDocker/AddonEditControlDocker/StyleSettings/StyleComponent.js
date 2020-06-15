@@ -127,13 +127,13 @@ class StyleSettings extends React.Component {
             {
               name: "item1",
               title: "Item 1",
-              className: "item-one editor-x-tab-border-right",
+              className: "item-one",
               icon: "fas fa-magic",
             },
             {
               name: "item2",
               title: "Item 2",
-              className: "item-two editor-x-tab-border-right",
+              className: "item-two",
               icon: "fas fa-feather-alt",
             },
             {

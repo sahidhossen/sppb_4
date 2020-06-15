@@ -7,7 +7,16 @@ export class RangeControl extends Component {
   }
 
   render() {
-    const { label, value, min, max, step, className, instanceId } = this.props;
+    const {
+      label,
+      value,
+      min,
+      max,
+      step,
+      className,
+      instanceId,
+      disableInput,
+    } = this.props;
     const defaultClass = "editor-x-range editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
@@ -26,16 +35,18 @@ export class RangeControl extends Component {
           step={step}
           onChange={this.onChange.bind(this)}
         />
-        <input
-          type="number"
-          id={`editor-x-range-control${instanceId}`}
-          value={value}
-          min={min}
-          max={max}
-          step={step}
-          autoComplete="off"
-          onChange={this.onChange.bind(this)}
-        />
+        {!disableInput && (
+          <input
+            type="number"
+            id={`editor-x-range-control${instanceId}`}
+            value={value}
+            min={min}
+            max={max}
+            step={step}
+            autoComplete="off"
+            onChange={this.onChange.bind(this)}
+          />
+        )}
       </div>
     );
   }

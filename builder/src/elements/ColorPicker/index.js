@@ -81,7 +81,7 @@ export class ColorPicker extends Component {
                 {
                   name: "pageColor",
                   title: "Page Color",
-                  className: "item-one editor-x-tab-border-right",
+                  className: "item-one",
                   colorList: [
                     "#000000",
                     "#e91e63",
