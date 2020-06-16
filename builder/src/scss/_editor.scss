@@ -156,3 +156,16 @@
   padding-bottom: 0.9091rem;
   @include border("-bottom", 1px, solid, var(--shark-dark));
 }
+
+// Background Item
+.editor-x-background-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .editor-x-background-item-right {
+    width: 46px;
+    height: 15px;
+    pointer-events: auto;
+  }
+}

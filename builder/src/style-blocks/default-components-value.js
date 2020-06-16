@@ -20,6 +20,6 @@ export const defaultComponentValues = {
   },
   backgrounds: {
     backgroundColor: { value: "" },
-    backgroundImages: { value: [] },
+    backgroundImages: { value: null },
   },
 };

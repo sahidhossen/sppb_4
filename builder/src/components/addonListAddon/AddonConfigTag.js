@@ -3,6 +3,7 @@ import { compose } from "../compose";
 import { withSelect, withDispatch } from "store";
 import SppbPortal from "../sppbportal/SppbPortal";
 import List from "../TopBar/Right/RightView/List";
+import ColorPickerContainer from "../../elements/ColorPicker/ColorPickerContainer";
 import PopoverSetting from "./PopoverSetting";
 
 class AddonConfigTag extends React.Component {
@@ -34,7 +35,7 @@ class AddonConfigTag extends React.Component {
   }
 
   render() {
-    let { addon, target, popoverSettingPanel } = this.props;
+    let { addon, popoverSettingPanel } = this.props;
 
     return (
       <Fragment>
@@ -56,7 +57,17 @@ class AddonConfigTag extends React.Component {
               event={this.state.event}
               target={this.button}
               addon={addon}
-            />
+            >
+              <div className="editor-x-addon-setting">
+                Your settings goes here...
+              </div>
+              <div className="editor-x-addon-setting">
+                Your settings goes here...
+              </div>
+              <div className="editor-x-addon-setting">
+                Your settings goes here...
+              </div>
+            </PopoverSetting>
           </SppbPortal>
         )}
       </Fragment>
