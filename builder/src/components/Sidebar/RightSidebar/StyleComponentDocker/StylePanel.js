@@ -1,10 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  SpacingComponent,
-  Panel,
-  SizeComponent,
-  StyleComponent,
-} from "style-blocks";
+import { SpacingComponent, Panel, SizeComponent, StyleComponent } from "style-blocks";
 
 import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
 import { BackgroundComponent } from "../../../../style-blocks";
@@ -34,35 +29,35 @@ class StylePanel extends React.Component {
 
   render() {
     let { styleState } = this.props;
-    let { spacing, size, backgrounds } = styleState;
+    let { spacing, size, backgrounds, style: styleProps } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
           <SpacingComponent
             style={spacing}
-            setCssAttributes={(attributes) =>
-              this.onUpdateStyleAttributes(attributes, "spacing")
-            }
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "spacing")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
           <SizeComponent
             style={size}
-            setCssAttributes={(attributes) =>
-              this.onUpdateStyleAttributes(attributes, "size")
-            }
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "size")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Background">
           <BackgroundComponent
             style={backgrounds}
-            setCssAttributes={(attributes) =>
-              this.onUpdateStyleAttributes(attributes, "backgrounds")
-            }
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "backgrounds")}
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Style">
+          <StyleComponent
+            style={styleProps}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "style")}
           />
         </Panel>
 
-        <ColorPickerContainer />
+        {/* <ColorPickerContainer /> */}
       </Fragment>
     );
   }

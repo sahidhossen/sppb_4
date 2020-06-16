@@ -1,5 +1,4 @@
 import React from "react";
-import { parse } from "gradient-parser";
 import { withSelect, withDispatch } from "store";
 import { compose } from "../../../compose";
 
