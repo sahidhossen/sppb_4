@@ -1,12 +1,9 @@
-import React from 'react';
-import { flowRight } from 'lodash';
+import React from "react";
+import { flowRight } from "lodash";
 
-import createHigherOrderComponent from './createHightOrderComponent';
+import createHigherOrderComponent from "./createHightOrderComponent";
 
-export { 
-    createHigherOrderComponent,
-    flowRight as compose 
-};
+export { createHigherOrderComponent, flowRight as compose };
 
 /**
  * Higher-order component creator, creating a new component which renders if
@@ -16,13 +13,14 @@ export {
  *
  * @return {Function} Higher-order component.
  */
-export const ifRenderComponent = ( predicate ) => createHigherOrderComponent(
-	( WrappedComponent ) => ( props ) => {
-		if ( ! predicate( props ) ) {
-			return null;
-		}
+export const ifRenderComponent = (predicate) =>
+  createHigherOrderComponent(
+    (WrappedComponent) => (props) => {
+      if (!predicate(props)) {
+        return null;
+      }
 
-		return <WrappedComponent { ...props } />;
-	},
-	'ifRenderComponent'
-);
+      return <WrappedComponent {...props} />;
+    },
+    "ifRenderComponent"
+  );

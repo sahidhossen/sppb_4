@@ -32,7 +32,6 @@ export class ColorPicker extends Component {
     if (disableAlpha === false) {
       const rgbColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`;
       let _color = rgb.a < 1 ? rgbColor : hex;
-
       this.props.onChange(_color);
     } else {
       this.props.onChange(hex);

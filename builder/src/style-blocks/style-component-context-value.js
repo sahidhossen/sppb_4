@@ -57,7 +57,6 @@ const getValueAndUnit = (fieldOpts, initValue) => {
   }
 
   initValue = { ...initValue, value: propertyValue, placeholder };
-
   return initValue;
 };
 

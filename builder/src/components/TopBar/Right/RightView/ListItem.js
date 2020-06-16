@@ -9,7 +9,7 @@ class ListItem extends React.Component {
     super();
     this.state = {
       isList: false,
-      event: null
+      event: null,
     };
   }
   openList(event) {
@@ -29,7 +29,7 @@ class ListItem extends React.Component {
       <Fragment>
         <li
           key={name}
-          ref={ref => {
+          ref={(ref) => {
             this.button = ref;
           }}
           onClick={this.openList.bind(this)}
@@ -76,11 +76,11 @@ class ListItem extends React.Component {
 }
 
 export default compose([
-  withSelect(select => {
+  withSelect((select) => {
     let { getMediaQueries, getViewContextList } = select();
     return {
       viewports: getMediaQueries(),
-      viewContextList: getViewContextList()
+      viewContextList: getViewContextList(),
     };
-  })
+  }),
 ])(ListItem);
