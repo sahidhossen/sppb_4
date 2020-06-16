@@ -1,14 +1,11 @@
 import React, { Component } from "react";
+import classnames from "classnames";
 import withInstanceId from "../../lib/withInstanceId";
 import SelectCustom from "../SelectCustom";
 import { units } from "../index";
 
 const isObject = (value) => {
-  return (
-    typeof value === "object" &&
-    value instanceof Object &&
-    !(value instanceof Array)
-  );
+  return typeof value === "object" && value instanceof Object && !(value instanceof Array);
 };
 
 class InputControl extends Component {
@@ -43,24 +40,15 @@ class InputControl extends Component {
 
   render() {
     const { label, value, placeholder, instanceId, className } = this.props;
-    const defaultClass = "sppb-input-text editor-x-form-controllers";
-    const elementClass = [defaultClass, ...(className ? [className] : [])].join(
-      " "
-    );
+    const classNames = classnames("sppb-input-text editor-x-form-controllers", className);
 
     const inputValue = isObject(value) ? value.value : value;
 
-    let _placeholder = placeholder
-      ? placeholder.value
-        ? placeholder.value
-        : placeholder
-      : "";
+    let _placeholder = placeholder ? (placeholder.value ? placeholder.value : placeholder) : "";
 
     return (
-      <div className={elementClass}>
-        {label && (
-          <label htmlFor={`sppb-input-text${instanceId}`}>{label}</label>
-        )}
+      <div className={classNames}>
+        {label && <label htmlFor={`sppb-input-text${instanceId}`}>{label}</label>}
         <input
           type="text"
           ref={this.inputEl}
