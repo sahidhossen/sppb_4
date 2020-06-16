@@ -22,4 +22,10 @@ export const defaultComponentValues = {
     backgroundColor: { value: "" },
     backgroundImages: { value: null },
   },
+  style: {
+    opacity: { value: null },
+    borderWidth: { value: { value: null, unit: null } },
+    borderStyle: { value: null },
+    borderColor: { value: "" },
+  }
 };

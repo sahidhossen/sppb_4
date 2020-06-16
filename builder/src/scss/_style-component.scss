@@ -90,35 +90,6 @@
   align-items: center;
   margin-bottom: 7px;
   margin-top: 5px;
-  .sppb-custom-select {
-    background: transparent;
-    padding: 0;
-    height: 21px;
-    position: absolute;
-    width: 25px;
-    box-shadow: none;
-    left: auto;
-    right: 0;
-    align-items: flex-start;
-    color: var(--default-text-color);
-  }
-  .sppb-select-arrow {
-    right: auto;
-    left: auto;
-    position: relative;
-    color: var(--regent-gray);
-    .sppb-option-arrow-up {
-      display: none;
-    }
-    .sppb-option-arrow-down {
-      top: -5px;
-      font-size: 1rem;
-      right: -8px;
-    }
-  }
-  .sppb-custom-options {
-    width: 6.3636rem;
-  }
 }
 .editor-x-size-lock {
   color: var(--battleship-gray);
@@ -323,4 +294,222 @@
   width: 1.0909rem;
   color: var(--dark-bg-text-color);
   font-size: 0.7273rem;
+}
+//Color picker
+.circle-picker {
+  &.editor-x-circle-picker {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  > span {
+    &:first-child {
+      margin-left: 28px;
+    }
+    > div {
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+.sketch-picker {
+  > div.flexbox-fix:last-child {
+    display: none !important;
+  }
+}
+.editor-x-color-picker-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-right: 0.9091rem;
+}
+.sketch-picker {
+  &.editor-x-sketch-picker {
+    // I know using !important is a bad coding style. But I have no choice, becuase library adding inline style so to override those style I need to use !important.
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid var(--brush-marble-gray);
+    padding-bottom: 10px !important;
+    > div {
+      border-radius: 0.6364rem;
+      &:nth-child(2) {
+        > div {
+          div {
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+    input {
+      background: transparent !important;
+      border: 0 !important;
+      color: var(--white);
+      box-shadow: none !important;
+      text-align: center !important;
+      padding: 2px 3px !important;
+    }
+    span {
+      color: var(--white) !important;
+    }
+  }
+}
+.editor-x-add-color {
+  background: var(--pearl-dark);
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 50%;
+  font-size: 1.0909rem;
+}
+.editor-x-color-select {
+  display: flex;
+  justify-content: space-around;
+  border: 0;
+  &.spp-radio-has-icon {
+    margin-top: 1rem;
+  }
+  button {
+    text-indent: -9999px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex: initial;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    border: 0;
+    &.editor-x-color-select-item-one {
+      background: var(--chateua-gray);
+    }
+    &.editor-x-color-select-item-two {
+      background: linear-gradient(
+        to top,
+        var(--regent-gray) 10%,
+        var(--small-text-color)
+      );
+    }
+    &.editor-x-color-select-item-three {
+      background: radial-gradient(
+        circle at 50% 50%,
+        var(--small-text-color),
+        var(--battleship-gray) 71%
+      );
+    }
+    &.editor-x-color-select-item-four {
+      text-indent: 0;
+      span {
+        position: initial;
+      }
+    }
+    &.editor-x-active-item {
+      border: solid 1px var(--white);
+      border-radius: 50%;
+      background: var(--dark-bg-text-color);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+//Gradient
+.editor-x-range-slider-control-panel {
+  position: relative;
+  flex: 1;
+}
+.editor-x-range-slider-bottom {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.editor-x-radial-size {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  .editor-x-radio-control {
+    flex: 1;
+    margin: 0;
+    button {
+      span {
+        position: initial;
+      }
+    }
+  }
+}
+.editor-x-radial-position-text {
+  margin-right: 10px;
+}
+.editor-x-radial-positions-top-left {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.editor-x-linear-angle {
+  margin-bottom: 10px;
+  display: flex;
+}
+//Border component
+.editor-x-border-main {
+  display: flex;
+}
+.editor-x-border-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 35px;
+  height: 39px;
+  position: relative;
+  margin-right: 15px;
+  flex: 0 0 35px;
+}
+.editor-x-border-left,
+.editor-x-border-right {
+  height: 27px;
+  width: 4px;
+  background: var(--regent-gray);
+  cursor: w-resize;
+}
+.editor-x-border-left {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-top: 5px;
+}
+.editor-x-border-right {
+  position: absolute;
+  right: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  top: 5px;
+}
+.editor-x-border-center {
+  width: 10px;
+  height: 10px;
+  background: var(--small-text-color);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+}
+.editor-x-border-top,
+.editor-x-border-bottom {
+  height: 4px;
+  width: 27px;
+  background: var(--regent-gray);
+  cursor: n-resize;
+}
+.editor-x-border-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.editor-x-border-bottom {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-left: 4px;
+}
+.editor-x-border-controls {
+  display: flex;
+  justify-content: space-between;
 }

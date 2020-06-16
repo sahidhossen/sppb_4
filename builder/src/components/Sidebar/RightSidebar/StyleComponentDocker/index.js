@@ -33,7 +33,7 @@ class StyleComponentDocker extends React.Component {
         let {addonId, addonStyleBlockIds} = this.props;
         return (
             <div className="sppb-docker-container sppb-style-component-docker">
-                <SidebarHeader className={"right-sidebar-header"}>
+                {/*<SidebarHeader className={"right-sidebar-header"}>
                     <div className="sppb-sidebar-icons">
                         <span className="sppb-sidebar-panel-icon">
                             <i className="fas fa-columns"></i>
@@ -44,7 +44,7 @@ class StyleComponentDocker extends React.Component {
                             <i className="fas fa-braille"></i>
                         </span>
                     </div>
-                </SidebarHeader>
+                </SidebarHeader>*/}
                 <div className="sppb-sidebar-panel">
                     <StyleBlockContextProvider>
                         <StylePanelHeader

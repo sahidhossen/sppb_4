@@ -17,7 +17,7 @@ export class ColorPickerContainer extends Component {
       position: { x: { value: 0, unit: "%" }, y: { value: 0, unit: "%" } },
       extent: "farthest-corner",
       leftColorPosition: { value: 0, unit: "%" },
-      rightColorPosition: { value: 100, unit: "%" },
+      rightColorPosition: { value: 100, unit: "%" }
     };
 
     this.selectController = this.selectController.bind(this);
@@ -55,7 +55,7 @@ export class ColorPickerContainer extends Component {
       this.setState({ leftColorPosition: value });
     } else if (name === "swap") {
       let _leftColor, _rightColor;
-      this.setState((state) => {
+      this.setState(state => {
         const { leftColor, rightColor } = state;
         [_leftColor, _rightColor] = [rightColor, leftColor];
         return { leftColor: _leftColor, rightColor: _rightColor };
@@ -82,36 +82,38 @@ export class ColorPickerContainer extends Component {
       position,
       extent,
       leftColorPosition,
-      rightColorPosition,
+      rightColorPosition
     } = this.state;
 
     return (
-      <div
-        className="colorpicker-wrapper"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
+      <div className="editor-x-color-picker-wrapper">
         <RadioControl
-          className="radio-control"
-          activeClass="active-item"
+          className="editor-x-color-select"
+          activeClass="editor-x-active-item"
           // value={background_type_tab}
           value={type}
-          onSelect={(selectedItem) => this.handleSelect(selectedItem, "type")}
+          onSelect={selectedItem => this.handleSelect(selectedItem, "type")}
           items={[
             {
+              title: "solid color",
               name: "solid",
-              className: "item-one sppb-border-right",
-              icon: "fas fa-circle",
+              className: "editor-x-color-select-item-one"
             },
             {
+              title: "linear color",
               name: "linear",
-              className: "item-two sppb-border-right",
-              icon: "fab fa-gg-circle",
+              className: "editor-x-color-select-item-two"
             },
             {
+              title: "radial color",
               name: "radial",
-              className: "item-three",
-              icon: "fas fa-bullseye",
+              className: "editor-x-color-select-item-three"
             },
+            {
+              name: "image",
+              className: "editor-x-color-select-item-four",
+              icon: "fas fa-image"
+            }
           ]}
         />
 
@@ -134,64 +136,64 @@ export class ColorPickerContainer extends Component {
         )}
 
         {type === "linear" && (
-          <div className="linear-angle">
+          <div className="editor-x-linear-angle">
             <InputControl
               label="Angle"
               value={angle} // {height: {value:, unit:}} Object | string
               unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
-              onChange={(value) => this.handleAngleChange(value)}
+              onChange={value => this.handleAngleChange(value)}
             />
           </div>
         )}
 
         {type === "radial" && (
           <Fragment>
-            <div className="radial-size">
-              <span className="radial-position">Position</span>
+            <div className="editor-x-radial-size">
+              <span className="editor-x-radial-position-text">Position</span>
               <RadioControl
-                className="radio-control"
-                activeClass="active-item"
+                className="editor-x-radio-control"
+                activeClass="editor-x-active-item"
                 value={extent}
-                onSelect={(selectedItem) =>
+                onSelect={selectedItem =>
                   this.handleSelect(selectedItem, "extent")
                 }
                 items={[
                   {
                     name: "closest-side",
                     className: "item-one sppb-border-right",
-                    icon: "fas fa-arrows-alt-h",
+                    icon: "fas fa-arrows-alt-h"
                   },
                   {
                     name: "closest-corner",
                     className: "item-two sppb-border-right",
-                    icon: "fas fa-compress-arrows-alt",
+                    icon: "fas fa-compress-arrows-alt"
                   },
                   {
                     name: "farthest-side",
                     className: "item-three",
-                    icon: "fas fa-expand-arrows-alt",
+                    icon: "fas fa-expand-arrows-alt"
                   },
                   {
                     name: "farthest-corner",
                     className: "item-three",
-                    icon: "fas fa-external-link-square-alt",
-                  },
+                    icon: "fas fa-external-link-square-alt"
+                  }
                 ]}
               />
             </div>
 
-            <div className="radial-position">
+            <div className="editor-x-radial-positions-top-left">
               <InputControl
                 label="Left"
                 value={position.x} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={(value) => this.handlePositionChange(value, "x")}
+                onChange={value => this.handlePositionChange(value, "x")}
               />
               <InputControl
                 label="Top"
                 value={position.y} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={(value) => this.handlePositionChange(value, "y")}
+                onChange={value => this.handlePositionChange(value, "y")}
               />
             </div>
           </Fragment>
@@ -199,7 +201,7 @@ export class ColorPickerContainer extends Component {
 
         <ColorPicker
           color={color}
-          onChange={(color) => this.handleColorChange(color)}
+          onChange={color => this.handleColorChange(color)}
           disableAlpha={false}
         />
       </div>

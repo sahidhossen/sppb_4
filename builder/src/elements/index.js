@@ -15,3 +15,4 @@ export { default as SelectCustom } from "./SelectCustom";
 export { default as ToggleButton } from "./ToggleButton";
 export { default as RadioButton } from "./RadioButton";
 export { default as Checkbox } from "./Checkbox";
+export { default as Divider } from "./Divider";
