@@ -16,12 +16,13 @@
 }
 
 //Browser scrollbar
-@mixin scrollbar {
+@mixin scrollbar($width, $height) {
     scrollbar-width: thin;
     scrollbar-color: var(--brush-marble-gray) var(--scrollbar-truck-bg);
 
     &::-webkit-scrollbar {
-        width: 1rem;
+        width: $width;
+        height: $height;
     }
     &::-webkit-scrollbar-track {
         background: var(--scrollbar-truck-bg);

@@ -1,5 +1,10 @@
 import React from "react";
-import { RangeControl, InputControl, Divider } from "../../../elements";
+import {
+  RangeControl,
+  InputControl,
+  Divider,
+  SelectCustom,
+} from "../../../elements";
 
 export default class StyleComponent extends React.Component {
   handleChange(value, name) {
@@ -24,7 +29,7 @@ export default class StyleComponent extends React.Component {
           min={0}
           max={10}
         />
-        <Divider/>
+        <Divider />
         <p className="editor-x-panel-title">Borders</p>
         <div className="editor-x-border-main">
           <div className="editor-x-border-wrapper">
@@ -51,7 +56,28 @@ export default class StyleComponent extends React.Component {
             />
           </div>
         </div>
-        <Divider/>
+        <div className="editor-x-border-color-wrap">
+          <div className="editor-x-border-color-fields">
+            <span className="editor-x-border-color-value"></span>
+            <span className="editor-x-border-color-property">rgba(255, 255, 255, 1)</span>
+          </div>
+          <span className="editor-x-border-color-delete">
+            <i className="fas fa-trash-alt"></i>
+          </span>
+        </div>
+        <SelectCustom
+          options={[
+            { value: "none" },
+            { value: "solid", selected: true },
+            { value: "dashed" },
+            { value: "dotted" },
+            { value: "double" },
+            { value: "groove" },
+            { value: "ridge" },
+            { value: "inset" },
+            { value: "outset" },
+          ]}
+        />
       </div>
     );
   }
