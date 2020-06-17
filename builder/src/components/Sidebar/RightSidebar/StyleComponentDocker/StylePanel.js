@@ -4,6 +4,7 @@ import {
   Panel,
   SizeComponent,
   StyleComponent,
+  Positioning
 } from "style-blocks";
 
 import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
@@ -67,6 +68,14 @@ class StylePanel extends React.Component {
             setCssAttributes={(attributes) =>
               this.onUpdateStyleAttributes(attributes, "style")
             }
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Positioning">
+          <Positioning
+            // style={styleProps}
+            // setCssAttributes={(attributes) =>
+            //   this.onUpdateStyleAttributes(attributes, "style")
+            // }
           />
         </Panel>
 

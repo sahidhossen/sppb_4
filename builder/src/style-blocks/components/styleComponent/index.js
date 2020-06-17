@@ -30,11 +30,11 @@ export default class StyleComponent extends React.Component {
           max={10}
         />
         <Divider />
-        <p className="editor-x-panel-title">Borders</p>
+        <label>Borders</label>
         <div className="editor-x-border-main">
           <div className="editor-x-border-wrapper">
             <div className="editor-x-border-left"></div>
-            <div className="editor-x-border-top"></div>
+            <div className="editor-x-border-top editor-x-border-active"></div>
             <div className="editor-x-border-center"></div>
             <div className="editor-x-border-bottom"></div>
             <div className="editor-x-border-right"></div>
@@ -59,7 +59,9 @@ export default class StyleComponent extends React.Component {
         <div className="editor-x-border-color-wrap">
           <div className="editor-x-border-color-fields">
             <span className="editor-x-border-color-value"></span>
-            <span className="editor-x-border-color-property">rgba(255, 255, 255, 1)</span>
+            <span className="editor-x-border-color-property">
+              rgba(255, 255, 255, 1)
+            </span>
           </div>
           <span className="editor-x-border-color-delete">
             <i className="fas fa-trash-alt"></i>
@@ -78,6 +80,7 @@ export default class StyleComponent extends React.Component {
             { value: "outset" },
           ]}
         />
+        <div className="editor-x-border-radius"></div>
       </div>
     );
   }
