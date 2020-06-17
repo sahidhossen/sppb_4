@@ -1,11 +1,26 @@
 import React, { Component, Fragment } from "react";
 import BackgroundItem from "./BackgroundItem";
+import FloatingComponent from "../../../helpers/FloatingComponent";
+import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
 
 export class BackgroundComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false,
+      event: null,
+    };
+  }
+
+  toggleColorPicker(event) {
+    event.persist();
+    this.setState({ isOpen: !this.state.isOpen, event });
+  }
   render() {
     const {
       style: { backgroundColor, backgroundImages },
     } = this.props;
+    const { isOpen } = this.state;
 
     return (
       <Fragment>
@@ -13,7 +28,24 @@ export class BackgroundComponent extends Component {
         {backgroundImages.value.map(({ type, ...restProps }, index) => (
           <BackgroundItem type={type} {...restProps} key={index} />
         ))}
-        <button className="editor-x-add-background">Add New Color</button>
+        <button
+          ref={(ref) => {
+            this.elememnt = ref;
+          }}
+          onClick={this.toggleColorPicker.bind(this)}
+          className="editor-x-add-background"
+        >
+          Add New Color
+        </button>
+        {isOpen && (
+          <FloatingComponent
+            toggleColorPicker={this.toggleColorPicker.bind(this)}
+            event={this.state.event}
+            target={this.elememnt}
+          >
+            <ColorPickerContainer />
+          </FloatingComponent>
+        )}
       </Fragment>
     );
   }

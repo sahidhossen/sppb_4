@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import ListItem from "../TopBar/Right/RightView/ListItem";
-import { compose } from "../compose";
-import { withSelect, withDispatch } from "store";
-import ColorPickerContainer from "../../elements/ColorPicker/ColorPickerContainer";
+import SppbPortal from "../components/sppbportal/SppbPortal";
 
-class PopoverSetting extends Component {
+class FloatingComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
       contextStyle: {
         visibility: "none",
       },
@@ -44,6 +40,7 @@ class PopoverSetting extends Component {
       "mousedown",
       this.handleClickOutside.bind(this)
     );
+
     // drag
     this.contextHeader.current.removeEventListener(
       "mousedown",
@@ -97,9 +94,6 @@ class PopoverSetting extends Component {
         "mousemove",
         this.onMouseMove.bind(this)
       );
-      this.props.togglePopoverSettingPanel({
-        contextStyle: this.state.contextStyle,
-      });
     }
   }
 
@@ -108,25 +102,31 @@ class PopoverSetting extends Component {
       this.contextMenuWrapper &&
       !this.contextMenuWrapper.contains(event.target)
     ) {
-      this.props.reset();
+      this.props.toggleColorPicker(this.props.event);
     }
   }
 
   getContextMenuPosition() {
-    let { popoverSettingPanel } = this.props;
-    const { event, contextStyle } = popoverSettingPanel;
+    let { event } = this.props;
     if (this.contextMenuTimer) {
       clearTimeout(this.contextMenuTimer);
     }
+    this.contextMenuTimer = setTimeout(() => {
+      const rect = this.contextMenuWrapper.getBoundingClientRect();
+      const targetRect = this.props.target.getBoundingClientRect();
+      const docRect = document.body.getBoundingClientRect();
 
-    const docRect = document.body.getBoundingClientRect();
-    // console.log("wo: ", docRect)
-    let leftDistance, topDistance;
+      let leftDistance = event.clientX + docRect.left;
+      let topDistance = targetRect.y; // Right after the element
+      // calculating left position
+      if (event.clientX + rect.width > docRect.left + docRect.width) {
+        leftDistance = event.clientX - rect.width;
+      }
+      // calculating top position
+      if (event.clientY + rect.height > window.innerHeight) {
+        topDistance = event.clientY - rect.height / 2;
+      }
 
-    leftDistance = event.clientX + docRect.left;
-    topDistance = event.clientY;
-
-    if (!contextStyle) {
       this.setState({
         contextStyle: {
           visibility: "visible",
@@ -134,65 +134,32 @@ class PopoverSetting extends Component {
           left: leftDistance + "px",
         },
       });
-    } else {
-      this.setState({
-        contextStyle: { ...contextStyle },
-      });
-    }
+    });
   }
 
   render() {
-    const { defaultAddon, selectedAddon } = this.props;
+    const { children } = this.props;
     return (
-      <div
-        className="editor-x-popup editor-x-settings-popup"
-        style={this.state.contextStyle}
-        ref={(ref) => {
-          this.contextMenuWrapper = ref;
-        }}
-      >
-        <div className="editor-x-addon-settings-wrapper">
+      <SppbPortal className="popover">
+        <div
+          className="editor-x-context-menu-list editor-x-popup"
+          style={this.state.contextStyle}
+          ref={(ref) => {
+            this.contextMenuWrapper = ref;
+          }}
+        >
           <div
             className="editor-x-addon-settings-title"
             ref={this.contextHeader}
           >
-            <i className={defaultAddon.icon}></i>
-            {selectedAddon.name}
+            <i className="fas fa-grip-horizontal"></i>
+            Color Pallete
           </div>
-          <div className="editor-x-addon-settings-body">
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
-          </div>
+          {children}
         </div>
-      </div>
+      </SppbPortal>
     );
   }
 }
 
-export default compose([
-  withSelect((select) => {
-    let { popoverSettingPanel, getSelectedAddon, getDefaultAddon } = select();
-    let selectedAddon = getSelectedAddon();
-    let defaultAddon = getDefaultAddon(selectedAddon.name);
-    return {
-      popoverSettingPanel: popoverSettingPanel(),
-      defaultAddon,
-      selectedAddon,
-    };
-  }),
-  withDispatch((dispatch) => {
-    const { togglePopoverSettingPanel } = dispatch();
-    return {
-      togglePopoverSettingPanel(status) {
-        togglePopoverSettingPanel(status);
-      },
-    };
-  }),
-])(PopoverSetting);
+export default FloatingComponent;
