@@ -1,7 +1,5 @@
 import React, { Fragment } from "react";
 import { SpacingComponent, Panel, SizeComponent, StyleComponent } from "style-blocks";
-
-import ColorPickerContainer from "../../../../elements/ColorPicker/ColorPickerContainer";
 import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
@@ -54,6 +52,14 @@ class StylePanel extends React.Component {
           <StyleComponent
             style={styleProps}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "style")}
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Positioning">
+          <Positioning
+          // style={styleProps}
+          // setCssAttributes={(attributes) =>
+          //   this.onUpdateStyleAttributes(attributes, "style")
+          // }
           />
         </Panel>
 

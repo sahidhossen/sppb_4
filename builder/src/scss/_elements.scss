@@ -12,7 +12,8 @@
   .editor-x-panel-title {
     font-size: 1rem;
     letter-spacing: 0.05px;
-    color: var(--chateua-gray);
+    color: var(--white);
+    font-weight: var(--font-weight-medium);
   }
   //Inputes style
   input {
@@ -162,6 +163,8 @@
       padding: 0 0.1818rem;
       height: 1.9091rem;
       color: var(--white);
+      width: 30px;
+      box-shadow: none;
       &:hover,
       &:focus {
         background: var(--shark-dark);
@@ -289,6 +292,7 @@
   font-weight: 500;
   outline: 0;
   width: 100%;
+  text-transform: capitalize;
 }
 .sppb-custom-selected-item {
   display: flex;

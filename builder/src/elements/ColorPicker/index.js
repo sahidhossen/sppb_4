@@ -19,9 +19,9 @@ export class ColorPicker extends Component {
           "#00bcd4",
           "#cddc39",
           "#ffeb3b",
-          "#ffc107"
-        ]
-      }
+          "#ffc107",
+        ],
+      },
     };
   }
 
@@ -49,8 +49,8 @@ export class ColorPicker extends Component {
     this.setState({
       selectedItem: {
         ...selectedItem,
-        colorList: [...selectedItem.colorList, color]
-      }
+        colorList: [...selectedItem.colorList, color],
+      },
     });
   }
 
@@ -60,10 +60,7 @@ export class ColorPicker extends Component {
 
     return (
       <Fragment>
-        <div
-          className="editor-x-sketch-picker-wrapper"
-          style={{ marginBottom: "100px" }}
-        >
+        <div className="editor-x-sketch-picker-wrapper">
           <SketchPicker
             color={color}
             onChange={this.handleChange.bind(this)}
@@ -75,7 +72,7 @@ export class ColorPicker extends Component {
               className="editor-x-radio-control"
               activeClass="editor-x-active-item"
               value={selectedItem.name}
-              onSelect={selectedItem => this.handleSelect(selectedItem)}
+              onSelect={(selectedItem) => this.handleSelect(selectedItem)}
               items={[
                 {
                   name: "pageColor",
@@ -92,8 +89,8 @@ export class ColorPicker extends Component {
                     "#00bcd4",
                     "#cddc39",
                     "#ffeb3b",
-                    "#ffc107"
-                  ]
+                    "#ffc107",
+                  ],
                 },
                 {
                   name: "globalColor",
@@ -109,9 +106,9 @@ export class ColorPicker extends Component {
                     "#ff9800",
                     "#ff5722",
                     "#795548",
-                    "#607d8b"
-                  ]
-                }
+                    "#607d8b",
+                  ],
+                },
               ]}
             />
 
@@ -140,7 +137,7 @@ export class ColorPicker extends Component {
 }
 
 ColorPicker.defaultProps = {
-  color: "#ffffff"
+  color: "#ffffff",
 };
 
 export default ColorPicker;
