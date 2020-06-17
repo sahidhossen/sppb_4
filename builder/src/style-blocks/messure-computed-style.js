@@ -1,5 +1,5 @@
 import { hasUnit, extractUnit } from "./unit-to-style";
-import styleState from "../reducers/defaultStyle";
+import styleStore from "../reducers/defaultStyle";
 import { parse } from "gradient-parser";
 
 let differentProperties = {
@@ -14,15 +14,12 @@ let differentProperties = {
 export const getElementComputedStyle = (element, localProperties) => {
   let computedStyle = getComputedStyle(element);
 
-  let defaultProperties = { ...styleState };
+  let defaultProperties = { ...styleStore };
 
   Object.keys(defaultProperties).map((cssKey) => {
     let extenedKey = cssKey;
 
-    if (
-      differentProperties[extenedKey] &&
-      computedStyle[differentProperties[extenedKey]]
-    ) {
+    if (differentProperties[extenedKey] && computedStyle[differentProperties[extenedKey]]) {
       extenedKey = differentProperties[extenedKey];
     }
 
@@ -33,7 +30,6 @@ export const getElementComputedStyle = (element, localProperties) => {
     /**
      * I have property and propertyKey
      */
-
     let mountableValue = cssToLocalValue(cssKey, value);
 
     if (hasLocalProperty) {
@@ -66,7 +62,6 @@ const cssToLocalValue = (key, value) => {
 const pickConditionaly = (key, value) => {
   switch (key) {
     case "backgroundImages": {
-      console.log("here", value);
       let st =
         "linear-gradient(20deg, rgb(233, 49, 49) 0%, #ccc 100%), radial-gradient(circle farthest-side at 10% 90%, rgb(49, 98, 233) 0%, rgb(255, 255, 255) 100%)";
       let _s = st

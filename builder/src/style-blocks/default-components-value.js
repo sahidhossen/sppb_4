@@ -27,5 +27,35 @@ export const defaultComponentValues = {
     borderWidth: { value: { value: null, unit: null } },
     borderStyle: { value: null },
     borderColor: { value: "" },
-  }
+  },
+};
+
+export const stateProperties = {
+  spacing: {
+    paddingLeft: { value: {} },
+    paddingRight: { value: {} },
+    paddingTop: { value: {} },
+    paddingBottom: { value: {} },
+    marginLeft: { value: {} },
+    marginRight: { value: {} },
+    marginTop: { value: {} },
+    marginBottom: { value: {} },
+  },
+  size: {
+    height: { value: {}, origin: "default" },
+    maxHeight: { value: {}, origin: "default" },
+    minHeight: { value: {}, origin: "default" },
+    width: { value: {}, origin: "default" },
+    maxWidth: { value: {}, origin: "default" },
+    minWidth: { value: {}, origin: "default" },
+    overflow: { value: {} },
+  },
+  backgrounds: {
+    backgroundColor: { value: "" },
+    backgroundImages: { value: [] },
+  },
+  style: {
+    opacity: { value: null },
+    border: { value: {}, maping: ["borderWidth", "borderStyle", "borderColor"] },
+  },
 };

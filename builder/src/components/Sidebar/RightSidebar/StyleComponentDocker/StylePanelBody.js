@@ -1,5 +1,4 @@
 import React from "react";
-import { parse } from "gradient-parser";
 import { withSelect, withDispatch } from "store";
 import { compose } from "../../../compose";
 
@@ -23,8 +22,6 @@ class StylePanelBody extends React.Component {
     this.startComputedStyle = this.startComputedStyle.bind(this);
   }
 
-  componentDidMount() {}
-
   componentDidUpdate(prevProps, prevState) {
     let { styleBlock, viewport } = this.props;
     if (styleBlock && prevProps.styleBlock !== styleBlock) {
@@ -40,22 +37,15 @@ class StylePanelBody extends React.Component {
       let addonElement = _doc.querySelector(`[data-id="${addonId}"]`);
 
       if (addonElement !== null) {
-        let {
-          localCssProperties,
-          initiateStyleState,
-          setElementComputedStyle,
-        } = this.props;
+        let { localCssProperties, initiateStyleState, setElementComputedStyle } = this.props;
 
-        const styleGuide = getElementComputedStyle(
-          addonElement,
-          localCssProperties
-        );
+        const styleGuide = getElementComputedStyle(addonElement, localCssProperties);
 
         setElementComputedStyle(styleGuide);
 
         let styleState = generateStyleState(styleGuide);
         console.log("state: ", styleState);
-        // return;
+
         let rule = this.updateCssRules(addonElement);
         initiateStyleState({ styleState, rule });
 
@@ -86,13 +76,7 @@ class StylePanelBody extends React.Component {
   }
 
   updateComputedCssStyles(attributes, componentKey) {
-    let {
-      addonId,
-      updateComutedAttributes,
-      updateStyleAttributes,
-      selectedBlockId,
-      rule,
-    } = this.props;
+    let { addonId, updateComutedAttributes, updateStyleAttributes, selectedBlockId, rule } = this.props;
 
     let { cssObject } = createMarkup(attributes);
     rule = {
