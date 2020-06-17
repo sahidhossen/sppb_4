@@ -2,7 +2,7 @@ import React from "react";
 import { SelectCustom, InputText, Divider, RangeControl } from "../../../elements";
 import * as positions from "./positions";
 
-const Positioning = (props) => {
+const positionComponent = (props) => {
   const [positionName, setPositionName] = useState(initialState);
   return (
     <div className="editor-x-position-style">
@@ -65,4 +65,4 @@ const Positioning = (props) => {
   );
 };
 
-export default Positioning;
+export default positionComponent;
