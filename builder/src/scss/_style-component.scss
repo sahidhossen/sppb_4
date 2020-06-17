@@ -386,18 +386,10 @@
       background: var(--chateua-gray);
     }
     &.editor-x-color-select-item-two {
-      background: linear-gradient(
-        to top,
-        var(--regent-gray) 10%,
-        var(--small-text-color)
-      );
+      background: linear-gradient(to top, var(--regent-gray) 10%, var(--small-text-color));
     }
     &.editor-x-color-select-item-three {
-      background: radial-gradient(
-        circle at 50% 50%,
-        var(--small-text-color),
-        var(--battleship-gray) 71%
-      );
+      background: radial-gradient(circle at 50% 50%, var(--small-text-color), var(--battleship-gray) 71%);
     }
     &.editor-x-color-select-item-four {
       text-indent: 0;
@@ -452,6 +444,7 @@
 .editor-x-border-main {
   display: flex;
 }
+
 .editor-x-border-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -460,6 +453,31 @@
   position: relative;
   margin-right: 15px;
   flex: 0 0 35px;
+  &.editor-x-border-active-center {
+    .editor-x-border-center {
+      background: var(--white);
+    }
+  }
+  &.editor-x-border-active-left {
+    .editor-x-border-left {
+      background: var(--white);
+    }
+  }
+  &.editor-x-border-active-right {
+    .editor-x-border-right {
+      background: var(--white);
+    }
+  }
+  &.editor-x-border-active-top {
+    .editor-x-border-top {
+      background: var(--white);
+    }
+  }
+  &.editor-x-border-active-bottom {
+    .editor-x-border-bottom {
+      background: var(--white);
+    }
+  }
 }
 .editor-x-border-left,
 .editor-x-border-right {

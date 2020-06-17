@@ -40,7 +40,7 @@ class InputControl extends Component {
 
   render() {
     const { label, value, placeholder, instanceId, className } = this.props;
-    const classNames = classnames("sppb-input-text editor-x-form-controllers", className);
+    const classNames = classnames("editor-x-input-control", "editor-x-form-controllers", className);
 
     const inputValue = isObject(value) ? value.value : value;
 
@@ -48,23 +48,20 @@ class InputControl extends Component {
 
     return (
       <div className={classNames}>
-        {label && <label htmlFor={`sppb-input-text${instanceId}`}>{label}</label>}
-        <input
-          type="text"
-          ref={this.inputEl}
-          onChange={this.onChange.bind(this)}
-          value={inputValue || ""}
-          id={`sppb-input-text${instanceId}`}
-          placeholder={_placeholder}
-        />
-        {isObject(value) && (
-          <SelectCustom
-            className="select-custom-class"
-            value={value.unit}
-            options={units}
-            onSelectChange={(value) => this.onUnitChange(value)}
+        {label && <label htmlFor={`editor-x-input-control${instanceId}`}>{label}</label>}
+        <div className="editor-x-input-control-value">
+          <input
+            type="text"
+            ref={this.inputEl}
+            onChange={this.onChange.bind(this)}
+            value={inputValue || ""}
+            id={`editor-x-input-control${instanceId}`}
+            placeholder={_placeholder}
           />
-        )}
+          {isObject(value) && (
+            <SelectCustom value={value.unit} options={units} onSelectChange={(value) => this.onUnitChange(value)} />
+          )}
+        </div>
       </div>
     );
   }
