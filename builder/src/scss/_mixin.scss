@@ -2,34 +2,40 @@
 
 //Transition
 @mixin transition($value) {
-    transition: all $value;
+  transition: all $value;
 }
 
-//Border 
+//Border
 @mixin border($direction, $width, $style, $color) {
-    border#{$direction}: $width $style $color;
+  border#{$direction}: $width $style $color;
 }
 
 //Opacity
 @mixin opacity($value) {
-    opacity: $value;
+  opacity: $value;
 }
 
 //Browser scrollbar
 @mixin scrollbar($width, $height) {
-    scrollbar-width: thin;
-    scrollbar-color: var(--brush-marble-gray) var(--scrollbar-truck-bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--brush-marble-gray) transparent;
 
-    &::-webkit-scrollbar {
-        width: $width;
-        height: $height;
-    }
-    &::-webkit-scrollbar-track {
-        background: var(--scrollbar-truck-bg);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--brush-marble-gray);
-        border-radius: 6px;
-        border: 3px solid var(--scrollbar-truck-bg);
-    }
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--brush-marble-gray);
+    border-radius: 3.5px;
+    border: 0;
+  }
 }
+
+// size : witdh : 4px
+// background: rgba(255,255,255,0.10);
+// border: 0 solid rgba(255,255,255,0.30);
+// box-shadow: 0 1px 2px 0 rgba(0,0,0,0.60);
+// border-radius: 3.5px

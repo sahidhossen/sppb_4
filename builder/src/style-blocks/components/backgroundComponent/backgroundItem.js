@@ -18,13 +18,7 @@ class BackgroundItem extends Component {
   }
 
   render() {
-    const {
-      type,
-      changeBackgroundValue,
-      setCssAttributes,
-      backgroundColor,
-      ...restProps
-    } = this.props;
+    const { type, changeBackgroundValue, setCssAttributes, backgroundColor, ...restProps } = this.props;
 
     const { isOpen } = this.state;
     const background =

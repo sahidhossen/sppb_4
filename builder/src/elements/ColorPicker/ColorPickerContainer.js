@@ -29,7 +29,27 @@ export class ColorPickerContainer extends Component {
   }
 
   selectController(name, color) {
-    this.setState({ controller: name, color: color });
+    const {
+      gradientProps: { stops },
+      changeBackgroundValue,
+    } = this.props;
+    let newColorData = {};
+    let newData = [];
+
+    if (name === "left") {
+      newColorData = { ...stops[0].color, value: color };
+      newData = { ...stops[0], color: newColorData };
+
+      stops.splice(0, 1, newData);
+      changeBackgroundValue("stops", stops);
+    } else {
+      newColorData = { ...stops[1].color, value: color };
+      newData = { ...stops[1], color: newColorData };
+
+      stops.splice(1, 1, newData);
+      changeBackgroundValue("stops", stops);
+    }
+    this.setState({ controller: name, color });
   }
 
   handleAngleChange(value) {
@@ -39,9 +59,14 @@ export class ColorPickerContainer extends Component {
 
   handleColorChange(color) {
     const { controller } = this.state;
-    const { type, identity, setCssAttributes, backgroundColor } = this.props;
+    const { type, identity, setCssAttributes, changeBackgroundValue } = this.props;
+
+    let newColorData = {};
+    let newData = [];
+
     if (type === "solid") {
       if (identity === "fixed") {
+        console.log("hi");
         setCssAttributes({
           backgroundColor: color,
         });
@@ -49,17 +74,34 @@ export class ColorPickerContainer extends Component {
         this.setState({ color });
       }
     } else {
+      const { gradientProps } = this.props;
       if (controller === "left") {
-        this.setState({ leftColor: color, color });
+        newColorData = { ...gradientProps.stops[0].color, value: color };
+        newData = { ...gradientProps.stops[0], color: newColorData };
+
+        gradientProps.stops.splice(0, 1, newData);
+        changeBackgroundValue("stops", gradientProps.stops);
+        this.setState({ color });
       } else {
-        this.setState({ rightColor: color, color });
+        newColorData = { ...gradientProps.stops[1].color, value: color };
+        newData = { ...gradientProps.stops[1], color: newColorData };
+
+        gradientProps.stops.splice(1, 1, newData);
+        changeBackgroundValue("stops", gradientProps.stops);
+        this.setState({ color });
       }
     }
   }
 
   handleColorPositionChange(value, name) {
+    const {
+      gradientProps: { stops },
+      changeBackgroundValue,
+    } = this.props;
+    let newData = {};
+
     if (name === "left") {
-      this.setState({ leftColorPosition: value });
+      // this.setState({ leftColorPosition: value });
     } else if (name === "swap") {
       let _leftColor, _rightColor;
       this.setState((state) => {
@@ -85,18 +127,14 @@ export class ColorPickerContainer extends Component {
       color,
       leftColor,
       rightColor,
+      controller,
       angle,
       position,
       extent,
       leftColorPosition,
       rightColorPosition,
     } = this.state;
-    const {
-      type,
-      backgroundColor,
-      gradientProps,
-      setCssAttributes,
-    } = this.props;
+    const { type, backgroundColor, gradientProps, setCssAttributes, identity } = this.props;
 
     return (
       <div className="editor-x-color-picker-wrapper">
@@ -105,9 +143,7 @@ export class ColorPickerContainer extends Component {
           activeClass="editor-x-active-item"
           // value={background_type_tab}
           value={selectedType}
-          onSelect={(selectedItem) =>
-            this.handleSelect(selectedItem, "selectedType")
-          }
+          onSelect={(selectedItem) => this.handleSelect(selectedItem, "selectedType")}
           items={[
             {
               title: "solid color",
@@ -132,17 +168,14 @@ export class ColorPickerContainer extends Component {
           ]}
         />
 
-        {(selectedType === "linear-gradient" ||
-          selectedType === "radial-gradient") && (
+        {(selectedType === "linear-gradient" || selectedType === "radial-gradient") && (
           <RangeWithTwoController
             step={2}
             gradientType={type}
-            onChange={(value, name) =>
-              this.handleColorPositionChange(value, name)
-            }
+            onChange={(value, name) => this.handleColorPositionChange(value, name)}
             onClick={(name, color) => this.selectController(name, color)}
-            leftColor={leftColor}
-            rightColor={rightColor}
+            leftColor={gradientProps.stops[0].color.value}
+            rightColor={gradientProps.stops[1].color.value}
             angle={angle}
             extent={extent}
             position={position}
@@ -155,7 +188,7 @@ export class ColorPickerContainer extends Component {
           <div className="editor-x-linear-angle">
             <InputControl
               label="Angle"
-              value={gradientProps.angle.value} // {height: {value:, unit:}} Object | string
+              value={gradientProps.angle} // {height: {value:, unit:}} Object | string
               unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
               onChange={(value) => this.handleAngleChange(value)}
             />
@@ -170,9 +203,7 @@ export class ColorPickerContainer extends Component {
                 className="editor-x-radio-control"
                 activeClass="editor-x-active-item"
                 value={extent}
-                onSelect={(selectedItem) =>
-                  this.handleSelect(selectedItem, "extent")
-                }
+                onSelect={(selectedItem) => this.handleSelect(selectedItem, "extent")}
                 items={[
                   {
                     name: "closest-side",

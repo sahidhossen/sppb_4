@@ -18,6 +18,7 @@ export class BackgroundComponent extends Component {
   }
 
   changeBackgroundValue(property, value, index) {
+    console.log("oi", property, value);
     const {
       style: { backgroundImages },
       setCssAttributes,
@@ -31,7 +32,7 @@ export class BackgroundComponent extends Component {
 
     console.log("updated", backgroundImages);
     setCssAttributes({
-      backgroundImages: backgroundImages,
+      backgroundImages: backgroundImages.value,
     });
   }
 
@@ -54,9 +55,7 @@ export class BackgroundComponent extends Component {
             type={type}
             {...restProps}
             key={index}
-            changeBackgroundValue={(key, value) =>
-              this.changeBackgroundValue(key, value, index)
-            }
+            changeBackgroundValue={(key, value) => this.changeBackgroundValue(key, value, index)}
           />
         ))}
         <button
