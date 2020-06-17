@@ -37,7 +37,7 @@ const Images = {
   fixed: (
     <svg width="218" height="141" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
-        <path stroke="#707785" stroke-width="2" fill="#2A2C36" d="M6 5h206v132H6z" />
+        <path stroke="#707785" strokeWidth="2" fill="#2A2C36" d="M6 5h206v132H6z" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="94.5" width="99" height="24" rx="3" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="24.5" width="99" height="24" rx="3" />
         <rect stroke="#FF9391" fill="#FD6260" strokeLinecap="round" x="19" y="38" width="180" height="25" rx="3" />
@@ -47,7 +47,7 @@ const Images = {
         <circle stroke="#7E8897" fill="#1D2027" cx="5" cy="5" r="4.5" />
         <rect
           stroke="#8095FF"
-          stroke-width=".3"
+          strokeWidth=".3"
           fill="#2A2C36"
           x="203.15"
           y="10.15"
@@ -62,7 +62,7 @@ const Images = {
   sticky: (
     <svg width="218" height="141" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
-        <path stroke="#707785" stroke-width="2" fill="#2A2C36" d="M6 5h206v132H6z" />
+        <path stroke="#707785" strokeWidth="2" fill="#2A2C36" d="M6 5h206v132H6z" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="59.5" width="99" height="24" rx="3" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="94.5" width="99" height="24" rx="3" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="24.5" width="99" height="24" rx="3" />
@@ -73,7 +73,7 @@ const Images = {
         <circle stroke="#7E8897" fill="#1D2027" cx="5" cy="5" r="4.5" />
         <rect
           stroke="#8095FF"
-          stroke-width=".3"
+          strokeWidth=".3"
           fill="#2A2C36"
           x="203.15"
           y="10.15"
@@ -88,7 +88,7 @@ const Images = {
   absolute: (
     <svg width="218" height="141" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fillRule="evenodd">
-        <path stroke="#707785" stroke-width="2" fill="#2A2C36" d="M6 5h206v132H6z" />
+        <path stroke="#707785" strokeWidth="2" fill="#2A2C36" d="M6 5h206v132H6z" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="94.5" width="99" height="24" rx="3" />
         <rect stroke="#8095FF" fill="#4E5EDA" x="59.5" y="24.5" width="99" height="24" rx="3" />
         <rect stroke="#FF9391" fill="#FD6260" strokeLinecap="round" x="111" y="6" width="100" height="25" rx="3" />

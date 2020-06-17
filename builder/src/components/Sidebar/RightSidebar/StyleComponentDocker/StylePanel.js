@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent, StyleComponent, positionComponent } from "style-blocks";
+import { SpacingComponent, Panel, SizeComponent, StyleComponent, PositionComponent } from "style-blocks";
 import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
@@ -55,11 +55,11 @@ class StylePanel extends React.Component {
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Positioning">
-          <positionComponent
-          // style={styleProps}
-          // setCssAttributes={(attributes) =>
-          //   this.onUpdateStyleAttributes(attributes, "style")
-          // }
+          <PositionComponent
+            style={{}}
+            // setCssAttributes={(attributes) =>
+            //   this.onUpdateStyleAttributes(attributes, "style")
+            // }
           />
         </Panel>
 
