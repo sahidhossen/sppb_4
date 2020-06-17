@@ -18,14 +18,19 @@ class BackgroundItem extends Component {
   }
 
   render() {
-    const { type, ...restParams } = this.props;
-    const { isOpen } = this.state;
+    const {
+      type,
+      changeBackgroundValue,
+      setCssAttributes,
+      backgroundColor,
+      ...restProps
+    } = this.props;
 
+    const { isOpen } = this.state;
     const background =
       type === "solid"
-        ? { backgroundColor: restParams.value }
-        : { backgroundImage: getBackgroundString(type, restParams) };
-
+        ? { backgroundColor: backgroundColor.value }
+        : { backgroundImage: getBackgroundString(type, restProps) };
     return (
       <Fragment>
         <div className="editor-x-background-item">
@@ -47,7 +52,14 @@ class BackgroundItem extends Component {
               event={this.state.event}
               target={this.elememnt}
             >
-              <ColorPickerContainer />
+              <ColorPickerContainer
+                type={type}
+                gradientProps={(!restProps.identity && restProps) || undefined}
+                identity={restProps.identity}
+                changeBackgroundValue={changeBackgroundValue}
+                setCssAttributes={setCssAttributes}
+                backgroundColor={backgroundColor}
+              />
             </FloatingComponent>
           )}
         </div>

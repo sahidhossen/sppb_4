@@ -16,17 +16,48 @@ export class BackgroundComponent extends Component {
     event.persist();
     this.setState({ isOpen: !this.state.isOpen, event });
   }
+
+  changeBackgroundValue(property, value, index) {
+    const {
+      style: { backgroundImages },
+      setCssAttributes,
+    } = this.props;
+    const newData = {
+      ...backgroundImages.value[index],
+      ...{ [property]: value },
+    };
+
+    backgroundImages.value.splice(index, 1, newData);
+
+    console.log("updated", backgroundImages);
+    setCssAttributes({
+      backgroundImages: backgroundImages,
+    });
+  }
+
   render() {
     const {
       style: { backgroundColor, backgroundImages },
+      setCssAttributes,
     } = this.props;
     const { isOpen } = this.state;
-
     return (
       <Fragment>
-        <BackgroundItem type="solid" {...backgroundColor} />
+        <BackgroundItem
+          type="solid"
+          identity="fixed"
+          backgroundColor={backgroundColor}
+          setCssAttributes={setCssAttributes}
+        />
         {backgroundImages.value.map(({ type, ...restProps }, index) => (
-          <BackgroundItem type={type} {...restProps} key={index} />
+          <BackgroundItem
+            type={type}
+            {...restProps}
+            key={index}
+            changeBackgroundValue={(key, value) =>
+              this.changeBackgroundValue(key, value, index)
+            }
+          />
         ))}
         <button
           ref={(ref) => {
@@ -43,7 +74,7 @@ export class BackgroundComponent extends Component {
             event={this.state.event}
             target={this.elememnt}
           >
-            <ColorPickerContainer />
+            <ColorPickerContainer setCssAttributes={setCssAttributes} />
           </FloatingComponent>
         )}
       </Fragment>

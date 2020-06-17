@@ -51,7 +51,6 @@ class SpacingComponent extends React.Component {
     }
 
     let properties = { [name]: { ...valueSet, value } };
-
     if (opositeProp !== "") {
       properties = {
         ...properties,

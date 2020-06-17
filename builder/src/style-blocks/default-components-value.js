@@ -20,12 +20,12 @@ export const defaultComponentValues = {
   },
   backgrounds: {
     backgroundColor: { value: "" },
-    backgroundImages: { value: null },
+    backgroundImages: { value: [] },
   },
   style: {
     opacity: { value: null },
     borderWidth: { value: { value: null, unit: null } },
     borderStyle: { value: null },
     borderColor: { value: "" },
-  }
+  },
 };

@@ -8,7 +8,7 @@ export class ColorPickerContainer extends Component {
   constructor() {
     super();
     this.state = {
-      type: "solid", // solid, linear, radial
+      selectedType: "solid", // solid, linear, radial
       color: "#000",
       controller: "left",
       leftColor: "#000000",
@@ -17,7 +17,7 @@ export class ColorPickerContainer extends Component {
       position: { x: { value: 0, unit: "%" }, y: { value: 0, unit: "%" } },
       extent: "farthest-corner",
       leftColorPosition: { value: 0, unit: "%" },
-      rightColorPosition: { value: 100, unit: "%" }
+      rightColorPosition: { value: 100, unit: "%" },
     };
 
     this.selectController = this.selectController.bind(this);
@@ -33,14 +33,21 @@ export class ColorPickerContainer extends Component {
   }
 
   handleAngleChange(value) {
-    this.setState({ angle: value });
+    const { changeBackgroundValue } = this.props;
+    changeBackgroundValue("angle", value);
   }
 
   handleColorChange(color) {
-    const { type, controller } = this.state;
-
+    const { controller } = this.state;
+    const { type, identity, setCssAttributes, backgroundColor } = this.props;
     if (type === "solid") {
-      this.setState({ color });
+      if (identity === "fixed") {
+        setCssAttributes({
+          backgroundColor: color,
+        });
+      } else {
+        this.setState({ color });
+      }
     } else {
       if (controller === "left") {
         this.setState({ leftColor: color, color });
@@ -55,7 +62,7 @@ export class ColorPickerContainer extends Component {
       this.setState({ leftColorPosition: value });
     } else if (name === "swap") {
       let _leftColor, _rightColor;
-      this.setState(state => {
+      this.setState((state) => {
         const { leftColor, rightColor } = state;
         [_leftColor, _rightColor] = [rightColor, leftColor];
         return { leftColor: _leftColor, rightColor: _rightColor };
@@ -74,7 +81,7 @@ export class ColorPickerContainer extends Component {
 
   render() {
     const {
-      type,
+      selectedType,
       color,
       leftColor,
       rightColor,
@@ -82,8 +89,14 @@ export class ColorPickerContainer extends Component {
       position,
       extent,
       leftColorPosition,
-      rightColorPosition
+      rightColorPosition,
     } = this.state;
+    const {
+      type,
+      backgroundColor,
+      gradientProps,
+      setCssAttributes,
+    } = this.props;
 
     return (
       <div className="editor-x-color-picker-wrapper">
@@ -91,33 +104,36 @@ export class ColorPickerContainer extends Component {
           className="editor-x-color-select"
           activeClass="editor-x-active-item"
           // value={background_type_tab}
-          value={type}
-          onSelect={selectedItem => this.handleSelect(selectedItem, "type")}
+          value={selectedType}
+          onSelect={(selectedItem) =>
+            this.handleSelect(selectedItem, "selectedType")
+          }
           items={[
             {
               title: "solid color",
               name: "solid",
-              className: "editor-x-color-select-item-one"
+              className: "editor-x-color-select-item-one",
             },
             {
               title: "linear color",
-              name: "linear",
-              className: "editor-x-color-select-item-two"
+              name: "linear-gradient",
+              className: "editor-x-color-select-item-two",
             },
             {
               title: "radial color",
-              name: "radial",
-              className: "editor-x-color-select-item-three"
+              name: "radial-gradient",
+              className: "editor-x-color-select-item-three",
             },
             {
               name: "image",
               className: "editor-x-color-select-item-four",
-              icon: "fas fa-image"
-            }
+              icon: "fas fa-image",
+            },
           ]}
         />
 
-        {type !== "solid" && (
+        {(selectedType === "linear-gradient" ||
+          selectedType === "radial-gradient") && (
           <RangeWithTwoController
             step={2}
             gradientType={type}
@@ -135,18 +151,18 @@ export class ColorPickerContainer extends Component {
           />
         )}
 
-        {type === "linear" && (
+        {(type === "linear-gradient" || selectedType === "linear-gradient") && (
           <div className="editor-x-linear-angle">
             <InputControl
               label="Angle"
-              value={angle} // {height: {value:, unit:}} Object | string
+              value={gradientProps.angle.value} // {height: {value:, unit:}} Object | string
               unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
-              onChange={value => this.handleAngleChange(value)}
+              onChange={(value) => this.handleAngleChange(value)}
             />
           </div>
         )}
 
-        {type === "radial" && (
+        {(type === "radial-gradient" || selectedType === "radial-gradient") && (
           <Fragment>
             <div className="editor-x-radial-size">
               <span className="editor-x-radial-position-text">Position</span>
@@ -154,30 +170,30 @@ export class ColorPickerContainer extends Component {
                 className="editor-x-radio-control"
                 activeClass="editor-x-active-item"
                 value={extent}
-                onSelect={selectedItem =>
+                onSelect={(selectedItem) =>
                   this.handleSelect(selectedItem, "extent")
                 }
                 items={[
                   {
                     name: "closest-side",
                     className: "item-one sppb-border-right",
-                    icon: "fas fa-arrows-alt-h"
+                    icon: "fas fa-arrows-alt-h",
                   },
                   {
                     name: "closest-corner",
                     className: "item-two sppb-border-right",
-                    icon: "fas fa-compress-arrows-alt"
+                    icon: "fas fa-compress-arrows-alt",
                   },
                   {
                     name: "farthest-side",
                     className: "item-three",
-                    icon: "fas fa-expand-arrows-alt"
+                    icon: "fas fa-expand-arrows-alt",
                   },
                   {
                     name: "farthest-corner",
                     className: "item-three",
-                    icon: "fas fa-external-link-square-alt"
-                  }
+                    icon: "fas fa-external-link-square-alt",
+                  },
                 ]}
               />
             </div>
@@ -187,26 +203,30 @@ export class ColorPickerContainer extends Component {
                 label="Left"
                 value={position.x} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={value => this.handlePositionChange(value, "x")}
+                onChange={(value) => this.handlePositionChange(value, "x")}
               />
               <InputControl
                 label="Top"
                 value={position.y} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={value => this.handlePositionChange(value, "y")}
+                onChange={(value) => this.handlePositionChange(value, "y")}
               />
             </div>
           </Fragment>
         )}
 
         <ColorPicker
-          color={color}
-          onChange={color => this.handleColorChange(color)}
+          color={(backgroundColor && backgroundColor.value) || color}
+          onChange={(color) => this.handleColorChange(color)}
           disableAlpha={false}
         />
       </div>
     );
   }
 }
+
+ColorPickerContainer.defaultProps = {
+  type: "solid",
+};
 
 export default ColorPickerContainer;
