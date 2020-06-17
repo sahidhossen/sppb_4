@@ -17,7 +17,7 @@ export class RangeControl extends Component {
       instanceId,
       disableInput,
     } = this.props;
-    const defaultClass = "editor-x-range editor-x-form-controllers";
+    const defaultClass = "editor-x-form-controllers";
     const elementClass = [defaultClass, ...(className ? [className] : [])].join(
       " "
     );

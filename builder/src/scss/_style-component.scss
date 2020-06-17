@@ -323,7 +323,8 @@
   display: flex;
   flex-direction: column;
   padding-right: 0.9091rem;
-  width: 200px;
+  width: 235px;
+  margin: 0 auto;
 }
 .sketch-picker {
   &.editor-x-sketch-picker {
@@ -455,6 +456,7 @@
 //Border component
 .editor-x-style-component {
   margin-bottom: 1.3636rem;
+  padding-left: 0.4545rem;
   > label {
     display: block;
     margin-bottom: 0.9091rem;
@@ -575,6 +577,9 @@
 }
 
 //Positioning style
+.editor-x-position-style {
+  padding: 0 0.4545rem;
+}
 .editor-x-position-preview {
   height: 15.4545rem;
   background: var(--pearl-dark);
@@ -586,6 +591,7 @@
   justify-content: center;
   align-items: center;
   margin: 1.3636rem -1.3636rem;
+  padding: 1.3636rem 1rem;
 }
 .editor-x-position-wrapper {
   display: flex;
@@ -602,6 +608,9 @@
   width: 0.4545rem;
   background: var(--regent-gray);
   cursor: w-resize;
+  &.editor-x-position-active {
+    background: var(--dark-bg-text-color);
+  }
 }
 .editor-x-position-left {
   border-top-left-radius: 100px;
@@ -621,6 +630,9 @@
   width: 7.8182rem;
   background: var(--regent-gray);
   cursor: n-resize;
+  &.editor-x-position-active {
+    background: var(--dark-bg-text-color);
+  }
 }
 .editor-x-position-top {
   border-top-left-radius: 100px;
@@ -633,17 +645,17 @@
 }
 .editor-x-position-corners {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 5.4545rem;
+  height: 5.4545rem;
   border-radius: 3px;
-  border: solid 1px #3a404c;
-  background-color: #1d2027;
+  border: solid 1px var(--brush-marble-gray);
+  background-color: var(--shark-dark);
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
-  padding: 7px;
+  padding: 0.6364rem;
 }
 .editor-x-position-corner-one,
 .editor-x-position-corner-two,
@@ -653,15 +665,22 @@
 }
 .editor-x-position-corner-one,
 .editor-x-position-corner-two {
-  margin-bottom: 10px;
+  margin-bottom: 0.9091rem;
 }
 .editor-x-position-corner-selector {
-  width: 8px;
-  height: 8px;
-  background-color: #9fa5b1;
+  width: 0.7273rem;
+  height: 0.7273rem;
+  background: var(--chateua-gray);
   border-radius: 50%;
   cursor: pointer;
   &.editor-x-position-corner-active {
     background: var(--dark-bg-text-color);
+  }
+}
+.editor-x-position-contain-elm {
+  justify-content: space-between;
+  padding-left: 10px;
+  input[type="text"] {
+    text-align: center;
   }
 }

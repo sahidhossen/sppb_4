@@ -29,7 +29,7 @@ export default class StyleComponent extends React.Component {
           min={0}
           max={10}
         />
-        <Divider />
+        <Divider margin="10px -10px 10px 0px"/>
         <label>Borders</label>
         <div className="editor-x-border-main">
           <div className="editor-x-border-wrapper">
