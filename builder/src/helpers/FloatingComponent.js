@@ -142,7 +142,7 @@ class FloatingComponent extends Component {
     return (
       <SppbPortal className="popover">
         <div
-          className="editor-x-context-menu-list editor-x-popup"
+          className="editor-x-color-picker editor-x-popup"
           style={this.state.contextStyle}
           ref={(ref) => {
             this.contextMenuWrapper = ref;

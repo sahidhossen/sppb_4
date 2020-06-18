@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import BackgroundItem from "./BackgroundItem";
 import FloatingComponent from "../../../helpers/FloatingComponent";
 import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
@@ -23,7 +23,7 @@ export class BackgroundComponent extends Component {
     const { isOpen } = this.state;
 
     return (
-      <Fragment>
+      <div className="editor-x-background-style">
         <BackgroundItem type="solid" {...backgroundColor} />
         {backgroundImages.value.map(({ type, ...restProps }, index) => (
           <BackgroundItem type={type} {...restProps} key={index} />
@@ -33,7 +33,7 @@ export class BackgroundComponent extends Component {
             this.elememnt = ref;
           }}
           onClick={this.toggleColorPicker.bind(this)}
-          className="editor-x-add-background"
+          className="sppb-btn sppb-btn-primary editor-x-add-background-btn"
         >
           Add New Color
         </button>
@@ -46,7 +46,7 @@ export class BackgroundComponent extends Component {
             <ColorPickerContainer />
           </FloatingComponent>
         )}
-      </Fragment>
+      </div>
     );
   }
 }
