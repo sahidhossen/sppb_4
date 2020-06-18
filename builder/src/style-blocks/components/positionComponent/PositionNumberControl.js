@@ -2,11 +2,14 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import images from "./assets/images";
 import { defaultPosition } from "./fixedPosition";
+import { DraggableBox } from "../elements";
 
 const PositionNumberControl = (props) => {
   const { name = "relative", style, onChange } = props;
+  const { left, right, top, bottom } = style;
   //topLeft | topRight | bottomLeft | bottomRight | left | right | top | full
   const [positionPointer, setPositionPointer] = useState("topLeft");
+  const [direction, setDirection] = useState("");
   const hasFixedPosition = name === "absolute" || name === "fixed";
 
   const setFixedPosition = (value) => (event) => {
@@ -14,17 +17,72 @@ const PositionNumberControl = (props) => {
     setPositionPointer(value);
   };
 
+  const onClickHandler = (field) => (event) => {
+    setDirection(field);
+  };
+
+  const onDragChangeHandler = (field) => (event, value) => {
+    const fieldValue = style[field].value;
+    if (fieldValue.unit === "") {
+      fieldValue.unit = "px";
+    }
+    onChange({ [field]: { ...fieldValue, value } });
+    if (field !== direction) {
+      setDirection(field);
+    }
+  };
+
   return (
     <Fragment>
       <div className="editor-x-position-preview">
-        <div className="editor-x-position-static"> {images[name]} </div>;
+        <div className="editor-x-position-static"> {images[name]} </div>
       </div>
       {name !== "static" && (
         <div className="editor-x-position-wrapper">
-          <div className="editor-x-position-left"></div>
-          <div className="editor-x-position-top editor-x-position-active"></div>
-          <div className="editor-x-position-bottom"></div>
-          <div className="editor-x-position-right"></div>
+          <DraggableBox
+            className="editor-x-position-left"
+            activeClass="editor-x-position-active"
+            direction="VL"
+            options={{
+              isActive: direction === "left",
+            }}
+            onClick={onClickHandler("left")}
+            onDragChange={onDragChangeHandler("left")}
+            value={isNaN(left.value.value) ? 0 : left.value.value}
+          />
+          <DraggableBox
+            className="editor-x-position-top"
+            activeClass="editor-x-position-active"
+            direction="HT"
+            options={{
+              isActive: direction === "top",
+            }}
+            onClick={onClickHandler("top")}
+            onDragChange={onDragChangeHandler("top")}
+            value={isNaN(top.value.value) ? 0 : top.value.value}
+          />
+          <DraggableBox
+            className="editor-x-position-bottom"
+            activeClass="editor-x-position-active"
+            direction="HB"
+            options={{
+              isActive: direction === "bottom",
+            }}
+            onClick={onClickHandler("bottom")}
+            onDragChange={onDragChangeHandler("bottom")}
+            value={isNaN(bottom.value.value) ? 0 : bottom.value.value}
+          />
+          <DraggableBox
+            className="editor-x-position-right"
+            activeClass="editor-x-position-active"
+            direction="VR"
+            options={{
+              isActive: direction === "right",
+            }}
+            onClick={onClickHandler("right")}
+            onDragChange={onDragChangeHandler("right")}
+            value={isNaN(right.value.value) ? 0 : right.value.value}
+          />
           <div className="editor-x-position-corners">
             {hasFixedPosition && (
               <Fragment>

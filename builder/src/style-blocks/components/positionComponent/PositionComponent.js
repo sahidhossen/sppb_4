@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { SelectCustom, InputText, Divider, RangeControl } from "../../../elements";
 import PositionNumberControl from "./PositionNumberControl";
@@ -9,7 +9,9 @@ const PositionComponent = (props) => {
   const { position, zIndex } = style;
 
   const [positionName, setPositionName] = useState(position.value || "relative");
-
+  useEffect(() => {
+    setPositionName(position.value);
+  }, [position]);
   const onChangePositionName = (name) => (value) => {
     setPositionName(value);
     setCssAttributes({ [name]: value });
@@ -18,6 +20,7 @@ const PositionComponent = (props) => {
   const onChangePositionAttributes = (value) => {
     setCssAttributes(value);
   };
+  // console.log("position: ", style);
   return (
     <div className="editor-x-position-style">
       <SelectCustom
@@ -47,7 +50,7 @@ const PositionComponent = (props) => {
       <Divider margin="15px -10px 15px 10px" />
       <RangeControl
         label="z-index"
-        value={zIndex.value}
+        value={1}
         // onChange={(value) => this.handleChange(value, "border_radius")}
         min={0}
         max={99999}
