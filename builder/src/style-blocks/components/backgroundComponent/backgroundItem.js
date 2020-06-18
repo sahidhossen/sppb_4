@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { getBackgroundString, isObject } from "../../../lib/utils";
 import FloatingComponent from "../../../helpers/FloatingComponent";
 import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
+import {Divider} from "../../../elements";
 
 class BackgroundItem extends Component {
   constructor() {
@@ -53,7 +54,8 @@ class BackgroundItem extends Component {
               <ColorPickerContainer />
             </FloatingComponent>
           )}
-        </div>
+          </div>
+          <Divider width="100%" margin="0 0 0 15px"/>
       </div>
     );
   }

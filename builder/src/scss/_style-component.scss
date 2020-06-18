@@ -421,21 +421,26 @@
   display: flex;
   align-items: center;
   position: relative;
-  @include transition(0.35s);
+  @include transition(0.3s);
+  flex-wrap: wrap;
   &:hover {
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.35), inset 0 1.5px 1.5px 0 rgba(0, 0, 0, 0.1),
       inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 0 rgba(255, 255, 255, 0.08),
       inset 0 0.5px 0 0 rgba(255, 255, 255, 0.05);
-    background: #14171d;
-    .editor-x-background-item {
-      border-color: transparent;
-      padding-left: 2.2727rem;
-    }
+    background: var(--pearl-dark);
     .editor-x-background-drag {
       opacity: 1;
       visibility: visible;
     }
+    .editor-x-divider {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  .editor-x-divider {
+    width: 95%;
+    @include transition(0.3s);
   }
 }
 .editor-x-background-drag {
@@ -443,7 +448,7 @@
   padding-left: 8px;
   opacity: 0;
   visibility: hidden;
-  @include transition(0.35s);
+  @include transition(0.3s);
   position: absolute;
   cursor: grab;
 }
@@ -451,10 +456,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7273rem 0.9091rem;
-  border-bottom: 1px solid var(--brush-marble-gray);
+  padding: 0.7273rem 0.9091rem 0.7273rem 2.2rem;
   flex: 1;
-  @include transition(0.35s);
 }
 .editor-x-background-item-right {
   width: 4.1818rem;
@@ -686,35 +689,35 @@
 .editor-x-position-wrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 212px;
-  height: 148px;
+  width: 19.2727rem;
+  height: 13.4545rem;
   position: relative;
-  flex: 0 0 212px;
+  flex: 0 0 19.2727rem;
   margin: 0 auto;
   .editor-x-input-control-value {
     input {
-      max-width: 55px;
+      max-width: 5rem;
     }
   }
 }
 .editor-x-position-left,
 .editor-x-position-right {
   height: 7.8182rem;
-  width: 65px;
+  width: 5.9091rem;
   cursor: w-resize;
   display: flex;
-  border-radius: 5px;
-  margin-top: 30px;
+  border-radius: 0.4545rem;
+  margin-top: 2.7273rem;
   &.editor-x-position-active {
     border-color: var(--dark-bg-text-color);
   }
 }
 .editor-x-position-left {
-  border-right: 5px solid var(--regent-gray);
+  border-right: 0.4545rem solid var(--regent-gray);
   margin-right: -2px;
 }
 .editor-x-position-right {
-  border-left: 5px solid var(--regent-gray);
+  border-left: 0.4545rem solid var(--regent-gray);
   position: absolute;
   right: 0;
   .editor-x-input-control-value {
@@ -723,23 +726,23 @@
 }
 .editor-x-position-top,
 .editor-x-position-bottom {
-  height: 32px;
+  height: 2.9091rem;
   width: 7.8182rem;
   cursor: n-resize;
   display: flex;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 0.4545rem;
   &.editor-x-position-active {
     border-color: var(--dark-bg-text-color);
   }
 }
 .editor-x-position-top {
-  border-bottom: 5px solid var(--regent-gray);
+  border-bottom: 0.4545rem solid var(--regent-gray);
   align-items: flex-start;
 }
 .editor-x-position-bottom {
-  border-top: 5px solid var(--regent-gray);
-  margin-left: 63px;
+  border-top: 0.4545rem solid var(--regent-gray);
+  margin-left: 5.7273rem;
   margin-top: -3px;
   align-items: flex-end;
 }
@@ -779,7 +782,7 @@
 }
 .editor-x-position-contain-elm {
   justify-content: space-between;
-  padding-left: 10px;
+  padding-left: 0.9091rem;
   input[type="text"] {
     text-align: center;
   }

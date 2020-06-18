@@ -530,7 +530,7 @@ label.sppb-radio-buttons-label {
 
 //Checkbox
 .editor-x-checkbox {
-  padding-bottom: 10px;
+  padding-bottom: 0.9091rem;
 }
 .editor-x-checkbox-title {
   margin: 0;
@@ -724,9 +724,9 @@ label.editor-x-checkbox-label {
   .sppb-custom-select {
     background: transparent;
     padding: 0;
-    height: 21px;
+    height: 1.9091rem;
     position: absolute;
-    width: 25px;
+    width: 2.2727rem;
     box-shadow: none;
     left: auto;
     right: 0;
@@ -743,9 +743,9 @@ label.editor-x-checkbox-label {
       display: none;
     }
     .sppb-option-arrow-down {
-      top: -5px;
+      top: -0.4545rem;
       font-size: 1rem;
-      right: -8px;
+      right: -0.7273rem;
     }
   }
   .sppb-custom-options {

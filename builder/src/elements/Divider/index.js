@@ -4,7 +4,7 @@ const Divider = (props) => {
   return (
     <div
       className="editor-x-divider"
-      style={{ height: height, background: background, margin: margin }}
+      style={{ background: background, height: height, margin: margin }}
     ></div>
   );
 };
