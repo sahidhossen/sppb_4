@@ -73,7 +73,7 @@ export class BackgroundComponent extends Component {
             event={this.state.event}
             target={this.elememnt}
           >
-            <ColorPickerContainer setCssAttributes={setCssAttributes} />
+            <ColorPickerContainer identity="addNew" setCssAttributes={setCssAttributes} />
           </FloatingComponent>
         )}
       </Fragment>

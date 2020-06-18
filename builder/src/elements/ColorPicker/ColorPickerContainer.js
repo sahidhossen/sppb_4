@@ -98,27 +98,40 @@ export class ColorPickerContainer extends Component {
       gradientProps: { stops },
       changeBackgroundValue,
     } = this.props;
+    let newPositionData = {};
     let newData = {};
 
     if (name === "left") {
-      // this.setState({ leftColorPosition: value });
+      newPositionData = { ...stops[0].position, ...value };
+      newData = { ...stops[0], ...{ position: newPositionData } };
+
+      stops.splice(0, 1, newData);
+      changeBackgroundValue("stops", stops);
     } else if (name === "swap") {
-      let _leftColor, _rightColor;
-      this.setState((state) => {
-        const { leftColor, rightColor } = state;
-        [_leftColor, _rightColor] = [rightColor, leftColor];
-        return { leftColor: _leftColor, rightColor: _rightColor };
-      });
+      let _leftColor = { ...stops[0].color };
+      let _rightColor = { ...stops[1].color };
+
+      stops[0].color = _rightColor;
+      stops[1].color = _leftColor;
+
+      changeBackgroundValue("stops", stops);
     } else {
-      this.setState({ rightColorPosition: value });
+      newPositionData = { ...stops[1].position, ...value };
+      newData = { ...stops[1], ...{ position: newPositionData } };
+
+      stops.splice(1, 1, newData);
+      changeBackgroundValue("stops", stops);
     }
   }
 
   handlePositionChange(value, name) {
-    const { position } = this.state;
+    const {
+      gradientProps: { position },
+      changeBackgroundValue,
+    } = this.props;
     const newValue = { [name]: value };
 
-    this.setState({ position: { ...position, ...newValue } });
+    changeBackgroundValue("position", { ...position, ...newValue });
   }
 
   render() {
@@ -138,35 +151,36 @@ export class ColorPickerContainer extends Component {
 
     return (
       <div className="editor-x-color-picker-wrapper">
-        <RadioControl
-          className="editor-x-color-select"
-          activeClass="editor-x-active-item"
-          // value={background_type_tab}
-          value={selectedType}
-          onSelect={(selectedItem) => this.handleSelect(selectedItem, "selectedType")}
-          items={[
-            {
-              title: "solid color",
-              name: "solid",
-              className: "editor-x-color-select-item-one",
-            },
-            {
-              title: "linear color",
-              name: "linear-gradient",
-              className: "editor-x-color-select-item-two",
-            },
-            {
-              title: "radial color",
-              name: "radial-gradient",
-              className: "editor-x-color-select-item-three",
-            },
-            {
-              name: "image",
-              className: "editor-x-color-select-item-four",
-              icon: "fas fa-image",
-            },
-          ]}
-        />
+        {identity === "addNew" && (
+          <RadioControl
+            className="editor-x-color-select"
+            activeClass="editor-x-active-item"
+            value={selectedType}
+            onSelect={(selectedItem) => this.handleSelect(selectedItem, "selectedType")}
+            items={[
+              {
+                title: "solid color",
+                name: "solid",
+                className: "editor-x-color-select-item-one",
+              },
+              {
+                title: "linear color",
+                name: "linear-gradient",
+                className: "editor-x-color-select-item-two",
+              },
+              {
+                title: "radial color",
+                name: "radial-gradient",
+                className: "editor-x-color-select-item-three",
+              },
+              {
+                name: "image",
+                className: "editor-x-color-select-item-four",
+                icon: "fas fa-image",
+              },
+            ]}
+          />
+        )}
 
         {(selectedType === "linear-gradient" || selectedType === "radial-gradient") && (
           <RangeWithTwoController
@@ -179,8 +193,8 @@ export class ColorPickerContainer extends Component {
             angle={angle}
             extent={extent}
             position={position}
-            leftColorPosition={leftColorPosition}
-            rightColorPosition={rightColorPosition}
+            leftColorPosition={gradientProps.stops[0].position}
+            rightColorPosition={gradientProps.stops[1].position}
           />
         )}
 
@@ -232,13 +246,13 @@ export class ColorPickerContainer extends Component {
             <div className="editor-x-radial-positions-top-left">
               <InputControl
                 label="Left"
-                value={position.x} // {height: {value:, unit:}} Object | string
+                value={gradientProps.position.x} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
                 onChange={(value) => this.handlePositionChange(value, "x")}
               />
               <InputControl
                 label="Top"
-                value={position.y} // {height: {value:, unit:}} Object | string
+                value={gradientProps.position.y} // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
                 onChange={(value) => this.handlePositionChange(value, "y")}
               />
