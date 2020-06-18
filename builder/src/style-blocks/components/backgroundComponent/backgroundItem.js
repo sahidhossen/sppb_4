@@ -27,10 +27,13 @@ class BackgroundItem extends Component {
         : { backgroundImage: getBackgroundString(type, restParams) };
 
     return (
-      <Fragment>
+      <div className="editor-x-background-item-wrapper">
+        <div className="editor-x-background-drag">
+          <i className="fas fa-braille"></i>
+        </div>
         <div className="editor-x-background-item">
           <div className="editor-x-background-item-left">
-            <span className="editor-x-background-indicatior"></span>
+            <span className="editor-x-background-indicatior editor-x-active"></span>
             <span className="editor-x-background-title">{type}</span>
           </div>
           <div
@@ -51,7 +54,7 @@ class BackgroundItem extends Component {
             </FloatingComponent>
           )}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
