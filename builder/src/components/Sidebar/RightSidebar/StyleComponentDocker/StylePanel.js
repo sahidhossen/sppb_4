@@ -26,40 +26,43 @@ class StylePanel extends React.Component {
   }
 
   render() {
-    let { styleState } = this.props;
-    let { spacing, size, backgrounds, style: styleProps } = styleState;
+    let { styleState, addonId } = this.props;
+    let { spacing, size, backgrounds, style: styleProps, position } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
           <SpacingComponent
             style={spacing}
+            addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "spacing")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Size">
           <SizeComponent
             style={size}
+            addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "size")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Background">
           <BackgroundComponent
             style={backgrounds}
+            addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "backgrounds")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Style">
           <StyleComponent
             style={styleProps}
+            addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "style")}
           />
         </Panel>
         <Panel icon="fas fa-arrows-alt-v" title="Positioning">
           <PositionComponent
-            style={{}}
-            // setCssAttributes={(attributes) =>
-            //   this.onUpdateStyleAttributes(attributes, "style")
-            // }
+            style={position}
+            addonId={addonId}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "position")}
           />
         </Panel>
 
