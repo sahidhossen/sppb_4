@@ -292,7 +292,6 @@
   font-weight: 500;
   outline: 0;
   width: 100%;
-  text-transform: capitalize;
 }
 .sppb-custom-selected-item {
   display: flex;
@@ -317,6 +316,7 @@
   width: 18.9091rem;
   border-radius: 0.2727rem;
   text-align: center;
+  text-transform: capitalize;
 }
 .sppb-custom-select.sppb-options-open .sppb-custom-options {
   opacity: 1;
