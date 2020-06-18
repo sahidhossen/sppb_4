@@ -470,27 +470,27 @@
   flex: 0 0 3.1818rem;
   &.editor-x-border-active-center {
     .editor-x-border-center {
-      background: var(--white);
+      background: var(--dark-bg-text-color);
     }
   }
   &.editor-x-border-active-left {
     .editor-x-border-left {
-      background: var(--white);
+      background: var(--dark-bg-text-color);
     }
   }
   &.editor-x-border-active-right {
     .editor-x-border-right {
-      background: var(--white);
+      background: var(--dark-bg-text-color);
     }
   }
   &.editor-x-border-active-top {
     .editor-x-border-top {
-      background: var(--white);
+      background: var(--dark-bg-text-color);
     }
   }
   &.editor-x-border-active-bottom {
     .editor-x-border-bottom {
-      background: var(--white);
+      background: var(--dark-bg-text-color);
     }
   }
 }
@@ -500,9 +500,6 @@
   width: 0.3636rem;
   background: var(--regent-gray);
   cursor: w-resize;
-  &.editor-x-border-active {
-    background: var(--dark-bg-text-color);
-  }
 }
 .editor-x-border-left {
   border-top-left-radius: 1.3636rem;
@@ -535,9 +532,6 @@
   width: 2.4545rem;
   background: var(--regent-gray);
   cursor: n-resize;
-  &.editor-x-border-active {
-    background: var(--dark-bg-text-color);
-  }
 }
 .editor-x-border-top {
   border-top-left-radius: 1.3636rem;
