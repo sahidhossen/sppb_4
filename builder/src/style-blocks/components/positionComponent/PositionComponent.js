@@ -1,37 +1,23 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { SelectCustom, InputText, Divider, RangeControl } from "../../../elements";
-import { Relative, Static, Fixed, Absolute, Sticky } from "./positions";
+import PositionNumberControl from "./PositionNumberControl";
 
 const PositionComponent = (props) => {
   const { style, setCssAttributes } = props;
 
-  const { position } = style;
+  const { position, zIndex } = style;
 
-  const [positionName, setPositionName] = useState(position || "relative");
+  const [positionName, setPositionName] = useState(position.value || "relative");
 
-  const onChangePositionName = (value) => {
+  const onChangePositionName = (name) => (value) => {
     setPositionName(value);
+    setCssAttributes({ [name]: value });
   };
 
   const onChangePositionAttributes = (value) => {
-    console.log("position chagned: ", value);
+    setCssAttributes(value);
   };
-
-  let PositionTypeComponent = null;
-
-  if (positionName === "relative") {
-    PositionTypeComponent = Relative;
-  } else if (positionName === "sticky") {
-    PositionTypeComponent = Sticky;
-  } else if (positionName === "fixed") {
-    PositionTypeComponent = Fixed;
-  } else if (positionName === "absolute") {
-    PositionTypeComponent = Absolute;
-  } else if (positionName === "static") {
-    PositionTypeComponent = Static;
-  }
-
   return (
     <div className="editor-x-position-style">
       <SelectCustom
@@ -43,11 +29,10 @@ const PositionComponent = (props) => {
           { value: "absolute" },
           { value: "sticky" },
         ]}
-        onSelectChange={onChangePositionName}
+        onSelectChange={onChangePositionName("position")}
       />
-      {PositionTypeComponent !== null && (
-        <PositionTypeComponent settings={style} onChange={onChangePositionAttributes} />
-      )}
+
+      <PositionNumberControl name={positionName} style={style} onChange={onChangePositionAttributes} />
 
       <Divider margin="15px -10px 15px 10px" />
       <InputText
@@ -62,7 +47,7 @@ const PositionComponent = (props) => {
       <Divider margin="15px -10px 15px 10px" />
       <RangeControl
         label="z-index"
-        value="500"
+        value={zIndex.value}
         // onChange={(value) => this.handleChange(value, "border_radius")}
         min={0}
         max={99999}
@@ -74,6 +59,7 @@ const PositionComponent = (props) => {
 
 PositionComponent.propTypes = {
   style: PropTypes.object,
+  addongId: PropTypes.string,
   setCssAttributes: PropTypes.func,
 };
 

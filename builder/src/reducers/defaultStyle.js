@@ -530,6 +530,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: {} },
   },
   boxShadows: {
     local: {
@@ -595,6 +596,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: "" },
   },
   fontColor: {
     local: {
@@ -901,6 +903,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: "" },
   },
   fontFamily: {
     local: {
@@ -1243,6 +1246,7 @@ const styleState = {
       value: "Auto",
       unit: null,
     },
+    styleState: { name: "size", origin: "default", type: {} },
   },
   justifyContent: {
     local: {
@@ -1297,6 +1301,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: {} },
   },
   letterSpacing: {
     local: {
@@ -1725,6 +1730,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: "" },
   },
   right: {
     local: {
@@ -1743,6 +1749,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: {} },
   },
   textAlign: {
     local: {
@@ -1851,6 +1858,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: {} },
   },
   transforms: {
     local: {
@@ -1995,6 +2003,7 @@ const styleState = {
       value: "Auto",
       unit: null,
     },
+    styleState: { name: "size", origin: "default", type: {} },
   },
   zIndex: {
     local: {
@@ -2013,6 +2022,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "position", type: "" },
   },
 };
 

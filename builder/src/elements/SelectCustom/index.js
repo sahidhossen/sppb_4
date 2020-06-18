@@ -39,9 +39,7 @@ class SelectCustom extends React.Component {
 
     //Taking default value index and selected value index, In initial load it will be same.
     const defaultIndex = options.findIndex((index) => index.selected === true);
-    const selectedIndex = options.findIndex(
-      (index) => index === options[selectedItem]
-    );
+    const selectedIndex = options.findIndex((index) => index === options[selectedItem]);
 
     //Selecting element by using React ref to calculate translate valu and to set in CSS translate
     const optionsParent = this.optionsParent;
@@ -102,15 +100,13 @@ class SelectCustom extends React.Component {
 
     return (
       <div
-        className={`sppb-select-wrapper editor-x-form-controllers${
-          styleTwo ? " sppb-select-custom-style-two" : ""
-          }${className ? " " + className : ""}`}
+        className={`sppb-select-wrapper editor-x-form-controllers${styleTwo ? " sppb-select-custom-style-two" : ""}${
+          className ? " " + className : ""
+        }`}
         onClick={() => this.onToggle()}
       >
         <div
-          className={`sppb-custom-select${
-            addParentClass ? " sppb-options-open" : ""
-          }`}
+          className={`sppb-custom-select${addParentClass ? " sppb-options-open" : ""}`}
           tabIndex="0"
           onBlur={this.collapseOnOutsideClick.bind(this)}
         >
@@ -141,11 +137,7 @@ class SelectCustom extends React.Component {
 
 //Props will be taken from this Object if not passed on call component
 SelectCustom.defaultProps = {
-  options: [
-    { value: "Option Name" },
-    { value: "Option Name 2", selected: true },
-    { value: "Option Name 3" },
-  ],
+  options: [{ value: "Option Name" }, { value: "Option Name 2", selected: true }, { value: "Option Name 3" }],
   selectedIcon: "fas fa-check",
 };
 export default SelectCustom;

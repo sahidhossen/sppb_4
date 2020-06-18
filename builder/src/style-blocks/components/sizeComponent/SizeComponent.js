@@ -52,7 +52,7 @@ class SizeComponent extends React.Component {
 
     let isOverflow = overflow.value && overflow.value !== "visible";
 
-    console.log("overflow: ", isOverflow, overflow);
+    console.log("size: ", style);
     return (
       <div className="editor-x-size-component">
         <div className="editor-x-size-height-width">
