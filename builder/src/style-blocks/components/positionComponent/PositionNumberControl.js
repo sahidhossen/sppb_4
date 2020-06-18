@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import images from "./assets/images";
 import { defaultPosition } from "./fixedPosition";
+import { InputControl } from "../../../elements";
 
 const PositionNumberControl = (props) => {
   const { name = "relative", style, onChange } = props;
@@ -21,10 +22,18 @@ const PositionNumberControl = (props) => {
       </div>
       {name !== "static" && (
         <div className="editor-x-position-wrapper">
-          <div className="editor-x-position-left"></div>
-          <div className="editor-x-position-top editor-x-position-active"></div>
-          <div className="editor-x-position-bottom"></div>
-          <div className="editor-x-position-right"></div>
+          <div className="editor-x-position-left">
+            <InputControl value={{ unit: "px", value: "400" }} />
+          </div>
+          <div className="editor-x-position-top editor-x-position-active">
+            <InputControl value={{ unit: "px", value: "40" }} />
+          </div>
+          <div className="editor-x-position-bottom">
+            <InputControl value={{ unit: "px", value: "400" }} />
+          </div>
+          <div className="editor-x-position-right">
+            <InputControl value={{ unit: "px", value: "40" }} />
+          </div>
           <div className="editor-x-position-corners">
             {hasFixedPosition && (
               <Fragment>
