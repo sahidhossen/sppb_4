@@ -22,6 +22,7 @@ class StylePanel extends React.Component {
 
   onUpdateStyleAttributes(attributes, key) {
     let { setCssAttributes } = this.props;
+    // console.log("attr", attributes);
     setCssAttributes(attributes, key);
   }
 

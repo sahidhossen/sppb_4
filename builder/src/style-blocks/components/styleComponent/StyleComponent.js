@@ -117,18 +117,20 @@ const StyleComponent = (props) => {
 
   const updateColorProperty = (value, position) => {
     let updatedProperties = {};
+    let { style, width } = borderState;
     if (position === "center") {
       _borderColor.map((field) => {
         const widthField = _borderWidth[index];
         if (styleProps[widthField].value.value === "0") {
           updatedProperties[widthField] = { ...styleProps[widthField].value, vlaue: 1 };
+          width = updatedProperties[widthField];
         }
 
         const styleField = _borderStyle[index];
         if (styleProps[styleField].value === "none") {
           updatedProperties[styleField] = "solid";
+          style = "solid";
         }
-
         updatedProperties[field] = value;
       });
     } else if (position === "left") {
@@ -140,16 +142,19 @@ const StyleComponent = (props) => {
     } else if (position === "bottom") {
       updatedProperties = { borderBottomColor: value };
     }
+    setBorderState({ color: value, width, style });
     return updatedProperties;
   };
 
   const updateStyleProperty = (value, position) => {
     let updatedProperties = {};
+    let width = borderState.width;
     if (position === "center") {
       _borderStyle.map((field, index) => {
         const widthField = _borderWidth[index];
         if (styleProps[widthField].value.value === "0") {
           updatedProperties[widthField] = { ...styleProps[widthField].value, vlaue: 1 };
+          width = updatedProperties[widthField];
         }
         updatedProperties[field] = value;
       });
@@ -162,17 +167,19 @@ const StyleComponent = (props) => {
     } else if (position === "bottom") {
       updatedProperties = { borderBottomStyle: value };
     }
-
+    setBorderState({ ...borderState, width, style: value });
     return updatedProperties;
   };
 
   const updateHeightProperty = (width, position) => {
     let updatedProperties = {};
+    let style = borderState.style;
     if (position === "center") {
       _borderWidth.map((field, index) => {
         const styleField = _borderStyle[index];
         if (styleProps[field].value.value === "0" && styleProps[styleField].value === "none") {
           updatedProperties[styleField] = "solid";
+          style = "solid";
         }
         updatedProperties[field] = { ...styleProps[field].value, ...width };
       });
@@ -185,22 +192,19 @@ const StyleComponent = (props) => {
     } else if (position === "bottom") {
       updatedProperties["borderBottomWidth"] = { ...borderBottomWidth.value, ...width };
     }
-
+    setBorderState({ ...borderState, width: { ...borderState.width, ...width }, style });
     return updatedProperties;
   };
 
   const onValueChangeHandler = (type) => (value) => {
-    setBorderState({ ...borderState, width: { ...borderState.width, [type]: value } });
     setCssAttributes({ ...updateHeightProperty({ [type]: value }, borderStatus) });
   };
 
   const onBorderWidthChange = (value) => {
-    setBorderState({ ...borderState, width: value });
     setCssAttributes({ ...updateHeightProperty(value, borderStatus) });
   };
 
   const onBorderStyleChange = (value) => {
-    setBorderState({ ...borderState, style: value });
     setCssAttributes({ ...updateStyleProperty(value, borderStatus) });
   };
 
@@ -208,7 +212,7 @@ const StyleComponent = (props) => {
     <div className="editor-x-style-component">
       <RangeControl
         label="Opacity"
-        value={opacity.value || 0}
+        value={(opacity && opacity.value) || 0}
         onChange={(value) => onOpacityChangeHandler(value, "opacity")}
         min={0}
         step={0.1}
