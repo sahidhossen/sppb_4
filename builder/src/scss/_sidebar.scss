@@ -4,7 +4,6 @@
   color: var(--default-text-color);
   position: fixed;
   width: var(--sidebar-width);
-  // background: var(--charcoal-dark);
   top: calc(var(--top-portal-height) + var(--space-15));
   height: calc(
     var(--height-100) - (var(--top-portal-height) + var(--space-30))
@@ -142,17 +141,20 @@
   }
 }
 //Sidebar panel
+.sppb-style-component-docker {
+  height: 100%;
+}
 .sppb-sidebar-panel {
   margin-top: 1.3636rem;
   border-radius: 0.4545rem;
   box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
   background: var(--pearl-dark);
   @include scrollbar(6px, auto);
-  height: 79vh;
+  height: 100%;
   overflow-y: scroll;
 }
 .sppb-sidebar-panel-content {
-  height: 75vh;
+  padding-bottom: 100px;
 }
 .sppb-sidebar-icons {
   display: flex;

@@ -17,7 +17,7 @@ const PositionNumberControl = (props) => {
 
   return (
     <Fragment>
-      <div className="editor-x-position-preview">
+      <div className="editor-x-img-preview">
         <div className="editor-x-position-static"> {images[name]} </div>;
       </div>
       {name !== "static" && (

@@ -41,6 +41,12 @@
   display: flex;
   padding-bottom: 0.9091rem;
 }
+.editor-x-panel-heading {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--white);
+  font-weight: 500;
+}
 .editor-x-panel-header-right {
   display: flex;
   justify-content: space-between;
@@ -536,7 +542,6 @@
 .editor-x-border-main {
   display: flex;
 }
-
 .editor-x-border-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -673,7 +678,7 @@
 .editor-x-position-style {
   padding: 0 0.4545rem;
 }
-.editor-x-position-preview {
+.editor-x-img-preview {
   height: 15.4545rem;
   background: var(--pearl-dark);
   font-size: 1.4545rem;
@@ -786,4 +791,78 @@
   input[type="text"] {
     text-align: center;
   }
+}
+
+//Display style
+.editor-x-display-controllers {
+  width: 136px;
+  height: 122px;
+  border-radius: 3px;
+  border: solid 1px #3a404c;
+  margin: 0 auto;
+  position: relative;
+  padding: 13px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.editor-x-display-control-start {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.editor-x-display-control-top {
+  display: flex;
+  width: 60px;
+  justify-content: center;
+  i {
+    cursor: pointer;
+  }
+}
+.editor-x-display-control-bottom {
+  width: 100%;
+  text-align: center;
+}
+.editor-x-display-control-end {
+  height: 60px;
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  i {
+    cursor: pointer;
+  }
+}
+.editor-x-display-control-icons {
+  width: 60px;
+  height: 60px;
+  border-radius: 3px;
+  box-shadow: inset 0 1.5px 1.5px 0 rgba(0, 0, 0, 0.1), inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 0 rgba(255, 255, 255, 0.08), inset 0 0.5px 0 0 rgba(255, 255, 255, 0.05);
+  border: solid 0.5px rgba(255, 255, 255, 0.05);
+  background-color: #14171d;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  span {
+    cursor: pointer;
+  }
+}
+.editor-x-display-control-text {
+  font-size: 0.7273rem;
+  font-weight: 500;
+  display: block;
+}
+.editor-x-display-control-icon-top {
+  position: absolute;
+  top: 5px;
+}
+.editor-x-display-control-icon-bottom {
+  position: absolute;
+  bottom: 5px;
 }
