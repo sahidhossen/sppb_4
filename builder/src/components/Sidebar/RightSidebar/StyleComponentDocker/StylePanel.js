@@ -22,14 +22,14 @@ class StylePanel extends React.Component {
 
   onUpdateStyleAttributes(attributes, key) {
     let { setCssAttributes } = this.props;
-    console.log("attr", attributes);
+    // console.log("attr", attributes);
     setCssAttributes(attributes, key);
   }
 
   render() {
     let { styleState } = this.props;
     let { spacing, size, backgrounds, style: styleProps } = styleState;
-    console.log("checking", backgrounds);
+    // console.log("checking", backgrounds);
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">

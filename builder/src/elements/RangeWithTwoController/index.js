@@ -20,10 +20,7 @@ export class RangeWithTwoController extends Component {
 
     if (targetName === "left" && targetValue > rightColorPosition.value) {
       this.props.onChange({ value: targetValue, unit: "%" }, "right");
-    } else if (
-      targetName === "right" &&
-      targetValue < leftColorPosition.value
-    ) {
+    } else if (targetName === "right" && targetValue < leftColorPosition.value) {
       this.props.onChange({ value: targetValue, unit: "%" }, "left");
     } else {
       this.props.onChange(
@@ -51,12 +48,15 @@ export class RangeWithTwoController extends Component {
       rightColor,
       angle,
       extent,
-      position: { x, y },
       leftColorPosition,
       rightColorPosition,
     } = this.props;
 
     if (gradientType === "radial") {
+      const {
+        position: { x, y },
+      } = this.props;
+
       gradiant = `radial-gradient(circle ${extent} at ${x.value}${x.unit} ${y.value}${y.unit}, ${leftColor} ${leftColorPosition.value}%, ${rightColor} ${rightColorPosition.value}%)`;
     } else {
       // linear
@@ -94,10 +94,7 @@ export class RangeWithTwoController extends Component {
           />
         </div>
         <div className="editor-x-range-slider-bottom">
-          <div
-            className="editor-x-range-slider-swap fas fa-sync-alt"
-            onClick={this.handleSwap.bind(this)}
-          ></div>
+          <div className="editor-x-range-slider-swap fas fa-sync-alt" onClick={this.handleSwap.bind(this)}></div>
         </div>
       </div>
     );

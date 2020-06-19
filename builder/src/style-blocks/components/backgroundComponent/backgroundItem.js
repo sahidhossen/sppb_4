@@ -18,12 +18,19 @@ class BackgroundItem extends Component {
   }
 
   render() {
-    const { type, changeBackgroundValue, setCssAttributes, backgroundColor, ...restProps } = this.props;
+    const {
+      type,
+      changeBackgroundValue,
+      backgroundImages,
+      setCssAttributes,
+      backgroundColor,
+      ...restProps
+    } = this.props;
 
     const { isOpen } = this.state;
     const background =
       type === "solid"
-        ? { backgroundColor: backgroundColor.value }
+        ? { backgroundColor: (backgroundColor && backgroundColor.value) || (restProps.color && restProps.color.value) }
         : { backgroundImage: getBackgroundString(type, restProps) };
     return (
       <Fragment>
@@ -53,6 +60,7 @@ class BackgroundItem extends Component {
                 changeBackgroundValue={changeBackgroundValue}
                 setCssAttributes={setCssAttributes}
                 backgroundColor={backgroundColor}
+                backgroundImages={backgroundImages}
               />
             </FloatingComponent>
           )}

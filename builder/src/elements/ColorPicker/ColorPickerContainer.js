@@ -4,6 +4,27 @@ import RangeWithTwoController from "../RangeWithTwoController";
 import RadioControl from "../RadioControl";
 import InputControl from "../InputControl";
 
+const dataSchema = {
+  solid: { type: "solid", color: { type: "color", value: "#ccc" } },
+  "linear-gradient": {
+    type: "linear-gradient",
+    angle: { unit: "deg", value: 0 },
+    stops: [
+      { color: { type: "color", value: "#fff" }, position: { unit: "%", value: 0 } },
+      { color: { type: "color", value: "#000" }, position: { unit: "%", value: 100 } },
+    ],
+  },
+  "radial-gradient": {
+    type: "radial-gradient",
+    extent: "closest-corner",
+    position: { x: { unit: "%", value: 0 }, y: { unit: "%", value: 0 } },
+    stops: [
+      { color: { type: "color", value: "#fff" }, position: { unit: "%", value: 0 } },
+      { color: { type: "color", value: "#000" }, position: { unit: "%", value: 100 } },
+    ],
+  },
+};
+
 export class ColorPickerContainer extends Component {
   constructor() {
     super();
@@ -25,113 +46,213 @@ export class ColorPickerContainer extends Component {
   }
 
   handleSelect(selectedItem, name) {
-    this.setState({ [name]: selectedItem.name });
+    const { identity, addNewColor, backgroundImages } = this.props;
+    if (name === "extent") {
+      const { changeBackgroundValue } = this.props;
+
+      if (identity === "addNew") {
+        changeBackgroundValue("extent", selectedItem.name, backgroundImages.value.length - 1);
+      } else {
+        changeBackgroundValue("extent", selectedItem.name);
+      }
+    } else {
+      if (identity === "addNew") {
+        addNewColor(selectedItem.name, dataSchema[selectedItem.name]);
+      }
+      this.setState({ [name]: selectedItem.name });
+    }
   }
 
   selectController(name, color) {
-    const {
-      gradientProps: { stops },
-      changeBackgroundValue,
-    } = this.props;
+    const { changeBackgroundValue, identity, backgroundImages } = this.props;
     let newColorData = {};
     let newData = [];
 
     if (name === "left") {
-      newColorData = { ...stops[0].color, value: color };
-      newData = { ...stops[0], color: newColorData };
+      if (identity === "addNew") {
+        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        newColorData = { ...layer.stops[0].color, value: color };
+        newData = { ...layer.stops[0], color: newColorData };
 
-      stops.splice(0, 1, newData);
-      changeBackgroundValue("stops", stops);
+        layer.stops.splice(0, 1, newData);
+
+        changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+      } else {
+        const {
+          gradientProps: { stops },
+        } = this.props;
+
+        newColorData = { ...stops[0].color, value: color };
+        newData = { ...stops[0], color: newColorData };
+
+        stops.splice(0, 1, newData);
+        changeBackgroundValue("stops", stops);
+      }
     } else {
-      newColorData = { ...stops[1].color, value: color };
-      newData = { ...stops[1], color: newColorData };
+      if (identity === "addNew") {
+        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        newColorData = { ...layer.stops[1].color, value: color };
+        newData = { ...layer.stops[1], color: newColorData };
 
-      stops.splice(1, 1, newData);
-      changeBackgroundValue("stops", stops);
+        layer.stops.splice(1, 1, newData);
+        changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+      } else {
+        const {
+          gradientProps: { stops },
+        } = this.props;
+
+        newColorData = { ...stops[1].color, value: color };
+        newData = { ...stops[1], color: newColorData };
+
+        stops.splice(1, 1, newData);
+        changeBackgroundValue("stops", stops);
+      }
     }
     this.setState({ controller: name, color });
   }
 
   handleAngleChange(value) {
-    const { changeBackgroundValue } = this.props;
-    changeBackgroundValue("angle", value);
+    const { changeBackgroundValue, identity, backgroundImages } = this.props;
+    if (identity === "addNew") {
+      changeBackgroundValue("angle", value, backgroundImages.value.length - 1);
+    } else {
+      changeBackgroundValue("angle", value);
+    }
   }
 
   handleColorChange(color) {
-    const { controller } = this.state;
-    const { type, identity, setCssAttributes, changeBackgroundValue } = this.props;
-
+    const { controller, selectedType } = this.state;
+    const { type, identity, backgroundImages, setCssAttributes, changeBackgroundValue } = this.props;
     let newColorData = {};
     let newData = [];
-
-    if (type === "solid") {
+    if (type === "solid" && selectedType === "solid") {
       if (identity === "fixed") {
-        console.log("hi");
         setCssAttributes({
           backgroundColor: color,
         });
       } else {
+        changeBackgroundValue("color", { type: "color", value: color }, backgroundImages.value.length - 1);
         this.setState({ color });
       }
     } else {
-      const { gradientProps } = this.props;
+      const { gradientProps, identity } = this.props;
       if (controller === "left") {
-        newColorData = { ...gradientProps.stops[0].color, value: color };
-        newData = { ...gradientProps.stops[0], color: newColorData };
+        if (identity === "addNew") {
+          const layer = backgroundImages.value[backgroundImages.value.length - 1];
+          newColorData = { ...layer.stops[0].color, value: color };
+          newData = { ...layer.stops[0], color: newColorData };
 
-        gradientProps.stops.splice(0, 1, newData);
-        changeBackgroundValue("stops", gradientProps.stops);
+          layer.stops.splice(0, 1, newData);
+          changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+        } else {
+          newColorData = { ...gradientProps.stops[0].color, value: color };
+          newData = { ...gradientProps.stops[0], color: newColorData };
+
+          gradientProps.stops.splice(0, 1, newData);
+          changeBackgroundValue("stops", gradientProps.stops);
+        }
         this.setState({ color });
       } else {
-        newColorData = { ...gradientProps.stops[1].color, value: color };
-        newData = { ...gradientProps.stops[1], color: newColorData };
+        if (identity === "addNew") {
+          const layer = backgroundImages.value[backgroundImages.value.length - 1];
+          newColorData = { ...layer.stops[1].color, value: color };
+          newData = { ...layer.stops[1], color: newColorData };
 
-        gradientProps.stops.splice(1, 1, newData);
-        changeBackgroundValue("stops", gradientProps.stops);
+          layer.stops.splice(1, 1, newData);
+          changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+        } else {
+          newColorData = { ...gradientProps.stops[1].color, value: color };
+          newData = { ...gradientProps.stops[1], color: newColorData };
+
+          gradientProps.stops.splice(1, 1, newData);
+          changeBackgroundValue("stops", gradientProps.stops);
+        }
         this.setState({ color });
       }
     }
   }
 
   handleColorPositionChange(value, name) {
-    const {
-      gradientProps: { stops },
-      changeBackgroundValue,
-    } = this.props;
+    const { identity, changeBackgroundValue, backgroundImages, gradientProps } = this.props;
     let newPositionData = {};
     let newData = {};
 
     if (name === "left") {
-      newPositionData = { ...stops[0].position, ...value };
-      newData = { ...stops[0], ...{ position: newPositionData } };
+      if (identity === "addNew") {
+        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        newPositionData = { ...layer.stops[0].position, ...value };
+        newData = { ...layer.stops[0], ...{ position: newPositionData } };
 
-      stops.splice(0, 1, newData);
-      changeBackgroundValue("stops", stops);
+        layer.stops.splice(0, 1, newData);
+        changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+      } else {
+        const {
+          gradientProps: { stops },
+        } = this.props;
+        newPositionData = { ...stops[0].position, ...value };
+        newData = { ...stops[0], ...{ position: newPositionData } };
+
+        stops.splice(0, 1, newData);
+        changeBackgroundValue("stops", stops);
+      }
     } else if (name === "swap") {
-      let _leftColor = { ...stops[0].color };
-      let _rightColor = { ...stops[1].color };
+      if (identity === "addNew") {
+        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        let _leftColor = { ...layer.stops[0].color };
+        let _rightColor = { ...layer.stops[1].color };
 
-      stops[0].color = _rightColor;
-      stops[1].color = _leftColor;
+        layer.stops[0].color = _rightColor;
+        layer.stops[1].color = _leftColor;
 
-      changeBackgroundValue("stops", stops);
+        changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+      } else {
+        const {
+          gradientProps: { stops },
+        } = this.props;
+
+        let _leftColor = { ...stops[0].color };
+        let _rightColor = { ...stops[1].color };
+
+        stops[0].color = _rightColor;
+        stops[1].color = _leftColor;
+        changeBackgroundValue("stops", stops);
+      }
     } else {
-      newPositionData = { ...stops[1].position, ...value };
-      newData = { ...stops[1], ...{ position: newPositionData } };
+      if (identity === "addNew") {
+        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        newPositionData = { ...layer.stops[1].position, ...value };
+        newData = { ...layer.stops[1], ...{ position: newPositionData } };
 
-      stops.splice(1, 1, newData);
-      changeBackgroundValue("stops", stops);
+        layer.stops.splice(1, 1, newData);
+        changeBackgroundValue("stops", layer.stops, backgroundImages.value.length - 1);
+      } else {
+        const {
+          gradientProps: { stops },
+        } = this.props;
+
+        newPositionData = { ...stops[1].position, ...value };
+        newData = { ...stops[1], ...{ position: newPositionData } };
+
+        stops.splice(1, 1, newData);
+        changeBackgroundValue("stops", stops);
+      }
     }
   }
 
   handlePositionChange(value, name) {
-    const {
-      gradientProps: { position },
-      changeBackgroundValue,
-    } = this.props;
+    const { identity, changeBackgroundValue, backgroundImages } = this.props;
     const newValue = { [name]: value };
 
-    changeBackgroundValue("position", { ...position, ...newValue });
+    if (identity === "addNew") {
+      const _position = backgroundImages.value[backgroundImages.value.length - 1].position;
+      changeBackgroundValue("position", { ..._position, ...newValue }, backgroundImages.value.length - 1);
+    } else {
+      const {
+        gradientProps: { position },
+      } = this.props;
+
+      changeBackgroundValue("position", { ...position, ...newValue });
+    }
   }
 
   render() {
@@ -147,8 +268,8 @@ export class ColorPickerContainer extends Component {
       leftColorPosition,
       rightColorPosition,
     } = this.state;
-    const { type, backgroundColor, gradientProps, setCssAttributes, identity } = this.props;
-
+    const { type, backgroundColor, backgroundImages, gradientProps, setCssAttributes, identity } = this.props;
+    const _gradientProps = backgroundImages && backgroundImages.value[backgroundImages.value.length - 1];
     return (
       <div className="editor-x-color-picker-wrapper">
         {identity === "addNew" && (
@@ -182,19 +303,38 @@ export class ColorPickerContainer extends Component {
           />
         )}
 
-        {(selectedType === "linear-gradient" || selectedType === "radial-gradient") && (
+        {(selectedType === "linear-gradient" ||
+          selectedType === "radial-gradient" ||
+          type === "linear-gradient" ||
+          type === "radial-gradient") && (
           <RangeWithTwoController
             step={2}
             gradientType={type}
             onChange={(value, name) => this.handleColorPositionChange(value, name)}
             onClick={(name, color) => this.selectController(name, color)}
-            leftColor={gradientProps.stops[0].color.value}
-            rightColor={gradientProps.stops[1].color.value}
-            angle={angle}
-            extent={extent}
-            position={position}
-            leftColorPosition={gradientProps.stops[0].position}
-            rightColorPosition={gradientProps.stops[1].position}
+            leftColor={
+              (gradientProps && gradientProps.stops[0].color.value) ||
+              (_gradientProps && _gradientProps.stops[0].color.value) ||
+              leftColor
+            }
+            rightColor={
+              (gradientProps && gradientProps.stops[1].color.value) ||
+              (_gradientProps && _gradientProps.stops[1].color.value) ||
+              rightColor
+            }
+            angle={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle}
+            extent={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
+            position={(gradientProps && gradientProps.position) || position}
+            leftColorPosition={
+              (gradientProps && gradientProps.stops[0].position) ||
+              (_gradientProps && _gradientProps.stops[0].position) ||
+              leftColorPosition
+            }
+            rightColorPosition={
+              (gradientProps && gradientProps.stops[1].position) ||
+              (_gradientProps && _gradientProps.stops[1].position) ||
+              rightColorPosition
+            }
           />
         )}
 
@@ -202,7 +342,7 @@ export class ColorPickerContainer extends Component {
           <div className="editor-x-linear-angle">
             <InputControl
               label="Angle"
-              value={gradientProps.angle} // {height: {value:, unit:}} Object | string
+              value={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle} // {height: {value:, unit:}} Object | string
               unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
               onChange={(value) => this.handleAngleChange(value)}
             />
@@ -216,7 +356,7 @@ export class ColorPickerContainer extends Component {
               <RadioControl
                 className="editor-x-radio-control"
                 activeClass="editor-x-active-item"
-                value={extent}
+                value={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
                 onSelect={(selectedItem) => this.handleSelect(selectedItem, "extent")}
                 items={[
                   {
@@ -246,13 +386,21 @@ export class ColorPickerContainer extends Component {
             <div className="editor-x-radial-positions-top-left">
               <InputControl
                 label="Left"
-                value={gradientProps.position.x} // {height: {value:, unit:}} Object | string
+                value={
+                  (gradientProps && gradientProps.position.x) ||
+                  (_gradientProps && _gradientProps.position.x) ||
+                  position.x
+                } // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
                 onChange={(value) => this.handlePositionChange(value, "x")}
               />
               <InputControl
                 label="Top"
-                value={gradientProps.position.y} // {height: {value:, unit:}} Object | string
+                value={
+                  (gradientProps && gradientProps.position.y) ||
+                  (_gradientProps && _gradientProps.position.y) ||
+                  position.y
+                } // {height: {value:, unit:}} Object | string
                 unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
                 onChange={(value) => this.handlePositionChange(value, "y")}
               />

@@ -10,19 +10,62 @@ export class BackgroundComponent extends Component {
       isOpen: false,
       event: null,
     };
+    this.addColor = this.addColor.bind(this);
   }
 
-  toggleColorPicker(event) {
-    event.persist();
-    this.setState({ isOpen: !this.state.isOpen, event });
-  }
-
-  changeBackgroundValue(property, value, index) {
-    console.log("oi", property, value);
+  addColor(type = "solid", data) {
     const {
       style: { backgroundImages },
       setCssAttributes,
     } = this.props;
+
+    const dataSchema = {
+      solid: { type: "solid", color: { type: "color", value: "#ccc" } },
+      "linear-gradient": {
+        type: "linear-gradient",
+        angle: { unit: "deg", value: 0 },
+        stops: [
+          { color: { type: "color", value: "#fff" }, position: { unit: "%", value: 0 } },
+          { color: { type: "color", value: "#000" }, position: { unit: "%", value: 100 } },
+        ],
+      },
+      "radial-gradient": {
+        type: "radial-gradient",
+        extent: "closest-corner",
+        position: { x: { unit: "%", value: 0 }, y: { unit: "%", value: 0 } },
+        stops: [
+          { color: { type: "color", value: "#fff" }, position: { unit: "%", value: 0 } },
+          { color: { type: "color", value: "#000" }, position: { unit: "%", value: 100 } },
+        ],
+      },
+    };
+    if (data) {
+      backgroundImages.value[backgroundImages.value.length - 1] = data;
+    } else {
+      backgroundImages.value.push(dataSchema[type]);
+    }
+    setCssAttributes({
+      backgroundImages: backgroundImages.value,
+    });
+  }
+
+  toggleColorPicker(event) {
+    event.persist();
+
+    this.setState({ isOpen: !this.state.isOpen, event }, () => {
+      if (this.state.isOpen) {
+        this.addColor();
+      }
+    });
+  }
+
+  changeBackgroundValue(property, value, index) {
+    // console.log("oi", property, value, index);
+    const {
+      style: { backgroundImages },
+      setCssAttributes,
+    } = this.props;
+
     const newData = {
       ...backgroundImages.value[index],
       ...{ [property]: value },
@@ -30,7 +73,7 @@ export class BackgroundComponent extends Component {
 
     backgroundImages.value.splice(index, 1, newData);
 
-    console.log("updated", backgroundImages);
+    // console.log("updated", backgroundImages);
     setCssAttributes({
       backgroundImages: backgroundImages.value,
     });
@@ -56,6 +99,7 @@ export class BackgroundComponent extends Component {
             {...restProps}
             key={index}
             changeBackgroundValue={(key, value) => this.changeBackgroundValue(key, value, index)}
+            backgroundImages={backgroundImages}
           />
         ))}
         <button
@@ -73,7 +117,13 @@ export class BackgroundComponent extends Component {
             event={this.state.event}
             target={this.elememnt}
           >
-            <ColorPickerContainer identity="addNew" setCssAttributes={setCssAttributes} />
+            <ColorPickerContainer
+              backgroundImages={backgroundImages}
+              addNewColor={this.addColor}
+              identity="addNew"
+              setCssAttributes={setCssAttributes}
+              changeBackgroundValue={(key, value, index) => this.changeBackgroundValue(key, value, index)}
+            />
           </FloatingComponent>
         )}
       </Fragment>
