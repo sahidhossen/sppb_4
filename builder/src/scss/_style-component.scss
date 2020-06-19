@@ -686,52 +686,62 @@
 .editor-x-position-wrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 98px;
-  height: 100px;
+  width: 212px;
+  height: 148px;
   position: relative;
-  flex: 0 0 98px;
+  flex: 0 0 212px;
   margin: 0 auto;
+  .editor-x-input-control-value {
+    input {
+      max-width: 55px;
+    }
+  }
 }
 .editor-x-position-left,
 .editor-x-position-right {
   height: 7.8182rem;
-  width: 0.4545rem;
-  background: var(--regent-gray);
+  width: 65px;
   cursor: w-resize;
+  display: flex;
+  border-radius: 5px;
+  margin-top: 30px;
   &.editor-x-position-active {
-    background: var(--dark-bg-text-color);
+    border-color: var(--dark-bg-text-color);
   }
 }
 .editor-x-position-left {
-  border-top-left-radius: 100px;
-  border-bottom-left-radius: 100px;
-  margin-top: 7px;
+  border-right: 5px solid var(--regent-gray);
+  margin-right: -2px;
 }
 .editor-x-position-right {
+  border-left: 5px solid var(--regent-gray);
   position: absolute;
   right: 0;
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
-  top: 6px;
+  .editor-x-input-control-value {
+    margin-left: 2px;
+  }
 }
 .editor-x-position-top,
 .editor-x-position-bottom {
-  height: 0.4545rem;
+  height: 32px;
   width: 7.8182rem;
-  background: var(--regent-gray);
   cursor: n-resize;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
   &.editor-x-position-active {
-    background: var(--dark-bg-text-color);
+    border-color: var(--dark-bg-text-color);
   }
 }
 .editor-x-position-top {
-  border-top-left-radius: 100px;
-  border-top-right-radius: 100px;
+  border-bottom: 5px solid var(--regent-gray);
+  align-items: flex-start;
 }
 .editor-x-position-bottom {
-  border-bottom-left-radius: 100px;
-  border-bottom-right-radius: 100px;
-  margin-left: 6.5px;
+  border-top: 5px solid var(--regent-gray);
+  margin-left: 63px;
+  margin-top: -3px;
+  align-items: flex-end;
 }
 .editor-x-position-corners {
   position: absolute;

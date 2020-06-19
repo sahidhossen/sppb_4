@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import images from "./assets/images";
 import { defaultPosition } from "./fixedPosition";
 import { DraggableBox } from "../elements";
+import { InputControl } from "../../../elements";
 
 const PositionNumberControl = (props) => {
   const { name = "relative", style, onChange } = props;
@@ -32,6 +33,27 @@ const PositionNumberControl = (props) => {
     }
   };
 
+  const onFieldValueChangeHandler = (field) => (value) => {
+    const unitValue = { ...style[field].value, ...value };
+
+    if (unitValue.unit && unitValue.value === "auto") {
+      unitValue.value = 1;
+    }
+
+    if (unitValue.unit === "auto") {
+      unitValue.value = "auto";
+      unitValue.unit = "";
+    }
+    if (unitValue.value && !isNaN(unitValue.value) && unitValue.unit === "") {
+      unitValue.unit = "px";
+    }
+
+    onChange({ [field]: { ...unitValue } });
+    if (field !== direction) {
+      setDirection(field);
+    }
+  };
+
   return (
     <Fragment>
       <div className="editor-x-position-preview">
@@ -49,7 +71,9 @@ const PositionNumberControl = (props) => {
             onClick={onClickHandler("left")}
             onDragChange={onDragChangeHandler("left")}
             value={isNaN(left.value.value) ? 0 : left.value.value}
-          />
+          >
+            <InputControl value={left.value} onChange={onFieldValueChangeHandler("left")} />
+          </DraggableBox>
           <DraggableBox
             className="editor-x-position-top"
             activeClass="editor-x-position-active"
@@ -60,7 +84,9 @@ const PositionNumberControl = (props) => {
             onClick={onClickHandler("top")}
             onDragChange={onDragChangeHandler("top")}
             value={isNaN(top.value.value) ? 0 : top.value.value}
-          />
+          >
+            <InputControl value={top.value} onChange={onFieldValueChangeHandler("top")} />
+          </DraggableBox>
           <DraggableBox
             className="editor-x-position-bottom"
             activeClass="editor-x-position-active"
@@ -71,7 +97,9 @@ const PositionNumberControl = (props) => {
             onClick={onClickHandler("bottom")}
             onDragChange={onDragChangeHandler("bottom")}
             value={isNaN(bottom.value.value) ? 0 : bottom.value.value}
-          />
+          >
+            <InputControl value={bottom.value} onChange={onFieldValueChangeHandler("bottom")} />
+          </DraggableBox>
           <DraggableBox
             className="editor-x-position-right"
             activeClass="editor-x-position-active"
@@ -82,7 +110,9 @@ const PositionNumberControl = (props) => {
             onClick={onClickHandler("right")}
             onDragChange={onDragChangeHandler("right")}
             value={isNaN(right.value.value) ? 0 : right.value.value}
-          />
+          >
+            <InputControl value={right.value} onChange={onFieldValueChangeHandler("right")} />
+          </DraggableBox>
           <div className="editor-x-position-corners">
             {hasFixedPosition && (
               <Fragment>
