@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { getBackgroundString, isObject } from "../../../lib/utils";
 import FloatingComponent from "../../../helpers/FloatingComponent";
 import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
+import {Divider} from "../../../elements";
 
 class BackgroundItem extends Component {
   constructor() {
@@ -33,10 +34,13 @@ class BackgroundItem extends Component {
         ? { backgroundColor: (backgroundColor && backgroundColor.value) || (restProps.color && restProps.color.value) }
         : { backgroundImage: getBackgroundString(type, restProps) };
     return (
-      <Fragment>
+      <div className="editor-x-background-item-wrapper">
+        <div className="editor-x-background-drag">
+          <i className="fas fa-braille"></i>
+        </div>
         <div className="editor-x-background-item">
           <div className="editor-x-background-item-left">
-            <span className="editor-x-background-indicatior"></span>
+            <span className="editor-x-background-indicatior editor-x-active"></span>
             <span className="editor-x-background-title">{type}</span>
           </div>
           <div
@@ -64,8 +68,9 @@ class BackgroundItem extends Component {
               />
             </FloatingComponent>
           )}
-        </div>
-      </Fragment>
+          </div>
+          <Divider width="100%" margin="0 0 0 15px"/>
+      </div>
     );
   }
 }

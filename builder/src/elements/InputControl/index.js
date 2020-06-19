@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classnames from "classnames";
 import withInstanceId from "../../lib/withInstanceId";
 import SelectCustom from "../SelectCustom";
-import { units } from "../index";
+import { units as defaultUnits } from "../index";
 
 const isObject = (value) => {
   return typeof value === "object" && value instanceof Object && !(value instanceof Array);
@@ -45,7 +45,6 @@ class InputControl extends Component {
     const inputValue = isObject(value) ? value.value : value;
 
     let _placeholder = placeholder ? (placeholder.value ? placeholder.value : placeholder) : "";
-
     return (
       <div className={classNames}>
         {label && <label htmlFor={`editor-x-input-control${instanceId}`}>{label}</label>}
@@ -59,7 +58,11 @@ class InputControl extends Component {
             placeholder={_placeholder}
           />
           {isObject(value) && (
-            <SelectCustom value={value.unit} options={units} onSelectChange={(value) => this.onUnitChange(value)} />
+            <SelectCustom
+              value={value.unit}
+              options={defaultUnits}
+              onSelectChange={(value) => this.onUnitChange(value)}
+            />
           )}
         </div>
       </div>

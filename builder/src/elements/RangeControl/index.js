@@ -6,33 +6,28 @@ export class RangeControl extends Component {
     this.props.onChange(event.target.value);
   }
 
+  onMouseUpHandler(event) {
+    const { onMouseUp } = this.props;
+    if (onMouseUp) {
+      onMouseUp(event.target.value);
+    }
+  }
+
   render() {
-    const {
-      label,
-      value,
-      min,
-      max,
-      step,
-      className,
-      instanceId,
-      disableInput,
-    } = this.props;
-    const defaultClass = "editor-x-range editor-x-form-controllers";
-    const elementClass = [defaultClass, ...(className ? [className] : [])].join(
-      " "
-    );
+    const { label, value, min, max, step, className, instanceId, disableInput } = this.props;
+    const defaultClass = "editor-x-form-controllers";
+    const elementClass = [defaultClass, ...(className ? [className] : [])].join(" ");
 
     return (
       <div className={elementClass}>
-        {label && (
-          <label htmlFor={`editor-x-range-control${instanceId}`}>{label}</label>
-        )}
+        {label && <label htmlFor={`editor-x-range-control${instanceId}`}>{label}</label>}
         <input
           type="range"
           value={value}
           min={min}
           max={max}
           step={step}
+          onMouseUp={this.onMouseUpHandler.bind(this)}
           onChange={this.onChange.bind(this)}
         />
         {!disableInput && (

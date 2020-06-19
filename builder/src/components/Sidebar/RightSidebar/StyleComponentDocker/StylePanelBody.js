@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { withSelect, withDispatch } from "store";
 import { compose } from "../../../compose";
 
@@ -99,17 +99,25 @@ class StylePanelBody extends React.Component {
   }
 
   render() {
-    // console.log("props: ", this.props)
+    const { addonId } = this.props;
     return (
-      <div className="editor-x-style-panel-wrap">
-        <StylePanel
-          styleBlockIds={this.props.addonStyleBlockIds}
-          addonId={this.props.addonId}
-          styleState={this.props.styleState}
-          computeStyle={this.startComputedStyle}
-          setCssAttributes={this.updateComputedCssStyles.bind(this)}
-        />
-      </div>
+      <Fragment>
+        {addonId ? (
+          <div className="editor-x-style-panel-wrap">
+            <StylePanel
+              styleBlockIds={this.props.addonStyleBlockIds}
+              addonId={this.props.addonId}
+              styleState={this.props.styleState}
+              computeStyle={this.startComputedStyle}
+              setCssAttributes={this.updateComputedCssStyles.bind(this)}
+            />
+          </div>
+        ) : (
+          <div className="editor-x-empty-style-panel">
+            <div className="editor-x-guid-for-style-panel">Select an element from canvas to active style panel</div>
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
