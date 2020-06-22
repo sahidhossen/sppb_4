@@ -13,7 +13,7 @@ export class BackgroundComponent extends Component {
     this.addColor = this.addColor.bind(this);
   }
 
-  addColor(type = "solid", data) {
+  addColor(type = "solid", data, index = null) {
     const {
       style: { backgroundImages },
       setCssAttributes,
@@ -40,9 +40,13 @@ export class BackgroundComponent extends Component {
       },
     };
     if (data) {
-      backgroundImages.value[backgroundImages.value.length - 1] = data;
+      if (index !== null) {
+        backgroundImages.value.splice(index, 1, data);
+      } else {
+        backgroundImages.value.splice(backgroundImages.value.length - 1, 1, data);
+      }
     } else {
-      backgroundImages.value.push(dataSchema[type]);
+      backgroundImages.value.splice(backgroundImages.value.length, 1, dataSchema[type]);
     }
     setCssAttributes({
       backgroundImages: backgroundImages.value,
@@ -60,7 +64,6 @@ export class BackgroundComponent extends Component {
   }
 
   changeBackgroundValue(property, value, index) {
-    // console.log("oi", property, value, index);
     const {
       style: { backgroundImages },
       setCssAttributes,
@@ -70,10 +73,8 @@ export class BackgroundComponent extends Component {
       ...backgroundImages.value[index],
       ...{ [property]: value },
     };
-
     backgroundImages.value.splice(index, 1, newData);
 
-    // console.log("updated", backgroundImages);
     setCssAttributes({
       backgroundImages: backgroundImages.value,
     });
@@ -100,6 +101,8 @@ export class BackgroundComponent extends Component {
             key={index}
             changeBackgroundValue={(key, value) => this.changeBackgroundValue(key, value, index)}
             backgroundImages={backgroundImages}
+            addNewColor={(type, data) => this.addColor(type, data, index)}
+            index={index}
           />
         ))}
         <button

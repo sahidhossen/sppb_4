@@ -3,6 +3,7 @@ import ColorPicker from "./index";
 import RangeWithTwoController from "../RangeWithTwoController";
 import RadioControl from "../RadioControl";
 import InputControl from "../InputControl";
+import { cloneDeep } from "lodash";
 
 const dataSchema = {
   solid: { type: "solid", color: { type: "color", value: "#ccc" } },
@@ -56,9 +57,10 @@ export class ColorPickerContainer extends Component {
         changeBackgroundValue("extent", selectedItem.name);
       }
     } else {
-      if (identity === "addNew") {
-        addNewColor(selectedItem.name, dataSchema[selectedItem.name]);
-      }
+      const _dataSchema = cloneDeep(dataSchema);
+      const _data = { ..._dataSchema[selectedItem.name] };
+      addNewColor(selectedItem.name, _data);
+
       this.setState({ [name]: selectedItem.name });
     }
   }
@@ -173,13 +175,13 @@ export class ColorPickerContainer extends Component {
   }
 
   handleColorPositionChange(value, name) {
-    const { identity, changeBackgroundValue, backgroundImages, gradientProps } = this.props;
+    const { identity, changeBackgroundValue, backgroundImages } = this.props;
     let newPositionData = {};
     let newData = {};
 
     if (name === "left") {
       if (identity === "addNew") {
-        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        const layer = { ...backgroundImages.value[backgroundImages.value.length - 1] };
         newPositionData = { ...layer.stops[0].position, ...value };
         newData = { ...layer.stops[0], ...{ position: newPositionData } };
 
@@ -189,15 +191,17 @@ export class ColorPickerContainer extends Component {
         const {
           gradientProps: { stops },
         } = this.props;
+
         newPositionData = { ...stops[0].position, ...value };
-        newData = { ...stops[0], ...{ position: newPositionData } };
+        newData = { ...stops[0], ...{ position: { ...newPositionData } } };
 
         stops.splice(0, 1, newData);
+
         changeBackgroundValue("stops", stops);
       }
     } else if (name === "swap") {
       if (identity === "addNew") {
-        const layer = backgroundImages.value[backgroundImages.value.length - 1];
+        const layer = { ...backgroundImages.value[backgroundImages.value.length - 1] };
         let _leftColor = { ...layer.stops[0].color };
         let _rightColor = { ...layer.stops[1].color };
 
@@ -272,11 +276,11 @@ export class ColorPickerContainer extends Component {
     const _gradientProps = backgroundImages && backgroundImages.value[backgroundImages.value.length - 1];
     return (
       <div className="editor-x-color-picker-wrapper">
-        {identity === "addNew" && (
+        {identity !== "fixed" && (
           <RadioControl
             className="editor-x-color-select"
             activeClass="editor-x-active-item"
-            value={selectedType}
+            value={type || selectedType}
             onSelect={(selectedItem) => this.handleSelect(selectedItem, "selectedType")}
             items={[
               {
@@ -314,26 +318,20 @@ export class ColorPickerContainer extends Component {
             onClick={(name, color) => this.selectController(name, color)}
             leftColor={
               (gradientProps && gradientProps.stops[0].color.value) ||
-              (_gradientProps && _gradientProps.stops[0].color.value) ||
-              leftColor
+              (_gradientProps && _gradientProps.stops[0].color.value)
             }
             rightColor={
               (gradientProps && gradientProps.stops[1].color.value) ||
-              (_gradientProps && _gradientProps.stops[1].color.value) ||
-              rightColor
+              (_gradientProps && _gradientProps.stops[1].color.value)
             }
             angle={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle}
             extent={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
             position={(gradientProps && gradientProps.position) || position}
             leftColorPosition={
-              (gradientProps && gradientProps.stops[0].position) ||
-              (_gradientProps && _gradientProps.stops[0].position) ||
-              leftColorPosition
+              (gradientProps && gradientProps.stops[0].position) || (_gradientProps && _gradientProps.stops[0].position)
             }
             rightColorPosition={
-              (gradientProps && gradientProps.stops[1].position) ||
-              (_gradientProps && _gradientProps.stops[1].position) ||
-              rightColorPosition
+              (gradientProps && gradientProps.stops[1].position) || (_gradientProps && _gradientProps.stops[1].position)
             }
           />
         )}
