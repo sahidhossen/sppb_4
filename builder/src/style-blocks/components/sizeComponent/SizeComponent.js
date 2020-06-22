@@ -124,7 +124,6 @@ class SizeComponent extends React.Component {
           onCheckboxChange={(value) => {
             this.onCheckedOverflow(value);
           }}
-          className="checkbox-custom"
         />
         {isOverflow && (
           <RadioControl
