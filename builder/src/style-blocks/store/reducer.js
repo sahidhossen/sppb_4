@@ -1,4 +1,4 @@
-import { isObject } from "lodash";
+import { isString, isArray } from "lodash";
 
 export const styleContextReducer = (state, { type, payload }) => {
   switch (type) {
@@ -23,9 +23,11 @@ export const styleContextReducer = (state, { type, payload }) => {
         let field = fields[i];
         let nextvalue = {
           ...nextAttributes[field],
-          value: isObject(attributes[field])
-            ? { ...nextAttributes[field].value, ...attributes[field] }
-            : attributes[field],
+
+          value:
+            isString(attributes[field]) || isArray(attributes[field])
+              ? attributes[field]
+              : { ...nextAttributes[field].value, ...attributes[field] },
         };
         nextAttributes[field] = nextvalue;
       }

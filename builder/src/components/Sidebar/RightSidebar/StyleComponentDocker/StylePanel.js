@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent, StyleComponent, PositionComponent } from "style-blocks";
+import { SpacingComponent, Panel, SizeComponent, StyleComponent, PositionComponent, DisplayComponent } from "style-blocks";
 import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
@@ -22,12 +22,13 @@ class StylePanel extends React.Component {
 
   onUpdateStyleAttributes(attributes, key) {
     let { setCssAttributes } = this.props;
+    // console.log("attr", attributes);
     setCssAttributes(attributes, key);
   }
 
   render() {
     let { styleState, addonId } = this.props;
-    let { spacing, size, backgrounds, style: styleProps, position } = styleState;
+    let { spacing, size, backgrounds, style: styleProps, position, display } = styleState;
     return (
       <Fragment>
         <Panel icon="fas fa-arrows-alt-v" title="Spacing">
@@ -63,6 +64,13 @@ class StylePanel extends React.Component {
             style={position}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "position")}
+          />
+        </Panel>
+        <Panel icon="fas fa-arrows-alt-v" title="Display">
+          <DisplayComponent
+            style={display}
+            addonId={addonId}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "display")}
           />
         </Panel>
 
