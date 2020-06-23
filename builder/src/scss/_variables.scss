@@ -1,93 +1,93 @@
 /**
 *Importing font
 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
 
 //CSS Variables
 :root {
-    //Sizes
-    --top-portal-height: 5.4545rem; //60px
-    --sidebar-width: 24.7273rem; //272px
-    --width-100: 100%;
-    --height-50: 50%;
-    --height-100: 100%;
-    --height-100vh: 100vh;
-    --height-50vh: 50vh;
+  //Sizes
+  --top-portal-height: 5.4545rem; //60px
+  --sidebar-width: 24.7273rem; //272px
+  --width-100: 100%;
+  --height-50: 50%;
+  --height-100: 100%;
+  --height-100vh: 100vh;
+  --height-50vh: 50vh;
 
-    //All spaces of REM values equivalent to left numbers PX
-    --space-0: 0;
-    --space-5: 0.4545rem;
-    --space-10: 0.9091rem;
-    --space-15: 1.3636rem;
-    --space-20: 1.8182rem;
-    --space-25: 2.2727rem;
-    --space-30: 2.7273rem;
-    --space-35: 3.1818rem;
-    --space-40: 3.6364rem;
-    --space-50: 4.5455rem;
-    --space-60: 5.4545rem;
-    --space-70: 6.3636rem;
-    --space-80: 7.2727rem;
-    --space-90: 8.1818rem;
-    --space-100: 9.0909rem;
+  //All spaces of REM values equivalent to left numbers PX
+  --space-0: 0;
+  --space-5: 0.4545rem;
+  --space-10: 0.9091rem;
+  --space-15: 1.3636rem;
+  --space-20: 1.8182rem;
+  --space-25: 2.2727rem;
+  --space-30: 2.7273rem;
+  --space-35: 3.1818rem;
+  --space-40: 3.6364rem;
+  --space-50: 4.5455rem;
+  --space-60: 5.4545rem;
+  --space-70: 6.3636rem;
+  --space-80: 7.2727rem;
+  --space-90: 8.1818rem;
+  --space-100: 9.0909rem;
 
-    //Fonts
-    --default-font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --font-weight-thin: 100;
-    --font-weight-extra-light: 200;
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semi-bold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extra-bold: 800;
-    --font-weight-black: 900;
-    --font-style-normal: normal;
-    --font-style-italic: italic;
-    --letter-spacing-default: 0.0273rem;
+  //Fonts
+  --default-font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+  --font-style-normal: normal;
+  --font-style-italic: italic;
+  --letter-spacing-default: 0.0273rem;
 
-    //Colors
-    --primary-color: #4e5eda; //rgba 78,94,218,1
-    --primary-color-rgb: 78, 94, 218;
-    --dark-bg-text-color: #8095ff;
-    --small-text-color: #dce3f1;
-    --white: #ffffff;
-    --white-rgb: 255, 255, 255;
-    --default-text-color: #b7becb;
-    
-    //Dark
-    --black: #000000;
-    --black-rgb: 0, 0, 0;
-    --dark: #1d2427;
-    --shark-dark: #1d2027; // rgb 20, 23, 29
-    --shark-dark-rgb: 20, 23, 29;
-    --pearl-dark: #14171d;
-    --charcoal-dark: #2a2c36;
-    --squid-ink-dark: #2f303b;
-    
-    //Gray
-    --pale-gray: #edf0f5;
-    --brush-marble-gray: #3a404c;
-    --rhino-gray: #3f424e; // rgb 63, 66, 78
-    --rhino-gray-rgb: 63, 66, 78;
-    --battleship-gray: #707785; //rgb 112, 119, 133
-    --chateua-gray: #9fa5b1; //rgb 159, 165, 177
-    --chateua-gray-rgb: 159, 165, 177;
-    --regent-gray: #7e8897;
-    
-    //Rare use colors
-    --golden-color: #fd812b;
-    --popy-color: #fd6260;
-    --user-bg-color: #ec407a;
-    --topbar-border-color: #0e1118;
-    --gradient-first-color: #5f6bdd;
-    --gradient-first-color-rgb: 95, 107, 221;
-    --select-border-color: #676f7f;
-    --acuamarine: #0cf5ff;
+  //Colors
+  --primary-color: #4e5eda; //rgba 78,94,218,1
+  --primary-color-rgb: 78, 94, 218;
+  --dark-bg-text-color: #8095ff;
+  --small-text-color: #dce3f1;
+  --white: #ffffff;
+  --white-rgb: 255, 255, 255;
+  --default-text-color: #b7becb;
 
-    //Gradient
-    --primary-gradient-color: linear-gradient(to bottom, var(--gradient-first-color) 2%, var(--primary-color));
+  //Dark
+  --black: #000000;
+  --black-rgb: 0, 0, 0;
+  --dark: #1d2427;
+  --shark-dark: #1d2027; // rgb 20, 23, 29
+  --shark-dark-rgb: 20, 23, 29;
+  --pearl-dark: #14171d;
+  --charcoal-dark: #2a2c36;
+  --squid-ink-dark: #2f303b;
 
-    //Browser Scrollbar
-    --scrollbar-truck-bg: #181a23;
+  //Gray
+  --pale-gray: #edf0f5;
+  --brush-marble-gray: #3a404c;
+  --rhino-gray: #3f424e; // rgb 63, 66, 78
+  --rhino-gray-rgb: 63, 66, 78;
+  --battleship-gray: #707785; //rgb 112, 119, 133
+  --chateua-gray: #9fa5b1; //rgb 159, 165, 177
+  --chateua-gray-rgb: 159, 165, 177;
+  --regent-gray: #7e8897;
+
+  //Rare use colors
+  --golden-color: #fd812b;
+  --popy-color: #fd6260;
+  --user-bg-color: #ec407a;
+  --topbar-border-color: #0e1118;
+  --gradient-first-color: #5f6bdd;
+  --gradient-first-color-rgb: 95, 107, 221;
+  --select-border-color: #676f7f;
+  --acuamarine: #0cf5ff;
+
+  //Gradient
+  --primary-gradient-color: linear-gradient(to bottom, var(--gradient-first-color) 2%, var(--primary-color));
+
+  //Browser Scrollbar
+  --scrollbar-truck-bg: #181a23;
 }
