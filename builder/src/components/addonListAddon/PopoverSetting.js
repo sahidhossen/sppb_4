@@ -19,41 +19,20 @@ class PopoverSetting extends Component {
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside.bind(this));
-    window.frames["sppb-editor-view"].document.addEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
+    window.frames["sppb-editor-view"].document.addEventListener("mousedown", this.handleClickOutside.bind(this));
     this.getContextMenuPosition();
     // drag
-    this.contextHeader.current.addEventListener(
-      "mousedown",
-      this.onMouseDown.bind(this)
-    );
-    this.contextHeader.current.addEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    this.contextHeader.current.addEventListener("mousedown", this.onMouseDown.bind(this));
+    this.contextHeader.current.addEventListener("mouseup", this.onMouseUp.bind(this));
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
-    window.frames["sppb-editor-view"].document.removeEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
+    document.removeEventListener("mousedown", this.handleClickOutside.bind(this));
+    window.frames["sppb-editor-view"].document.removeEventListener("mousedown", this.handleClickOutside.bind(this));
     // drag
-    this.contextHeader.current.removeEventListener(
-      "mousedown",
-      this.onMouseDown.bind(this)
-    );
+    this.contextHeader.current.removeEventListener("mousedown", this.onMouseDown.bind(this));
 
-    this.contextHeader.current.removeEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    this.contextHeader.current.removeEventListener("mouseup", this.onMouseUp.bind(this));
   }
 
   onMouseDown(event) {
@@ -65,10 +44,7 @@ class PopoverSetting extends Component {
       let x = event.clientX - contextHeaderRect.left + 15;
       let y = event.clientY - contextHeaderRect.top;
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
-      this.contextHeader.current.addEventListener(
-        "mousemove",
-        this.onMouseMove.bind(this)
-      );
+      this.contextHeader.current.addEventListener("mousemove", this.onMouseMove.bind(this));
     }
   }
 
@@ -93,10 +69,7 @@ class PopoverSetting extends Component {
     if (this.state.isDragging) {
       this.setState((state) => ({ ...state, isDragging: false }));
 
-      this.contextHeader.current.removeEventListener(
-        "mousemove",
-        this.onMouseMove.bind(this)
-      );
+      this.contextHeader.current.removeEventListener("mousemove", this.onMouseMove.bind(this));
       this.props.togglePopoverSettingPanel({
         contextStyle: this.state.contextStyle,
       });
@@ -104,10 +77,7 @@ class PopoverSetting extends Component {
   }
 
   handleClickOutside(event) {
-    if (
-      this.contextMenuWrapper &&
-      !this.contextMenuWrapper.contains(event.target)
-    ) {
+    if (this.contextMenuWrapper && !this.contextMenuWrapper.contains(event.target)) {
       this.props.reset();
     }
   }
@@ -152,23 +122,14 @@ class PopoverSetting extends Component {
         }}
       >
         <div className="editor-x-addon-settings-wrapper">
-          <div
-            className="editor-x-addon-settings-title"
-            ref={this.contextHeader}
-          >
+          <div className="editor-x-addon-settings-title" ref={this.contextHeader}>
             <i className={defaultAddon.icon}></i>
             {selectedAddon.name}
           </div>
           <div className="editor-x-addon-settings-body">
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
-            <div className="editor-x-addon-setting">
-              Your settings goes here...
-            </div>
+            <div className="editor-x-addon-setting">Your settings goes here...</div>
+            <div className="editor-x-addon-setting">Your settings goes here...</div>
+            <div className="editor-x-addon-setting">Your settings goes here...</div>
           </div>
         </div>
       </div>

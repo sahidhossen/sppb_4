@@ -21,17 +21,11 @@ class Canvas extends React.Component {
   }
 
   componentDidMount() {
-    window.frames["sppb-editor-view"].document.addEventListener(
-      "mousemove",
-      this.createCustomCursor.bind(this)
-    );
+    window.frames["sppb-editor-view"].document.addEventListener("mousemove", this.createCustomCursor.bind(this));
   }
 
   componentWillUnmount() {
-    window.frames["sppb-editor-view"].document.removeEventListener(
-      "mousemove",
-      this.createCustomCursor.bind(this)
-    );
+    window.frames["sppb-editor-view"].document.removeEventListener("mousemove", this.createCustomCursor.bind(this));
   }
 
   createCustomCursor(event) {
@@ -48,10 +42,7 @@ class Canvas extends React.Component {
     }
 
     if (!isAddonPicked) {
-      window.frames["sppb-editor-view"].document.removeEventListener(
-        "mousemove",
-        this.createCustomCursor.bind(this)
-      );
+      window.frames["sppb-editor-view"].document.removeEventListener("mousemove", this.createCustomCursor.bind(this));
 
       this.setState((state) => ({
         ...state,
@@ -80,7 +71,7 @@ class Canvas extends React.Component {
       top: `${cursorPosition.y}px`,
       zIndex: 10,
     };
-    
+
     return (
       <WithDropArea container={this.wrapperNode}>
         {({ isHover }) => {
@@ -108,10 +99,7 @@ class Canvas extends React.Component {
 
 export default compose(
   withSelect((select) => {
-    const {
-      isAddonPicked,
-      getPickedAddon,
-    } = select();
+    const { isAddonPicked, getPickedAddon } = select();
 
     return {
       isAddonPicked: isAddonPicked(),
