@@ -255,6 +255,7 @@
   color: var(--chateua-gray);
   padding: 0.4545rem;
   cursor: pointer;
+  text-align: center;
   &.editor-x-accordion-opened {
     background: var(--shark-dark);
     span {
@@ -265,12 +266,6 @@
   span {
     color: var(--battleship-gray);
     float: right;
-  }
-}
-.editor-x-accordion-content {
-  > * {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
@@ -529,9 +524,6 @@ label.sppb-radio-buttons-label {
 }
 
 //Checkbox
-.editor-x-checkbox {
-  padding-bottom: 0.9091rem;
-}
 .editor-x-checkbox-title {
   margin: 0;
 }

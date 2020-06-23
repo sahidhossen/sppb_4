@@ -19,6 +19,7 @@ const Button = props => {
         'sppb-btn-primary' : isPrimary,
         'sppb-btn-secondary' : isSecondary,
         'disabled': disabled,
+        'sppb-btn-small': isSmall,
         'sppb-btn-has-icon': hasIcon && isSmall,
         'sppb-btn-tartiary' : !href && isTartiary    
     })
