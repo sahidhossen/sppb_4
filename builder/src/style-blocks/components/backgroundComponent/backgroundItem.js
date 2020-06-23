@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { getBackgroundString, isObject } from "../../../lib/utils";
+import React, { Component } from "react";
+import { getBackgroundString } from "../../../lib/utils";
 import FloatingComponent from "../../../helpers/FloatingComponent";
 import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
 import { Divider } from "../../../elements";
