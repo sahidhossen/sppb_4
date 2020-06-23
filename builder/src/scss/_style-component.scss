@@ -796,7 +796,7 @@
 
 //Display style
 .editor-x-display-style {
-  padding-bottom: 15px;
+  padding-bottom: 1.3636rem;
   .editor-x-img-preview {
     margin-left: -0.95rem;
     margin-right: -0.95rem;
@@ -812,7 +812,7 @@
   border: solid 1px #3a404c;
   margin: 0 auto;
   position: relative;
-  padding: 13px;
+  padding: 1.1818rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -945,18 +945,16 @@
   margin: 0 1.8182rem;
 }
 .editor-x-display-flex-children {
-  padding: 30px 0 0px;
+  padding: 2.7273rem 0 0px;
 }
 .editor-x-display-flex-checkbox {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
 }
-
 .editor-x-display-flex-range {
-  margin-bottom: 10px;
+  margin-bottom: 0.9091rem;
 }
-
 .editor-x-display-item-ordering {
   display: flex;
   justify-content: space-between;
@@ -996,7 +994,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 0.9091rem;
   }
   .editor-x-active {
     width: 2.1818rem;
