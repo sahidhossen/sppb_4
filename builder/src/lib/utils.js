@@ -6,27 +6,12 @@ export const revisedRandId = () => {
   const S4 = function () {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
-  return (
-    S4() +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    "-" +
-    S4() +
-    S4() +
-    S4()
-  );
+  return S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4();
 };
 
-export const isObject = (obj) =>
-  typeof obj === "function" || (typeof obj === "object" && !!obj);
+export const isObject = (obj) => typeof obj === "function" || (typeof obj === "object" && !!obj);
 
-export const isArray = (arg) =>
-  Object.prototype.toString.call(arg) === "[object Array]";
+export const isArray = (arg) => Object.prototype.toString.call(arg) === "[object Array]";
 
 export const getBlockById = (blockId) => {
   const builder = select("data");
@@ -49,21 +34,14 @@ export const blockListForTools = (blockList) => {
   Object.keys(blockList).map((name, index) => {
     const __b = blockList[name];
     const __c = __b.category.toLowerCase();
-    if (typeof _blocklist[__c] === "undefined")
-      _blocklist[__c] = { title: __c, list: [] };
+    if (typeof _blocklist[__c] === "undefined") _blocklist[__c] = { title: __c, list: [] };
     _blocklist[__c].list.push(__b);
   });
   return _blocklist;
 };
 
 export const isValidIcon = (icon) => {
-  return (
-    !!icon &&
-    (isString(icon) ||
-      isFunction(icon) ||
-      isValidElement(icon) ||
-      icon instanceof Component)
-  );
+  return !!icon && (isString(icon) || isFunction(icon) || isValidElement(icon) || icon instanceof Component);
 };
 
 /**
@@ -84,15 +62,21 @@ export const getBackgroundString = (type, colorData) => {
     const colorWithPosition = getColorFromStops(stops);
 
     gradiant += `radial-gradient(circle ${extent} at ${x.value}${x.unit} ${y.value}${y.unit}, ${colorWithPosition})`;
-  } else if (type === "linear-gradient") {
-    const { angle, stops } = colorData;
+  } else {
+    if (type === "linear-gradient") {
+      const { angle, stops } = colorData;
 
-    const colorWithPosition = getColorFromStops(stops);
+      const colorWithPosition = getColorFromStops(stops);
 
-    if (angle && angle.value !== 0) {
-      gradiant += `linear-gradient(${angle.value}${angle.unit}, ${colorWithPosition})`;
-    } else {
-      gradiant += `linear-gradient(to right, ${colorWithPosition})`;
+      if (angle && angle.value !== 0) {
+        gradiant += `linear-gradient(${angle.value}${angle.unit}, ${colorWithPosition})`;
+      } else {
+        gradiant += `linear-gradient(to right, ${colorWithPosition})`;
+      }
+    }
+    if (type === "solid") {
+      const { color } = colorData;
+      gradiant += `linear-gradient(${color.value}, ${color.value})`;
     }
   }
   return gradiant;
