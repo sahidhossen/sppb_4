@@ -268,12 +268,6 @@
     float: right;
   }
 }
-.editor-x-accordion-content {
-  > * {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
 
 //Custom Select
 .sppb-select-wrapper {
@@ -530,9 +524,6 @@ label.sppb-radio-buttons-label {
 }
 
 //Checkbox
-.editor-x-checkbox {
-  padding-bottom: 0.9091rem;
-}
 .editor-x-checkbox-title {
   margin: 0;
 }

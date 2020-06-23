@@ -85,6 +85,7 @@
   }
 }
 .editor-x-size-component {
+  padding-bottom: 0.9091rem;
   .editor-accordion-content {
     padding: 0.4545rem 0;
     @include border("-bottom", 1px, solid, var(--brush-marble-gray));
@@ -897,9 +898,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .editor-x-checkbox {
-    padding-bottom: 0;
-  }
 }
 .editor-x-display-checkbox-line {
   display: block;
@@ -948,20 +946,63 @@
 }
 .editor-x-display-flex-children {
   padding: 30px 0 0px;
-  .editor-x-accordion-head {
-  }
-  .editor-x-accordion-content {
-  }
 }
 .editor-x-display-flex-checkbox {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
-  .editor-x-checkbox {
-    padding-bottom: 0;
-  }
 }
 
 .editor-x-display-flex-range {
   margin-bottom: 10px;
+}
+
+.editor-x-display-item-ordering {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-x-display-inputs {
+  display: flex;
+  align-items: center;
+}
+.editor-x-display-input-text {
+  margin-left: 0.9091rem;
+  input {
+    &[type="text"] {
+      max-width: 2.7273rem;
+      margin-top: -5px;
+    }
+  }
+}
+.editor-x-display-order-btn {
+  display: flex;
+  align-items: center;
+  button {
+    &:last-child {
+      margin-left: 5px;
+    }
+  }
+}
+.editor-x-display-align-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-x-display-align-child-icons {
+  display: flex;
+  i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .editor-x-active {
+    width: 2.1818rem;
+    height: 2.1818rem;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
+    background: var(--battleship-gray);
+  }
 }

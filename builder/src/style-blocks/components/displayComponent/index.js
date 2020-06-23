@@ -8,6 +8,8 @@ import {
   AccordionSection,
   InputControl,
   RangeControl,
+  Button,
+  InputText,
 } from "../../../elements";
 
 const DisplayComponent = () => {
@@ -117,14 +119,59 @@ const DisplayComponent = () => {
                 <InputControl
                   // label="Auto"
                   placeholder={"Auto"}
-                  value={{ unit: "--", value: "Auto" }}
+                  value={{ unit: "-", value: "Auto" }}
                   // onChange={(value) => this.onChangeSize(value, "maxWidth")}
                 />
               </div>
               <RangeControl label="Shrink" value="10" className="editor-x-display-flex-range" />
               <RangeControl label="Grow" value="10" />
-              <Divider margin="10px -15px 0px 0px" />
-
+              <Divider margin="10px -15px 5px 0px" />
+              <div className="editor-x-display-item-ordering">
+                <div className="editor-x-display-inputs">
+                  <Checkbox
+                    options={[
+                      {
+                        label: "Ordering",
+                        value: "ordering",
+                        isChecked: false,
+                      },
+                    ]}
+                    value={"ordering"}
+                    // onCheckboxChange={(value) => {
+                    //   this.onCheckedOverflow(value);
+                    // }}
+                  />
+                  <InputText placeholder="2" value="2" className="editor-x-display-input-text" />
+                </div>
+                <div className="editor-x-display-order-btn">
+                  <Button isSmall btnText="First" />
+                  <Button isSmall btnText="Last" />
+                </div>
+              </div>
+              <Divider margin="5px -15px 5px 0px" />
+              <div className="editor-x-display-align-child">
+                <Checkbox
+                  options={[
+                    {
+                      label: "Align",
+                      value: "align-child",
+                      isChecked: false,
+                    },
+                  ]}
+                  value={"align-child"}
+                  // onCheckboxChange={(value) => {
+                  //   this.onCheckedOverflow(value);
+                  // }}
+                />
+                <div className="editor-x-display-align-child-icons">
+                  <i className="fas fa-sort-amount-up"></i>
+                  <i className="fas fa-sort-alpha-up"></i>
+                  <i className="fas fa-sort-alpha-down editor-x-active"></i>
+                  <i className="fas fa-sort-amount-up"></i>
+                  <i className="fas fa-sort-alpha-up"></i>
+                  <i className="fas fa-sort-alpha-down"></i>
+                </div>
+              </div>
             </AccordionSection>
           </Accordion>
         </div>
