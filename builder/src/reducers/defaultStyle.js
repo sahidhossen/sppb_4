@@ -16,6 +16,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   alignItems: {
     local: {
@@ -34,6 +35,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   alignSelf: {
     local: {
@@ -52,6 +54,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   justifySelf: {
     local: {
@@ -70,6 +73,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   backfaceVisibility: {
     local: {
@@ -777,6 +781,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   filters: {
     local: {
@@ -1265,6 +1270,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   justifyItems: {
     local: {
@@ -1283,6 +1289,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   left: {
     local: {
