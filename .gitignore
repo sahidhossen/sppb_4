@@ -1,7 +1,6 @@
 /builder/node_modules
 /dist/css/*.css
 !/dist/css/bootstrap.min.css
-!/dist/css/font-awesome-5.min.css
 !/dist/css/editor-x-fonts.css
 /dist/js
 /dist/node_modules

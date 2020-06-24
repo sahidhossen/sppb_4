@@ -54,7 +54,7 @@ const DisplayComponent = () => {
             <span className="editor-x-display-control-text">Start</span>
           </div>
           <div className="editor-x-display-control-top">
-            <i className="editor-x-display-reverse-icon fas fa-history"></i>
+            <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
             <span className="editor-x-display-control-text">Top</span>
           </div>
           <div className="editor-x-display-control-bottom">
@@ -62,7 +62,7 @@ const DisplayComponent = () => {
           </div>
           <div className="editor-x-display-control-end">
             <span className="editor-x-display-control-text">End</span>
-            <i className="editor-x-display-reverse-icon fas fa-history"></i>
+            <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
           </div>
           <div className="editor-x-display-control-icons">
             <span className="editor-x-display-control-icon-left">
