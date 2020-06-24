@@ -10,11 +10,40 @@ import {
   RangeControl,
   Button,
   InputText,
+  SelectCustom,
 } from "../../../elements";
 
 const DisplayComponent = () => {
   return (
     <div className="editor-x-display-style">
+      <SelectCustom
+        value={"inline"}
+        options={[
+          { value: "inline", selected: true },
+          { value: "inline-block" },
+          { value: "block" },
+          { value: "none" },
+          { value: "flex" },
+          { value: "grid" },
+          { value: "table" },
+          { value: "contents" },
+          { value: "inline-flex" },
+          { value: "inline-grid" },
+          { value: "inline-table" },
+          { value: "list-item" },
+          { value: "run-in" },
+          { value: "table-caption" },
+          { value: "table-column-group" },
+          { value: "table-header-group" },
+          { value: "table-footer-group" },
+          { value: "table-row-group" },
+          { value: "table-cell" },
+          { value: "table-column" },
+          { value: "table-row" },
+          { value: "initial" },
+        ]}
+        // onSelectChange={onChangePositionName("position")}
+      />
       <div className="editor-x-img-preview">
         <div className="editor-x-display-img">{Images.flex}</div>
       </div>
@@ -25,7 +54,7 @@ const DisplayComponent = () => {
             <span className="editor-x-display-control-text">Start</span>
           </div>
           <div className="editor-x-display-control-top">
-            <i className="editor-x-display-reverse-icon fas fa-history"></i>
+            <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
             <span className="editor-x-display-control-text">Top</span>
           </div>
           <div className="editor-x-display-control-bottom">
@@ -33,7 +62,7 @@ const DisplayComponent = () => {
           </div>
           <div className="editor-x-display-control-end">
             <span className="editor-x-display-control-text">End</span>
-            <i className="editor-x-display-reverse-icon fas fa-history"></i>
+            <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
           </div>
           <div className="editor-x-display-control-icons">
             <span className="editor-x-display-control-icon-left">
