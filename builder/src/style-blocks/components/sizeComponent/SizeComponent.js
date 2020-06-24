@@ -1,6 +1,6 @@
 import React from "react";
 import { getBrowserValue } from "../../index";
-import { InputControl, Accordion, AccordionSection, Checkbox, RadioControl } from "../../../elements";
+import { InputControl, Accordion, AccordionSection, Checkbox, RadioControl, Divider } from "../../../elements";
 
 class SizeComponent extends React.Component {
   onChangeSize(value, name) {
@@ -110,42 +110,45 @@ class SizeComponent extends React.Component {
                 onChange={(value) => this.onChangeSize(value, "maxHeight")}
               />
             </div>
+            <Divider margin="10px -10px 10px 0" />
           </AccordionSection>
         </Accordion>
-        <Checkbox
-          options={[
-            {
-              label: "Overflow",
-              value: "overflow",
-              isChecked: isOverflow,
-            },
-          ]}
-          value={"visible"}
-          onCheckboxChange={(value) => {
-            this.onCheckedOverflow(value);
-          }}
-        />
-        {isOverflow && (
-          <RadioControl
-            activeClass="editor-x-active-item"
-            value={overflow.value}
-            onSelect={(value) => this.onChangeOverflow(value)}
-            items={[
+        <div className="editor-x-overflow-style">
+          <Checkbox
+            options={[
               {
-                name: "hidden",
-                title: "Hidden",
-              },
-              {
-                name: "scroll",
-                title: "Scroll",
-              },
-              {
-                name: "auto",
-                title: "Auto",
+                label: "Overflow",
+                value: "overflow",
+                isChecked: isOverflow,
               },
             ]}
+            value={"visible"}
+            onCheckboxChange={(value) => {
+              this.onCheckedOverflow(value);
+            }}
           />
-        )}
+          {isOverflow && (
+            <RadioControl
+              activeClass="editor-x-active-item"
+              value={overflow.value}
+              onSelect={(value) => this.onChangeOverflow(value)}
+              items={[
+                {
+                  name: "hidden",
+                  title: "Hidden",
+                },
+                {
+                  name: "scroll",
+                  title: "Scroll",
+                },
+                {
+                  name: "auto",
+                  title: "Auto",
+                },
+              ]}
+            />
+          )}
+        </div>
       </div>
     );
   }

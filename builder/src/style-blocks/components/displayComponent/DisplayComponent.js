@@ -66,19 +66,19 @@ const DisplayComponent = () => {
           </div>
           <div className="editor-x-display-control-icons">
             <span className="editor-x-display-control-icon-left">
-              <i className="fas fa-arrow-left"></i>
+              <i className="x-icon-align-items-start"></i>
             </span>
             <span className="editor-x-display-control-icon-top">
-              <i className="fas fa-arrow-up"></i>
+              <i className="x-icon-align-items-top"></i>
             </span>
             <span className="editor-x-display-control-icon-center">
-              <i className="fas fa-plus-circle"></i>
+              <i className="x-icon-plus-circle"></i>
             </span>
             <span className="editor-x-display-control-icon-bottom">
-              <i className="fas fa-arrow-down"></i>
+              <i className="x-icon-align-items-bottom"></i>
             </span>
             <span className="editor-x-display-control-icon-right">
-              <i className="fas fa-arrow-right"></i>
+              <i className="x-icon-align-items-end"></i>
             </span>
           </div>
         </div>
@@ -120,13 +120,31 @@ const DisplayComponent = () => {
           </div>
         </div>
         <div className="editor-x-display-item-align">
-          <i className="fas fa-sort-amount-up"></i>
-          <i className="fas fa-sort-alpha-up"></i>
-          <i className="fas fa-sort-alpha-down editor-x-active"></i>
+          <i className="x-icon-align-content-start">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
+          <i className="x-icon-align-content-center">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
+          <i className="x-icon-align-content-end editor-x-active">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
           <span className="editor-x-display-item-align-line"></span>
-          <i className="fas fa-sort-amount-up"></i>
-          <i className="fas fa-sort-alpha-up"></i>
-          <i className="fas fa-sort-alpha-down"></i>
+          <i className="x-icon-wrap-h-v">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
+          <i className="x-icon-justify-center">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
+          <i className="x-icon-justify-space-around">
+            <span className="path1"></span>
+            <span className="path2"></span>
+          </i>
         </div>
         <div className="editor-x-display-flex-children">
           <Accordion allowMultipleOpen>
@@ -193,12 +211,26 @@ const DisplayComponent = () => {
                   // }}
                 />
                 <div className="editor-x-display-align-child-icons">
-                  <i className="fas fa-sort-amount-up"></i>
-                  <i className="fas fa-sort-alpha-up"></i>
-                  <i className="fas fa-sort-alpha-down editor-x-active"></i>
-                  <i className="fas fa-sort-amount-up"></i>
-                  <i className="fas fa-sort-alpha-up"></i>
-                  <i className="fas fa-sort-alpha-down"></i>
+                  <i className="x-icon-align-content-start">
+                    <span className="path1"></span>
+                    <span className="path2"></span>
+                  </i>
+                  <i className="x-icon-align-content-center">
+                    <span className="path1"></span>
+                    <span className="path2"></span>
+                  </i>
+                  <i className="x-icon-align-content-end editor-x-active">
+                    <span className="path1"></span>
+                    <span className="path2"></span>
+                  </i>
+                  <i className="x-icon-align-content-basline">
+                    <span className="path1"></span>
+                    <span className="path2"></span>
+                  </i>
+                  <i className="x-icon-align-content-bottom">
+                    <span className="path1"></span>
+                    <span className="path2"></span>
+                  </i>
                 </div>
               </div>
             </AccordionSection>
