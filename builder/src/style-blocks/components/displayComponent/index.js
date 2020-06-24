@@ -10,11 +10,40 @@ import {
   RangeControl,
   Button,
   InputText,
+  SelectCustom,
 } from "../../../elements";
 
 const DisplayComponent = () => {
   return (
     <div className="editor-x-display-style">
+      <SelectCustom
+        value={"inline"}
+        options={[
+          { value: "inline", selected: true },
+          { value: "inline-block" },
+          { value: "block" },
+          { value: "none" },
+          { value: "flex" },
+          { value: "grid" },
+          { value: "table" },
+          { value: "contents" },
+          { value: "inline-flex" },
+          { value: "inline-grid" },
+          { value: "inline-table" },
+          { value: "list-item" },
+          { value: "run-in" },
+          { value: "table-caption" },
+          { value: "table-column-group" },
+          { value: "table-header-group" },
+          { value: "table-footer-group" },
+          { value: "table-row-group" },
+          { value: "table-cell" },
+          { value: "table-column" },
+          { value: "table-row" },
+          { value: "initial" },
+        ]}
+        // onSelectChange={onChangePositionName("position")}
+      />
       <div className="editor-x-img-preview">
         <div className="editor-x-display-img">{Images.flex}</div>
       </div>

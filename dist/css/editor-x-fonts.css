@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'editor-x-icon-font';
-  src:  url('../webfonts/editor-x-icon-font.eot?fcaf93');
-  src:  url('../webfonts/editor-x-icon-font.eot?fcaf93#iefix') format('embedded-opentype'),
-    url('../webfonts/editor-x-icon-font.ttf?fcaf93') format('truetype'),
-    url('../webfonts/editor-x-icon-font.woff?fcaf93') format('woff'),
-    url('../webfonts/editor-x-icon-font.svg?fcaf93#editor-x-icon-font') format('svg');
+  src:  url('../webfonts/editor-x-icon-font.eot?avfm18');
+  src:  url('../webfonts/editor-x-icon-font.eot?avfm18#iefix') format('embedded-opentype'),
+    url('../webfonts/editor-x-icon-font.ttf?avfm18') format('truetype'),
+    url('../webfonts/editor-x-icon-font.woff?avfm18') format('woff'),
+    url('../webfonts/editor-x-icon-font.svg?avfm18#editor-x-icon-font') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -61,44 +61,44 @@
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-around .path1:before {
+.x-icon-aligncontent-space-around .path1:before {
   content: "\e90a";
   color: rgb(112, 119, 133);
 }
-.x-icon-aligncontentspace-around .path2:before {
+.x-icon-aligncontent-space-around .path2:before {
   content: "\e90b";
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-between .path1:before {
+.x-icon-aligncontent-space-between .path1:before {
   content: "\e90c";
   color: rgb(112, 119, 133);
 }
-.x-icon-aligncontentspace-between .path2:before {
+.x-icon-aligncontent-space-between .path2:before {
   content: "\e90d";
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-between .path3:before {
+.x-icon-aligncontent-space-between .path3:before {
   content: "\e90e";
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-evenly .path1:before {
+.x-icon-aligncontent-space-evenly .path1:before {
   content: "\e90f";
   color: rgb(112, 119, 133);
 }
-.x-icon-aligncontentspace-evenly .path2:before {
+.x-icon-aligncontent-space-evenly .path2:before {
   content: "\e910";
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-evenly .path3:before {
+.x-icon-aligncontent-space-evenly .path3:before {
   content: "\e911";
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentspace-evenly .path4:before {
+.x-icon-aligncontent-space-evenly .path4:before {
   content: "\e912";
   margin-left: -1em;
   color: rgb(220, 227, 241);
@@ -112,11 +112,11 @@
   margin-left: -1em;
   color: rgb(220, 227, 241);
 }
-.x-icon-aligncontentstretch .path1:before {
+.x-icon-aligncontent-stretch .path1:before {
   content: "\e915";
   color: rgb(112, 119, 133);
 }
-.x-icon-aligncontentstretch .path2:before {
+.x-icon-aligncontent-stretch .path2:before {
   content: "\e916";
   margin-left: -1em;
   color: rgb(255, 255, 255);
@@ -278,7 +278,7 @@
 .x-icon-float-handler:before {
   content: "\e946";
 }
-.x-icon-forcedsmallcaps:before {
+.x-icon-forced-smallcaps:before {
   content: "\e947";
 }
 .x-icon-global:before {
@@ -437,10 +437,10 @@
 .x-icon-purge:before {
   content: "\e987";
 }
-.x-icon-recents-copy-1:before {
+.x-icon-mobile:before {
   content: "\e988";
 }
-.x-icon-recents-copy-2:before {
+.x-icon-recents-2:before {
   content: "\e989";
 }
 .x-icon-recents:before {
@@ -464,7 +464,7 @@
 .x-icon-reverse-down:before {
   content: "\e990";
 }
-.x-icon-reverseleftright:before {
+.x-icon-reverse-leftright:before {
   content: "\e991";
 }
 .x-icon-reverse-left:before {

@@ -10,28 +10,28 @@ const initialControls = {
           value: 1920,
           scale: 60.6,
           title: 'Desktop(Default)',
-          icon: 'fa fa-desktop',
+          icon: 'x-icon-desktop',
           details: 'Styles added here will apply at 1280px and up.'
         },
         // desktop: {
         //   value: 900, //1164,
         //   scale: 100,
         //   title: 'Desktop',
-        //   icon: 'fa fa-desktop',
+        //   icon: 'x-icon-desktop',
         //   details: 'Styles added here will apply at 1170px and up.'
         // },
         tablet: {
           value: 768,
           scale: 100,
           title: 'Tablet',
-          icon: 'fa fa-tablet',
+          icon: 'x-icon-tablet',
           details: 'Styles added here will apply at 1170px and up.'
         },
         mobile: {
           value: 320,
           scale: 100,
           title: 'Mobile',
-          icon: 'fa fa-mobile',
+          icon: 'x-icon-mobile',
           details: 'Styles added here will apply at 1170px and up.'
         },
       }

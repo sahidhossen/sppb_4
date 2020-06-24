@@ -40,6 +40,11 @@
 .editor-x-panel-header {
   display: flex;
   padding-bottom: 0.9091rem;
+  &.editor-x-panel-active {
+    .editor-x-panel-header-right {
+      border: 0;
+    }
+  }
 }
 .editor-x-panel-heading {
   display: block;

@@ -89,13 +89,13 @@ class ViewportList extends Component {
             return (
               <li key={name} onClick={() => this.props.update(name)} className={isActive ? 'editor-x-context-menu-item-active' : false}>
                 <div className="editor-x-context-menu-content-wrap">
-                  {isActive && <i className="fas fa-check editor-x-context-menu-checkmark"></i>}
+                  {isActive && <i className="x-icon-check editor-x-context-menu-checkmark"></i>}
                   <div className="editor-x-context-menu-icon">
                     <i className={viewport.icon}></i>
                   </div>
                   <div className="editor-x-context-menu-title-wrap">
                     <span className="editor-x-context-menu-title">
-                      {viewport.title}{" "}
+                      {viewport.title}
                     </span>
                     {/*<span className="sppb-viewport-notes">
                       {viewport.value} and down
