@@ -115,7 +115,7 @@ const DisplayComponent = () => {
         <div className="editor-x-display-flex-wrap">
           <label>Wrap</label>
           <div className="editor-x-display-flex-wrap-toggle">
-            <i className="editor-x-display-reverse-icon fas fa-history"></i>
+            <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
             <ToggleButton defaultChecked />
           </div>
         </div>
