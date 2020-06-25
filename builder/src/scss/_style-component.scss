@@ -866,10 +866,10 @@
   flex-wrap: wrap;
 }
 .editor-x-display-control-start {
-  height: 5.4545rem;
+  height: 5rem;
   display: flex;
   align-items: center;
-  margin-top: 1.3636rem;
+  margin-top: 1.7273rem;
 }
 .editor-x-display-control-top {
   display: flex;
@@ -886,10 +886,10 @@
   text-align: center;
 }
 .editor-x-display-control-end {
-  height: 5.4545rem;
+  height: 5rem;
   position: absolute;
   right: 1.3636rem;
-  top: 4.5455rem;
+  top: 5rem;
   .editor-x-display-reverse-icon {
     margin-top: 0.2727rem;
   }
@@ -913,10 +913,13 @@
   align-items: center;
   span {
     cursor: pointer;
+    color: var(--regent-gray);
+    &.editor-x-active {
+      color: var(--dark-bg-text-color);
+    }
   }
   i {
     font-size: 1.6rem;
-    color: var(--regent-gray);
   }
 }
 // .editor-x-display-control-icon-center {
@@ -949,6 +952,9 @@
   font-size: 0.7273rem;
   font-weight: 500;
   display: block;
+  &.editor-x-active {
+    color: var(--dark-bg-text-color);
+  }
 }
 .editor-x-side-control-icon-top {
   position: absolute;
