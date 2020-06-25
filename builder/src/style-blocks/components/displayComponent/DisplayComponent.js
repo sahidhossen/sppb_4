@@ -64,7 +64,7 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
             <label className="editor-x-panel-heading">Flow</label>
             <div className="editor-x-display-controllers">
               <div className="editor-x-display-control-start">
-                <span className="editor-x-display-control-text">Start</span>
+                <span className="editor-x-display-control-text editor-x-active">Start</span>
               </div>
               <div className="editor-x-display-control-top">
                 <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
@@ -78,8 +78,11 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
               </div>
               <div className="editor-x-side-control-icons">
-                <span className="editor-x-side-control-icon-left" onClick={() => changeAlignment("left")}>
-                  <i className="x-icon-align-items-start editor-x-active"></i>
+                <span
+                  className="editor-x-side-control-icon-left editor-x-active"
+                  onClick={() => changeAlignment("left")}
+                >
+                  <i className="x-icon-align-items-start"></i>
                 </span>
                 <span className="editor-x-side-control-icon-top" onClick={() => changeAlignment("top")}>
                   <i className="x-icon-align-items-top"></i>
