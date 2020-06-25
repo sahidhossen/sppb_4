@@ -1,5 +1,12 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent, StyleComponent, PositionComponent, DisplayComponent } from "style-blocks";
+import {
+  SpacingComponent,
+  Panel,
+  SizeComponent,
+  StyleComponent,
+  PositionComponent,
+  DisplayComponent,
+} from "style-blocks";
 import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
@@ -29,6 +36,7 @@ class StylePanel extends React.Component {
   render() {
     let { styleState, addonId } = this.props;
     let { spacing, size, backgrounds, style: styleProps, position, display } = styleState;
+    console.log("after change", display);
     return (
       <Fragment>
         <Panel icon="x-icon-spacing" title="Spacing">

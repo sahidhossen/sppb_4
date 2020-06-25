@@ -7,9 +7,9 @@ const Option = (props) => {
         key={`sppb-custom-select-${key}`}
         onClick={() => props.selectOption(key, option.value)}
       >
-        {props.selectedIcon &&
-          props.selectedItem === key &&
-          !props.styleTwo && <i className={`${props.selectedIcon}`}></i>}
+        {props.selectedIcon && props.selectedItem === key && !props.styleTwo && (
+          <i className={`${props.selectedIcon}`}></i>
+        )}
         {props.styleTwo && option.icon && (
           <span className="sppb-option-wrap">
             <i className={`${option.icon} sppb-option-icon`}></i>
