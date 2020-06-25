@@ -64,20 +64,20 @@ const DisplayComponent = () => {
             <span className="editor-x-display-control-text">End</span>
             <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
           </div>
-          <div className="editor-x-display-control-icons">
-            <span className="editor-x-display-control-icon-left">
+          <div className="editor-x-side-control-icons">
+            <span className="editor-x-side-control-icon-left">
               <i className="x-icon-align-items-start"></i>
             </span>
-            <span className="editor-x-display-control-icon-top">
+            <span className="editor-x-side-control-icon-top">
               <i className="x-icon-align-items-top"></i>
             </span>
-            <span className="editor-x-display-control-icon-center">
+            <span className="editor-x-side-control-icon-center">
               <i className="x-icon-plus-circle"></i>
             </span>
-            <span className="editor-x-display-control-icon-bottom">
+            <span className="editor-x-side-control-icon-bottom">
               <i className="x-icon-align-items-bottom"></i>
             </span>
-            <span className="editor-x-display-control-icon-right">
+            <span className="editor-x-side-control-icon-right">
               <i className="x-icon-align-items-end"></i>
             </span>
           </div>
@@ -128,7 +128,7 @@ const DisplayComponent = () => {
             <span className="path1"></span>
             <span className="path2"></span>
           </i>
-          <i className="x-icon-align-content-end editor-x-active">
+          <i className="x-icon-align-content-bottom editor-x-active">
             <span className="path1"></span>
             <span className="path2"></span>
           </i>
@@ -219,7 +219,7 @@ const DisplayComponent = () => {
                     <span className="path1"></span>
                     <span className="path2"></span>
                   </i>
-                  <i className="x-icon-align-content-end editor-x-active">
+                  <i className="x-icon-align-content-bottom editor-x-active">
                     <span className="path1"></span>
                     <span className="path2"></span>
                   </i>
@@ -227,7 +227,7 @@ const DisplayComponent = () => {
                     <span className="path1"></span>
                     <span className="path2"></span>
                   </i>
-                  <i className="x-icon-align-content-bottom">
+                  <i className="x-icon-justify-center">
                     <span className="path1"></span>
                     <span className="path2"></span>
                   </i>
