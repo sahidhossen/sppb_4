@@ -21,7 +21,25 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
   const changeAlignment = (position) => {
     if (position === "left") {
       if (flexDirection === "column") {
-        setCssAttributes({ alignItems: "flex-start" });
+        setCssAttributes({ justifyContent: "flex-start" });
+      } else {
+        if (justifyContent === "center") {
+          setCssAttributes({ alignItems: "flex-start" });
+        } else {
+          setCssAttributes({ alignItems: "flex-start" });
+          setCssAttributes({ justifyContent: "flex-start" });
+        }
+      }
+    } else if (position === "center") {
+      if (flexDirection === "column") {
+        setCssAttributes({ alignItems: "center" });
+      } else {
+        if (flexDirection !== "flex-start" && flexDirection !== "flex-end") {
+          setCssAttributes({ alignItems: "center" });
+          setCssAttributes({ justifyContent: "center" });
+        } else {
+          setCssAttributes({ justifyContent: "center" });
+        }
       }
     }
   };
