@@ -97,7 +97,7 @@ class SelectCustom extends React.Component {
     const { selectedItem, addParentClass, translateTop } = this.state;
 
     const selectedIndex = this.getSelectedIndex(value, options);
-
+    const _selectedItem = selectedItem ? selectedItem : selectedIndex;
     return (
       <div
         className={`sppb-select-wrapper editor-x-form-controllers${styleTwo ? " sppb-select-custom-style-two" : ""}${
@@ -124,7 +124,7 @@ class SelectCustom extends React.Component {
             <Option
               options={options}
               selectedIcon={selectedIcon}
-              selectedItem={selectedItem}
+              selectedItem={_selectedItem}
               styleTwo={styleTwo}
               selectOption={this.selectOption.bind(this)}
             />

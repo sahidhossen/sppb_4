@@ -818,6 +818,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexBasis: {
     local: {
@@ -836,6 +837,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexGrow: {
     local: {
@@ -854,6 +856,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexShrink: {
     local: {
@@ -872,6 +875,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexWrap: {
     local: {
@@ -890,6 +894,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   float: {
     local: {
@@ -1588,6 +1593,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   overflow: {
     local: {
