@@ -8,7 +8,7 @@ class ReusableComponent extends React.Component {
       <div className="sppb-docker-container sppb-reusable-component-docker">
         <SidebarHeader className={"right-sidebar-header"}>
           <span className="sppb-drag-icon">
-            <i className="fas fa-braille"></i>
+            <i className="x-icon-layer-nav"></i>
           </span>
           <div className="sppb-reusable-content">
             <p className="sppb-reuseable-title">
