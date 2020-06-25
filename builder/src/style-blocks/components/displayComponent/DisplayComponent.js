@@ -14,23 +14,15 @@ import {
 } from "../../../elements";
 
 const DisplayComponent = ({ style, setCssAttributes }) => {
-  const { display, alignItems, justifyContent } = style;
+  const { display, alignItems, justifyContent, flexDirection } = style;
   const onChangeDisplayType = (name) => (value) => {
     setCssAttributes({ [name]: value });
   };
-  const changeAlignment = (name, value) => {
-    if (name === "center") {
-      const commonPositions = ["flex-start", "flex-end"];
-      if (!commonPositions.includes(alignItems.value) && commonPositions.includes(justifyContent.value)) {
-        setCssAttributes({ alignItems: value });
-      } else if (commonPositions.includes(alignItems.value) && !commonPositions.includes(justifyContent.value)) {
-        setCssAttributes({ justifyContent: value });
-      } else {
-        setCssAttributes({ alignItems: value });
-        setCssAttributes({ justifyContent: value });
+  const changeAlignment = (position) => {
+    if (position === "left") {
+      if (flexDirection === "column") {
+        setCssAttributes({ alignItems: "flex-start" });
       }
-    } else {
-      setCssAttributes({ [name]: value });
     }
   };
   return (
@@ -86,31 +78,19 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
               </div>
               <div className="editor-x-side-control-icons">
-                <span
-                  className="editor-x-side-control-icon-left"
-                  onClick={() => changeAlignment("alignItems", "flex-start")}
-                >
+                <span className="editor-x-side-control-icon-left" onClick={() => changeAlignment("left")}>
                   <i className="x-icon-align-items-start editor-x-active"></i>
                 </span>
-                <span
-                  className="editor-x-side-control-icon-top"
-                  onClick={() => changeAlignment("justifyContent", "flex-start")}
-                >
+                <span className="editor-x-side-control-icon-top" onClick={() => changeAlignment("top")}>
                   <i className="x-icon-align-items-top"></i>
                 </span>
-                <span className="editor-x-side-control-icon-center" onClick={() => changeAlignment("center", "center")}>
+                <span className="editor-x-side-control-icon-center" onClick={() => changeAlignment("center")}>
                   <i className="x-icon-plus-circle"></i>
                 </span>
-                <span
-                  className="editor-x-side-control-icon-bottom"
-                  onClick={() => changeAlignment("justifyContent", "flex-end")}
-                >
+                <span className="editor-x-side-control-icon-bottom" onClick={() => changeAlignment("bottom")}>
                   <i className="x-icon-align-items-bottom"></i>
                 </span>
-                <span
-                  className="editor-x-side-control-icon-right"
-                  onClick={() => changeAlignment("alignItems", "flex-end")}
-                >
+                <span className="editor-x-side-control-icon-right" onClick={() => changeAlignment("right")}>
                   <i className="x-icon-align-items-end"></i>
                 </span>
               </div>
