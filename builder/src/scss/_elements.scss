@@ -298,7 +298,7 @@
 }
 .sppb-custom-options {
   position: absolute;
-  display: block;
+  display: none;
   top: 0;
   transform: translate(0);
   left: auto;
@@ -313,12 +313,12 @@
   width: 18.9091rem;
   border-radius: 0.2727rem;
   text-align: center;
-  text-transform: capitalize;
 }
 .sppb-custom-select.sppb-options-open .sppb-custom-options {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+  display: block;
 }
 .sppb-custom-option {
   display: block;
