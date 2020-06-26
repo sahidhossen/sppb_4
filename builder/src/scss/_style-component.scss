@@ -70,6 +70,11 @@
   border: solid 1px var(--brush-marble-gray);
   background: var(--shark-dark);
   margin-right: 0.9091rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: var(--dark-bg-text-color);
 }
 //Panel style
 .editor-x-panel-header {

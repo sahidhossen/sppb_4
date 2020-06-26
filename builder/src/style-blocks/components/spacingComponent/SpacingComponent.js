@@ -334,10 +334,10 @@ class SpacingComponent extends React.Component {
         <Accordion allowMultipleOpen>
           <AccordionSection label="Constrains" icon="fas fa-angle-right">
             <div className="editor-x-side-control-icons">
-              <span className="editor-x-side-control-icon-left">
+              <span className="editor-x-side-control-icon-left editor-x-active">
                 <i className="x-icon-align-items-start"></i>
               </span>
-              <span className="editor-x-side-control-icon-top">
+              <span className="editor-x-side-control-icon-top editor-x-active">
                 <i className="x-icon-align-items-top"></i>
               </span>
               <span className="editor-x-side-control-icon-center">
@@ -352,11 +352,11 @@ class SpacingComponent extends React.Component {
             </div>
             <div className="editor-x-fixed-width-height-wrap">
               <div className="editor-x-fixed-width">
-                <span className="editor-x-fixed-width-icon"></span>
+                <span className="editor-x-fixed-width-icon"><i className="x-icon-fixed-width"></i></span>
                 Fixed Width
               </div>
               <div className="editor-x-fixed-height">
-                <span className="editor-x-fixed-height-icon"></span>
+                <span className="editor-x-fixed-height-icon"><i className="x-icon-fixed-height"></i></span>
                 Fixed Height
               </div>
             </div>
