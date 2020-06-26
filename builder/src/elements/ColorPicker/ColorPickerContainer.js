@@ -306,105 +306,108 @@ export class ColorPickerContainer extends Component {
             ]}
           />
         )}
-
-        {(selectedType === "linear-gradient" ||
-          selectedType === "radial-gradient" ||
-          type === "linear-gradient" ||
-          type === "radial-gradient") && (
-          <RangeWithTwoController
-            step={2}
-            gradientType={type}
-            onChange={(value, name) => this.handleColorPositionChange(value, name)}
-            onClick={(name, color) => this.selectController(name, color)}
-            leftColor={
-              (gradientProps && gradientProps.stops[0].color.value) ||
-              (_gradientProps && _gradientProps.stops[0].color.value)
-            }
-            rightColor={
-              (gradientProps && gradientProps.stops[1].color.value) ||
-              (_gradientProps && _gradientProps.stops[1].color.value)
-            }
-            angle={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle}
-            extent={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
-            position={(gradientProps && gradientProps.position) || position}
-            leftColorPosition={
-              (gradientProps && gradientProps.stops[0].position) || (_gradientProps && _gradientProps.stops[0].position)
-            }
-            rightColorPosition={
-              (gradientProps && gradientProps.stops[1].position) || (_gradientProps && _gradientProps.stops[1].position)
-            }
-          />
-        )}
-
-        {(type === "linear-gradient" || selectedType === "linear-gradient") && (
-          <div className="editor-x-linear-angle">
-            <InputControl
-              label="Angle"
-              value={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle} // {height: {value:, unit:}} Object | string
-              unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
-              onChange={(value) => this.handleAngleChange(value)}
+        <div className="editor-x-gradient-control-wrap">
+          {(selectedType === "linear-gradient" ||
+            selectedType === "radial-gradient" ||
+            type === "linear-gradient" ||
+            type === "radial-gradient") && (
+            <RangeWithTwoController
+              step={2}
+              gradientType={type}
+              onChange={(value, name) => this.handleColorPositionChange(value, name)}
+              onClick={(name, color) => this.selectController(name, color)}
+              leftColor={
+                (gradientProps && gradientProps.stops[0].color.value) ||
+                (_gradientProps && _gradientProps.stops[0].color.value)
+              }
+              rightColor={
+                (gradientProps && gradientProps.stops[1].color.value) ||
+                (_gradientProps && _gradientProps.stops[1].color.value)
+              }
+              angle={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle}
+              extent={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
+              position={(gradientProps && gradientProps.position) || position}
+              leftColorPosition={
+                (gradientProps && gradientProps.stops[0].position) ||
+                (_gradientProps && _gradientProps.stops[0].position)
+              }
+              rightColorPosition={
+                (gradientProps && gradientProps.stops[1].position) ||
+                (_gradientProps && _gradientProps.stops[1].position)
+              }
             />
-          </div>
-        )}
+          )}
 
-        {(type === "radial-gradient" || selectedType === "radial-gradient") && (
-          <Fragment>
-            <div className="editor-x-radial-size">
-              <span className="editor-x-radial-position-text">Position</span>
-              <RadioControl
-                className="editor-x-radio-control"
-                activeClass="editor-x-active-item"
-                value={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
-                onSelect={(selectedItem) => this.handleSelect(selectedItem, "extent")}
-                items={[
-                  {
-                    name: "closest-side",
-                    className: "item-one sppb-border-right",
-                    icon: "fas fa-arrows-alt-h",
-                  },
-                  {
-                    name: "closest-corner",
-                    className: "item-two sppb-border-right",
-                    icon: "fas fa-compress-arrows-alt",
-                  },
-                  {
-                    name: "farthest-side",
-                    className: "item-three",
-                    icon: "fas fa-expand-arrows-alt",
-                  },
-                  {
-                    name: "farthest-corner",
-                    className: "item-three",
-                    icon: "fas fa-external-link-square-alt",
-                  },
-                ]}
+          {(type === "linear-gradient" || selectedType === "linear-gradient") && (
+            <div className="editor-x-linear-angle">
+              <InputControl
+                label="Angle"
+                value={(gradientProps && gradientProps.angle) || (_gradientProps && _gradientProps.angle) || angle} // {height: {value:, unit:}} Object | string
+                unit={{ deg: "DEG", rad: "RAD", turn: "TURN", grad: "GRAD" }} // optional
+                onChange={(value) => this.handleAngleChange(value)}
               />
             </div>
+          )}
 
-            <div className="editor-x-radial-positions-top-left">
-              <InputControl
-                label="Left"
-                value={
-                  (gradientProps && gradientProps.position.x) ||
-                  (_gradientProps && _gradientProps.position.x) ||
-                  position.x
-                } // {height: {value:, unit:}} Object | string
-                unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={(value) => this.handlePositionChange(value, "x")}
-              />
-              <InputControl
-                label="Top"
-                value={
-                  (gradientProps && gradientProps.position.y) ||
-                  (_gradientProps && _gradientProps.position.y) ||
-                  position.y
-                } // {height: {value:, unit:}} Object | string
-                unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
-                onChange={(value) => this.handlePositionChange(value, "y")}
-              />
-            </div>
-          </Fragment>
-        )}
+          {(type === "radial-gradient" || selectedType === "radial-gradient") && (
+            <Fragment>
+              <div className="editor-x-radial-size">
+                <span className="editor-x-radial-position-text">Position</span>
+                <RadioControl
+                  className="editor-x-radio-control"
+                  activeClass="editor-x-active-item"
+                  value={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
+                  onSelect={(selectedItem) => this.handleSelect(selectedItem, "extent")}
+                  items={[
+                    {
+                      name: "closest-side",
+                      className: "item-one sppb-border-right",
+                      icon: "fas fa-arrows-alt-h",
+                    },
+                    {
+                      name: "closest-corner",
+                      className: "item-two sppb-border-right",
+                      icon: "fas fa-compress-arrows-alt",
+                    },
+                    {
+                      name: "farthest-side",
+                      className: "item-three",
+                      icon: "fas fa-expand-arrows-alt",
+                    },
+                    {
+                      name: "farthest-corner",
+                      className: "item-three",
+                      icon: "fas fa-external-link-square-alt",
+                    },
+                  ]}
+                />
+              </div>
+
+              <div className="editor-x-radial-positions-top-left">
+                <InputControl
+                  label="Left"
+                  value={
+                    (gradientProps && gradientProps.position.x) ||
+                    (_gradientProps && _gradientProps.position.x) ||
+                    position.x
+                  } // {height: {value:, unit:}} Object | string
+                  unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
+                  onChange={(value) => this.handlePositionChange(value, "x")}
+                />
+                <InputControl
+                  label="Top"
+                  value={
+                    (gradientProps && gradientProps.position.y) ||
+                    (_gradientProps && _gradientProps.position.y) ||
+                    position.y
+                  } // {height: {value:, unit:}} Object | string
+                  unit={{ "%": "%", px: "PX", vh: "VH", vw: "VW" }} // optional
+                  onChange={(value) => this.handlePositionChange(value, "y")}
+                />
+              </div>
+            </Fragment>
+          )}
+        </div>
 
         <ColorPicker
           color={(backgroundColor && backgroundColor.value) || color}

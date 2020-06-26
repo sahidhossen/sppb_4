@@ -47,9 +47,10 @@ class AddonLibraries extends React.Component {
     const categories = Object.keys(addonListCategory);
     const categoryIcons = {
       text: "x-icon-text",
-      grid: "x-icon-layouts",
+      layouts: "x-icon-layouts",
       containers: "x-icon-containers",
     };
+    console.log("cat", categoryIcons);
     return categories.map((category) => (
       <Category
         categoryRef={this.categoryRef}

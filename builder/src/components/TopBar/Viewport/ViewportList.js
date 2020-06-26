@@ -76,7 +76,7 @@ class ViewportList extends Component {
     console.log("viewport", activeViewport)
     return (
       <div
-        className="editor-x-context-menu-list editor-x-popup"
+        className="editor-x-context-menu-viewport editor-x-popup"
         style={this.state.contextStyle}
         ref={(ref) => {
           this.contextMenuWrapper = ref;

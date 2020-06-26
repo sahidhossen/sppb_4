@@ -14,9 +14,7 @@ export class Category extends Component {
         className={"editor-x-dropdown-item " + (isActive ? "active" : "")}
       >
         <div className="editor-x-dropdown-icons">
-          {categoryIcon && (
-            <i className={`${categoryIcon} editor-x-dropdown-category`}></i>
-          )}
+          {categoryIcon && <i className={`${categoryIcon} editor-x-dropdown-category`}></i>}
           <i className="x-icon-chevron-down editor-x-dropdown-angle"></i>
         </div>
         {category.title}

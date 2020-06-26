@@ -500,13 +500,15 @@
   }
 }
 .editor-x-background-drag {
-  font-size: 0.6rem;
-  padding-left: 0.7273rem;
+  font-size: 2rem;
+  padding-left: 2px;
   opacity: 0;
   visibility: hidden;
-  @include transition(0.3s);
   position: absolute;
   cursor: grab;
+  line-height: 1;
+  color: #707785;
+  @include transition(0.3s);
 }
 .editor-x-background-item {
   display: flex;
