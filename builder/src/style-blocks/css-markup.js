@@ -1,5 +1,6 @@
 import hyphenate from "hyphenate-style-name";
 import { isObject } from "lodash";
+import { getBackgroundString } from "../lib/utils";
 /**
  * Convert computed property object to css object and string
  * @param {Object} attributes List of css computed property
@@ -17,12 +18,19 @@ export const createMarkup = (attributes) => {
   for (i = 0; i < len; i++) {
     const key = keys[i];
     let preValue = attributes[key];
-
     let value = "";
-    if (isObject(preValue)) {
-      value = addUnit(preValue);
+
+    if (key === "backgroundImages") {
+      preValue.forEach(({ type, ...restProps }) => {
+        value += `${getBackgroundString(type, restProps)}, `;
+      });
+      value = value.trim().slice(0, -1);
     } else {
-      value = preValue;
+      if (isObject(preValue)) {
+        value = addUnit(preValue);
+      } else {
+        value = preValue;
+      }
     }
 
     cssString += hyphenate(key) + ":" + value + ";";

@@ -33,8 +33,8 @@ class Viewport extends React.Component {
           }}
           onClick={this.openViewportList.bind(this)}
         >
-          <i className={viewport.icon}></i>{" "}
-          <span className="fas fa-angle-down"></span>
+          <i className={viewport.icon}></i>
+          <span className="x-icon-chevron-down"></span>
           <span className="editor-x-responsive-text">Responsive</span>
         </div>
         {this.state.isList && (

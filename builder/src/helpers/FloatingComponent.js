@@ -152,7 +152,7 @@ class FloatingComponent extends Component {
             className="editor-x-addon-settings-title"
             ref={this.contextHeader}
           >
-            <i className="fas fa-grip-horizontal"></i>
+            <i className="x-icon-float-handler"></i>
             Color Pallete
           </div>
           {children}

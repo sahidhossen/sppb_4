@@ -46,7 +46,7 @@ class AddonConfigTag extends React.Component {
           style={{ pointerEvents: "auto" }}
           onClick={this.openList.bind(this)}
         >
-          <span>{addon.name}</span> <i className="fas fa-cog"></i>
+          <span>{addon.name}</span> <i className="x-icon-settings"></i>
         </div>
 
         {popoverSettingPanel.status && (

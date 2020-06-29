@@ -11,7 +11,7 @@ class Topbar extends React.Component {
       <div className="sppb-topbar-container">
         <div className="sppb-topbar-left">
           <div className="sppb-topbar-menu">
-            <i className="fas fa-bars"></i>
+            <i className="x-icon-menu"></i>
           </div>
           <ViewContextProvider>
             <Zoom />

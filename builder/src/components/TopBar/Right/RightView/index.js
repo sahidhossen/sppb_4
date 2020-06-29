@@ -32,8 +32,8 @@ class RightView extends React.Component {
           }}
           onClick={this.openList.bind(this)}
         >
-          <i className="fas fa-sliders-h"></i>
-          <span className="fas fa-angle-down editor-x-dropdown-angle"></span>
+          <i className="x-icon-slider"></i>
+          <span className="x-icon-chevron-down editor-x-dropdown-angle"></span>
           <span className="editor-x-context-text">View</span>
         </div>
         {this.state.isList && (

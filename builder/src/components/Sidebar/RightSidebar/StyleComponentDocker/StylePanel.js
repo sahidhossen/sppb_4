@@ -1,5 +1,13 @@
 import React, { Fragment } from "react";
-import { SpacingComponent, Panel, SizeComponent, StyleComponent, PositionComponent, DisplayComponent } from "style-blocks";
+import {
+  SpacingComponent,
+  Panel,
+  SizeComponent,
+  StyleComponent,
+  PositionComponent,
+  DisplayComponent,
+  TypographyComponent
+} from "style-blocks";
 import { BackgroundComponent } from "../../../../style-blocks";
 
 class StylePanel extends React.Component {
@@ -28,49 +36,57 @@ class StylePanel extends React.Component {
 
   render() {
     let { styleState, addonId } = this.props;
-    let { spacing, size, backgrounds, style: styleProps, position, display } = styleState;
+    let { spacing, size, backgrounds, style: styleProps, position, display, typography } = styleState;
+    console.log("after change", display);
     return (
       <Fragment>
-        <Panel icon="fas fa-arrows-alt-v" title="Spacing">
+        <Panel icon="x-icon-spacing" title="Spacing">
           <SpacingComponent
             style={spacing}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "spacing")}
           />
         </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Size">
+        <Panel icon="x-icon-size" title="Size">
           <SizeComponent
             style={size}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "size")}
           />
         </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Background">
+        <Panel icon="x-icon-background" title="Background">
           <BackgroundComponent
             style={backgrounds}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "backgrounds")}
           />
         </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Style">
+        <Panel icon="x-icon-style" title="Style">
           <StyleComponent
             style={styleProps}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "style")}
           />
         </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Positioning">
+        <Panel icon="x-icon-position" title="Position">
           <PositionComponent
             style={position}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "position")}
           />
         </Panel>
-        <Panel icon="fas fa-arrows-alt-v" title="Display">
+        <Panel icon="x-icon-compositon" title="Display">
           <DisplayComponent
             style={display}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "display")}
+          />
+        </Panel>
+        <Panel icon="x-icon-typography" title="Typography">
+          <TypographyComponent
+            style={typography}
+            addonId={addonId}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "typography")}
           />
         </Panel>
 

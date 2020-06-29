@@ -163,7 +163,7 @@
       padding: 0 0.1818rem;
       height: 1.9091rem;
       color: var(--white);
-      width: 30px;
+      width: 2.7273rem;
       box-shadow: none;
       &:hover,
       &:focus {
@@ -195,7 +195,7 @@
   padding: 0.183rem;
   background: var(--charcoal-dark);
   display: flex;
-  margin: 10px 0 15px;
+  margin: 0.9091rem 0 1.3636rem;
   button {
     background: transparent;
     border: 0;
@@ -205,6 +205,8 @@
     padding: 0.275rem;
     flex: 1 1 auto;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
     &.editor-x-active-tab,
     &.editor-x-active-item {
       border-radius: 0.2273rem;
@@ -255,6 +257,7 @@
   color: var(--chateua-gray);
   padding: 0.4545rem;
   cursor: pointer;
+  text-align: center;
   &.editor-x-accordion-opened {
     background: var(--shark-dark);
     span {
@@ -265,12 +268,6 @@
   span {
     color: var(--battleship-gray);
     float: right;
-  }
-}
-.editor-x-accordion-content {
-  > * {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
@@ -301,7 +298,7 @@
 }
 .sppb-custom-options {
   position: absolute;
-  display: block;
+  display: none;
   top: 0;
   transform: translate(0);
   left: auto;
@@ -316,12 +313,12 @@
   width: 18.9091rem;
   border-radius: 0.2727rem;
   text-align: center;
-  text-transform: capitalize;
 }
 .sppb-custom-select.sppb-options-open .sppb-custom-options {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+  display: block;
 }
 .sppb-custom-option {
   display: block;
@@ -377,9 +374,9 @@
     top: 2.3rem;
     width: 100%;
     border-radius: 0.2727rem;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 6px 12px 0 rgba(var(var(--black-rgb)), 0.3);
+    -webkit-backdrop-filter: blur(0.5455rem);
+    backdrop-filter: blur(0.5455rem);
+    box-shadow: 0 0.5455rem 1.0909rem 0 rgba(var(var(--black-rgb)), 0.3);
     @include border("", 0.5px, solid, var(--battleship-gray));
     background: rgba(var(--shark-dark-rgb), 0.8);
   }
@@ -529,9 +526,6 @@ label.sppb-radio-buttons-label {
 }
 
 //Checkbox
-.editor-x-checkbox {
-  padding-bottom: 0.9091rem;
-}
 .editor-x-checkbox-title {
   margin: 0;
 }
@@ -597,7 +591,7 @@ label.editor-x-checkbox-label {
   $input-bg-color,
   $input-thumb-color,
   $input-height: 0.9091rem,
-  $input-border-radius: 14px
+  $input-border-radius: 1.2727rem
 ) {
   display: flex;
   justify-content: space-between;
@@ -698,7 +692,7 @@ label.editor-x-checkbox-label {
 }
 
 .editor-x-range-slider {
-  @include range-slider(100%, auto, 50px, #f1efef, #413f41);
+  @include range-slider(100%, auto, 4.5455rem, #f1efef, #413f41);
 }
 //Input control
 .editor-x-input-control {

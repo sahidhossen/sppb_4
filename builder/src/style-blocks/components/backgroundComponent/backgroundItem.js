@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from "react";
-import { getBackgroundString, isObject } from "../../../lib/utils";
+import React, { Component } from "react";
+import { getBackgroundString } from "../../../lib/utils";
 import FloatingComponent from "../../../helpers/FloatingComponent";
 import ColorPickerContainer from "../../../elements/ColorPicker/ColorPickerContainer";
-import {Divider} from "../../../elements";
+import { Divider } from "../../../elements";
 
 class BackgroundItem extends Component {
   constructor() {
@@ -22,6 +22,7 @@ class BackgroundItem extends Component {
     const {
       type,
       changeBackgroundValue,
+      addNewColor,
       backgroundImages,
       setCssAttributes,
       backgroundColor,
@@ -36,7 +37,7 @@ class BackgroundItem extends Component {
     return (
       <div className="editor-x-background-item-wrapper">
         <div className="editor-x-background-drag">
-          <i className="fas fa-braille"></i>
+          <i className="x-icon-layer-nav"></i>
         </div>
         <div className="editor-x-background-item">
           <div className="editor-x-background-item-left">
@@ -59,6 +60,7 @@ class BackgroundItem extends Component {
             >
               <ColorPickerContainer
                 type={type}
+                addNewColor={addNewColor}
                 gradientProps={(!restProps.identity && restProps) || undefined}
                 identity={restProps.identity}
                 changeBackgroundValue={changeBackgroundValue}
@@ -68,8 +70,8 @@ class BackgroundItem extends Component {
               />
             </FloatingComponent>
           )}
-          </div>
-          <Divider width="100%" margin="0 0 0 15px"/>
+        </div>
+        <Divider width="100%" margin="0 0 0 15px" />
       </div>
     );
   }

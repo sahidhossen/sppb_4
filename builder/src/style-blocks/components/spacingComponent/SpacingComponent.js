@@ -1,5 +1,5 @@
 import React from "react";
-import RadioControl from "../../../elements/RadioControl";
+import { RadioControl, Divider, Accordion, AccordionSection } from "../../../elements";
 import SpaceBox from "./spaceBox";
 
 class SpacingComponent extends React.Component {
@@ -121,19 +121,34 @@ class SpacingComponent extends React.Component {
           items={[
             {
               name: "item1",
-              title: <i className="fas fa-sort-amount-up"></i>,
+              title: <i className="x-icon-align-right"></i>,
               className: "item-one",
               // icon: "fas fa-magic",
             },
             {
               name: "item2",
-              title: <i className="fas fa-sort-amount-down-alt"></i>,
+              title: <i className="x-icon-align-center"></i>,
               className: "item-two",
             },
             {
               name: "item3",
-              title: <i className="fas fa-sort-amount-up"></i>,
+              title: <i className="x-icon-align-left"></i>,
               className: "item-three",
+            },
+            {
+              name: "item4",
+              title: <i className="x-icon-align-top"></i>,
+              className: "item-four",
+            },
+            {
+              name: "item5",
+              title: <i className="x-icon-align-middle"></i>,
+              className: "item-five",
+            },
+            {
+              name: "item6",
+              title: <i className="x-icon-align-bottom"></i>,
+              className: "item-six",
             },
           ]}
         />
@@ -150,7 +165,7 @@ class SpacingComponent extends React.Component {
           >
             <div className="editor-x-spacing-value">{marginLeft.value.value || 0}</div>
             <span
-              className={`fas ${marginLock === "V" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+              className={`${marginLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
               onClick={() => this.onMarginLock("V")}
             ></span>
           </SpaceBox>
@@ -168,7 +183,7 @@ class SpacingComponent extends React.Component {
             <div className="editor-x-spacing-value">{marginTop.value.value || 0}</div>
             <p className="editor-x-margin-text">M</p>
             <span
-              className={`fas ${marginLock === "H" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+              className={`${marginLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
               onClick={() => this.onMarginLock("H")}
             ></span>
           </SpaceBox>
@@ -185,7 +200,7 @@ class SpacingComponent extends React.Component {
           >
             <div className="editor-x-spacing-value">{marginBottom.value.value || 0}</div>
             <span
-              className={`fas ${marginLock === "H" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+              className={`${marginLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
               onClick={() => this.onMarginLock("H")}
             ></span>
           </SpaceBox>
@@ -202,7 +217,7 @@ class SpacingComponent extends React.Component {
           >
             <div className="editor-x-spacing-value">{marginRight.value.value || 0}</div>
             <span
-              className={`fas ${marginLock === "V" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+              className={`${marginLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
               onClick={() => this.onMarginLock("V")}
             ></span>
           </SpaceBox>
@@ -220,7 +235,7 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingLeft.value.value || 0}</div>
               <span
-                className={`fas ${paddingLock === "V" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+                className={`${paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("V")}
               ></span>
             </SpaceBox>
@@ -236,7 +251,7 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingTop.value.value || 0}</div>
               <span
-                className={`fas ${paddingLock === "H" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+                className={`${paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("H")}
               ></span>
             </SpaceBox>
@@ -253,7 +268,7 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingBottom.value.value || 0}</div>
               <span
-                className={`fas ${paddingLock === "H" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+                className={`${paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("H")}
               ></span>
             </SpaceBox>
@@ -269,7 +284,7 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingRight.value.value || 0}</div>
               <span
-                className={`fas ${paddingLock === "V" ? "fa-unlink" : "fa-link"} editor-x-link-icon`}
+                className={`${paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("V")}
               ></span>
             </SpaceBox>
@@ -315,6 +330,38 @@ class SpacingComponent extends React.Component {
             },
           ]}
         />
+        <Divider margin="10px -15px" />
+        <Accordion allowMultipleOpen>
+          <AccordionSection label="Constrains" icon="fas fa-angle-right">
+            <div className="editor-x-side-control-icons">
+              <span className="editor-x-side-control-icon-left editor-x-active">
+                <i className="x-icon-align-items-start"></i>
+              </span>
+              <span className="editor-x-side-control-icon-top editor-x-active">
+                <i className="x-icon-align-items-top"></i>
+              </span>
+              <span className="editor-x-side-control-icon-center">
+                <i className="x-icon-plus-circle"></i>
+              </span>
+              <span className="editor-x-side-control-icon-bottom">
+                <i className="x-icon-align-items-bottom"></i>
+              </span>
+              <span className="editor-x-side-control-icon-right">
+                <i className="x-icon-align-items-end"></i>
+              </span>
+            </div>
+            <div className="editor-x-fixed-width-height-wrap">
+              <div className="editor-x-fixed-width">
+                <span className="editor-x-fixed-width-icon"><i className="x-icon-fixed-width"></i></span>
+                Fixed Width
+              </div>
+              <div className="editor-x-fixed-height">
+                <span className="editor-x-fixed-height-icon"><i className="x-icon-fixed-height"></i></span>
+                Fixed Height
+              </div>
+            </div>
+          </AccordionSection>
+        </Accordion>
       </div>
     );
   }

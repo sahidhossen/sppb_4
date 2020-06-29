@@ -16,6 +16,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   alignItems: {
     local: {
@@ -34,6 +35,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   alignSelf: {
     local: {
@@ -52,6 +54,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   justifySelf: {
     local: {
@@ -70,6 +73,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   backfaceVisibility: {
     local: {
@@ -777,6 +781,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   filters: {
     local: {
@@ -813,6 +818,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexBasis: {
     local: {
@@ -831,6 +837,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexGrow: {
     local: {
@@ -849,6 +856,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexShrink: {
     local: {
@@ -867,6 +875,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   flexWrap: {
     local: {
@@ -885,6 +894,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   float: {
     local: {
@@ -1265,6 +1275,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   justifyItems: {
     local: {
@@ -1283,6 +1294,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   left: {
     local: {
@@ -1581,6 +1593,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "display", type: "" },
   },
   overflow: {
     local: {

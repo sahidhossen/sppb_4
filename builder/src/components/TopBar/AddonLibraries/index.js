@@ -46,9 +46,9 @@ class AddonLibraries extends React.Component {
     const { showDropDown, selectedCategory } = this.state;
     const categories = Object.keys(addonListCategory);
     const categoryIcons = {
-      text: "fas fa-text-height",
-      layouts: "fas fa-layer-group",
-      containers: "fas fa-toolbox",
+      text: "x-icon-text",
+      layouts: "x-icon-layouts",
+      containers: "x-icon-containers",
     };
     return categories.map((category) => (
       <Category
