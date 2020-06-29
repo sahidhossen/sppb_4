@@ -81,11 +81,7 @@ class AddonLibraries extends React.Component {
 }
 export default compose([
   withSelect((select) => {
-    let {
-      getMediaQueries,
-      getActiveMediaQuery,
-      getDefaultAddonList,
-    } = select();
+    let { getMediaQueries, getActiveMediaQuery, getDefaultAddonList } = select();
     let addonList = getDefaultAddonList();
     let addonListCategory = blockListForTools(addonList);
     return {

@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import classNames from "classnames/bind";
 import Images from "./assets";
 import {
   Checkbox,
@@ -15,34 +16,42 @@ import {
 
 const DisplayComponent = ({ style, setCssAttributes }) => {
   const { display, alignItems, justifyContent, flexDirection } = style;
+  const initialPosition = {
+    start: true,
+    top: false,
+    end: false,
+    bottom: false,
+    center: false,
+  };
+  const [selectedPosition, setSelectedPosition] = useState(initialPosition);
+  const pairPositions = {
+    start: "end",
+    end: "start",
+    top: "bottom",
+    bottom: "top",
+  };
+
   const onChangeDisplayType = (name) => (value) => {
     setCssAttributes({ [name]: value });
   };
-  const changeAlignment = (position) => {
-    if (position === "left") {
-      if (flexDirection === "column") {
-        setCssAttributes({ justifyContent: "flex-start" });
-      } else {
-        if (justifyContent === "center") {
-          setCssAttributes({ alignItems: "flex-start" });
-        } else {
-          setCssAttributes({ alignItems: "flex-start" });
-          setCssAttributes({ justifyContent: "flex-start" });
-        }
-      }
-    } else if (position === "center") {
-      if (flexDirection === "column") {
-        setCssAttributes({ alignItems: "center" });
-      } else {
-        if (flexDirection !== "flex-start" && flexDirection !== "flex-end") {
-          setCssAttributes({ alignItems: "center" });
-          setCssAttributes({ justifyContent: "center" });
-        } else {
-          setCssAttributes({ justifyContent: "center" });
-        }
-      }
+
+  const changePosition = (position) => {
+    const totalActive = Object.keys(selectedPosition).reduce((sum, key) => {
+      if (selectedPosition[key]) sum++;
+      return sum;
+    }, 0);
+    if (totalActive === 2) {
+      setSelectedPosition({ center: true });
+    } else {
+      setSelectedPosition((prevState) => ({
+        ...prevState,
+        ...{ [position]: !prevState[position], [pairPositions[position]]: false },
+      }));
     }
   };
+
+  const { start, top, end, bottom, center } = selectedPosition;
+
   return (
     <div className="editor-x-display-style">
       <SelectCustom
@@ -82,36 +91,50 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
             <label className="editor-x-panel-heading">Flow</label>
             <div className="editor-x-display-controllers">
               <div className="editor-x-display-control-start">
-                <span className="editor-x-display-control-text editor-x-active">Start</span>
+                <span className={classNames("editor-x-display-control-text", { "editor-x-active": start })}>Start</span>
               </div>
               <div className="editor-x-display-control-top">
                 <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
-                <span className="editor-x-display-control-text">Top</span>
+                <span className={classNames("editor-x-display-control-text", { "editor-x-active": top })}>Top</span>
               </div>
               <div className="editor-x-display-control-bottom">
-                <span className="editor-x-display-control-text">Bottom</span>
+                <span className={classNames("editor-x-display-control-text", { "editor-x-active": bottom })}>
+                  Bottom
+                </span>
               </div>
               <div className="editor-x-display-control-end">
-                <span className="editor-x-display-control-text">End</span>
+                <span className={classNames("editor-x-display-control-text", { "editor-x-active": end })}>End</span>
                 <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
               </div>
               <div className="editor-x-side-control-icons">
                 <span
-                  className="editor-x-side-control-icon-left editor-x-active"
-                  onClick={() => changeAlignment("left")}
+                  className={classNames("editor-x-side-control-icon-left", { "editor-x-active": start })}
+                  onClick={() => changePosition("start")}
                 >
                   <i className="x-icon-align-items-start"></i>
                 </span>
-                <span className="editor-x-side-control-icon-top" onClick={() => changeAlignment("top")}>
+                <span
+                  className={classNames("editor-x-side-control-icon-top", { "editor-x-active": top })}
+                  onClick={() => changePosition("top")}
+                >
                   <i className="x-icon-align-items-top"></i>
                 </span>
-                <span className="editor-x-side-control-icon-center" onClick={() => changeAlignment("center")}>
+                <span
+                  className={classNames("editor-x-side-control-icon-center", { "editor-x-active": center })}
+                  onClick={() => changePosition("center")}
+                >
                   <i className="x-icon-plus-circle"></i>
                 </span>
-                <span className="editor-x-side-control-icon-bottom" onClick={() => changeAlignment("bottom")}>
+                <span
+                  className={classNames("editor-x-side-control-icon-bottom", { "editor-x-active": bottom })}
+                  onClick={() => changePosition("bottom")}
+                >
                   <i className="x-icon-align-items-bottom"></i>
                 </span>
-                <span className="editor-x-side-control-icon-right" onClick={() => changeAlignment("right")}>
+                <span
+                  className={classNames("editor-x-side-control-icon-right", { "editor-x-active": end })}
+                  onClick={() => changePosition("end")}
+                >
                   <i className="x-icon-align-items-end"></i>
                 </span>
               </div>
