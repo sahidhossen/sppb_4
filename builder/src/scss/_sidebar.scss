@@ -206,7 +206,7 @@
   align-items: center;
   border-radius: 0.2273rem;
   padding: 0 4px 0px 8px;
-  @include transition(0.35s);
+  height: 24px;
   &:nth-child(odd) {
     background: var(--squid-ink-dark);
   }
@@ -265,6 +265,7 @@
 }
 .editor-x-navigator-collaps {
   position: relative;
+  cursor: pointer;
   &::before {
     content: "";
     width: 2px;
