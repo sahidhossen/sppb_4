@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'editor-x-icon-font';
-  src:  url('../webfonts/editor-x-icon-font.eot?lne3ak');
-  src:  url('../webfonts/editor-x-icon-font.eot?lne3ak#iefix') format('embedded-opentype'),
-    url('../webfonts/editor-x-icon-font.ttf?lne3ak') format('truetype'),
-    url('../webfonts/editor-x-icon-font.woff?lne3ak') format('woff'),
-    url('../webfonts/editor-x-icon-font.svg?lne3ak#editor-x-icon-font') format('svg');
+  src:  url('../webfonts/editor-x-icon-font.eot?8qy0c6');
+  src:  url('../webfonts/editor-x-icon-font.eot?8qy0c6#iefix') format('embedded-opentype'),
+    url('../webfonts/editor-x-icon-font.ttf?8qy0c6') format('truetype'),
+    url('../webfonts/editor-x-icon-font.woff?8qy0c6') format('woff'),
+    url('../webfonts/editor-x-icon-font.svg?8qy0c6#editor-x-icon-font') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,15 @@
 
 .x-icon-size:before {
   content: "\e949";
+}
+.x-icon-fixed-width:before {
+  content: "\e94a";
+}
+.x-icon-fixed-height:before {
+  content: "\e94b";
+}
+.x-icon-slider:before {
+  content: "\e97a";
 }
 .x-icon-align-content-basline .path1:before {
   content: "\e972";
@@ -563,10 +572,10 @@
 .x-icon-skew:before {
   content: "\e99f";
 }
-.x-icon-slider .path1:before {
+.x-icon-arrow-two-way .path1:before {
   content: "\e9a0";
 }
-.x-icon-slider .path2:before {
+.x-icon-arrow-two-way .path2:before {
   content: "\e9a1";
   margin-left: -1em;
 }

@@ -37,7 +37,7 @@ class BackgroundItem extends Component {
     return (
       <div className="editor-x-background-item-wrapper">
         <div className="editor-x-background-drag">
-          <i className="fas fa-braille"></i>
+          <i className="x-icon-layer-nav"></i>
         </div>
         <div className="editor-x-background-item">
           <div className="editor-x-background-item-left">

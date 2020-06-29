@@ -6,7 +6,7 @@ const Right = () => {
     <Fragment>
       <RightView />
       <div className="sppb-tobbar-right-preview">
-        <i className="fas fa-play"></i>
+        <i className="x-icon-preview"></i>
         <span className="editor-x-context-text">Preview</span>
       </div>
       <div className="sppb-tobbar-right-publish">

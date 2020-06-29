@@ -246,9 +246,9 @@ const StyleComponent = (props) => {
         </div>
       </div>
       <div className="editor-x-border-color-wrap">
-        <div className="editor-x-border-color-fields">
-          <span className="editor-x-border-color-value"></span>
-          <span className="editor-x-border-color-property">rgba(255, 255, 255, 1)</span>
+        <div className="editor-x-color-fields">
+          <span className="editor-x-color-value"></span>
+          <span className="editor-x-color-property">rgba(255, 255, 255, 1)</span>
         </div>
         <span className="editor-x-border-color-delete">
           <i className="fas fa-trash-alt"></i>
