@@ -69,10 +69,9 @@ export class ColorPicker extends Component {
           />
           <div className="editor-x-color-picker-footer">
             <RadioControl
-              className="editor-x-radio-control"
-              activeClass="editor-x-active-item"
               value={selectedItem.name}
               onSelect={(selectedItem) => this.handleSelect(selectedItem)}
+              iconOnly={true}
               items={[
                 {
                   name: "pageColor",
@@ -112,20 +111,14 @@ export class ColorPicker extends Component {
               ]}
             />
 
-            <div
-              className="editor-x-circle-picker-wrapper"
-              style={{ position: "relative" }}
-            >
+            <div className="editor-x-circle-picker-wrapper" style={{ position: "relative" }}>
               <CirclePicker
                 circleSize={16}
                 onChange={this.handleChange.bind(this)}
                 colors={selectedItem.colorList}
                 className="editor-x-circle-picker"
               />
-              <div
-                className="editor-x-add-color"
-                onClick={this.addColor.bind(this)}
-              >
+              <div className="editor-x-add-color" onClick={this.addColor.bind(this)}>
                 <i className="fas fa-plus"></i>
               </div>
             </div>
