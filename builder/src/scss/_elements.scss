@@ -5,6 +5,7 @@
   label {
     margin-right: var(--space-5);
     white-space: nowrap;
+    letter-spacing: 0.05px;
   }
   &.editor-x-accordion {
     display: block;
@@ -165,6 +166,7 @@
       color: var(--white);
       width: 2.7273rem;
       box-shadow: none;
+      font-size: 1rem;
       &:hover,
       &:focus {
         background: var(--shark-dark);
