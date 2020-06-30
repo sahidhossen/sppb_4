@@ -10,7 +10,7 @@ import {
   Button,
   InputText,
   SelectCustom,
-  RadioControl
+  RadioControl,
 } from "../../../elements";
 
 const TypographyComponent = () => {
@@ -111,9 +111,7 @@ const TypographyComponent = () => {
           <div className="editor-x-typography-direction">
             <label>Paragraph</label>
             <RadioControl
-              activeClass="editor-x-active-item"
-              value={""}
-              // value="item1"
+              value="item1"
               // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
               items={[
                 {
@@ -123,6 +121,52 @@ const TypographyComponent = () => {
                 {
                   name: "item2",
                   title: "RTL",
+                },
+              ]}
+            />
+          </div>
+          <div className="editor-x-typography-indent">
+            <span className="x-icon-paragraph-indentleft"></span>
+            <InputControl
+            label="Indent"
+            placeholder={"Indent"}
+            value={{ unit: "-", value: "0" }}
+            // onChange={(value) => this.onChangeSize(value, "maxWidth")}
+          />
+          </div>
+          <Divider margin="15px -15px 20px 0" />
+          <div className="editor-x-typography-list">
+            <label>List</label>
+            <Button isSmall hasIcon="far fa-plus-square" btnText="Image" />
+            <RadioControl
+              value={""}
+              value="item1"
+              // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+              iconOnly={true}
+              items={[
+                {
+                  name: "item1",
+                  icon: "x-icon-close",
+                },
+                {
+                  name: "item2",
+                  icon: "x-icon-list-bullet",
+                },
+                {
+                  name: "item3",
+                  icon: "x-icon-list-number",
+                },
+                {
+                  name: "item4",
+                  icon: "x-icon-list-dash",
+                },
+                {
+                  name: "item5",
+                  icon: "x-icon-list-bullet-indent",
+                },
+                {
+                  name: "item6",
+                  icon: "x-icon-list-alphabet",
                 },
               ]}
             />

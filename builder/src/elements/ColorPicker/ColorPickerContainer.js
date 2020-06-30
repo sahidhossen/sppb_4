@@ -354,8 +354,7 @@ export class ColorPickerContainer extends Component {
               <div className="editor-x-radial-size">
                 <span className="editor-x-radial-position-text">Position</span>
                 <RadioControl
-                  className="editor-x-radio-control"
-                  activeClass="editor-x-active-item"
+                  iconOnly={true}
                   value={(gradientProps && gradientProps.extent) || (_gradientProps && _gradientProps.extent) || extent}
                   onSelect={(selectedItem) => this.handleSelect(selectedItem, "extent")}
                   items={[
