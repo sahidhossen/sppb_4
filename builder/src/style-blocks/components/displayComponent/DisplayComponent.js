@@ -85,8 +85,9 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
   const toggleProperty = (property) => (value) => {
     const [propertyName, _value] = [Object.keys(property)[0], Object.values(property)[0]];
     const { defaultValue, setValue } = _value;
+    const { value: propValue } = style[propertyName];
 
-    if (value) {
+    if (propValue !== setValue) {
       setCssAttributes({ [propertyName]: setValue });
     } else {
       setCssAttributes({ [propertyName]: defaultValue });
@@ -197,7 +198,12 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
             <div className="editor-x-display-flex-wrap">
               <label>Wrap</label>
               <div className="editor-x-display-flex-wrap-toggle">
-                <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-left", {
+                    "editor-x-active": flexWrap.value === "wrap-reverse",
+                  })}
+                  onClick={toggleProperty({ flexWrap: { defaultValue: "nowrap", setValue: "wrap-reverse" } })}
+                ></i>
                 <ToggleButton
                   defaultChecked={flexWrap.value === "wrap"}
                   onToogleChange={toggleProperty({ flexWrap: { defaultValue: "nowrap", setValue: "wrap" } })}
