@@ -16,7 +16,7 @@ import {
 } from "../../../elements";
 
 const DisplayComponent = ({ style, setCssAttributes }) => {
-  const { display, alignItems, justifyContent, flexDirection } = style;
+  const { display, alignItems, justifyContent, flexDirection, flexWrap } = style;
   const initialPosition = {
     start: true,
     top: false,
@@ -79,6 +79,17 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
           ...{ [position]: !prevState[position], ...(pairPositions[position] && { [pairPositions[position]]: false }) },
         }));
       }
+    }
+  };
+
+  const toggleProperty = (property) => (value) => {
+    const [propertyName, _value] = [Object.keys(property)[0], Object.values(property)[0]];
+    const { defaultValue, setValue } = _value;
+
+    if (value) {
+      setCssAttributes({ [propertyName]: setValue });
+    } else {
+      setCssAttributes({ [propertyName]: defaultValue });
     }
   };
 
@@ -187,7 +198,10 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
               <label>Wrap</label>
               <div className="editor-x-display-flex-wrap-toggle">
                 <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
-                <ToggleButton defaultChecked />
+                <ToggleButton
+                  defaultChecked={flexWrap.value === "wrap"}
+                  onToogleChange={toggleProperty({ flexWrap: { defaultValue: "nowrap", setValue: "wrap" } })}
+                />
               </div>
             </div>
             <div className="editor-x-display-item-align">
