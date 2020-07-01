@@ -943,6 +943,9 @@
   justify-content: center;
   align-items: center;
   line-height: 1;
+  &.editor-x-active {
+    color: var(--dark-bg-text-color);
+  }
 }
 .editor-x-display-control-text {
   font-size: 0.7273rem;
@@ -1138,7 +1141,7 @@
     align-items: center;
     border-right: 1px solid #3a404c;
     padding: 0 23px;
-    &:first-child{
+    &:first-child {
       padding-left: 0;
     }
     &:last-child {
