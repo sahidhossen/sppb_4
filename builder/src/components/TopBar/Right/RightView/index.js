@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { compose } from "../../../compose";
-import { withSelect, withDispatch } from "store";
+import { withSelect } from "store";
 import List from "./List";
-import SppbPortal from "../../../sppbportal/SppbPortal";
+import EditorXPortal from "../../../portal";
 
 class RightView extends React.Component {
   constructor() {
@@ -21,7 +21,7 @@ class RightView extends React.Component {
   }
 
   render() {
-    let { viewport, viewports, viewContextList } = this.props;
+    let { viewContextList } = this.props;
 
     return (
       <Fragment>
@@ -37,14 +37,14 @@ class RightView extends React.Component {
           <span className="editor-x-context-text">View</span>
         </div>
         {this.state.isList && (
-          <SppbPortal className="popover">
+          <EditorXPortal>
             <List
               reset={this.reset.bind(this)}
               event={this.state.event}
               target={this.button}
               viewContextList={viewContextList}
             />
-          </SppbPortal>
+          </EditorXPortal>
         )}
       </Fragment>
     );

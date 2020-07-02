@@ -14,6 +14,11 @@ const styleStore = (state = defaultStyle, action) => {
 
       for (let i = 0; i < len; i++) {
         let field = fields[i];
+
+        if (!state[field]) {
+          return state;
+        }
+
         state[field].local = {
           ...state[field].local,
           ...attributes[field],

@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from "react";
 import { withSelect } from "store";
 import { compose } from "./components/compose";
 import Docker from "./components/Docker";
-import SppbPortal from "./components/sppbportal/SppbPortal";
 import Canvas from "./Canvas";
 import { generatFontLink } from "./style-blocks/add-style-rules";
 
@@ -11,15 +10,13 @@ const Builder = (props) => {
 
   // Load fonts and other assets
   useEffect(() => {
-    generatFontLink(fonts);
+    // generatFontLink(fonts);
   }, []);
 
   return (
     <Fragment>
       <Canvas />
-      <SppbPortal className="sppb-docker-portal">
-        <Docker />
-      </SppbPortal>
+      <Docker />
     </Fragment>
   );
 };

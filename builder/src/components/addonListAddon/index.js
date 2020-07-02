@@ -1,17 +1,13 @@
 import React, { Fragment } from "react";
 import { findDOMNode } from "react-dom";
 import { withSelect, withDispatch } from "store";
-import { Types } from "../../actions/dragType";
 import { compose } from "../compose";
 import AddonEdit from "../AddonEdit";
 import withChildren from "../childAddon";
 import AddonOutline from "./AddonOutline";
-import { createIndicator, removeIndicator } from "../../lib/addonHelper";
 import { getNum, getGridArea } from "../GridView/gridHelper";
 import WithDropArea from "../WithDropArea";
 import AddonConfigTag from "./AddonConfigTag";
-import ComponentPortal from "../../helpers/ComponentPortal";
-import SppbPortal from "../sppbportal/SppbPortal";
 import { collectAndEnqueueStyle } from "style-blocks";
 
 class AddonListAddon extends React.Component {
@@ -39,18 +35,13 @@ class AddonListAddon extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     let { styleBlockIds, getStyleBlocks, viewport } = this.props;
-    if (
-      prevProps.styleBlockIds.length !== styleBlockIds.length ||
-      prevProps.viewport.name !== viewport.name
-    ) {
+    if (prevProps.styleBlockIds.length !== styleBlockIds.length || prevProps.viewport.name !== viewport.name) {
       collectAndEnqueueStyle(getStyleBlocks(styleBlockIds), viewport.name);
     }
   }
 
   toggleListeners(node, shouldListnerToEvents = true) {
-    const method = shouldListnerToEvents
-      ? "addEventListener"
-      : "removeEventListener";
+    const method = shouldListnerToEvents ? "addEventListener" : "removeEventListener";
 
     node[method]("mouseover", this.onMouseOver.bind(this, node));
     node[method]("mouseout", this.onMouseOut.bind(this, node));
@@ -89,14 +80,8 @@ class AddonListAddon extends React.Component {
       }
     }
 
-    window.frames["sppb-editor-view"].document.addEventListener(
-      "mousemove",
-      this.onMouseMove.bind(this)
-    );
-    window.frames["sppb-editor-view"].document.addEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    window.frames["sppb-editor-view"].document.addEventListener("mousemove", this.onMouseMove.bind(this));
+    window.frames["sppb-editor-view"].document.addEventListener("mouseup", this.onMouseUp.bind(this));
   }
   onMouseMove(event) {
     if (this.state.isMouseMove) {
@@ -288,12 +273,7 @@ export default compose([
     };
   }),
   withDispatch((dispatch) => {
-    const {
-      updateAddonAttributes,
-      moveAddon,
-      insertAddon,
-      selectAddon,
-    } = dispatch();
+    const { updateAddonAttributes, moveAddon, insertAddon, selectAddon } = dispatch();
     return {
       onChange(addonId, attributes) {
         updateAddonAttributes(addonId, attributes);

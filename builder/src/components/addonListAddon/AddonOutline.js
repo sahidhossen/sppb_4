@@ -1,9 +1,6 @@
-import React, { Fragment } from "react";
-import { findDOMNode } from "react-dom";
+import React from "react";
 import classNames from "classnames/bind";
-import ComponentPortal from "../../helpers/ComponentPortal";
-import SppbPortal from "../sppbportal/SppbPortal";
-import AddonConfigTag from "./AddonConfigTag";
+import EditorXPortal from "../portal";
 
 function getHoverStyle(node) {
   if (node) {
@@ -57,19 +54,19 @@ export default class AddonOutline extends React.Component {
   }
 
   render() {
-    let { className, type, container, addon } = this.props;
+    let { className, type } = this.props;
     const styles = this.state.style;
     const _class = classNames("sppb-addon-outline", className);
     const portalClass = type === "onSelect" ? "selected-portal" : "";
 
     return (
-      <Fragment>
-        <SppbPortal className={portalClass}>
+      <EditorXPortal>
+        <div className={portalClass}>
           <div className={_class} style={styles}>
             {this.props.children}
           </div>
-        </SppbPortal>
-      </Fragment>
+        </div>
+      </EditorXPortal>
     );
   }
 }
