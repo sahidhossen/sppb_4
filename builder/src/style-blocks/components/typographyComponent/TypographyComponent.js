@@ -89,60 +89,165 @@ const TypographyComponent = () => {
       </div>
       <Divider margin="10px -15px 10px 0" />
       <div className="editor-x-typography-align">
-        <span className="editor-x-typography-align-text">Allignment</span>
-        <div className="editor-x-typography-align-icons">
-          <span className="x-icon-textalign-left"></span>
-          <span className="x-icon-textalign-center"></span>
-          <span className="x-icon-textalign-right"></span>
-          <span className="x-icon-text-justify editor-x-active"></span>
-        </div>
+        <RadioControl
+          value="item1"
+          // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+          noIconTop={true}
+          items={[
+            {
+              name: "item1",
+              icon: "x-icon-textalign-left",
+            },
+            {
+              name: "item2",
+              icon: "x-icon-textalign-center",
+            },
+            {
+              name: "item3",
+              icon: "x-icon-textalign-right",
+            },
+          ]}
+        />
+        <RadioControl
+          value="item1"
+          // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+          noIconTop={true}
+          items={[
+            {
+              name: "item1",
+              icon: "x-icon-constrain-top",
+            },
+            {
+              name: "item2",
+              icon: "x-icon-constrain-middle",
+            },
+            {
+              name: "item3",
+              icon: "x-icon-constraint-bottom",
+            },
+          ]}
+        />
       </div>
-      <div className="editor-x-typography-align editor-x-typography-vertical-align">
-        <span className="editor-x-typography-align-text">Constrain</span>
-        <div className="editor-x-typography-align-icons">
-          <span className="x-icon-constrain-top editor-x-active"></span>
-          <span className="x-icon-constrain-middle"></span>
-          <span className="x-icon-constraint-bottom"></span>
-        </div>
-      </div>
-      <Divider margin="15px -15px 20px 0" />
-      <Accordion allowMultipleOpen>
+      <Divider margin="0 -15px 20px 0" />
+      <Accordion allowMultipleOpen className="editor-x-advanced-typography">
         <AccordionSection label="Advance Typography Editor" icon="fas fa-angle-right">
-          <div className="editor-x-typography-direction">
-            <label>Paragraph</label>
+          <div className="editor-x-typography-paragraph-advanced-options">
+            <p>Paragraph</p>
+            <div className="editor-x-typography-paragraph-indent-height">
+              <div className="editor-x-typography-paragraph-indent">
+                <span className="x-icon-paragraph-indentleft"></span>
+                <InputControl
+                  label="Indent"
+                  placeholder={"Indent"}
+                  value={{ unit: "-", value: "0" }}
+                  // onChange={(value) => this.onChangeSize(value, "maxWidth")}
+                />
+              </div>
+              <div className="editor-x-typography-paragraph-height">
+                <span className="x-icon-paragraph-height1"></span>
+                <InputControl
+                  label="Height"
+                  placeholder={"Height"}
+                  value={{ unit: "-", value: "0" }}
+                  // onChange={(value) => this.onChangeSize(value, "maxWidth")}
+                />
+              </div>
+            </div>
+            <div className="editor-x-typography-direction-mode">
+              <RadioControl
+                value="item1"
+                // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+                items={[
+                  {
+                    name: "item1",
+                    title: "LTR",
+                  },
+                  {
+                    name: "item2",
+                    title: "RTL",
+                  },
+                ]}
+              />
+              <RadioControl
+                value="item1"
+                // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+                noIconTop={true}
+                items={[
+                  {
+                    name: "item1",
+                    icon: "x-icon-writing-mode-horizontal",
+                  },
+                  {
+                    name: "item2",
+                    icon: "x-icon-writing-mode-vertical",
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <Divider margin="0px -15px 5px 0px" />
+          <div className="editor-x-typography-overflow">
+            <label>Overflow</label>
             <RadioControl
               value="item1"
               // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+              noIconTop={true}
               items={[
                 {
                   name: "item1",
-                  title: "LTR",
+                  icon: "x-icon-close",
                 },
                 {
                   name: "item2",
-                  title: "RTL",
+                  icon: "x-icon-text-overflow-eleipsis",
+                },
+                {
+                  name: "item3",
+                  icon: "x-icon-text-overflow-clip",
                 },
               ]}
             />
           </div>
-          <div className="editor-x-typography-indent">
-            <span className="x-icon-paragraph-indentleft"></span>
-            <InputControl
-            label="Indent"
-            placeholder={"Indent"}
-            value={{ unit: "-", value: "0" }}
-            // onChange={(value) => this.onChangeSize(value, "maxWidth")}
-          />
+          <div className="editor-x-typography-word-break">
+            <label>Word Breaking</label>
+            <SelectCustom
+              // value={display.value}
+              options={[
+                { value: "normal", selected: true },
+                { value: "break-all" },
+                { value: "keep-all" },
+                { value: "break-word" },
+                { value: "initial" },
+              ]}
+              // onSelectChange={onChangeDisplayType("display")}
+            />
           </div>
-          <Divider margin="15px -15px 20px 0" />
+          <div className="editor-x-typography-white-space">
+            <label>Space Breaking</label>
+            <SelectCustom
+              // value={display.value}
+              options={[
+                { value: "normal", selected: true },
+                { value: "nowrap" },
+                { value: "pre" },
+                { value: "pre-line" },
+                { value: "pre-wrap" },
+                { value: "initial" },
+              ]}
+              // onSelectChange={onChangeDisplayType("display")}
+            />
+          </div>
+          <Divider margin="0px -15px 15px 0px" />
           <div className="editor-x-typography-list">
-            <label>List</label>
-            <Button isSmall hasIcon="far fa-plus-square" btnText="Image" />
+            <div className="editor-x-typography-list-btn">
+              <label>List</label>
+              <Button isSmall hasIcon="far fa-plus-square" btnText="Image" />
+            </div>
             <RadioControl
               value={""}
               value="item1"
               // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
-              iconOnly={true}
+              noIconTop={true}
               items={[
                 {
                   name: "item1",
@@ -167,6 +272,77 @@ const TypographyComponent = () => {
                 {
                   name: "item6",
                   icon: "x-icon-list-alphabet",
+                },
+              ]}
+            />
+          </div>
+          <Divider margin="15px -15px 20px 0" />
+          <div className="editor-x-typography-decoration">
+            <label>Decoration</label>
+            <RadioControl
+              value={""}
+              value="item1"
+              // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+              noIconTop={true}
+              items={[
+                {
+                  name: "item1",
+                  icon: "x-icon-close",
+                },
+                {
+                  name: "item2",
+                  icon: "x-icon-line-under",
+                },
+                {
+                  name: "item3",
+                  icon: "x-icon-line-strike",
+                },
+                {
+                  name: "item4",
+                  icon: "x-icon-line-over",
+                },
+                {
+                  name: "item5",
+                  icon: "x-icon-line-wave",
+                },
+                {
+                  name: "item6",
+                  icon: "x-icon-line-dot",
+                },
+              ]}
+            />
+          </div>
+          <div className="editor-x-typography-case">
+            <label>Cases</label>
+            <RadioControl
+              value={""}
+              value="item1"
+              // onSelect={(selectedItem) => this.handleSelect(selectedItem, "background_type_tab")}
+              noIconTop={true}
+              items={[
+                {
+                  name: "item1",
+                  icon: "x-icon-close",
+                },
+                {
+                  name: "item2",
+                  icon: "x-icon-uppercase",
+                },
+                {
+                  name: "item3",
+                  icon: "x-icon-lowercase",
+                },
+                {
+                  name: "item4",
+                  icon: "x-icon-titlecase",
+                },
+                {
+                  name: "item5",
+                  icon: "x-icon-smallcaps",
+                },
+                {
+                  name: "item6",
+                  icon: "x-icon-forced-smallcaps",
                 },
               ]}
             />
