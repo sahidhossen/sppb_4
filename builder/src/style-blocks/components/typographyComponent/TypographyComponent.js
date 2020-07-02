@@ -10,7 +10,6 @@ import {
   Button,
   InputText,
   SelectCustom,
-  SelectControl,
   RadioControl,
 } from "../../../elements";
 
@@ -41,7 +40,6 @@ const TypographyComponent = (props) => {
       <div className="editor-x-img-preview">
         <div className="editor-x-typography-preview">The quick brown fox jumps over the 195 lazy dog</div>
       </div>
-      <SelectControl />
       <SelectCustom value={fontFamily.value} options={fontList} onSelectChange={onChangeHandler("display")} />
       <div className="editor-x-typography-weight-color">
         <span className="editor-x-typography-weight">Color</span>

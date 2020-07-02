@@ -17,8 +17,6 @@
 .editor-x-menu-list {
   @include border("", 1px, solid, var(--shark-dark));
   background: var(--battleship-gray);
-  pointer-events: none;
-  z-index: 2;
   padding: 0.4545rem 1.2727rem;
   width: 18.9091rem;
   border-radius: 0.2727rem;
@@ -27,6 +25,20 @@
   flex-direction: column;
   position: absolute;
   transform-origin: right top;
+  .editor-x-menu-item {
+    display: block;
+    color: rgba(var(--white-rgb), 0.8);
+    cursor: pointer;
+    @include transition(0.35s);
+    letter-spacing: 0.05px;
+    line-height: 1.43;
+    padding: 0.3636rem 0;
+    @include border("-bottom", 1px, solid, var(--select-border-color));
+    border-radius: 0.3182rem;
+    &:last-child {
+      border: 0;
+    }
+  }
 }
 
 .editor-x-select-popover {

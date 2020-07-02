@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import EditorXPortal from "../../components/portal";
 import Backdrop from "../Backdrop";
 
-const SelectBackdrop = (props) => {
+const SelectBackdrop = forwardRef((props, ref) => {
   const { children, open, onClose } = props;
 
   const onBackdropHandler = (event) => {
@@ -14,7 +14,6 @@ const SelectBackdrop = (props) => {
       onClose(event, "backdropClick");
     }
   };
-  console.log(open);
   if (!open) return null;
   return (
     <EditorXPortal>
@@ -24,6 +23,6 @@ const SelectBackdrop = (props) => {
       </div>
     </EditorXPortal>
   );
-};
+});
 
 export default SelectBackdrop;

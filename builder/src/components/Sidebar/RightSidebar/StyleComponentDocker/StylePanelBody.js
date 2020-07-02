@@ -10,7 +10,6 @@ import {
   enqueueStyle,
   withStyleContext,
 } from "style-blocks";
-import { SelectControl } from "../../../../elements";
 import StylePanel from "./StylePanel";
 
 class StylePanelBody extends React.Component {
@@ -102,7 +101,6 @@ class StylePanelBody extends React.Component {
     const { addonId, fonts, addonStyleBlockIds, styleState } = this.props;
     return (
       <Fragment>
-        <SelectControl />
         {addonId ? (
           <StylePanel
             addonId={addonId}
