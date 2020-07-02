@@ -11,7 +11,7 @@ class ToggleButton extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.defaultChecked !== prevProps.defaultChecked) {
-      this.setState({ isChecked: defaultChecked });
+      this.setState({ isChecked: this.props.defaultChecked });
     }
   }
 
