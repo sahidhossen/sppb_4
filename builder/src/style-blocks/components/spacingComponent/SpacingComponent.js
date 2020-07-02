@@ -118,37 +118,31 @@ class SpacingComponent extends React.Component {
           // value=""
           value="item1"
           onSelect={(value) => this.handleSelect(value, "background_type_tab")}
+          noIconTop={true}
           items={[
             {
               name: "item1",
-              title: <i className="x-icon-align-right"></i>,
-              className: "item-one",
-              // icon: "fas fa-magic",
+              icon: "x-icon-align-right",
             },
             {
               name: "item2",
-              title: <i className="x-icon-align-center"></i>,
-              className: "item-two",
+              icon: "x-icon-align-center",
             },
             {
               name: "item3",
-              title: <i className="x-icon-align-left"></i>,
-              className: "item-three",
+              icon: "x-icon-align-left",
             },
             {
               name: "item4",
-              title: <i className="x-icon-align-top"></i>,
-              className: "item-four",
+              icon: "x-icon-align-top",
             },
             {
               name: "item5",
-              title: <i className="x-icon-align-middle"></i>,
-              className: "item-five",
+              icon: "x-icon-align-middle",
             },
             {
               name: "item6",
-              title: <i className="x-icon-align-bottom"></i>,
-              className: "item-six",
+              icon: "x-icon-align-bottom",
             },
           ]}
         />
@@ -235,7 +229,9 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingLeft.value.value || 0}</div>
               <span
-                className={`${paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
+                className={`${
+                  paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"
+                } editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("V")}
               ></span>
             </SpaceBox>
@@ -251,7 +247,9 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingTop.value.value || 0}</div>
               <span
-                className={`${paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
+                className={`${
+                  paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"
+                } editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("H")}
               ></span>
             </SpaceBox>
@@ -268,7 +266,9 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingBottom.value.value || 0}</div>
               <span
-                className={`${paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"} editor-x-link-icon`}
+                className={`${
+                  paddingLock === "H" ? "editor-x-active x-icon-link-h" : "x-icon-link-h"
+                } editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("H")}
               ></span>
             </SpaceBox>
@@ -284,7 +284,9 @@ class SpacingComponent extends React.Component {
             >
               <div className="editor-x-spacing-value">{paddingRight.value.value || 0}</div>
               <span
-                className={`${paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"} editor-x-link-icon`}
+                className={`${
+                  paddingLock === "V" ? "editor-x-active x-icon-link-v" : "x-icon-link-v"
+                } editor-x-link-icon`}
                 onClick={() => this.onPaddingLock("V")}
               ></span>
             </SpaceBox>
@@ -352,11 +354,15 @@ class SpacingComponent extends React.Component {
             </div>
             <div className="editor-x-fixed-width-height-wrap">
               <div className="editor-x-fixed-width">
-                <span className="editor-x-fixed-width-icon"><i className="x-icon-fixed-width"></i></span>
+                <span className="editor-x-fixed-width-icon">
+                  <i className="x-icon-fixed-width"></i>
+                </span>
                 Fixed Width
               </div>
               <div className="editor-x-fixed-height">
-                <span className="editor-x-fixed-height-icon"><i className="x-icon-fixed-height"></i></span>
+                <span className="editor-x-fixed-height-icon">
+                  <i className="x-icon-fixed-height"></i>
+                </span>
                 Fixed Height
               </div>
             </div>

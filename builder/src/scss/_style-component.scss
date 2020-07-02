@@ -1136,55 +1136,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .editor-x-typography-align-icons {
-    display: flex;
-    border: solid 1px var(--brush-marble-gray);
-    padding: 2px;
-    border-radius: 2px;
-    span {
-      font-size: 1.65rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-right: 1px solid var(--brush-marble-gray);
-      padding: 0 0.9091rem;
-      cursor: pointer;
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        border: 0;
-        padding-right: 0;
-      }
-      &.editor-x-active {
-        width: 2.2727rem;
-        height: 1.8182rem;
-        border-radius: 2px;
-        box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
-        background: var(--battleship-gray);
-        padding: 0;
-        border: 0;
-      }
-    }
+  button {
+    padding: 0.2rem 0.65rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
   }
 }
 .editor-x-typography-vertical-align {
   margin-top: 15px;
-  .editor-x-typography-align-icons {
-    span {
-      padding: 0 2rem;
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        border: 0;
-        padding-right: 0;
-      }
-      &.editor-x-active {
-        width: 2.7273rem;
-      }
-    }
-  }
 }
 .editor-x-typography-weight {
   display: flex;
@@ -1192,17 +1151,113 @@
   align-items: center;
   margin-top: 5px;
 }
-
-.editor-x-typography-direction {
+//Paragraph advanced options
+.editor-x-typography-paragraph-advanced-options {
+  p {
+    color: var(--white);
+    margin-top: 0;
+  }
+  .editor-x-radio-control {
+    button {
+      padding: 0.275rem 1.275rem;
+    }
+  }
+}
+.editor-x-advanced-typography {
+  .editor-x-accordion-head {
+    margin-bottom: 20px;
+  }
+}
+//typography list
+.editor-x-typography-list {
+  button {
+    padding: 0.2rem 0.275rem 0;
+    line-height: 1;
+    font-size: 1.5rem;
+  }
+  .editor-x-radio-control {
+    margin-top: 1.3636rem;
+  }
+}
+.editor-x-typography-list-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   label {
     color: var(--white);
   }
+}
+.editor-x-typography-decoration {
+  label {
+    color: var(--white);
+  }
+  button {
+    padding: 0.2rem 0.275rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
   .editor-x-radio-control {
-    button {
-      padding: 0.275rem 1.275rem;
+    margin-top: 1.3636rem;
+  }
+}
+
+.editor-x-typography-case {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    padding: 0.2rem 0.385rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .editor-x-radio-control {
+    margin-top: 0;
+  }
+}
+.editor-x-typography-white-space,
+.editor-x-typography-word-break,
+.editor-x-typography-overflow,
+.editor-x-typography-direction-mode,
+.editor-x-typography-paragraph-height,
+.editor-x-typography-paragraph-indent,
+.editor-x-typography-paragraph-indent-height {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-x-typography-paragraph-indent-height {
+  [class^="x-icon-"] {
+    font-size: 1.8rem;
+  }
+  .editor-x-input-control {
+    label {
+      margin-left: 5px;
     }
+    .sppb-custom-select {
+      right: -8px;
+    }
+  }
+  .editor-x-input-control-value {
+    input {
+      max-width: 3.2rem;
+    }
+  }
+}
+
+.editor-x-typography-paragraph-indent {
+  border-right: 1px solid var(--brush-marble-gray);
+  padding-right: 2px;
+}
+
+.editor-x-typography-direction-mode {
+  margin-top: 5px;
+}
+
+.editor-x-typography-word-break,
+.editor-x-typography-white-space {
+  margin-bottom: 15px;
+  .sppb-select-wrapper {
+    width: 9.0909rem;
   }
 }

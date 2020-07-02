@@ -71,7 +71,7 @@ export class ColorPicker extends Component {
             <RadioControl
               value={selectedItem.name}
               onSelect={(selectedItem) => this.handleSelect(selectedItem)}
-              iconOnly={true}
+              noIconTop={true}
               items={[
                 {
                   name: "pageColor",
