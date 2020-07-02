@@ -1142,16 +1142,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  span {
-    font-size: 1.65rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-right: 1px solid #3a404c;
-    padding: 0 23px;
-    &:first-child {
-      padding-left: 0;
-    }
+  button {
+    padding: 0.2rem 0.65rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
+.editor-x-typography-vertical-align {
+  margin-top: 15px;
+}
+.editor-x-typography-weight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+//Paragraph advanced options
+.editor-x-typography-paragraph-advanced-options {
+  p {
+    color: var(--white);
+    margin-top: 0;
   }
 }
 .editor-x-advanced-typography {
@@ -1243,6 +1253,10 @@
 
 .editor-x-typography-direction-mode {
   margin-top: 5px;
+  .editor-x-radio-control {
+    flex: 0 0 47%;
+    max-width: 47%;
+  }
 }
 
 .editor-x-typography-word-break,
@@ -1250,5 +1264,18 @@
   margin-bottom: 15px;
   .sppb-select-wrapper {
     width: 9.0909rem;
+  }
+}
+.editor-x-typography-overflow {
+  .editor-x-radio-control {
+    flex: 0 0 48%;
+    max-width: 0 0 48%;
+  }
+  .editor-x-radio-control {
+    button {
+      padding: 0.2rem 0.275rem 0.05rem;
+      line-height: 1;
+      font-size: 1.4rem;
+    }
   }
 }

@@ -276,7 +276,7 @@ const TypographyComponent = () => {
               ]}
             />
           </div>
-          <Divider margin="15px -15px 20px 0" />
+          <Divider margin="15px -15px 15px 0" />
           <div className="editor-x-typography-decoration">
             <label>Decoration</label>
             <RadioControl
