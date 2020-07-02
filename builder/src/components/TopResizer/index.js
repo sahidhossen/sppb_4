@@ -25,9 +25,7 @@ export class TopResizer extends Component {
   }
 
   toggleListeners(node, shouldListnToEvents = true) {
-    const method = shouldListnToEvents
-      ? "addEventListener"
-      : "removeEventListener";
+    const method = shouldListnToEvents ? "addEventListener" : "removeEventListener";
 
     // drag
     node[method]("mousedown", this.onMouseDown.bind(this, node));
@@ -39,7 +37,6 @@ export class TopResizer extends Component {
     const { isMouseMove } = this.state;
     if (!isMouseMove) {
       const shiftX = event.clientX - node.getBoundingClientRect().left;
-      console.log("down", shiftX);
       // left handler
       if (node === this.leftResizerRef.current) {
         this.setState((state) => ({
@@ -101,11 +98,7 @@ export class TopResizer extends Component {
     const { leftValue, rightValue } = this.state;
     return (
       <div className="editor-x-top-resizer">
-        <div
-          className="editor-x-resizer-left-container"
-          ref={this.leftResizerRef}
-          style={{ left: `${leftValue}px` }}
-        >
+        <div className="editor-x-resizer-left-container" ref={this.leftResizerRef} style={{ left: `${leftValue}px` }}>
           <span className="editor-x-resizer-left-handler">
             <i className="fas fa-grip-lines-vertical"></i>
           </span>
