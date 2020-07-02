@@ -11,8 +11,7 @@ export class Accordion extends Component {
     super(props);
     const openSections = {};
     React.Children.toArray(this.props.children).forEach(
-      ({ props: { label, isOpen } } = child) =>
-        isOpen && (openSections[label] = true)
+      ({ props: { label, isOpen } } = child) => isOpen && (openSections[label] = true)
     );
 
     this.state = {
@@ -59,11 +58,8 @@ export class Accordion extends Component {
         key: child.props.label,
       })
     );
-    return (
-      <div className="editor-x-form-controllers editor-x-accordion">
-        {childrenWithProps}
-      </div>
-    );
+    const { className } = this.props;
+    return <div className={`editor-x-accordion${className ? " " + className : ""}`}>{childrenWithProps}</div>;
   }
 }
 
