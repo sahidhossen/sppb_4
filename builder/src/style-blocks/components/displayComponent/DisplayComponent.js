@@ -193,8 +193,32 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 </span>
               </div>
             </div>
-
-            <Divider margin="0px -15px 0px 0px" />
+            <div className="editor-x-display-flex-align">
+              <div className="editor-x-display-flex-align-items">
+                <i className="x-icon-justify-stretch editor-x-active">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i className="x-icon-align-content-bottom">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
+              <span className="editor-x-display-flex-align-line"></span>
+              <div className="editor-x-display-flex-align-justify">
+                <i className="x-icon-justify-space-evenly">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                  <span className="path3"></span>
+                  <span className="path4"></span>
+                </i>
+                <i className="x-icon-justify-space-around">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
+            </div>
+            <Divider margin="20px -15px 0px 0px" />
             <div className="editor-x-display-flex-wrap">
               <label>Wrap</label>
               <div className="editor-x-display-flex-wrap-toggle">
@@ -211,7 +235,7 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
               </div>
             </div>
             {(flexWrap.value === "wrap" || flexWrap.value === "wrap-reverse") && (
-              <div className="editor-x-display-item-align">
+              <div className="editor-x-display-wrap-item">
                 <i
                   className={classNames("x-icon-align-content-start", {
                     "editor-x-active": alignContent.value === "flex-start",
@@ -239,7 +263,7 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                   <span className="path1"></span>
                   <span className="path2"></span>
                 </i>
-                <span className="editor-x-display-item-align-line"></span>
+                <span className="editor-x-display-wrap-item-line"></span>
                 <i
                   className={classNames("x-icon-wrap-h-v", {
                     "editor-x-active": alignContent.value === "stretch",

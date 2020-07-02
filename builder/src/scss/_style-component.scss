@@ -977,11 +977,52 @@
   height: 1.2727rem;
   background: var(--brush-marble-gray);
 }
+//align
+.editor-x-display-flex-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.8182rem;
+  i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2rem;
+    width: 2.1818rem;
+    height: 2.1818rem;
+  }
+  .x-icon-justify-stretch,
+  .x-icon-justify-space-evenly {
+    margin-right: 0.9091rem;
+  }
+  .editor-x-active {
+    border-radius: 2px;
+    box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
+    background: var(--battleship-gray);
+    .path1:before {
+      color: var(--chateua-gray);
+    }
+  }
+}
+.editor-x-display-flex-align-items,
+.editor-x-display-flex-align-justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-x-display-flex-align-line {
+  width: 1px;
+  height: 2.1818rem;
+  background: var(--brush-marble-gray);
+  margin: 0 1.3636rem;
+}
+//flex wrap
 .editor-x-display-flex-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.3636rem 0 1.8182rem;
+  padding: 1.3636rem 0 0;
 }
 .editor-x-display-flex-wrap-toggle {
   flex: 0 0 50%;
@@ -992,16 +1033,19 @@
     margin-right: 0.9091rem;
   }
 }
-.editor-x-display-item-align {
+.editor-x-display-wrap-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 1.8182rem;
   i {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     font-size: 2rem;
+    width: 2.1818rem;
+    height: 2.1818rem;
   }
   .x-icon-align-content-start,
   .x-icon-align-content-center {
@@ -1012,8 +1056,6 @@
     margin-right: 0.4545rem;
   }
   .editor-x-active {
-    width: 2.1818rem;
-    height: 2.1818rem;
     border-radius: 2px;
     box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
     background: var(--battleship-gray);
@@ -1022,7 +1064,7 @@
     }
   }
 }
-.editor-x-display-item-align-line {
+.editor-x-display-wrap-item-line {
   width: 1px;
   height: 2.1818rem;
   background: var(--brush-marble-gray);
