@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import Images from "./assets";
+import { displayData } from "./displayData";
 import {
   Checkbox,
   Divider,
@@ -15,7 +16,7 @@ import {
 } from "../../../elements";
 
 const DisplayComponent = ({ style, setCssAttributes }) => {
-  const { display, alignItems, justifyContent, flexDirection } = style;
+  const { display, alignItems, justifyContent, flexDirection, flexWrap, alignContent } = style;
   const initialPosition = {
     start: true,
     top: false,
@@ -35,18 +36,61 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
     setCssAttributes({ [name]: value });
   };
 
+  useEffect(() => {
+    let selected = Object.keys(selectedPosition)
+      .reduce((arr, key) => {
+        if (selectedPosition[key]) arr.push(key);
+        return arr;
+      }, [])
+      .join("-");
+    let properties = displayData[selected] || displayData["start"];
+    Object.keys(properties).forEach((key) => {
+      setCssAttributes({ [key]: properties[key] });
+    });
+  }, [selectedPosition]);
+
   const changePosition = (position) => {
-    const totalActive = Object.keys(selectedPosition).reduce((sum, key) => {
-      if (selectedPosition[key]) sum++;
-      return sum;
-    }, 0);
-    if (totalActive === 2) {
-      setSelectedPosition({ center: true });
+    const reverse = ["column-reverse", "row-reverse"];
+    if (reverse.includes(position)) {
+      if (position === "row-reverse") {
+        if (flexDirection.value === "row") {
+          setCssAttributes({ flexDirection: "row-reverse" });
+        } else {
+          setCssAttributes({ flexDirection: "row" });
+        }
+      }
+      if (position === "column-reverse") {
+        if (flexDirection.value === "column") {
+          setCssAttributes({ flexDirection: "column-reverse" });
+        } else {
+          setCssAttributes({ flexDirection: "column" });
+        }
+      }
     } else {
-      setSelectedPosition((prevState) => ({
-        ...prevState,
-        ...{ [position]: !prevState[position], [pairPositions[position]]: false },
-      }));
+      const totalActive = Object.keys(selectedPosition).reduce((sum, key) => {
+        if (selectedPosition[key]) sum++;
+        return sum;
+      }, 0);
+      if (totalActive === 2) {
+        setSelectedPosition({ ...initialPosition, center: true, start: false });
+      } else {
+        setSelectedPosition((prevState) => ({
+          ...prevState,
+          ...{ [position]: !prevState[position], ...(pairPositions[position] && { [pairPositions[position]]: false }) },
+        }));
+      }
+    }
+  };
+
+  const toggleProperty = (property) => (_) => {
+    const [propertyName, value] = [Object.keys(property)[0], Object.values(property)[0]];
+    const { defaultValue, setValue } = value;
+    const { value: propValue } = style[propertyName];
+
+    if (propValue !== setValue) {
+      setCssAttributes({ [propertyName]: setValue });
+    } else {
+      setCssAttributes({ [propertyName]: defaultValue });
     }
   };
 
@@ -94,7 +138,12 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": start })}>Start</span>
               </div>
               <div className="editor-x-display-control-top">
-                <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-down", {
+                    "editor-x-active": flexDirection.value === "column-reverse",
+                  })}
+                  onClick={() => changePosition("column-reverse")}
+                ></i>
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": top })}>Top</span>
               </div>
               <div className="editor-x-display-control-bottom">
@@ -104,7 +153,12 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
               </div>
               <div className="editor-x-display-control-end">
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": end })}>End</span>
-                <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-left", {
+                    "editor-x-active": flexDirection.value === "row-reverse",
+                  })}
+                  onClick={() => changePosition("row-reverse")}
+                ></i>
               </div>
               <div className="editor-x-side-control-icons">
                 <span
@@ -139,70 +193,111 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 </span>
               </div>
             </div>
-            <div className="editor-x-display-checkbox">
-              <Checkbox
-                options={[
-                  {
-                    label: "Baseline",
-                    value: "baseline",
-                    isChecked: false,
-                  },
-                ]}
-                value={"baseline"}
-                // onCheckboxChange={(value) => {
-                //   this.onCheckedOverflow(value);
-                // }}
-              />
-              <span className="editor-x-display-checkbox-line"></span>
-              <Checkbox
-                options={[
-                  {
-                    label: "Stretch",
-                    value: "stretch",
-                    isChecked: false,
-                  },
-                ]}
-                value={"stretch"}
-                // onCheckboxChange={(value) => {
-                //   this.onCheckedOverflow(value);
-                // }}
-              />
+            <div className="editor-x-display-flex-align">
+              <div className="editor-x-display-flex-align-items">
+                <i className="x-icon-justify-stretch editor-x-active">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i className="x-icon-align-content-bottom">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
+              <span className="editor-x-display-flex-align-line"></span>
+              <div className="editor-x-display-flex-align-justify">
+                <i className="x-icon-justify-space-evenly">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                  <span className="path3"></span>
+                  <span className="path4"></span>
+                </i>
+                <i className="x-icon-justify-space-around">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
             </div>
-            <Divider margin="0px -15px 0px 0px" />
+            <Divider margin="20px -15px 0px 0px" />
             <div className="editor-x-display-flex-wrap">
               <label>Wrap</label>
               <div className="editor-x-display-flex-wrap-toggle">
-                <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
-                <ToggleButton defaultChecked />
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-left", {
+                    "editor-x-active": flexWrap.value === "wrap-reverse",
+                  })}
+                  onClick={toggleProperty({ flexWrap: { defaultValue: "nowrap", setValue: "wrap-reverse" } })}
+                ></i>
+                <ToggleButton
+                  defaultChecked={flexWrap.value === "wrap"}
+                  onToogleChange={toggleProperty({ flexWrap: { defaultValue: "nowrap", setValue: "wrap" } })}
+                />
               </div>
             </div>
-            <div className="editor-x-display-item-align">
-              <i className="x-icon-align-content-start">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-align-content-center">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-align-content-bottom editor-x-active">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <span className="editor-x-display-item-align-line"></span>
-              <i className="x-icon-wrap-h-v">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-justify-center">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-justify-space-around">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-            </div>
+            {(flexWrap.value === "wrap" || flexWrap.value === "wrap-reverse") && (
+              <div className="editor-x-display-wrap-item">
+                <i
+                  className={classNames("x-icon-align-content-start", {
+                    "editor-x-active": alignContent.value === "flex-start",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "flex-start" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-align-content-center", {
+                    "editor-x-active": alignContent.value === "center",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "center" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-align-content-bottom", {
+                    "editor-x-active": alignContent.value === "flex-end",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "flex-end" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <span className="editor-x-display-wrap-item-line"></span>
+                <i
+                  className={classNames("x-icon-wrap-h-v", {
+                    "editor-x-active": alignContent.value === "stretch",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "stretch" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-justify-center", {
+                    "editor-x-active": alignContent.value === "space-between",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ alignContent: { defaultValue: "normal", setValue: "space-between" } })()
+                  }
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-justify-space-around", {
+                    "editor-x-active": alignContent.value === "space-around",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ alignContent: { defaultValue: "normal", setValue: "space-around" } })()
+                  }
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
+            )}
+
             <div className="editor-x-display-flex-children">
               <Accordion allowMultipleOpen>
                 <AccordionSection label="Flex Children" icon="fas fa-angle-right">

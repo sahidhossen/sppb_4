@@ -45,13 +45,13 @@ export class RadioControl extends Component {
 
   render() {
     const { value } = this.state;
-    const { className, activeClass, items, instanceId, disabled, iconOnly } = this.props;
+    const { className, activeClass, items, instanceId, disabled, noIconTop } = this.props;
     const hasIcon = items.some((el) => el.icon);
 
     const elementClass = classnames(
         {'editor-x-radio-control': true, 
         'sppb-form-controllers': true, 
-        'spp-radio-has-icon': hasIcon && !iconOnly,
+        'spp-radio-has-icon': hasIcon && !noIconTop,
         'editor-x-radio-control-disable': disabled
       }, className);
 

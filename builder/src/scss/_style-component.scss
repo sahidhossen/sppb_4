@@ -886,6 +886,9 @@
     box-shadow: inset 0 1.5px 1.5px 0 rgba(var(--black-rgb), 0.1), inset 0 -0.5px 0 0 rgba(var(--white-rgb), 0.09),
       inset 0 -1px 0 0 rgba(var(--white-rgb), 0.08), inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.05);
     margin-right: 0.4545rem;
+    &.editor-x-active {
+      color: var(--dark-bg-text-color);
+    }
   }
 }
 .editor-x-display-control-bottom {
@@ -943,6 +946,9 @@
   justify-content: center;
   align-items: center;
   line-height: 1;
+  &.editor-x-active {
+    color: var(--dark-bg-text-color);
+  }
 }
 .editor-x-display-control-text {
   font-size: 0.7273rem;
@@ -971,11 +977,52 @@
   height: 1.2727rem;
   background: var(--brush-marble-gray);
 }
+//align
+.editor-x-display-flex-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.8182rem;
+  i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2rem;
+    width: 2.1818rem;
+    height: 2.1818rem;
+  }
+  .x-icon-justify-stretch,
+  .x-icon-justify-space-evenly {
+    margin-right: 0.9091rem;
+  }
+  .editor-x-active {
+    border-radius: 2px;
+    box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
+    background: var(--battleship-gray);
+    .path1:before {
+      color: var(--chateua-gray);
+    }
+  }
+}
+.editor-x-display-flex-align-items,
+.editor-x-display-flex-align-justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-x-display-flex-align-line {
+  width: 1px;
+  height: 2.1818rem;
+  background: var(--brush-marble-gray);
+  margin: 0 1.3636rem;
+}
+//flex wrap
 .editor-x-display-flex-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.3636rem 0 1.8182rem;
+  padding: 1.3636rem 0 0;
 }
 .editor-x-display-flex-wrap-toggle {
   flex: 0 0 50%;
@@ -986,16 +1033,19 @@
     margin-right: 0.9091rem;
   }
 }
-.editor-x-display-item-align {
+.editor-x-display-wrap-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 1.8182rem;
   i {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     font-size: 2rem;
+    width: 2.1818rem;
+    height: 2.1818rem;
   }
   .x-icon-align-content-start,
   .x-icon-align-content-center {
@@ -1006,8 +1056,6 @@
     margin-right: 0.4545rem;
   }
   .editor-x-active {
-    width: 2.1818rem;
-    height: 2.1818rem;
     border-radius: 2px;
     box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
     background: var(--battleship-gray);
@@ -1016,7 +1064,7 @@
     }
   }
 }
-.editor-x-display-item-align-line {
+.editor-x-display-wrap-item-line {
   width: 1px;
   height: 2.1818rem;
   background: var(--brush-marble-gray);
@@ -1136,55 +1184,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .editor-x-typography-align-icons {
-    display: flex;
-    border: solid 1px var(--brush-marble-gray);
-    padding: 2px;
-    border-radius: 2px;
-    span {
-      font-size: 1.65rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-right: 1px solid var(--brush-marble-gray);
-      padding: 0 0.9091rem;
-      cursor: pointer;
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        border: 0;
-        padding-right: 0;
-      }
-      &.editor-x-active {
-        width: 2.2727rem;
-        height: 1.8182rem;
-        border-radius: 2px;
-        box-shadow: 0 1px 1px 0 rgba(var(--black-rgb), 0.49);
-        background: var(--battleship-gray);
-        padding: 0;
-        border: 0;
-      }
-    }
+  button {
+    padding: 0.2rem 0.65rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
   }
 }
 .editor-x-typography-vertical-align {
   margin-top: 15px;
-  .editor-x-typography-align-icons {
-    span {
-      padding: 0 2rem;
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        border: 0;
-        padding-right: 0;
-      }
-      &.editor-x-active {
-        width: 2.7273rem;
-      }
-    }
-  }
 }
 .editor-x-typography-weight {
   display: flex;
@@ -1192,17 +1199,125 @@
   align-items: center;
   margin-top: 5px;
 }
-
-.editor-x-typography-direction {
+//Paragraph advanced options
+.editor-x-typography-paragraph-advanced-options {
+  p {
+    color: var(--white);
+    margin-top: 0;
+  }
+}
+.editor-x-advanced-typography {
+  .editor-x-accordion-head {
+    margin-bottom: 20px;
+  }
+}
+//typography list
+.editor-x-typography-list {
+  button {
+    padding: 0.2rem 0.275rem 0;
+    line-height: 1;
+    font-size: 1.5rem;
+  }
+  .editor-x-radio-control {
+    margin-top: 1.3636rem;
+  }
+}
+.editor-x-typography-list-btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   label {
     color: var(--white);
   }
+}
+.editor-x-typography-decoration {
+  label {
+    color: var(--white);
+  }
+  button {
+    padding: 0.2rem 0.275rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .editor-x-radio-control {
+    margin-top: 1.3636rem;
+  }
+}
+
+.editor-x-typography-case {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    padding: 0.2rem 0.385rem 0;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+  .editor-x-radio-control {
+    margin-top: 0;
+  }
+}
+.editor-x-typography-white-space,
+.editor-x-typography-word-break,
+.editor-x-typography-overflow,
+.editor-x-typography-direction-mode,
+.editor-x-typography-paragraph-height,
+.editor-x-typography-paragraph-indent,
+.editor-x-typography-paragraph-indent-height {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-x-typography-paragraph-indent-height {
+  [class^="x-icon-"] {
+    font-size: 1.8rem;
+  }
+  .editor-x-input-control {
+    label {
+      margin-left: 5px;
+    }
+    .sppb-custom-select {
+      right: -8px;
+    }
+  }
+  .editor-x-input-control-value {
+    input {
+      max-width: 3.2rem;
+    }
+  }
+}
+
+.editor-x-typography-paragraph-indent {
+  border-right: 1px solid var(--brush-marble-gray);
+  padding-right: 2px;
+}
+
+.editor-x-typography-direction-mode {
+  margin-top: 5px;
+  .editor-x-radio-control {
+    flex: 0 0 47%;
+    max-width: 47%;
+  }
+}
+
+.editor-x-typography-word-break,
+.editor-x-typography-white-space {
+  margin-bottom: 15px;
+  .sppb-select-wrapper {
+    width: 9.0909rem;
+  }
+}
+.editor-x-typography-overflow {
+  .editor-x-radio-control {
+    flex: 0 0 48%;
+    max-width: 0 0 48%;
+  }
   .editor-x-radio-control {
     button {
-      padding: 0.275rem 1.275rem;
+      padding: 0.2rem 0.275rem 0.05rem;
+      line-height: 1;
+      font-size: 1.4rem;
     }
   }
 }
