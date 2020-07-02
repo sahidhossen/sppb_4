@@ -1163,11 +1163,6 @@
     color: var(--white);
     margin-top: 0;
   }
-  .editor-x-radio-control {
-    button {
-      padding: 0.275rem 1.275rem;
-    }
-  }
 }
 .editor-x-advanced-typography {
   .editor-x-accordion-head {
@@ -1258,6 +1253,10 @@
 
 .editor-x-typography-direction-mode {
   margin-top: 5px;
+  .editor-x-radio-control {
+    flex: 0 0 47%;
+    max-width: 47%;
+  }
 }
 
 .editor-x-typography-word-break,
@@ -1265,5 +1264,18 @@
   margin-bottom: 15px;
   .sppb-select-wrapper {
     width: 9.0909rem;
+  }
+}
+.editor-x-typography-overflow {
+  .editor-x-radio-control {
+    flex: 0 0 48%;
+    max-width: 0 0 48%;
+  }
+  .editor-x-radio-control {
+    button {
+      padding: 0.2rem 0.275rem 0.05rem;
+      line-height: 1;
+      font-size: 1.4rem;
+    }
   }
 }
