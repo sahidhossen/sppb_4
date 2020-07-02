@@ -23,24 +23,10 @@ export const getDefaultAddon = (addonList, addonName) => {
  * @param {Object} properties // Block properties
  * @param {object} attributes // Block attributes
  */
-export const generateBlock = (
-  defaultAddon,
-  properties = {},
-  attributes = {}
-) => {
-  const acceptedFields = [
-    "name",
-    "attributes",
-    'styleBlockIds',
-    "childrens",
-    "content",
-    "droppable",
-    "accept",
-    "id"
-  ];
+export const generateBlock = (defaultAddon, properties = {}, attributes = {}) => {
+  const acceptedFields = ["name", "attributes", "styleBlockIds", "childrens", "content", "droppable", "accept", "id"];
   const block = Object.keys(defaultAddon).reduce((editedAddon, key) => {
-    if (acceptedFields.includes(key))
-      editedAddon[key] = clone(defaultAddon[key], true);
+    if (acceptedFields.includes(key)) editedAddon[key] = clone(defaultAddon[key], true);
     return editedAddon;
   }, {});
 
@@ -50,34 +36,31 @@ export const generateBlock = (
   if (!block["childrens"]) {
     block["childrens"] = [];
   }
-  if(!block['styleBlockIds']) {
-    block['styleBlockIds'] = [];
+  if (!block["styleBlockIds"]) {
+    block["styleBlockIds"] = [];
   }
- 
+
   return {
     ...block,
     id: revisedRandId(),
     ...properties,
-    attributes: { ...block.attributes, ...attributes }
+    attributes: { ...block.attributes, ...attributes },
   };
 };
 /**
  * Collect all addon component from children addon ids
  * @param {Array} childrenIds Collection of children addon Ids
  */
-export const getChildAddons = addonId => {
+export const getChildAddons = (addonId) => {
   const builder = select("data");
   const addon = builder[addonId];
   // const _childrenIds =
   //   typeof childrenIds === "string" ? [childrenIds] : childrenIds;
-  return addon.childrens.map(Id => builder[Id]);
+  return addon.childrens.map((Id) => builder[Id]);
 };
 
-export const renderChildAddons = props => {
+export const renderChildAddons = (props) => {
   const childAddons = getChildAddons(props.addonId);
-  // if (props.block.name === 'column') {
-  // console.log("=======COLUMN=======:",props.block.name, childAddons)
-  // }
   return childAddons.map((addon, index) => {
     let { Component, id } = addon;
     return <Component key={index} {...props} block={addon} addonId={id} />;
@@ -86,9 +69,7 @@ export const renderChildAddons = props => {
 
 export const createIndicator = (hoverItem, mousePositions) => {
   const { width, height, left, top } = hoverItem;
-  const { width: sidebarWidth } = document
-    .querySelector(".sppb-left-sidebar")
-    .getBoundingClientRect();
+  const { width: sidebarWidth } = document.querySelector(".sppb-left-sidebar").getBoundingClientRect();
   let indicator = document.querySelector(".sppb-indicator");
   const body = document.querySelector("body");
   if (!indicator) {
@@ -99,14 +80,14 @@ export const createIndicator = (hoverItem, mousePositions) => {
   indicator.style.position = `fixed`;
   indicator.style.width = `${width}px`;
   indicator.style.left = `${left + sidebarWidth}px`;
-  indicator.style.top = `${top+80}px`;
+  indicator.style.top = `${top + 80}px`;
   indicator.style.height = `${height}px`;
   indicator.style.pointerEvents = "none";
 
   indicator.style.border = "none";
-  mousePositions === 'top' && (indicator.style.borderTop = "1px solid red");
-  mousePositions === 'bottom' && (indicator.style.borderBottom = "1px solid red");
-  mousePositions === 'inside' && (indicator.style.border = `1px solid red`);
+  mousePositions === "top" && (indicator.style.borderTop = "1px solid red");
+  mousePositions === "bottom" && (indicator.style.borderBottom = "1px solid red");
+  mousePositions === "inside" && (indicator.style.border = `1px solid red`);
 };
 
 export const removeIndicator = () => {

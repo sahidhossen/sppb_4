@@ -28,7 +28,7 @@
   padding: 0 0.7273rem 1.3636rem;
   overflow-y: scroll;
   height: 72vh;
-  @include scrollbar(1rem, auto);
+  // @include scrollbar(1rem, auto);
 }
 //Editor/Docker panel
 .sppb-editor-panel {
@@ -67,7 +67,7 @@
   flex-wrap: wrap;
   overflow-y: scroll;
   height: 38vh;
-  @include scrollbar(0.6364rem, auto);
+  // @include scrollbar(0.6364rem, auto);
 }
 .sppb-docker {
   margin: var(--space-15) 0;
@@ -154,9 +154,9 @@
   border-radius: 0.4545rem;
   box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
   background: var(--pearl-dark);
-  @include scrollbar(0.5455rem, auto);
-  height: 100%;
-  overflow-y: scroll;
+  // @include scrollbar(0.5455rem, auto);
+  // height: 100%;
+  // overflow-y: scroll;
 }
 .sppb-sidebar-panel-content {
   padding-bottom: 10.0909rem;

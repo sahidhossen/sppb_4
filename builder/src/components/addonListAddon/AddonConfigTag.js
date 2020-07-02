@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { compose } from "../compose";
 import { withSelect, withDispatch } from "store";
-import SppbPortal from "../sppbportal/SppbPortal";
+import EditorXPortal from "../portal/EditorXPortal";
 import List from "../TopBar/Right/RightView/List";
 import PopoverSetting from "./PopoverSetting";
 
@@ -50,14 +50,9 @@ class AddonConfigTag extends React.Component {
         </div>
 
         {popoverSettingPanel.status && (
-          <SppbPortal className="popover">
-            <PopoverSetting
-              reset={this.reset.bind(this)}
-              event={this.state.event}
-              target={this.button}
-              addon={addon}
-            />
-          </SppbPortal>
+          <EditorXPortal>
+            <PopoverSetting reset={this.reset.bind(this)} event={this.state.event} target={this.button} addon={addon} />
+          </EditorXPortal>
         )}
       </Fragment>
     );
@@ -66,12 +61,7 @@ class AddonConfigTag extends React.Component {
 
 export default compose([
   withSelect((select) => {
-    let {
-      getMediaQueries,
-      getActiveMediaQuery,
-      getViewContextList,
-      popoverSettingPanel,
-    } = select();
+    let { getMediaQueries, getActiveMediaQuery, getViewContextList, popoverSettingPanel } = select();
     return {
       viewports: getMediaQueries(),
       viewport: getActiveMediaQuery(),

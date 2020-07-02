@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SppbPortal from "../components/sppbportal/SppbPortal";
+import EditorXPortal from "../components/portal/EditorXPortal";
 
 class FloatingComponent extends Component {
   constructor(props) {
@@ -15,42 +15,21 @@ class FloatingComponent extends Component {
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside.bind(this));
-    window.frames["sppb-editor-view"].document.addEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
+    window.frames["sppb-editor-view"].document.addEventListener("mousedown", this.handleClickOutside.bind(this));
     this.getContextMenuPosition();
     // drag
-    this.contextHeader.current.addEventListener(
-      "mousedown",
-      this.onMouseDown.bind(this)
-    );
-    this.contextHeader.current.addEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    this.contextHeader.current.addEventListener("mousedown", this.onMouseDown.bind(this));
+    this.contextHeader.current.addEventListener("mouseup", this.onMouseUp.bind(this));
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
-    window.frames["sppb-editor-view"].document.removeEventListener(
-      "mousedown",
-      this.handleClickOutside.bind(this)
-    );
+    document.removeEventListener("mousedown", this.handleClickOutside.bind(this));
+    window.frames["sppb-editor-view"].document.removeEventListener("mousedown", this.handleClickOutside.bind(this));
 
     // drag
-    this.contextHeader.current.removeEventListener(
-      "mousedown",
-      this.onMouseDown.bind(this)
-    );
+    this.contextHeader.current.removeEventListener("mousedown", this.onMouseDown.bind(this));
 
-    this.contextHeader.current.removeEventListener(
-      "mouseup",
-      this.onMouseUp.bind(this)
-    );
+    this.contextHeader.current.removeEventListener("mouseup", this.onMouseUp.bind(this));
   }
 
   onMouseDown(event) {
@@ -62,10 +41,7 @@ class FloatingComponent extends Component {
       let x = event.clientX - contextHeaderRect.left + 15;
       let y = event.clientY - contextHeaderRect.top;
       this.setState((state) => ({ ...state, isDragging: true, x, y }));
-      this.contextHeader.current.addEventListener(
-        "mousemove",
-        this.onMouseMove.bind(this)
-      );
+      this.contextHeader.current.addEventListener("mousemove", this.onMouseMove.bind(this));
     }
   }
 
@@ -90,18 +66,12 @@ class FloatingComponent extends Component {
     if (this.state.isDragging) {
       this.setState((state) => ({ ...state, isDragging: false }));
 
-      this.contextHeader.current.removeEventListener(
-        "mousemove",
-        this.onMouseMove.bind(this)
-      );
+      this.contextHeader.current.removeEventListener("mousemove", this.onMouseMove.bind(this));
     }
   }
 
   handleClickOutside(event) {
-    if (
-      this.contextMenuWrapper &&
-      !this.contextMenuWrapper.contains(event.target)
-    ) {
+    if (this.contextMenuWrapper && !this.contextMenuWrapper.contains(event.target)) {
       this.props.toggleColorPicker(this.props.event);
     }
   }
@@ -140,7 +110,7 @@ class FloatingComponent extends Component {
   render() {
     const { children } = this.props;
     return (
-      <SppbPortal className="popover">
+      <EditorXPortal className="popover">
         <div
           className="editor-x-color-picker editor-x-popup"
           style={this.state.contextStyle}
@@ -148,16 +118,13 @@ class FloatingComponent extends Component {
             this.contextMenuWrapper = ref;
           }}
         >
-          <div
-            className="editor-x-addon-settings-title"
-            ref={this.contextHeader}
-          >
+          <div className="editor-x-addon-settings-title" ref={this.contextHeader}>
             <i className="x-icon-float-handler"></i>
             Color Pallete
           </div>
           {children}
         </div>
-      </SppbPortal>
+      </EditorXPortal>
     );
   }
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Checkbox,
   Divider,
@@ -10,28 +10,39 @@ import {
   Button,
   InputText,
   SelectCustom,
+  SelectControl,
   RadioControl,
 } from "../../../elements";
 
-const TypographyComponent = () => {
+const TypographyComponent = (props) => {
+  const {
+    style: { fontFamily },
+    fonts,
+    setCssAttributes,
+  } = props;
+
+  const [fontList, setFontList] = useState([]);
+
+  const updateFontList = () => {
+    const listOfFonts = fonts.map((font, index) => {
+      return { value: font.family, fallback: font.fallback, label: font.family, index };
+    });
+    setFontList(listOfFonts);
+  };
+  useEffect(() => {
+    updateFontList();
+  }, []);
+
+  const onChangeHandler = (value) => (event) => {};
+
+  // console.log("style", props.style);
   return (
     <div className="editor-x-typography-settings">
       <div className="editor-x-img-preview">
         <div className="editor-x-typography-preview">The quick brown fox jumps over the 195 lazy dog</div>
       </div>
-      <SelectCustom
-        // value={display.value}
-        options={[
-          { value: "Lato" },
-          { value: "Open Sans" },
-          { value: "Robot", selected: true },
-          { value: "Pangolina" },
-          { value: "Oswald" },
-          { value: "Notable" },
-          { value: "Raleway" },
-        ]}
-        // onSelectChange={onChangeDisplayType("display")}
-      />
+      <SelectControl />
+      <SelectCustom value={fontFamily.value} options={fontList} onSelectChange={onChangeHandler("display")} />
       <div className="editor-x-typography-weight-color">
         <span className="editor-x-typography-weight">Color</span>
         <div className="editor-x-color-fields">
@@ -208,18 +219,13 @@ const TypographyComponent = () => {
               ]}
             />
           </div>
-          <div className="editor-x-typography-word-break">
-            <label>Word Breaking</label>
-            <SelectCustom
-              // value={display.value}
-              options={[
-                { value: "normal", selected: true },
-                { value: "break-all" },
-                { value: "keep-all" },
-                { value: "break-word" },
-                { value: "initial" },
-              ]}
-              // onSelectChange={onChangeDisplayType("display")}
+          <div className="editor-x-typography-indent">
+            <span className="x-icon-paragraph-indentleft"></span>
+            <InputControl
+              label="Indent"
+              placeholder={"Indent"}
+              value={{ unit: "-", value: "0" }}
+              // onChange={(value) => this.onChangeSize(value, "maxWidth")}
             />
           </div>
           <div className="editor-x-typography-white-space">
