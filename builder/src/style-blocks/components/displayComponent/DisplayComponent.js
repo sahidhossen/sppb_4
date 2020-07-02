@@ -16,7 +16,7 @@ import {
 } from "../../../elements";
 
 const DisplayComponent = ({ style, setCssAttributes }) => {
-  const { display, alignItems, justifyContent, flexDirection, flexWrap } = style;
+  const { display, alignItems, justifyContent, flexDirection, flexWrap, alignContent } = style;
   const initialPosition = {
     start: true,
     top: false,
@@ -82,9 +82,9 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
     }
   };
 
-  const toggleProperty = (property) => (value) => {
-    const [propertyName, _value] = [Object.keys(property)[0], Object.values(property)[0]];
-    const { defaultValue, setValue } = _value;
+  const toggleProperty = (property) => (_) => {
+    const [propertyName, value] = [Object.keys(property)[0], Object.values(property)[0]];
+    const { defaultValue, setValue } = value;
     const { value: propValue } = style[propertyName];
 
     if (propValue !== setValue) {
@@ -210,33 +210,70 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 />
               </div>
             </div>
-            <div className="editor-x-display-item-align">
-              <i className="x-icon-align-content-start">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-align-content-center">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-align-content-bottom editor-x-active">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <span className="editor-x-display-item-align-line"></span>
-              <i className="x-icon-wrap-h-v">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-justify-center">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-              <i className="x-icon-justify-space-around">
-                <span className="path1"></span>
-                <span className="path2"></span>
-              </i>
-            </div>
+            {(flexWrap.value === "wrap" || flexWrap.value === "wrap-reverse") && (
+              <div className="editor-x-display-item-align">
+                <i
+                  className={classNames("x-icon-align-content-start", {
+                    "editor-x-active": alignContent.value === "flex-start",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "flex-start" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-align-content-center", {
+                    "editor-x-active": alignContent.value === "center",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "center" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-align-content-bottom", {
+                    "editor-x-active": alignContent.value === "flex-end",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "flex-end" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <span className="editor-x-display-item-align-line"></span>
+                <i
+                  className={classNames("x-icon-wrap-h-v", {
+                    "editor-x-active": alignContent.value === "stretch",
+                  })}
+                  onClick={() => toggleProperty({ alignContent: { defaultValue: "normal", setValue: "stretch" } })()}
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-justify-center", {
+                    "editor-x-active": alignContent.value === "space-between",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ alignContent: { defaultValue: "normal", setValue: "space-between" } })()
+                  }
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+                <i
+                  className={classNames("x-icon-justify-space-around", {
+                    "editor-x-active": alignContent.value === "space-around",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ alignContent: { defaultValue: "normal", setValue: "space-around" } })()
+                  }
+                >
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                </i>
+              </div>
+            )}
+
             <div className="editor-x-display-flex-children">
               <Accordion allowMultipleOpen>
                 <AccordionSection label="Flex Children" icon="fas fa-angle-right">
