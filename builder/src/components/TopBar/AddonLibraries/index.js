@@ -3,7 +3,7 @@ import { compose } from "../../compose";
 import { withSelect, withDispatch } from "store";
 import Category from "./Category";
 import DropDownView from "./DropDownView";
-import SppbPortal from "../../sppbportal/SppbPortal";
+import EditorXPortal from "../../portal";
 import { createRef } from "react";
 import { blockListForTools } from "../../../lib/utils";
 class AddonLibraries extends React.Component {
@@ -67,13 +67,13 @@ class AddonLibraries extends React.Component {
       <div className="sppb-topbar-middle">
         {this.renderLibarayList()}
         {showDropDown && (
-          <SppbPortal>
+          <EditorXPortal>
             <DropDownView
               category={this.state.selectedCategory}
               categoryRef={this.categoryRef}
               toggleDropdown={this.toggleDropdown.bind(this)}
             />
-          </SppbPortal>
+          </EditorXPortal>
         )}
       </div>
     );

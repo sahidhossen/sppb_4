@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { compose } from "../../compose";
 import { withSelect, withDispatch } from "store";
 import ViewportList from "./ViewportList";
-import SppbPortal from "../../sppbportal/SppbPortal";
+import EditorXPortal from "../../portal/EditorXPortal";
 
 class Viewport extends React.Component {
   constructor() {
@@ -38,7 +38,7 @@ class Viewport extends React.Component {
           <span className="editor-x-responsive-text">Responsive</span>
         </div>
         {this.state.isList && (
-          <SppbPortal className="popover">
+          <EditorXPortal>
             <ViewportList
               reset={this.reset.bind(this)}
               event={this.state.event}
@@ -47,7 +47,7 @@ class Viewport extends React.Component {
               viewports={this.props.viewports}
               activeViewport={this.props.viewport}
             />
-          </SppbPortal>
+          </EditorXPortal>
         )}
       </Fragment>
     );

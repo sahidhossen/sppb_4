@@ -619,6 +619,7 @@ const styleState = {
       value: "transparent",
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   columnCount: {
     local: {
@@ -763,6 +764,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   display: {
     local: {
@@ -932,6 +934,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   fontSize: {
     local: {
@@ -950,6 +953,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: {} },
   },
   fontSmoothing: {
     local: {
@@ -968,6 +972,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   fontStyle: {
     local: {
@@ -986,6 +991,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   fontWeight: {
     local: {
@@ -993,17 +999,37 @@ const styleState = {
       unit: null,
     },
     browser: {
-      value: 400,
+      value: null,
       unit: null,
     },
     default: {
-      value: "400",
+      value: 400,
       unit: null,
     },
     placeholder: {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
+  },
+  fontFeatureSettings: {
+    local: {
+      value: null,
+      unit: null,
+    },
+    browser: {
+      value: null,
+      unit: null,
+    },
+    default: {
+      value: "normal",
+      unit: null,
+    },
+    placeholder: {
+      value: null,
+      unit: null,
+    },
+    styleState: { name: "typography", type: "" },
   },
   gridAutoFlow: {
     local: {
@@ -1321,17 +1347,18 @@ const styleState = {
       unit: null,
     },
     browser: {
-      value: "normal",
+      value: null,
       unit: null,
     },
     default: {
-      value: null,
-      unit: "px",
+      value: "normal",
+      unit: null,
     },
     placeholder: {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   lineHeight: {
     local: {
@@ -1340,7 +1367,7 @@ const styleState = {
     },
     browser: {
       value: null,
-      unit: "px",
+      unit: null,
     },
     default: {
       value: "",
@@ -1350,6 +1377,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: {} },
   },
   listStyle: {
     local: {
@@ -1781,6 +1809,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   textDecoration: {
     local: {
@@ -1799,6 +1828,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
   },
   textIndent: {
     local: {
@@ -1817,6 +1847,7 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: {} },
   },
   textShadows: {
     local: {
@@ -1853,6 +1884,26 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
+  },
+  fontKerning: {
+    local: {
+      value: null,
+      unit: null,
+    },
+    browser: {
+      value: null,
+      unit: null,
+    },
+    default: {
+      value: "none",
+      unit: null,
+    },
+    placeholder: {
+      value: null,
+      unit: null,
+    },
+    styleState: { name: "typography", type: "" },
   },
   top: {
     local: {
@@ -1998,6 +2049,26 @@ const styleState = {
       value: null,
       unit: null,
     },
+    styleState: { name: "typography", type: "" },
+  },
+  wordBreak: {
+    local: {
+      value: null,
+      unit: null,
+    },
+    browser: {
+      value: null,
+      unit: null,
+    },
+    default: {
+      value: "normal",
+      unit: null,
+    },
+    placeholder: {
+      value: null,
+      unit: null,
+    },
+    styleState: { name: "typography", type: "" },
   },
   width: {
     local: {
