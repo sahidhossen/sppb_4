@@ -46,63 +46,61 @@ export const getAddonAttributes = (store, addonId) => {
   return {};
 };
 
-
 /**
  * ============
  * STYLE BLOCK AND MAP
  * ============
  */
 export const getAddonStyleBlockIds = (store, addonId) => {
-  if (addonId === null)
-    return [];
-  let addon  = getAddon(store, addonId)
+  if (addonId === null) return [];
+  let addon = getAddon(store, addonId);
   return addon.styleBlockIds || [];
-}
+};
 
 export const getStyleBlockIds = (store, parentId) => {
-  let {blockStore} = store.styleBlockStore;
-  let childIds = blockStore[parentId].children || []
+  let { blockStore } = store.styleBlockStore;
+  let childIds = blockStore[parentId].children || [];
   return [parentId, ...childIds];
-}
+};
 
 export const getStyleBlock = (store, blockId) => {
   return store.styleBlockStore.blockStore[blockId];
-}
+};
 
 export const getStyleBlocks = (store, styleBlockIds) => {
-  return styleBlockIds.map( styleBlockId => getStyleBlock(store, styleBlockId));
-}
+  return styleBlockIds.map((styleBlockId) => getStyleBlock(store, styleBlockId));
+};
 
 export const getCssMap = (store, blockId) => {
   return store.styleBlockStore.mapStore[blockId];
-}
+};
 
 export const getStyleMap = (addonId) => {
-  let addon = getAddon(addonId); 
+  let addon = getAddon(addonId);
   if (addon) {
     // let styleBlockIds
   }
-}
+};
 
 /**
- * 
+ *
  * Pick css properties that used for this block Ids
- * 
- * @param {Object} PropertyStore CSS PropertyMapStore 
+ *
+ * @param {Object} PropertyStore CSS PropertyMapStore
  * @param {Array} blockIds Array of css block Ids
  * @param {String} viewport Viewport name
  */
 const getProperties = (PropertyStore, blockIds, viewport) => {
-  let properties = {}; 
-  
-  blockIds.map( blockId => {
+  let properties = {};
+
+  blockIds.map((blockId) => {
     let blockState = PropertyStore[blockId]; // Pick object with viewport
     if (blockState[viewport]) {
-      properties = {...properties, ...blockState[viewport]};
+      properties = { ...properties, ...blockState[viewport] };
     }
-  })
+  });
   return properties;
-}
+};
 
 /**
  * Get CSS property that used for current addons
@@ -110,43 +108,42 @@ const getProperties = (PropertyStore, blockIds, viewport) => {
  * @param {Object} cssBlockIds CSSPropertyStore BlockIds
  */
 export const getCSSProperties = (store, cssBlockIds) => {
-  if (cssBlockIds.length === 0) 
-    return {}; 
+  if (cssBlockIds.length === 0) return {};
 
-  let {mapStore} = store.styleBlockStore; 
+  let { mapStore } = store.styleBlockStore;
 
   let { mediaQuery } = store.control;
 
-  let CSSProperties = {}; 
+  let CSSProperties = {};
 
   if (cssBlockIds.length) {
-    CSSProperties = getProperties(mapStore, cssBlockIds, mediaQuery.active); 
+    CSSProperties = getProperties(mapStore, cssBlockIds, mediaQuery.active);
   }
 
   return CSSProperties;
-}
+};
 
 export const getStyleStore = (store) => {
   return store.styleStore;
-}
+};
 
 export const getStyleBlockClasse = (store, styleBlockIds) => {
-  return styleBlockIds.map( styleBlockId => {
-    let block = store.styleBlockStore.blockStore[styleBlockId]; 
-    if (block.type === 'class') {
-      return block.className.replace(/\s/g, "-").toLowerCase();;
+  return styleBlockIds.map((styleBlockId) => {
+    let block = store.styleBlockStore.blockStore[styleBlockId];
+    if (block.type === "class") {
+      return block.className.replace(/\s/g, "-").toLowerCase();
     }
-  })
-}
+  });
+};
 
 export const getAddonStyleClassName = (store, addonId) => {
   let addon = getAddon(store, addonId);
-  let {styleBlockIds} = addon;
-  if (styleBlockIds.length > 0 ) {
+  let { styleBlockIds } = addon;
+  if (styleBlockIds.length > 0) {
     return getStyleBlockClasse(store, styleBlockIds);
   }
-  return '';
-}
+  return "";
+};
 
 /**
  *
@@ -201,8 +198,8 @@ export const getActiveDockerName = (store, dockerName) => {
 
 export const getActiveMediaQuery = (store) => {
   let { mediaQuery } = store.control;
-  let {active} = mediaQuery;
-  return {...mediaQuery.list[active], name: active};
+  let { active } = mediaQuery;
+  return { ...mediaQuery.list[active], name: active };
 };
 
 export const getMediaQuery = (store, name) => {
@@ -237,4 +234,8 @@ export const getViewContextList = (store) => {
 
 export const popoverSettingPanel = (store) => {
   return store.popoverSettingPanel;
+};
+
+export const getFonts = (store) => {
+  return store.assetsStore.fonts;
 };

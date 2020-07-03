@@ -195,24 +195,48 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
             </div>
             <div className="editor-x-display-flex-align">
               <div className="editor-x-display-flex-align-items">
-                <i className="x-icon-justify-stretch editor-x-active">
+                <i
+                  className={classNames("x-icon-justify-stretch", {
+                    "editor-x-active": alignItems.value === "stretch",
+                  })}
+                  onClick={() => toggleProperty({ alignItems: { defaultValue: "normal", setValue: "stretch" } })()}
+                >
                   <span className="path1"></span>
                   <span className="path2"></span>
                 </i>
-                <i className="x-icon-align-content-bottom">
+                <i
+                  className={classNames("x-icon-align-content-bottom", {
+                    "editor-x-active": alignItems.value === "baseline",
+                  })}
+                  onClick={() => toggleProperty({ alignItems: { defaultValue: "normal", setValue: "baseline" } })()}
+                >
                   <span className="path1"></span>
                   <span className="path2"></span>
                 </i>
               </div>
               <span className="editor-x-display-flex-align-line"></span>
               <div className="editor-x-display-flex-align-justify">
-                <i className="x-icon-justify-space-evenly">
+                <i
+                  className={classNames("x-icon-justify-space-evenly", {
+                    "editor-x-active": justifyContent.value === "space-between",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ justifyContent: { defaultValue: "normal", setValue: "space-between" } })()
+                  }
+                >
                   <span className="path1"></span>
                   <span className="path2"></span>
                   <span className="path3"></span>
                   <span className="path4"></span>
                 </i>
-                <i className="x-icon-justify-space-around">
+                <i
+                  className={classNames("x-icon-justify-space-around", {
+                    "editor-x-active": justifyContent.value === "space-around",
+                  })}
+                  onClick={() =>
+                    toggleProperty({ justifyContent: { defaultValue: "normal", setValue: "space-around" } })()
+                  }
+                >
                   <span className="path1"></span>
                   <span className="path2"></span>
                 </i>

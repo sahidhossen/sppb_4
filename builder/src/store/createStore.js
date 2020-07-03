@@ -13,10 +13,7 @@ const reduxStore = (initialState) => {
   const store = createStore(
     reducer,
     initialState,
-    composeEnhancers(
-      batchedSubscribeEnhancer,
-      applyMiddleware(batchedSubscribeMiddleware, thunkMiddleware)
-    )
+    composeEnhancers(batchedSubscribeEnhancer, applyMiddleware(batchedSubscribeMiddleware, thunkMiddleware))
   );
 
   return store;
@@ -78,8 +75,7 @@ export const createSPPBStore = () => {
  * @return {Object}           Actions mapped to the redux store provided.
  */
 function mapActions(actions, store) {
-  const createBoundAction = (action) => (...args) =>
-    store.dispatch(action(...args));
+  const createBoundAction = (action) => (...args) => Promise.resolve(store.dispatch(action(...args)));
   return mapValues(actions, createBoundAction);
 }
 
@@ -93,7 +89,6 @@ function mapActions(actions, store) {
  * @return {Object}           Selectors mapped to the redux store provided.
  */
 function mapSelectors(selectors, store) {
-  const createStateSelector = (selector) => (...args) =>
-    selector(store.getState(), ...args);
+  const createStateSelector = (selector) => (...args) => selector(store.getState(), ...args);
   return mapValues(selectors, createStateSelector);
 }

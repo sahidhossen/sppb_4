@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { compose } from "../../../compose";
 import { withSelect, withDispatch } from "store";
 import List from "./List";
-import SppbPortal from "../../../sppbportal/SppbPortal";
+import EditorXPortal from "../../../portal";
 
 class ListItem extends React.Component {
   constructor() {
@@ -33,21 +33,15 @@ class ListItem extends React.Component {
             this.button = ref;
           }}
           onClick={this.openList.bind(this)}
-          className={
-            listItem.status ? "editor-x-context-menu-item-active" : false
-          }
+          className={listItem.status ? "editor-x-context-menu-item-active" : false}
         >
           <div className="editor-x-context-menu-content-wrap">
-            {listItem.status && (
-              <i className="fas fa-check editor-x-context-menu-checkmark"></i>
-            )}
+            {listItem.status && <i className="fas fa-check editor-x-context-menu-checkmark"></i>}
             <div className="editor-x-context-menu-icon">
               <i className={listItem.icon}></i>
             </div>
             <div className="editor-x-context-menu-title-wrap">
-              <span className="editor-x-context-menu-title">
-                {listItem.title}{" "}
-              </span>
+              <span className="editor-x-context-menu-title">{listItem.title} </span>
               {/*<span className="sppb-viewport-notes">
                       {viewport.value} and down
                     </span>*/}
@@ -60,7 +54,7 @@ class ListItem extends React.Component {
           </div>
         </li>
         {this.state.isList && (
-          <SppbPortal className="popover">
+          <EditorXPortal>
             <List
               isSubList={hasSubList}
               reset={this.reset.bind(this)}
@@ -68,7 +62,7 @@ class ListItem extends React.Component {
               target={this.button}
               viewContextList={this.props.viewContextList}
             />
-          </SppbPortal>
+          </EditorXPortal>
         )}
       </Fragment>
     );

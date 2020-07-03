@@ -1,5 +1,5 @@
 import React from "react";
-import SidebarHeader from "../../SidebarHeader";
+import { Scrollbars } from "react-custom-scrollbars";
 import { withSelect, withDispatch } from "store";
 import { StyleBlockContextProvider } from "style-blocks";
 import { compose } from "../../../compose";
@@ -45,17 +45,16 @@ class StyleComponentDocker extends React.Component {
                         </span>
                     </div>
                 </SidebarHeader>*/}
-        <div className="sppb-sidebar-panel">
-          <div className="sppb-sidebar-panel-content">
-            <StyleBlockContextProvider>
-              <StylePanelHeader
-                addonId={addonId}
-                addonStyleBlockIds={addonStyleBlockIds}
-              />
-              <StylePanelBody {...this.props} />
-            </StyleBlockContextProvider>
+        <Scrollbars autoHide autoHideTimeout={500} autoHideDuration={200}>
+          <div className="sppb-sidebar-panel">
+            <div className="sppb-sidebar-panel-content">
+              <StyleBlockContextProvider>
+                <StylePanelHeader addonId={addonId} addonStyleBlockIds={addonStyleBlockIds} />
+                <StylePanelBody {...this.props} />
+              </StyleBlockContextProvider>
+            </div>
           </div>
-        </div>
+        </Scrollbars>
       </div>
     );
   }
@@ -63,12 +62,7 @@ class StyleComponentDocker extends React.Component {
 
 export default compose(
   withSelect((select) => {
-    const {
-      selectedAddonId,
-      getAddonStyleBlockIds,
-      getCSSProperties,
-      getActiveMediaQuery,
-    } = select();
+    const { selectedAddonId, getAddonStyleBlockIds, getCSSProperties, getActiveMediaQuery } = select();
     let addonId = selectedAddonId();
     let addonStyleBlockIds = getAddonStyleBlockIds(addonId);
     return {
