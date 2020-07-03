@@ -6,7 +6,8 @@ import {
   StyleComponent,
   PositionComponent,
   DisplayComponent,
-  TypographyComponent
+  TypographyComponent,
+  TransformComponent,
 } from "style-blocks";
 import { BackgroundComponent } from "../../../../style-blocks";
 
@@ -36,7 +37,7 @@ class StylePanel extends React.Component {
 
   render() {
     let { styleState, addonId } = this.props;
-    let { spacing, size, backgrounds, style: styleProps, position, display, typography } = styleState;
+    let { spacing, size, backgrounds, style: styleProps, position, display, typography, transform } = styleState;
     console.log("after change", display);
     return (
       <Fragment>
@@ -87,6 +88,13 @@ class StylePanel extends React.Component {
             style={typography}
             addonId={addonId}
             setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "typography")}
+          />
+        </Panel>
+        <Panel icon="x-icon-typography" title="Transform">
+          <TransformComponent
+            style={transform}
+            addonId={addonId}
+            setCssAttributes={(attributes) => this.onUpdateStyleAttributes(attributes, "transform")}
           />
         </Panel>
 

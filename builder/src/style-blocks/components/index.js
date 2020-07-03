@@ -6,3 +6,4 @@ export { default as BackgroundComponent } from "./backgroundComponent";
 export { default as StyleComponent } from "./styleComponent";
 export { default as DisplayComponent } from "./displayComponent";
 export { default as TypographyComponent } from "./typographyComponent";
+export { default as TransformComponent } from "./transformComponent";
