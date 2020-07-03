@@ -28,7 +28,7 @@
   padding: 0 0.7273rem 1.3636rem;
   overflow-y: scroll;
   height: 72vh;
-  @include scrollbar(1rem, auto);
+  // @include scrollbar(1rem, auto);
 }
 //Editor/Docker panel
 .sppb-editor-panel {
@@ -67,7 +67,7 @@
   flex-wrap: wrap;
   overflow-y: scroll;
   height: 38vh;
-  @include scrollbar(0.6364rem, auto);
+  // @include scrollbar(0.6364rem, auto);
 }
 .sppb-docker {
   margin: var(--space-15) 0;
@@ -154,9 +154,9 @@
   border-radius: 0.4545rem;
   box-shadow: 0 1px 1px 0 rgba(1, 1, 2, 0.67);
   background: var(--pearl-dark);
-  @include scrollbar(0.5455rem, auto);
-  height: 100%;
-  overflow-y: scroll;
+  // @include scrollbar(0.5455rem, auto);
+  // height: 100%;
+  // overflow-y: scroll;
 }
 .sppb-sidebar-panel-content {
   padding-bottom: 10.0909rem;
@@ -212,15 +212,22 @@
   display: flex;
   align-items: center;
   border-radius: 0.2273rem;
-  padding: 0 0.3636rem 0px 0.7273rem;
-  @include transition(0.35s);
+  padding: 0 4px 0px 8px;
+  height: 24px;
   &:nth-child(odd) {
     background: var(--squid-ink-dark);
   }
   &:hover {
     box-shadow: 0 0.5px 1.5px 0 rgba(var(--black-rgb), 0.2), inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.16),
       inset 0 1px 0 0 rgba(var(--white-rgb), 0.04);
+    background: rgba(var(--white-rgb), 0.04);
+  }
+  &.editor-x-selected-layer {
+    box-shadow: 0 0.5px 1.5px 0 rgba(var(--black-rgb), 0.2), inset 0 0.5px 0 0 rgba(var(--white-rgb), 0.16),
+      inset 0 1px 0 0 rgba(var(--white-rgb), 0.04);
     background: var(--battleship-gray);
+  }
+  &.editor-x-selected-layer {
     .editor-x-navigator-drag,
     .editor-x-navigator-dot-btn {
       opacity: 1;
@@ -230,6 +237,7 @@
 }
 .editor-x-navigator-content {
   display: flex;
+  flex: 1 1 0%;
   align-items: center;
   white-space: nowrap;
   i {
@@ -253,6 +261,7 @@
 }
 .editor-x-layer-has-no-children {
   .editor-x-navigator-collaps {
+    background: rgba(0, 0, 0, 0.1);
     &::before {
       display: none;
     }
@@ -263,6 +272,7 @@
 }
 .editor-x-navigator-collaps {
   position: relative;
+  cursor: pointer;
   &::before {
     content: "";
     width: 2px;
@@ -278,6 +288,7 @@
   opacity: 0;
   visibility: hidden;
   font-size: 0.75rem;
+  position: absolute;
 }
 .editor-x-navigator-dot-btn {
   margin-left: auto;
@@ -291,4 +302,10 @@
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
+}
+
+.editor-x-navigator {
+  .editor-x-navigator-inner {
+    transform: translate3d(0px, 0px, 0px);
+  }
 }

@@ -44,7 +44,6 @@ class StylePanelBody extends React.Component {
         setElementComputedStyle(styleGuide);
 
         let styleState = generateStyleState(styleGuide);
-        console.log("state: ", styleState);
 
         let rule = this.updateCssRules(addonElement);
         initiateStyleState({ styleState, rule });
@@ -99,19 +98,18 @@ class StylePanelBody extends React.Component {
   }
 
   render() {
-    const { addonId } = this.props;
+    const { addonId, fonts, addonStyleBlockIds, styleState } = this.props;
     return (
       <Fragment>
         {addonId ? (
-          <div className="editor-x-style-panel-wrap">
-            <StylePanel
-              styleBlockIds={this.props.addonStyleBlockIds}
-              addonId={this.props.addonId}
-              styleState={this.props.styleState}
-              computeStyle={this.startComputedStyle}
-              setCssAttributes={this.updateComputedCssStyles.bind(this)}
-            />
-          </div>
+          <StylePanel
+            addonId={addonId}
+            fonts={fonts}
+            styleBlockIds={addonStyleBlockIds}
+            styleState={styleState}
+            computeStyle={this.startComputedStyle}
+            setCssAttributes={this.updateComputedCssStyles.bind(this)}
+          />
         ) : (
           <div className="editor-x-empty-style-panel">
             <div className="editor-x-guid-for-style-panel">Select an element from canvas to active style panel</div>
@@ -136,10 +134,11 @@ export default compose(
     };
   }),
   withSelect((select, { addonStyleBlockIds, selectedBlockId }) => {
-    const { getStyleBlock } = select();
+    const { getStyleBlock, getFonts } = select();
     return {
       styleBlockIds: addonStyleBlockIds,
       styleBlock: getStyleBlock(selectedBlockId),
+      fonts: getFonts(),
     };
   }),
   withDispatch((dispatch) => {

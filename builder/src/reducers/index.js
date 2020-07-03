@@ -8,7 +8,8 @@ import styleStore from "./StyleStore";
 import commonReducer from "./commonReducer";
 import viewContextList from "./viewContextList";
 import popoverSettingPanel from "./popoverSettingPanel";
-import styleBlockStore from './styleBlockStore';
+import styleBlockStore from "./styleBlockStore";
+import assetsStore from "./assetsStore";
 
 const reducers = reduceReducers(
   combineReducers({
@@ -18,7 +19,8 @@ const reducers = reduceReducers(
     viewContextList: viewContextList,
     popoverSettingPanel: popoverSettingPanel,
     styleBlockStore: styleBlockStore,
-    styleStore
+    styleStore,
+    assetsStore,
   }),
   commonReducer
 );

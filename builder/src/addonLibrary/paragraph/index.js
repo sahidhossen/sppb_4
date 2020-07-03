@@ -3,7 +3,7 @@ import { revisedRandId } from "../../lib/utils";
 
 export default {
   id: revisedRandId(),
-  name: "Paragraph",
+  name: "paragraph",
   title: "Paragraph",
   icon: "fa fa-paragraph",
   category: "Text",

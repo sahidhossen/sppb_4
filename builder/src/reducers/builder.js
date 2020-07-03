@@ -1,6 +1,6 @@
 import initialState from "./initialState";
 import { insertAt, moveTo } from "../lib/array";
-import { reduce, pullAt, castArray } from "lodash";
+import { reduce, pullAt, castArray, cloneDeep } from "lodash";
 
 const getMutateSafeObject = (original, working) => {
   if (original === working) {
@@ -28,11 +28,7 @@ const builder = (state = initialState, action) => {
         [defaultAddon.id]: { ...defaultAddon, parentId: parentId },
         [parentId]: {
           ...state[parentId],
-          childrens: insertAt(
-            state[parentId].childrens,
-            defaultAddon.id,
-            index
-          ),
+          childrens: insertAt(state[parentId].childrens, defaultAddon.id, index),
         },
       };
     case "TRANSFER_ADDON": {
@@ -45,6 +41,8 @@ const builder = (state = initialState, action) => {
         payload: { index, addonId, parentId },
       } = action;
 
+      const nextState = cloneDeep(state);
+
       /**
        * sourceAddon: Find parentId addon from source addon
        * Remove addonId from sourceParent children array
@@ -52,9 +50,9 @@ const builder = (state = initialState, action) => {
        * Update SourceParent Childrens
        * Update destination children array with currect index and current addonId
        */
-      const sourceAddon = state[addonId];
+      const sourceAddon = nextState[addonId];
 
-      const sourceParent = state[sourceAddon.parentId];
+      const sourceParent = nextState[sourceAddon.parentId];
       const sourceAddonIndex = sourceParent.childrens.indexOf(addonId);
       // If source ParentId and target parentId not same then Do rest of the stuff
       if (sourceAddon.parentId !== parentId) {
@@ -62,25 +60,17 @@ const builder = (state = initialState, action) => {
         pullAt(childrens, [sourceAddonIndex]);
 
         sourceParent.childrens = childrens;
-        state[sourceParent.id] = { ...sourceParent };
-        state[addonId] = { ...sourceAddon, parentId };
+        nextState[sourceParent.id] = { ...sourceParent };
+        nextState[addonId] = { ...sourceAddon, parentId };
         // Insert into new addon
-        state[parentId].childrens = insertAt(
-          state[parentId].childrens,
-          addonId,
-          index
-        );
+        nextState[parentId].childrens = insertAt(nextState[parentId].childrens, addonId, index);
       } else {
         // Move index position
         console.log("move");
-        state[parentId].childrens = moveTo(
-          state[parentId].childrens,
-          sourceAddonIndex,
-          index
-        );
+        nextState[parentId].childrens = moveTo(nextState[parentId].childrens, sourceAddonIndex, index);
       }
 
-      return state;
+      return nextState;
     }
 
     case "SET_ATTRIBUTE": {
