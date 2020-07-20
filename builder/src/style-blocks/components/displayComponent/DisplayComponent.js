@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import classNames from "classnames/bind";
 import Images from "./assets";
+import { displayData } from "./displayData";
 import {
   Checkbox,
   Divider,
@@ -35,18 +36,49 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
     setCssAttributes({ [name]: value });
   };
 
+  useEffect(() => {
+    let selected = Object.keys(selectedPosition)
+      .reduce((arr, key) => {
+        if (selectedPosition[key]) arr.push(key);
+        return arr;
+      }, [])
+      .join("-");
+    let properties = displayData[selected] || displayData["start"];
+    Object.keys(properties).forEach((key) => {
+      setCssAttributes({ [key]: properties[key] });
+    });
+  }, [selectedPosition]);
+
   const changePosition = (position) => {
-    const totalActive = Object.keys(selectedPosition).reduce((sum, key) => {
-      if (selectedPosition[key]) sum++;
-      return sum;
-    }, 0);
-    if (totalActive === 2) {
-      setSelectedPosition({ center: true });
+    const reverse = ["column-reverse", "row-reverse"];
+    if (reverse.includes(position)) {
+      if (position === "row-reverse") {
+        if (flexDirection.value === "row") {
+          setCssAttributes({ flexDirection: "row-reverse" });
+        } else {
+          setCssAttributes({ flexDirection: "row" });
+        }
+      }
+      if (position === "column-reverse") {
+        if (flexDirection.value === "column") {
+          setCssAttributes({ flexDirection: "column-reverse" });
+        } else {
+          setCssAttributes({ flexDirection: "column" });
+        }
+      }
     } else {
-      setSelectedPosition((prevState) => ({
-        ...prevState,
-        ...{ [position]: !prevState[position], [pairPositions[position]]: false },
-      }));
+      const totalActive = Object.keys(selectedPosition).reduce((sum, key) => {
+        if (selectedPosition[key]) sum++;
+        return sum;
+      }, 0);
+      if (totalActive === 2) {
+        setSelectedPosition({ ...initialPosition, center: true, start: false });
+      } else {
+        setSelectedPosition((prevState) => ({
+          ...prevState,
+          ...{ [position]: !prevState[position], ...(pairPositions[position] && { [pairPositions[position]]: false }) },
+        }));
+      }
     }
   };
 
@@ -94,7 +126,12 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": start })}>Start</span>
               </div>
               <div className="editor-x-display-control-top">
-                <i className="editor-x-display-reverse-icon x-icon-reverse-down"></i>
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-down", {
+                    "editor-x-active": flexDirection.value === "column-reverse",
+                  })}
+                  onClick={() => changePosition("column-reverse")}
+                ></i>
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": top })}>Top</span>
               </div>
               <div className="editor-x-display-control-bottom">
@@ -104,7 +141,12 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
               </div>
               <div className="editor-x-display-control-end">
                 <span className={classNames("editor-x-display-control-text", { "editor-x-active": end })}>End</span>
-                <i className="editor-x-display-reverse-icon x-icon-reverse-left"></i>
+                <i
+                  className={classNames("editor-x-display-reverse-icon x-icon-reverse-left", {
+                    "editor-x-active": flexDirection.value === "row-reverse",
+                  })}
+                  onClick={() => changePosition("row-reverse")}
+                ></i>
               </div>
               <div className="editor-x-side-control-icons">
                 <span
@@ -139,35 +181,7 @@ const DisplayComponent = ({ style, setCssAttributes }) => {
                 </span>
               </div>
             </div>
-            <div className="editor-x-display-checkbox">
-              <Checkbox
-                options={[
-                  {
-                    label: "Baseline",
-                    value: "baseline",
-                    isChecked: false,
-                  },
-                ]}
-                value={"baseline"}
-                // onCheckboxChange={(value) => {
-                //   this.onCheckedOverflow(value);
-                // }}
-              />
-              <span className="editor-x-display-checkbox-line"></span>
-              <Checkbox
-                options={[
-                  {
-                    label: "Stretch",
-                    value: "stretch",
-                    isChecked: false,
-                  },
-                ]}
-                value={"stretch"}
-                // onCheckboxChange={(value) => {
-                //   this.onCheckedOverflow(value);
-                // }}
-              />
-            </div>
+
             <Divider margin="0px -15px 0px 0px" />
             <div className="editor-x-display-flex-wrap">
               <label>Wrap</label>

@@ -943,6 +943,9 @@
   justify-content: center;
   align-items: center;
   line-height: 1;
+  &.editor-x-active {
+    color: var(--dark-bg-text-color);
+  }
 }
 .editor-x-display-control-text {
   font-size: 0.7273rem;
@@ -1136,30 +1139,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  button {
-    padding: 0.2rem 0.65rem 0;
-    font-size: 1.5rem;
-    line-height: 1;
-  }
-}
-.editor-x-typography-vertical-align {
-  margin-top: 15px;
-}
-.editor-x-typography-weight {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-}
-//Paragraph advanced options
-.editor-x-typography-paragraph-advanced-options {
-  p {
-    color: var(--white);
-    margin-top: 0;
-  }
-  .editor-x-radio-control {
-    button {
-      padding: 0.275rem 1.275rem;
+  span {
+    font-size: 1.65rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #3a404c;
+    padding: 0 23px;
+    &:first-child {
+      padding-left: 0;
     }
   }
 }
