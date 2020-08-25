@@ -4,7 +4,9 @@
 
 ---
 
-### `Design and build your own high-quality websites. Whether you’re promoting your business, showcasing your work, opening your store or starting a blog—you can do it all with the Editor-x website builder.`
+### `Design and build your own high-quality websites. Whether you’re promoting your business, showcasing your work, opening your store or starting a blog—you can do it all with the Editor-x website builder.
+
+`
 
 ---
 
